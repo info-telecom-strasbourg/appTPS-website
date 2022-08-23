@@ -20,6 +20,6 @@ class Post extends Model
         'email',
         'contenu',
         'asso_club',
-        'fichier'
+        'fichiers'
     ];
 }

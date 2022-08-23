@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 class CreateArticleController extends Controller
@@ -22,35 +23,24 @@ class CreateArticleController extends Controller
         $post->email = $request->email;
         $post->contenu = $request->contenu;
         $post->asso_club = $request->asso_club;
-        /* $request->validate([
-            'images' => 'array',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]); */
-        /* if ($request->has('fichier'))
-        {
+        $request->validate([
+            'titre' => 'min:5|max:250|required',
+            'auteur' => 'min:5|max:250|required',
+            'email' => 'required',
+            'contenu' => 'min:20|max:65000|required',
+            'fichiers' => 'array',
+            'fichiers.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20480',
+        ]);
+        if ($request->has('fichiers')) {
             $postImages = [];
-            return $request->fichier;
-            foreach ($request->fichier as $image)
-            {
-                return $image;
-                $postImages[] = $this->saveImage($image);
+            foreach ($request->fichiers as $image) {
+                $path = substr(Storage::putFile('public/images/articles', $image, 'public'), 7);
+                $postImages[] = $path;
             }
-            $post->fichier = json_encode($postImages);
-        } */
+            $post->fichiers = json_encode($postImages, JSON_UNESCAPED_SLASHES);
+        }
         $post->updated_at = NULL;
         $post->save();
         return redirect('/create-article')->with('message', 'Enregistré !');
-    }
-
-    /**
-     * Save an image given by the user in the public storage folder.
-     *
-     * @param image: the image to be stored
-     * @return the path to find the image
-     */
-    public function saveImage($image)
-    {
-        $path = Storage::putFile('public/images/articles/', $image, 'public');
-        return substr($path, 7);
     }
 }

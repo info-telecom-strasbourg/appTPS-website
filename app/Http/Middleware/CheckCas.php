@@ -4,14 +4,16 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CheckCas
 {
 
     //put here the admin mail
-    private $_adminMails = ["felix.lusseau@etu.unistra.fr", "gatien.chenu@etu.unistra.fr"]; 
+    private $_adminMails = ["felix.lusseau@etu.unistra.fr", "gatien.chenu@etu.unistra.fr"];
+    // private $_adminMails = ["gatien.chenu@etu.unistra.fr"];
     private $_udsDisplayNamePoperty = "udsDisplayName";
-    
+
     /**
      * Handle an incoming request and redirect to the CAS if the user is not 
      * connected. Then, a session starts with his attributes 
@@ -25,93 +27,101 @@ class CheckCas
      * @return mixed
      */
     public function handle(Request $request, Closure $next, $role)
-    {        
+    {
 
         if (!cas()->checkAuthentication()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             }
             cas()->authenticate();
-            
         }
-        
+
         // add attribute to session 
         if (cas()->hasAttribute("mail")) {
             session()->put('cas_mail', cas()->getAttribute("mail"));
         }
 
-        
+
         if (cas()->hasAttribute("displayName")) {
             session()->put('cas_name', cas()->getAttribute("displayName"));
         }
-        
+
         session()->put('cas_user', cas()->user());
- 
+
         $udsStudentName = cas()->getAttribute($this->_udsDisplayNamePoperty);
         // Search "etu tps" in the udsDisplayName attribute of the user
         $isStudent = strpos(strtolower($udsStudentName), "etu tps");
-        
+
         if (!cas()->hasAttribute($this->_udsDisplayNamePoperty)) {
-            
+
             session()->put('auth_error', "udsfieldmissing");
             return redirect("authentication-failed");
-            
         }
 
-		if ($role === 'authenticated') {
-			if ($isStudent === false && 
-			(!cas()->hasAttribute("mail") ||  in_array(cas()->getAttribute("mail"),$this->_adminMails))) {				
-				session()->put('auth_error', "notfromtps");
+        if ($role === 'authenticated') {
+            if (
+                $isStudent === false &&
+                (!cas()->hasAttribute("mail") ||  in_array(cas()->getAttribute("mail"), $this->_adminMails))
+            ) {
+                session()->put('auth_error', "notfromtps");
                 return redirect("authentication-failed");
-			}
+            }
 
-			if (cas()->hasAttribute("mail") && in_array(cas()->getAttribute("mail"), $this->_adminMails)) {
-					session()->put('cas_role', "admin");
-					return $next($request);
-					
-			}
+            if (cas()->hasAttribute("mail") && in_array(cas()->getAttribute("mail"), $this->_adminMails)) {
+                session()->put('cas_role', "admin");
+                return $next($request);
+            }
 
-			if ($isStudent) {
-				session()->put('cas_role', "student");
-				return $next($request);
-			}
+            $isRedacteur = json_decode(json_encode(DB::table('users')
+                ->select('redacteur')
+                ->WHERE('identifiant', '=', $this->getUser())
+                ->first()), true);
+            $isRedacteur = $isRedacteur['redacteur'];
+            if ($isStudent && $isRedacteur) {
+                session()->put('cas_role', "redacteur");
+                return $next($request);
+            }
 
-		}
-		
-		if ($role === 'student') {
-            
+            if ($isStudent) {
+                session()->put('cas_role', "student");
+                return $next($request);
+            }
+
             if ($isStudent === false) {
                 session()->put('auth_error', "notfromtps");
-                return redirect("authentication-failed");  
+                return redirect("authentication-failed");
+            }
+        }
+
+        if ($role === 'student') {
+
+            if ($isStudent === false) {
+                session()->put('auth_error', "notfromtps");
+                return redirect("authentication-failed");
             } else {
                 session()->put('cas_role', "student");
                 return $next($request);
             }
-            
-            
-        } 
-		
-		if ($role === 'admin' && cas()->hasAttribute("mail")) {
-            
+        }
+
+        if ($role === 'admin' && cas()->hasAttribute("mail")) {
+
             if (in_array(cas()->getAttribute("mail"), $this->_adminMails)) {
                 session()->put('cas_role', "admin");
                 return $next($request);
-                
             } else {
                 session()->put('auth_error', "notadminmail");
-                return redirect("authentication-failed"); 
+                return redirect("authentication-failed");
             }
-            
-        } elseif (!cas()->hasAttribute("mail")){
+        } elseif (!cas()->hasAttribute("mail")) {
             session()->put('auth_error', "mailfieldmissing");
             return redirect("authentication-failed");
         }
-        
+
         session()->put('auth_error', "unknown");
-        return redirect("authentication-failed");    
-        
+        return redirect("authentication-failed");
     }
-        
+
     /**
      * This function returns the current user (uid attribute).
      * The string returned can never be empty.
@@ -122,7 +132,7 @@ class CheckCas
     {
         return session()->get('cas_user');
     }
-    
+
     /**
      * This function returns the mail of the current user. 
      * The returned value can be empty ! 
@@ -144,7 +154,7 @@ class CheckCas
     {
         return session()->get('cas_name');
     }
-    
+
     /**
      * This function returns the role of the current user. It is 'admin' or 
      * 'student'.
@@ -156,7 +166,7 @@ class CheckCas
     {
         return session()->get('cas_role');
     }
-    
+
     /**
      * This function check if the current user is an admin based on his role.
      *
@@ -169,7 +179,7 @@ class CheckCas
         }
         return false;
     }
-    
+
     /**
      * This function check if the current user is a student based on his role.
      *
@@ -182,8 +192,8 @@ class CheckCas
         }
         return false;
     }
-    
-    
+
+
     /**
      * This function returns an array with all keys/values returned by the CAS. 
      *
@@ -198,7 +208,7 @@ class CheckCas
         }
     }
 
-     /**
+    /**
      * This function returns an array with the keys/values returned by the CAS for the App. 
      *
      * @return array of attributes.
@@ -211,7 +221,7 @@ class CheckCas
             return array();
         }
     }
-    
+
     /**
      * Logout the user from his session.
      *
@@ -224,7 +234,7 @@ class CheckCas
     {
         cas()->logout($redirectUrl);
     }
-    
+
     /**
      * If the user can't connect to the site, return an appropriate error. 
      *
