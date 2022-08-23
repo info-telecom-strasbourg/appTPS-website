@@ -11,7 +11,7 @@ class CheckCas
 
     //put here the admin mail
     private $_adminMails = ["felix.lusseau@etu.unistra.fr", "gatien.chenu@etu.unistra.fr"];
-    // private $_adminMails = ["gatien.chenu@etu.unistra.fr"];
+    //private $_adminMails = ["gatien.chenu@etu.unistra.fr"];
     private $_udsDisplayNamePoperty = "udsDisplayName";
 
     /**
@@ -78,12 +78,12 @@ class CheckCas
                 ->first()), true);
             $isRedacteur = $isRedacteur['redacteur'];
             if ($isStudent && $isRedacteur) {
-                session()->put('cas_role', "redacteur");
+                session()->put('cas_role', "rédacteur");
                 return $next($request);
             }
 
             if ($isStudent) {
-                session()->put('cas_role', "student");
+                session()->put('cas_role', "étudiant");
                 return $next($request);
             }
 
@@ -99,7 +99,7 @@ class CheckCas
                 session()->put('auth_error', "notfromtps");
                 return redirect("authentication-failed");
             } else {
-                session()->put('cas_role', "student");
+                session()->put('cas_role', "étudiant");
                 return $next($request);
             }
         }
@@ -157,10 +157,10 @@ class CheckCas
 
     /**
      * This function returns the role of the current user. It is 'admin' or 
-     * 'student'.
+     * 'étudiant'.
      * * This function never fails. 
      *
-     * @return type string 'admin' or 'student'.
+     * @return type string 'admin' or 'étudiant'.
      */
     private static function _getRole()
     {
@@ -187,7 +187,7 @@ class CheckCas
      */
     public static function isStudent()
     {
-        if (CheckCas::_getRole() === 'student') {
+        if (CheckCas::_getRole() === 'étudiant') {
             return true;
         }
         return false;

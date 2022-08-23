@@ -36,7 +36,7 @@
                 </a>
             </li>
             @endif
-            @if (session()->get('cas_role')=="admin" || session()->get('cas_role')=="redacteur")
+            @if (session()->get('cas_role')=="admin" || session()->get('cas_role')=="rédacteur")
             @if ($currentURL=="https://app.its-tps.fr/create-article")
             <li class="nav-item active">
                 @else

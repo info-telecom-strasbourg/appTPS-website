@@ -69,6 +69,13 @@
 
                 break;
 
+            case "notredactor":
+
+                $errorType = "Tu n'as pas les droits pour entrer dans cette "
+                    . "page. Tu dois avoir les droits de rédacteur. ";
+
+                break;
+
             case "notfromtps":
 
                 $errorType = "Oups, nous n'avons pas pu t'identifier. "

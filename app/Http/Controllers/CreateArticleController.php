@@ -12,7 +12,12 @@ class CreateArticleController extends Controller
 {
     public function index()
     {
-        return view('/create-article');
+        if (session()->get('cas_role') == 'étudiant') {
+            session()->put('auth_error', "notredactor");
+            return redirect("authentication-failed");
+        } else {
+            return view('create-article');
+        }
     }
 
     public function store(Request $request)

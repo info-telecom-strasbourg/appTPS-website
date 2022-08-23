@@ -24,14 +24,14 @@ Route::get('/app-login', [AppLoginController::class, 'login'])->middleware('cas:
 
 Route::get('/users', [UsersController::class, 'users'])->middleware('cas:admin');
 
-Route::get('/create-article', function () {
-    return view('create-article');
-})->middleware('cas:authenticated');
+Route::post('/update-user', [UsersController::class, 'update'])->name('users.update')->middleware('cas:admin');
+
+Route::get('/create-article', [CreateArticleController::class, 'index'])->middleware('cas:authenticated');
 
 Route::post('/send-article', [CreateArticleController::class, 'store'])->name('create-article.store')->middleware('cas:authenticated');
 
 //Do not add cas middlware here.
-Route::get('/authentication-failed', function(){
+Route::get('/authentication-failed', function () {
     return view('CAS.authenticationFailed');
 });
 

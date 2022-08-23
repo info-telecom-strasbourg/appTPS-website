@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Middleware\CheckCas;
 use Illuminate\Support\Facades\DB;

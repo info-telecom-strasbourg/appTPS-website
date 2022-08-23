@@ -18,16 +18,25 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($users as $value)
+            @foreach($users as $value)
             <tr>
-                <td>{{$value['identifiant']}}</td>
-                <td>{{$value['nom']}}</td>
-                <td>{{$value['email']}}</td>
-                <td><?php echo $var = ($value['redacteur'] == 1) ? "Oui" : "Non" ?>
-                <!-- <input type="checkbox" id="redacteur" name="redacteur" autocomplete="off" <?php echo $var ? "Checked" : ""?> /> --></td>
-                <td>{{$value['created_at']}}</td>
+                <form action="/update-user" method="POST">
+                    @csrf
+                    <td>{{$value['identifiant']}}</td>
+                    <td>{{$value['nom']}}</td>
+                    <td>{{$value['email']}}</td>
+                    <td>
+                        <input type="hidden" name="identifiant" value="{{$value['identifiant']}}">
+                        <!-- Rounded switch -->
+                        <label class="switch">
+                            <input type="checkbox" id="redacteur" name="redacteur" onClick="this.form.submit()" autocomplete="off" <?php echo ($value['redacteur'] == 1) ? "Checked" : "" ?>>
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+                    <td>{{$value['created_at']}}</td>
+                </form>
             </tr>
-        @endforeach
+            @endforeach
         </tbody>
     </table>
 </div>
