@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Middleware\CheckCas;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 
 class AppLoginController extends Controller
 {
     /**
-	 * Get data for login page.
-	 */
+     * Get data for login page.
+     */
     public function login()
     {
         $user = new User;
@@ -20,12 +19,12 @@ class AppLoginController extends Controller
         $user->nom = CheckCas::getName();
         $user->email = CheckCas::getMail();
         $user_in_db = DB::table('users')
-                            ->select('identifiant')
-                            ->WHERE('identifiant', '=', $user->identifiant)
-                            ->first();
+            ->select('identifiant')
+            ->WHERE('identifiant', '=', $user->identifiant)
+            ->first();
         if (CheckCas::isAdmin())
-            $user->redacteur=TRUE;
-        if ($user_in_db=="")
+            $user->redacteur = TRUE;
+        if ($user_in_db == "")
             $user->save();
         return json_encode(CheckCas::getAttributes());
     }

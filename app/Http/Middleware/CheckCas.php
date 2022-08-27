@@ -76,10 +76,12 @@ class CheckCas
                 ->select('redacteur')
                 ->WHERE('identifiant', '=', $this->getUser())
                 ->first()), true);
-            $isRedacteur = $isRedacteur['redacteur'];
-            if ($isStudent && $isRedacteur) {
-                session()->put('cas_role', "rédacteur");
-                return $next($request);
+            if (isset($isRedacteur)) {
+                $isRedacteur = $isRedacteur['redacteur'];
+                if ($isStudent && $isRedacteur) {
+                    session()->put('cas_role', "rédacteur");
+                    return $next($request);
+                }
             }
 
             if ($isStudent) {

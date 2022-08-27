@@ -14,18 +14,18 @@ body {
 	justify-content: center;
 	min-height: 100vh;
 	padding-top: 120px;
-	padding-bottom: 120px;
+	padding-bottom: 80px;
 }
 
 .container {
 	background-color: #fff;
 	border-radius: 5px;
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-	width: 500px;
+	width: 700px;
 }
 
 .page {
-	max-width: 98%;
+	width: 98%;
 	margin: 20px;
 	text-align: center;
 	overflow-wrap: break-word;
@@ -39,7 +39,7 @@ body {
 }
 
 form {
-	max-width: 400px;
+	max-width: 550px;
 	margin: 10px auto;
 	padding: 0.5rem 1rem;
 }
@@ -148,6 +148,42 @@ button {
 		box-shadow 0.15s ease-in-out;
 	text-align: center;
 	padding: 0.375rem 0.75rem;
+}
+
+.supprimer {
+	background-color: #dc3545;
+	border-color: #dc3545;
+	float: right;
+	margin-left: 10px;
+}
+
+.supprimer:hover {
+	background-color: #c82333;
+	border-color: #c82333;
+}
+
+.supprimer:focus {
+	box-shadow: 0 0 0 0.25rem rgb(220 53 69 / 25%);
+}
+
+.restaurer {
+	background-color: #198754;
+	border-color: #198754;
+	float: right;
+	margin-left: 10px;
+}
+
+.restaurer:hover {
+	background-color: #187449;
+	border-color: #187449;
+}
+
+.restaurer:focus {
+	box-shadow: 0 0 0 0.25rem rgb(25 135 84 / 25%);
+}
+
+#gestion-article {
+	margin-right: 0;
 }
 
 button:hover {
@@ -500,7 +536,7 @@ tbody tr:nth-child(even) {
 
 #article-image {
 	max-width: 45%;
-	margin: 1em 0 0 0;
+	margin: 0 0 0 0;
 	padding: 0.5em;
 }
 
@@ -512,13 +548,27 @@ tbody tr:nth-child(even) {
 	max-width: 92%;
 	overflow-wrap: break-word;
 	margin: 1em auto;
-	padding: 1em;
+	padding: 2em;
+}
+
+#article-contenu br {
+	display: none;
+}
+
+#article-contenu p br {
+	display: block;
 }
 
 #article-titre {
 	text-align: center;
 	font-size: 2rem;
 	margin-top: 1.25em;
+}
+
+#article-gestion {
+	text-align: center;
+	font-size: 1.5rem;
+	margin-top: 1em;
 }
 
 @media screen and (orientation: portrait){

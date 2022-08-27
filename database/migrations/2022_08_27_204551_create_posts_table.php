@@ -14,7 +14,7 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::dropIfExists('posts');
-        
+
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             $table->text('contenu');
             $table->string('asso_club');
             $table->json('fichiers')->nullable();
+            $table->boolean('supprimé')->default(FALSE);
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
         });

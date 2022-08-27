@@ -4,38 +4,41 @@
 
 @section('content')
 
+
 <div class="page">
-    <!-- <h3>JSON CAS (temporaire) : </h3>
-    <p>
-    @php
-        $array=App\Http\Middleware\CheckCas::getAttributes();
-        echo json_encode($array);
-    @endphp
-    </p> -->
+    @if (session()->get('cas_role')=="admin")
+    <form action="/admin-view" method="POST">
+        @csrf
+        <!-- Rounded switch -->
+        Vue admin :&nbsp;&nbsp;
+        <label class="switch">
+            <input type="checkbox" id="view" name="view" onClick="this.form.submit()" autocomplete="off" <?php echo (session()->get('admin_view') == 1) ? "Checked" : "" ?>>
+            <span class="slider round"></span>
+        </label>
+    </form>
+    @endif
     <h1>Articles :</h1>
     @foreach($articles as $article)
+    @if ($article['supprimé'] == 1 && ((session()->get('cas_role') == "admin" && session()->get('admin_view') == 1) || session()->get('cas_mail') == $article['email']))
     <div class="article-container">
-        <p><span style="float:left; font-size:1.5rem">{{$article['auteur']}} - {{$article['asso_club']}}</span><span style="float:right"><i><small>{{$article['created_at']}}</small></i></span></p>
-
-        <h2 id="article-titre">{{$article['titre']}}</h2>
-
-        <p id="article-contenu">{!!html_entity_decode(nl2br($article['contenu']))!!}
-            @if ($article['fichiers'])
-            @php
-            $article['fichiers'] = str_replace("[", "", $article['fichiers']);
-            $article['fichiers'] = str_replace("]", "", $article['fichiers']);
-            $article['fichiers'] = str_replace("\"", "", $article['fichiers']);
-            $article['fichiers'] = str_replace("\"", "", $article['fichiers']);
-            $fichiers = explode(",", $article['fichiers']);
-            @endphp
-            <br><br>
-            @foreach($fichiers as $image)
-            <img id="article-image" src="{{$image}}" />
-            @endforeach
-            @endif
-        </p>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <p style="font-size:2em">Cet article est supprimé et invisible pour le public !!</p>
+            <p><small>Auteur : {{$article['email']}}</small></p>
+            @include('partials.article')
+        </div>
+        <div id="article-gestion">
+            <form action="/modify-erased-article" method="POST">
+                @csrf
+                <input type="hidden" name="id" value="{{$article['id']}}">
+                <button type="submit" style="float:none" class="restaurer" value="1" name="restaurer">Restaurer</button>
+                <button type="submit" style="float:none; margin-left: 10px" value="1" name="modifier">Modifier et restaurer</button>
+                <button type="submit" style="float:none" class="supprimer" value="1" name="supprimer">Supprimer définitivement</button>
+            </form>
+        </div>
     </div>
-    <br>
+    @else
+    @include('partials.article')
+    @endif
     @endforeach
 
 </div>

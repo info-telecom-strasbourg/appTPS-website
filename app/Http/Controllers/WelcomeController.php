@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Middleware\CheckCas;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
@@ -31,5 +31,57 @@ class WelcomeController extends Controller
         $articles = json_decode(json_encode($articles), true);
 
         return view('welcome', compact('articles'));
+    }
+
+    public function toggle_view(Request $request)
+    {
+        $admin_view = ($request->view == "on") ? 1 : 0;
+        session()->put('admin_view', $admin_view);
+        return redirect('/');
+    }
+
+    public function delete(Request $request)
+    {
+        DB::table('posts')
+            ->where('id', $request->id)
+            ->update(['supprimé' => 1]);
+        return redirect('/');
+    }
+
+    public function erased(Request $request)
+    {
+        if ($request->supprimer == 1) {
+            DB::table('posts')
+                ->where('id', $request->id)
+                ->delete();
+            return redirect('/');
+        } else if ($request->restaurer == 1) {
+            DB::table('posts')
+                ->where('id', $request->id)
+                ->update(['supprimé' => 0]);
+            return redirect('/');
+        } else if ($request->modifier == 1) {
+            $id = $request->id;
+            $modify = json_decode(json_encode(DB::table('posts')->select('*')->where('id', $id)->first()), true);
+            return view('create-article', compact('modify', 'id'));
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function available(Request $request)
+    {
+        if ($request->modifier == 1) {
+            $id = $request->id;
+            $modify = json_decode(json_encode(DB::table('posts')->select('*')->where('id', $id)->first()), true);
+            return view('create-article', compact('modify', 'id'));
+        } else if ($request->supprimer == 1) {
+            DB::table('posts')
+                ->where('id', $request->id)
+                ->update(['supprimé' => 1]);
+            return redirect('/');
+        } else {
+            return redirect('/');
+        }
     }
 }

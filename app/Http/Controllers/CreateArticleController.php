@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+
 
 class CreateArticleController extends Controller
 {
@@ -47,5 +48,26 @@ class CreateArticleController extends Controller
         $post->updated_at = NULL;
         $post->save();
         return redirect('/create-article')->with('message', 'Enregistré !');
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'titre' => 'min:5|max:250|required',
+            'auteur' => 'min:5|max:250|required',
+            'email' => 'required',
+            'contenu' => 'min:20|max:65000|required'
+        ]);
+        DB::table('posts')->where('id', $request->id)->update([
+            'titre' => $request->titre,
+            'auteur' => $request->auteur,
+            'email' => $request->email,
+            'contenu' => $request->contenu,
+            'asso_club' => $request->asso_club,
+            'supprimé' => 0,
+            'created_at' => DB::raw('created_at'),
+            'updated_at' => now()
+        ]);
+        return redirect('/');
     }
 }

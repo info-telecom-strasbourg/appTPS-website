@@ -20,6 +20,12 @@ use App\Http\Controllers\AppLoginController;
 
 Route::get('/', [WelcomeController::class, 'welcome'])->middleware('cas:authenticated');
 
+Route::post('/gestion-article', [WelcomeController::class, 'available'])->middleware('cas:authenticated');
+
+Route::post('/admin-view', [WelcomeController::class, 'toggle_view'])->middleware('cas:admin');
+
+Route::post('/modify-erased-article', [WelcomeController::class, 'erased'])->middleware('cas:authenticated');
+
 Route::get('/app-login', [AppLoginController::class, 'login'])->middleware('cas:student');
 
 Route::get('/users', [UsersController::class, 'users'])->middleware('cas:admin');
@@ -29,6 +35,8 @@ Route::post('/update-user', [UsersController::class, 'update'])->name('users.upd
 Route::get('/create-article', [CreateArticleController::class, 'index'])->middleware('cas:authenticated');
 
 Route::post('/send-article', [CreateArticleController::class, 'store'])->name('create-article.store')->middleware('cas:authenticated');
+
+Route::post('/modify-article', [CreateArticleController::class, 'update'])->middleware('cas:authenticated');
 
 //Do not add cas middlware here.
 Route::get('/authentication-failed', function () {
