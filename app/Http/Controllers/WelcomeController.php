@@ -27,7 +27,7 @@ class WelcomeController extends Controller
         if ($user_in_db == "")
             $user->save();
 
-        $articles = DB::select('select * from posts');
+        $articles = DB::select('select * from posts order by id desc');
         $articles = json_decode(json_encode($articles), true);
 
         return view('welcome', compact('articles'));
