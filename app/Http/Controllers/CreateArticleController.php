@@ -35,7 +35,7 @@ class CreateArticleController extends Controller
             'email' => 'required',
             'contenu' => 'min:20|max:65000|required',
             'fichiers' => 'array',
-            'fichiers.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20480',
+            'fichiers.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:131072',
         ]);
         if ($request->has('fichiers')) {
             $postImages = [];

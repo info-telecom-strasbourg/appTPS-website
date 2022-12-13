@@ -5,7 +5,7 @@
 <script>
 	tinymce.init({
 		selector: "#contenu",
-		plugins: "lists emoticons advcode",
+		plugins: "lists emoticons",
 		toolbar: "emoticons | bold italic underline | alignleft aligncenter | numlist bullist |  code",
 		toolbar_location: "top",
 		menubar: true

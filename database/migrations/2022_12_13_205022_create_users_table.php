@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('nom');
             $table->string('email')->unique();
             $table->boolean('redacteur')->default(FALSE);
+            $table->biginteger('carte_fouaille')->nullable();
             $table->timestamp('created_at');
             //$table->timestamp('updated_at')->nullable();
         });

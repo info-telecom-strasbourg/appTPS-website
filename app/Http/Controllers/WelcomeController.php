@@ -33,6 +33,13 @@ class WelcomeController extends Controller
         return view('welcome', compact('articles'));
     }
 
+    public function app_articles()
+    {
+        $articles = DB::select('select * from posts order by id desc');
+        // $articles = json_decode(json_encode($articles), true);
+        return $articles;
+    }
+
     public function toggle_view(Request $request)
     {
         $admin_view = ($request->view == "on") ? 1 : 0;

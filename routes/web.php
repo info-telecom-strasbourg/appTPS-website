@@ -20,6 +20,8 @@ use App\Http\Controllers\AppLoginController;
 
 Route::get('/', [WelcomeController::class, 'welcome'])->middleware('cas:authenticated');
 
+Route::get('/articles-hidden-json', [WelcomeController::class, 'app_articles']);
+
 Route::post('/gestion-article', [WelcomeController::class, 'available'])->middleware('cas:authenticated');
 
 Route::post('/admin-view', [WelcomeController::class, 'toggle_view'])->middleware('cas:admin');
