@@ -22,6 +22,17 @@
                     Accueil
                 </a>
             </li>
+            @if ($currentURL=="https://app.its-tps.fr/fouaille")
+            <li class="nav-item active">
+                @else
+            <li class="nav-item">
+                @endif
+                <a class="nav-link" href="https://app.its-tps.fr/fouaille">
+                    <i class="fa fa-dollar-sign"></i>
+                    Fouaille
+                </a>
+            </li>
+
             @if (session()->get('cas_role')=="admin")
             @if ($currentURL=="https://app.its-tps.fr/users")
             <li class="nav-item active">

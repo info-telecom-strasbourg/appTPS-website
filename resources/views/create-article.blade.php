@@ -70,18 +70,25 @@
 				<label for="asso_club"><span style="color: red;">*</span> Pour quel club / asso écris-tu ?</label>
 				<select name="asso_club" id="asso_club" required>
 					<option value="{{ old('asso_club') }}{{ $modify['asso_club'] ?? '' }}">{{ old('asso_club') ?? '' }}{{ $modify['asso_club'] ?? 'En choisir un(e)...' }}</option>
-					<option value="ITS">ITS</option>
-					<option value="BDE">BDE</option>
-					<option value="BDS">BDS</option>
-					<option value="BDF">BDF</option>
-					<option value="Musique">Musique</option>
-					<option value="Oeno">Oeno</option>
-					<option value="Gala">Gala</option>
-					<option value="PSI">PSI</option>
-					<option value="RTS">RTS</option>
+					<option value="Astro">Astro</option>
 					<option value="BDA">BDA</option>
+					<option value="BDE">BDE</option>
+					<option value="BDF">BDF</option>
 					<option value="BDH">BDH</option>
+					<option value="BDM">BDM</option>
+					<option value="BDS">BDS</option>
+					<option value="Ciné">Ciné</option>
+					<option value="Cuisine">Cuisine</option>
+					<option value="Gala">Gala</option>
+					<option value="ITS">ITS</option>
+					<option value="JDS">JDS</option>
+					<option value="MPS">MPS</option>
+					<option value="Oeno">Oeno</option>
+					<option value="Pompom">Pompom</option>
+					<option value="PSI">PSI</option>
+					<option value="Rock">Rock</option>
 					<option value="RTS">RTS</option>
+					<option value="Yugi">Yugi</option>
 				</select>
 				<small></small>
 			</div>

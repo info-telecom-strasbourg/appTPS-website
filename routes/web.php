@@ -21,6 +21,8 @@ use App\Http\Controllers\AppLoginController;
 
 Route::get('/', [WelcomeController::class, 'welcome'])->middleware('cas:authenticated');
 
+Route::get('/app-fouaille', [FouailleController::class, 'app_fouaille'])->middleware('cas:authenticated');
+
 Route::get('/fouaille', [FouailleController::class, 'fouaille'])->middleware('cas:authenticated');
 
 Route::get('/articles-hidden-json', [WelcomeController::class, 'app_articles']);
