@@ -26,6 +26,7 @@ class AppLoginController extends Controller
             $user->redacteur = TRUE;
         if ($user_in_db == "")
             $user->save();
-        return json_encode(CheckCas::getAttributes());
+        return response()->json(CheckCas::getAttributes());
+        // return json_encode(CheckCas::getAttributes());
     }
 }

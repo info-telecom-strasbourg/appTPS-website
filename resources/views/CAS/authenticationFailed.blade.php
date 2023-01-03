@@ -79,9 +79,10 @@
             case "notfromtps":
 
                 $errorType = "Oups, nous n'avons pas pu t'identifier. "
-                    . "Es-tu un étudiant de "
-                    . "Télécom Physique Strasbourg ? Si tu fais partie "
-                    . "de TPS, tu peux contacter ITS.";
+                    . "Es-tu un.e étudiant.e de "
+                    . "Télécom Physique Strasbourg ou de l'École "
+                    . "Supérieure de Biotechnologie de Strasbourg ? Si tu fais partie "
+                    . "de TPS ou de l'ESBS, tu peux contacter ITS.";
 
                 break;
 

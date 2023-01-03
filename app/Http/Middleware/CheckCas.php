@@ -50,7 +50,7 @@ class CheckCas
 
         $udsStudentName = cas()->getAttribute($this->_udsDisplayNamePoperty);
         // Search "etu tps" in the udsDisplayName attribute of the user
-        $isStudent = strpos(strtolower($udsStudentName), "etu tps");
+        $isStudent = (strpos(strtolower($udsStudentName), "etu tps") || strpos(strtolower($udsStudentName), "etu esbs"));
 
         if (!cas()->hasAttribute($this->_udsDisplayNamePoperty)) {
 

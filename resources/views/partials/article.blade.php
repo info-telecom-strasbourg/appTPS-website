@@ -5,17 +5,19 @@
 
     <div id="article-contenu">{!!html_entity_decode(nl2br($article['contenu']))!!}
         @if ($article['fichiers'])
-        @php
-        $article['fichiers'] = str_replace("[", "", $article['fichiers']);
-        $article['fichiers'] = str_replace("]", "", $article['fichiers']);
-        $article['fichiers'] = str_replace("\"", "", $article['fichiers']);
-        $article['fichiers'] = str_replace("\"", "", $article['fichiers']);
-        $fichiers = explode(",", $article['fichiers']);
-        @endphp
-        @foreach($fichiers as $image)
-        <a href="https://app.its-tps.fr/{{ $image }}">
-            <img id="article-image" src="{{$image}}" />
-        </a> @endforeach @endif
+            @php
+                $article['fichiers'] = str_replace("[", "", $article['fichiers']);
+                $article['fichiers'] = str_replace("]", "", $article['fichiers']);
+                $article['fichiers'] = str_replace("\"", "", $article['fichiers']);
+                $article['fichiers'] = str_replace("\"", "", $article['fichiers']);
+                $fichiers = explode(",", $article['fichiers']);
+            @endphp
+            @foreach($fichiers as $image)
+                <a href="https://app.its-tps.fr/{{ $image }}">
+                    <img id="article-image" src="{{$image}}" />
+                </a> 
+            @endforeach 
+        @endif
     </div>
     @if (session()->get('cas_role') == "admin" && $article['supprimé'] == 0 && session()->get('admin_view') == 1 && session()->get('cas_mail') != $article['email'])
     <div id="article-gestion" style="margin-bottom:1.25em">
