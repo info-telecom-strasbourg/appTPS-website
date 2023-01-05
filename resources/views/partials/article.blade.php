@@ -1,5 +1,5 @@
 <div class="article-container">
-    <p><span style="float:left; font-size:1.5rem">{{$article['auteur']}} - {{$article['asso_club']}}</span><span style="float:right"><i><small>@php echo (isset($article['updated_at'])) ? "(modifié) " . $article['updated_at'] : $article['created_at'] @endphp</small></i></span></p>
+    <p><span style="float:left; font-size:1.5rem">{{$article['auteur']}}<!--  - {{$article['asso_club']}} --><img src="logo/{{$article['asso_club']}}.png" style="height: 2em; margin-left: 8px; position: absolute; top: 12px"></span><span style="float:right"><i><small>@php echo (isset($article['updated_at'])) ? "(modifié) " . $article['updated_at'] : $article['created_at'] @endphp</small></i></span></p>
 
     <h2 id="article-titre">{{$article['titre']}}</h2>
 

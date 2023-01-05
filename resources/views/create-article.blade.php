@@ -5,10 +5,13 @@
 <script>
 	tinymce.init({
 		selector: "#contenu",
-		plugins: "lists emoticons",
-		toolbar: "emoticons | bold italic underline | alignleft aligncenter | numlist bullist |  code",
+		plugins: "lists emoticons link",
+		toolbar: "emoticons | bold italic underline | alignleft aligncenter | numlist bullist | code | link",
 		toolbar_location: "top",
-		menubar: true
+		menubar: true,
+		default_link_target: '_blank',
+		link_assume_external_targets: 'https',
+		link_default_protocol: 'https'
 	});
 </script>
 

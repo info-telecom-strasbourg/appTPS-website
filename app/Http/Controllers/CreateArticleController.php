@@ -30,8 +30,8 @@ class CreateArticleController extends Controller
         $post->contenu = $request->contenu;
         $post->asso_club = $request->asso_club;
         $request->validate([
-            'titre' => 'min:5|max:250|required',
-            'auteur' => 'min:5|max:250|required',
+            'titre' => 'min:5|max:100|required',
+            'auteur' => 'min:5|max:30|required',
             'email' => 'required',
             'contenu' => 'min:20|max:65000|required',
             'fichiers' => 'array',
