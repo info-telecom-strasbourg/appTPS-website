@@ -8,7 +8,7 @@
     </button><br><br>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <img src="/images/logo/logo.png" width="50" />
+        <img src="/images/logo/InsidePSBS.png" width="50" />
         &nbsp;&nbsp;&nbsp;
 
         <ul class="navbar-nav mr-auto">

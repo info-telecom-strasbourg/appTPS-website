@@ -32,7 +32,7 @@ class WelcomeController extends Controller
 
         return view('welcome', compact('articles'));
     }
-
+    
     public function app_articles()
     {
         $articles = DB::select('select * from posts order by id desc');

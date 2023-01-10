@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="users">
-    <h1>Liste des utilisateurs ayant activé l'app : </h1>
+    <h1>Liste des <span style="color: green">{{$nb_users}}</span> utilisateurs ayant activé l'app : </h1>
     <br>
     <table>
         <thead>
