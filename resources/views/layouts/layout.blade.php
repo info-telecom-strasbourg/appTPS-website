@@ -6,7 +6,7 @@
     <!-- Parameters -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('images/logo/InsidePSBS.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- Google Fonts -->

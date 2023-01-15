@@ -33,6 +33,19 @@
                 </a>
             </li>
 
+            @if (session()->get('cas_role')=="admin" || session()->get('cas_role')=="rédacteur")
+            @if ($currentURL=="https://app.its-tps.fr/create-article")
+            <li class="nav-item active">
+                @else
+            <li class="nav-item">
+                @endif
+                <a class="nav-link" href="https://app.its-tps.fr/create-article">
+                    <i class="fa fa-pen-to-square"></i>
+                    Rédaction article
+                </a>
+            </li>
+            @endif
+
             @if (session()->get('cas_role')=="admin")
             @if ($currentURL=="https://app.its-tps.fr/users")
             <li class="nav-item active">
@@ -47,15 +60,17 @@
                 </a>
             </li>
             @endif
-            @if (session()->get('cas_role')=="admin" || session()->get('cas_role')=="rédacteur")
-            @if ($currentURL=="https://app.its-tps.fr/create-article")
+
+            @if (session()->get('cas_role')=="admin")
+            @if ($currentURL=="https://app.its-tps.fr/logo-manager")
             <li class="nav-item active">
                 @else
             <li class="nav-item">
                 @endif
-                <a class="nav-link" href="https://app.its-tps.fr/create-article">
-                    <i class="fa fa-pen-to-square"></i>
-                    Rédaction article
+                <a class="nav-link" href="https://app.its-tps.fr/logo-manager">
+                    <i class="fa fa-icons">
+                    </i>
+                    Logos
                 </a>
             </li>
             @endif

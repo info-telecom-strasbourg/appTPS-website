@@ -56,3 +56,7 @@ Route::get('/authentication-failed', function () {
 Route::get('/logout', function () {
     return view('/logout');
 });
+
+Route::group(['prefix' => 'logo-manager', 'middleware' => 'cas:admin'], function (){
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
