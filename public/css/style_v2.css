@@ -656,3 +656,30 @@ input:checked+.slider:before {
 .slider.round:before {
 	border-radius: 50%;
 }
+
+.logos {
+	max-width: 80%;
+	margin: 20px;
+	text-align: center;
+	overflow-wrap: break-word;
+}
+
+#logos-image {
+	height: 8em;
+	margin: 1em;
+}
+
+#logos-image:hover {
+	opacity: 0.5;
+}
+
+#logos-edit {
+	border: 2px solid;
+	border-radius: 0.5rem;
+	padding: 3px;
+	color: #5a5a5a;
+}
+
+#logos-edit:hover {
+	color: #7a7a7a;
+}

@@ -33,6 +33,18 @@
                 </a>
             </li>
 
+            @if ($currentURL=="https://app.its-tps.fr/logos")
+            <li class="nav-item active">
+                @else
+            <li class="nav-item">
+                @endif
+                <a class="nav-link" href="https://app.its-tps.fr/logos">
+                    <i class="fa fa-icons">
+                    </i>
+                    Logos
+                </a>
+            </li>
+
             @if (session()->get('cas_role')=="admin" || session()->get('cas_role')=="rédacteur")
             @if ($currentURL=="https://app.its-tps.fr/create-article")
             <li class="nav-item active">
@@ -57,20 +69,6 @@
                         <!--              <span class="badge badge-danger">11</span> -->
                     </i>
                     Utilisateurs
-                </a>
-            </li>
-            @endif
-
-            @if (session()->get('cas_role')=="admin")
-            @if ($currentURL=="https://app.its-tps.fr/logo-manager")
-            <li class="nav-item active">
-                @else
-            <li class="nav-item">
-                @endif
-                <a class="nav-link" href="https://app.its-tps.fr/logo-manager">
-                    <i class="fa fa-icons">
-                    </i>
-                    Logos
                 </a>
             </li>
             @endif

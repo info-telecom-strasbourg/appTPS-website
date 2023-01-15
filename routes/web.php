@@ -60,3 +60,7 @@ Route::get('/logout', function () {
 Route::group(['prefix' => 'logo-manager', 'middleware' => 'cas:admin'], function (){
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
+
+Route::get('/logos', function () {
+    return view('logos');
+})->middleware('cas:authenticated');

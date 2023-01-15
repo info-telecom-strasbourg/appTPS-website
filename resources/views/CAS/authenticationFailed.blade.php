@@ -5,7 +5,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <link rel="icon" href="{{ asset('images/logo/InsidePSBS.png') }}" type="image/x-icon">
+    <title>Authentifcation refusée - AppTPS</title>
 </head>
 
 <body style="background-color:rgb(233,238,240)">
@@ -55,33 +56,33 @@
 
             case "udsfieldmissing":
 
-                $errorType = "Le champ udsDisplayName est manquant. "
-                    . "Il est donc impossible de t'identifier."
-                    . " Tu peux contacter ITS pour plus "
+                $errorType = "Le champ udsDisplayName est manquant. <br>"
+                    . "Il est donc impossible de t'identifier. <br>"
+                    . "Tu peux contacter ITS pour plus "
                     . "d'informations.";
 
                 break;
 
             case "notadminmail":
 
-                $errorType = "Tu n'as pas les droits pour entrer dans cette "
-                    . "page. Tu dois avoir les droits administrateurs. ";
+                $errorType = "Tu n'as pas les droits pour entrer sur cette "
+                    . "page !! <br> Tu dois avoir les droits administrateurs. ";
 
                 break;
 
             case "notredactor":
 
-                $errorType = "Tu n'as pas les droits pour entrer dans cette "
-                    . "page. Tu dois avoir les droits de rédacteur. ";
+                $errorType = "Tu n'as pas les droits pour entrer sur cette "
+                    . "page !! <br> Tu dois avoir les droits de rédacteur. ";
 
                 break;
 
             case "notfromtps":
 
-                $errorType = "Oups, nous n'avons pas pu t'identifier. "
+                $errorType = "Oups, nous n'avons pas pu t'identifier. <br>"
                     . "Es-tu un.e étudiant.e de "
                     . "Télécom Physique Strasbourg ou de l'École "
-                    . "Supérieure de Biotechnologie de Strasbourg ? Si tu fais partie "
+                    . "Supérieure de Biotechnologie de Strasbourg ? <br> Si tu fais partie "
                     . "de TPS ou de l'ESBS, tu peux contacter ITS.";
 
                 break;
