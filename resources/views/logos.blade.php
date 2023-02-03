@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Logos des clubs et asss - AppTPS')
+@section('title', 'Logos des clubs et assos - AppTPS')
 
 @section('content')
 
