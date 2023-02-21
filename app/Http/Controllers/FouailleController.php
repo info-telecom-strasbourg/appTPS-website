@@ -11,7 +11,6 @@ class FouailleController extends Controller
 {
     public function api(Request $request)
     {
-        //https://app.its-tps.fr/api?nom=chenu&prenom=gatien&key=245513a52b24c98b3137ef73c81dcebe0862fd9614b654f863c03ae20a44d23c
         $APIkey = "(n7m4w'3k+#k'8BA[#&z0H'A+d.4H";
         $nom=$request->query('nom');
         $prenom=$request->query('prenom');

@@ -9,7 +9,7 @@
 	<p>Cliquer dessus pour télécharger le logo</p>
 	@if (session()->get('cas_role')=="admin")
 		<h1>	
-			<a href="https://app.its-tps.fr/logo-manager">
+			<a href="<?php getenv('APP_URL') ?>/logo-manager">
             <i class="fa-solid fa-pencil" id="logos-edit"></i>
         	</a>
 		</h1>

@@ -12,33 +12,33 @@
         &nbsp;&nbsp;&nbsp;
 
         <ul class="navbar-nav mr-auto">
-            @if ($currentURL=="https://app.its-tps.fr")
+            @if ($currentURL==getenv('APP_URL'))
             <li class="nav-item active">
                 @else
             <li class="nav-item">
                 @endif
-                <a class="nav-link" href="https://app.its-tps.fr/">
+                <a class="nav-link" href="<?php getenv('APP_URL') ?>/">
                     <i class="fa fa-home"></i>
                     Accueil
                 </a>
             </li>
-            @if ($currentURL=="https://app.its-tps.fr/fouaille")
+            @if ($currentURL==getenv('APP_URL') . "/fouaille")
             <li class="nav-item active">
                 @else
             <li class="nav-item">
                 @endif
-                <a class="nav-link" href="https://app.its-tps.fr/fouaille">
+                <a class="nav-link" href="<?php getenv('APP_URL') ?>/fouaille">
                     <i class="fa fa-dollar-sign"></i>
                     Fouaille
                 </a>
             </li>
 
-            @if ($currentURL=="https://app.its-tps.fr/logos")
+            @if ($currentURL==getenv('APP_URL') . "/logos")
             <li class="nav-item active">
                 @else
             <li class="nav-item">
                 @endif
-                <a class="nav-link" href="https://app.its-tps.fr/logos">
+                <a class="nav-link" href="<?php getenv('APP_URL') ?>/logos">
                     <i class="fa fa-icons">
                     </i>
                     Logos
@@ -46,12 +46,12 @@
             </li>
 
             @if (session()->get('cas_role')=="admin" || session()->get('cas_role')=="rédacteur")
-            @if ($currentURL=="https://app.its-tps.fr/create-article")
+            @if ($currentURL==getenv('APP_URL') . "/create-article")
             <li class="nav-item active">
                 @else
             <li class="nav-item">
                 @endif
-                <a class="nav-link" href="https://app.its-tps.fr/create-article">
+                <a class="nav-link" href="<?php getenv('APP_URL') ?>/create-article">
                     <i class="fa fa-pen-to-square"></i>
                     Rédaction article
                 </a>
@@ -59,12 +59,12 @@
             @endif
 
             @if (session()->get('cas_role')=="admin")
-            @if ($currentURL=="https://app.its-tps.fr/users")
+            @if ($currentURL==getenv('APP_URL') . "/users")
             <li class="nav-item active">
                 @else
             <li class="nav-item">
                 @endif
-                <a class="nav-link" href="https://app.its-tps.fr/users">
+                <a class="nav-link" href="<?php getenv('APP_URL') ?>/users">
                     <i class="fa fa-users">
                         <!--              <span class="badge badge-danger">11</span> -->
                     </i>
@@ -80,7 +80,7 @@
         </span>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="https://app.its-tps.fr/logout">
+                <a class="nav-link" href="<?php getenv('APP_URL') ?>/logout">
                     <i class="fa fa-right-from-bracket"></i>
                     Déconnexion
                 </a>

@@ -13,7 +13,7 @@
                 $fichiers = explode(",", $article['fichiers']);
             @endphp
             @foreach($fichiers as $image)
-                <a href="https://app.its-tps.fr/{{ $image }}">
+                <a href="<?php getenv('APP_URL') ?>/{{ $image }}">
                     <img id="article-image" src="{{$image}}" />
                 </a> 
             @endforeach 
