@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "abddc8129476b5c5a30348a5b42d24b2",
+    "content-hash": "b4ded1431016293832a6def825e2f4f6",
     "packages": [
         {
             "name": "apereo/phpcas",
-            "version": "1.5.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apereo/phpCAS.git",
-                "reference": "d6f5797fb568726f34c8e48741776d81e4a2646b"
+                "reference": "c129708154852656aabb13d8606cd5b12dbbabac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apereo/phpCAS/zipball/d6f5797fb568726f34c8e48741776d81e4a2646b",
-                "reference": "d6f5797fb568726f34c8e48741776d81e4a2646b",
+                "url": "https://api.github.com/repos/apereo/phpCAS/zipball/c129708154852656aabb13d8606cd5b12dbbabac",
+                "reference": "c129708154852656aabb13d8606cd5b12dbbabac",
                 "shasum": ""
             },
             "require": {
@@ -38,6 +38,9 @@
                 }
             },
             "autoload": {
+                "files": [
+                    "source/CAS.php"
+                ],
                 "classmap": [
                     "source/"
                 ]
@@ -70,9 +73,9 @@
             ],
             "support": {
                 "issues": "https://github.com/apereo/phpCAS/issues",
-                "source": "https://github.com/apereo/phpCAS/tree/1.5.0"
+                "source": "https://github.com/apereo/phpCAS/tree/1.6.1"
             },
-            "time": "2022-05-03T21:12:54+00:00"
+            "time": "2023-02-19T19:52:35+00:00"
         },
         {
             "name": "asm89/stack-cors",
