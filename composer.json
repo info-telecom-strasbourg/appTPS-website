@@ -11,7 +11,8 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "subfission/cas": "^4.2"
+        "subfission/cas": "^4.2",
+        "unisharp/laravel-filemanager": "^2.5"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
