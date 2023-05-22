@@ -11,7 +11,6 @@ class FouailleController extends Controller
 {
     public function api(Request $request)
     {
-        
         $nom=$request->query('nom');
         $prenom=$request->query('prenom');
         $key=$request->query('key');
