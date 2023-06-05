@@ -10,20 +10,20 @@ class CheckCas
 {
 
     //put here the admin mail
-    private $_adminMails = ["felix.lusseau@etu.unistra.fr", "gatien.chenu@etu.unistra.fr"];
+    private $_adminMails = ["felix.lusseau@etu.unistra.fr", "gatien.chenu@etu.unistra.fr", "enzo.bergamini@etu.unistra.fr"];
     //private $_adminMails = ["gatien.chenu@etu.unistra.fr"];
     private $_udsDisplayNamePoperty = "udsDisplayName";
 
     /**
-     * Handle an incoming request and redirect to the CAS if the user is not 
-     * connected. Then, a session starts with his attributes 
-     * (name, mail, role...). 
+     * Handle an incoming request and redirect to the CAS if the user is not
+     * connected. Then, a session starts with his attributes
+     * (name, mail, role...).
      * DO NOT use the session. Use the getters bellow.
      *
      * @param \Illuminate\Http\Request $request the current request.
      * @param \Closure                 $next    a closure to redirect $next
-     * @param $role    is the requested role of the current user.     
-     * 
+     * @param $role    is the requested role of the current user.
+     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next, $role)
@@ -36,7 +36,7 @@ class CheckCas
             cas()->authenticate();
         }
 
-        // add attribute to session 
+        // add attribute to session
         if (cas()->hasAttribute("mail")) {
             session()->put('cas_mail', cas()->getAttribute("mail"));
         }
@@ -74,7 +74,7 @@ class CheckCas
 
             $isRedacteur = json_decode(json_encode(DB::table('users')
                 ->select('redacteur')
-                ->WHERE('identifiant', '=', $this->getUser())
+                ->WHERE('id', '=', $this->getUser())
                 ->first()), true);
             if (isset($isRedacteur)) {
                 $isRedacteur = $isRedacteur['redacteur'];
@@ -136,8 +136,8 @@ class CheckCas
     }
 
     /**
-     * This function returns the mail of the current user. 
-     * The returned value can be empty ! 
+     * This function returns the mail of the current user.
+     * The returned value can be empty !
      *
      * @return type
      */
@@ -147,8 +147,8 @@ class CheckCas
     }
 
     /**
-     * This function returns the name of the current user. 
-     * The returned value can be empty ! 
+     * This function returns the name of the current user.
+     * The returned value can be empty !
      *
      * @return type
      */
@@ -158,9 +158,9 @@ class CheckCas
     }
 
     /**
-     * This function returns the role of the current user. It is 'admin' or 
+     * This function returns the role of the current user. It is 'admin' or
      * 'étudiant'.
-     * * This function never fails. 
+     * * This function never fails.
      *
      * @return type string 'admin' or 'étudiant'.
      */
@@ -197,7 +197,7 @@ class CheckCas
 
 
     /**
-     * This function returns an array with all keys/values returned by the CAS. 
+     * This function returns an array with all keys/values returned by the CAS.
      *
      * @return array of attributes.
      */
@@ -211,7 +211,7 @@ class CheckCas
     }
 
     /**
-     * This function returns an array with the keys/values returned by the CAS for the App. 
+     * This function returns an array with the keys/values returned by the CAS for the App.
      *
      * @return array of attributes.
      */
@@ -227,9 +227,9 @@ class CheckCas
     /**
      * Logout the user from his session.
      *
-     * @param string $redirectUrl is the URL where the user is redirected after 
-     *                            logout. 
-     * 
+     * @param string $redirectUrl is the URL where the user is redirected after
+     *                            logout.
+     *
      * @return nothing.
      */
     public static function logout($redirectUrl)
@@ -238,15 +238,15 @@ class CheckCas
     }
 
     /**
-     * If the user can't connect to the site, return an appropriate error. 
+     * If the user can't connect to the site, return an appropriate error.
      *
-     * @return string : 
-     * - 'notfromtps' if the user doesn't come from TPS 
+     * @return string :
+     * - 'notfromtps' if the user doesn't come from TPS
      * - 'udsfieldmissing' if the uds property is missing from the CAS
      * - 'unknown' if unknown error has happened
-     * - 'notadminmail' if the current user try to access an admin page 
+     * - 'notadminmail' if the current user try to access an admin page
      *    without having the right access.
-     * - 'mailfieldmissing' if the mail field from CAS is missing (only for 
+     * - 'mailfieldmissing' if the mail field from CAS is missing (only for
      *    admin).
      */
     public static function getErrorAuth()

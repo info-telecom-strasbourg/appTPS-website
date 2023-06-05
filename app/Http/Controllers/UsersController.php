@@ -14,8 +14,8 @@ class UsersController extends Controller
     public function users()
     {
         $users = DB::select('select * from users');
-        $users = json_decode(json_encode($users), true);
         $nb_users = DB::table('users')->count();
+
         return view('users', compact('users', 'nb_users'));
     }
 

@@ -1,16 +1,16 @@
 <div class="article-container">
-    <p><span style="float:left; font-size:1.5rem">{{$article['auteur']}}<!--  - {{$article['asso_club']}} --><img src="logo/{{$article['asso_club']}}.png" style="height: 2em; margin-left: 8px; position: absolute; top: 12px"></span><span style="float:right"><i><small>@php echo (isset($article['updated_at'])) ? "(modifié) " . $article['updated_at'] : $article['created_at'] @endphp</small></i></span></p>
+    <p><span style="float:left; font-size:1.5rem">{{$article['author']}}<!--  - {{$article['asso_club']}} --><img src="logo/{{$article['asso_club']}}.png" style="height: 2em; margin-left: 8px; position: absolute; top: 12px"></span><span style="float:right"><i><small>@php echo (isset($article['updated_at'])) ? "(modifié) " . $article['updated_at'] : $article['created_at'] @endphp</small></i></span></p>
 
-    <h2 id="article-titre">{{$article['titre']}}</h2>
+    <h2 id="article-titre">{{$article['title']}}</h2>
 
-    <div id="article-contenu">{!!html_entity_decode(nl2br($article['contenu']))!!}
-        @if ($article['fichiers'])
+    <div id="article-contenu">{!!html_entity_decode(nl2br($article['content']))!!}
+        @if ($article['file'])
             @php
-                $article['fichiers'] = str_replace("[", "", $article['fichiers']);
-                $article['fichiers'] = str_replace("]", "", $article['fichiers']);
-                $article['fichiers'] = str_replace("\"", "", $article['fichiers']);
-                $article['fichiers'] = str_replace("\"", "", $article['fichiers']);
-                $fichiers = explode(",", $article['fichiers']);
+                $article['file'] = str_replace("[", "", $article['file']);
+                $article['file'] = str_replace("]", "", $article['file']);
+                $article['file'] = str_replace("\"", "", $article['file']);
+                $article['file'] = str_replace("\"", "", $article['file']);
+                $fichiers = explode(",", $article['file']);
             @endphp
             @foreach($fichiers as $image)
                 <a href="<?php getenv('APP_URL') ?>/{{ $image }}">
@@ -19,7 +19,7 @@
             @endforeach 
         @endif
     </div>
-    @if (session()->get('cas_role') == "admin" && $article['supprimé'] == 0 && session()->get('admin_view') == 1 && session()->get('cas_mail') != $article['email'])
+    @if (session()->get('cas_role') == "admin" && $article['delete'] == 0 && session()->get('admin_view') == 1 && session()->get('cas_mail') != $article['email'])
     <div id="article-gestion" style="margin-bottom:1.25em">
         <p style="float:left; font-size:0.8em"><small>Auteur : {{$article['email']}}</small></p>
         <form action="/gestion-article" method="POST" id="gestion-article">
@@ -29,7 +29,7 @@
         </form>
     </div>
     @endif
-    @if (session()->get('cas_mail') == $article['email'] && $article['supprimé'] == 0)
+    @if (session()->get('cas_mail') == $article['email'] && $article['delete'] == 0)
     <div id="article-gestion">
         <form action="/gestion-article" method="POST">
             @csrf

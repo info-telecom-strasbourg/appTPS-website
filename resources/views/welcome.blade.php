@@ -19,7 +19,7 @@
     @endif
     <h1>Articles :</h1>
     @foreach($articles as $article)
-    @if ($article['supprimé'] == 1)
+    @if ($article['delete'] == 1)
     @if ((session()->get('cas_role') == "admin" && session()->get('admin_view') == 1) || session()->get('cas_mail') == $article['email'])
     <div class="article-container">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">

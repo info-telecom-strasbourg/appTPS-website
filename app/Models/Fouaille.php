@@ -15,9 +15,8 @@ class Fouaille extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'new_note',
-        'delta',
-        'type_produit',
-        'date_histo'
+        'price',
+        'product',
+        'date'
     ];
 }

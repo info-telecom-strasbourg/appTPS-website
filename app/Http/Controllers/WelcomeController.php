@@ -15,16 +15,49 @@ class WelcomeController extends Controller
     public function welcome()
     {
         $user = new User;
-        $user->identifiant = CheckCas::getUser();
-        $user->nom = CheckCas::getName();
+
+        // temporary for testing
+        $user->id_bde = 1;
+        if (session()->get('id_bde') == null)
+            session()->put('id_bde', $user->id_bde);
+
+        $user->username = "username";
+        if (session()->get('username') == null)
+            session()->put('username', $user->username);
+
+        $user->id_unistra = CheckCas::getUser(); // get user id from CAS (unqique id)
+        if (session()->get('id_unistra') == null)
+            session()->put('id_unistra', $user->id_unistra);
+
+        // get user's first and last name from CAS (name is in format "first_name last_name")
+        $user->first_name = explode(' ', CheckCas::getName())[0];
+        if (session()->get('first_name') == null)
+            session()->put('first_name', $user->first_name);
+
+        $user->last_name = explode(' ', CheckCas::getName())[1];
+        if (session()->get('last_name') == null)
+            session()->put('last_name', $user->last_name);
+
+        // get user's email from CAS
         $user->email = CheckCas::getMail();
+        if (session()->get('email') == null)
+            session()->put('email', $user->email);
+
+        // check if current user is registered in database
         $user_in_db = DB::table('users')
-            ->select('identifiant')
-            ->WHERE('identifiant', '=', $user->identifiant)
+            ->select('id_unistra')
+            ->WHERE('id_unistra', '=', $user->id_unistra)
             ->first();
-        if (CheckCas::isAdmin())
+
+
+        // check if current user is admin in database
+        if (CheckCas::isAdmin()){
             $user->redacteur = TRUE;
-        if ($user_in_db == "")
+            if (session()->get('redacteur') == null)
+                session()->put('redacteur', $user->redacteur);
+        }
+
+        if ($user_in_db == "") // if user is not in database yet (first time he logs in)
             $user->save();
 
         $articles = DB::select('select * from posts order by id desc');

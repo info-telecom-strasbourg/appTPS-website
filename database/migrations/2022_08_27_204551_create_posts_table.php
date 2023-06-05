@@ -17,13 +17,13 @@ class CreatePostsTable extends Migration
 
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('titre');
-            $table->string('auteur');
+            $table->string('title');
+            $table->string('author');
             $table->string('email');
-            $table->text('contenu');
+            $table->text('content');
             $table->string('asso_club');
-            $table->json('fichiers')->nullable();
-            $table->boolean('supprimé')->default(FALSE);
+            $table->json('file')->nullable();
+            $table->boolean('delete')->default(FALSE);
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
         });
