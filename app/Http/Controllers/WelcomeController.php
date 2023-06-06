@@ -84,7 +84,7 @@ class WelcomeController extends Controller
     {
         DB::table('posts')
             ->where('id', $request->id)
-            ->update(['supprimé' => 1, 'created_at' => DB::raw('created_at')]);
+            ->update(['delete' => 1, 'created_at' => DB::raw('created_at')]);
         return redirect('/');
     }
 
@@ -98,7 +98,7 @@ class WelcomeController extends Controller
         } else if ($request->restaurer == 1) {
             DB::table('posts')
                 ->where('id', $request->id)
-                ->update(['supprimé' => 0, 'created_at' => DB::raw('created_at')]);
+                ->update(['delete' => 0, 'created_at' => DB::raw('created_at')]);
             return redirect('/');
         } else if ($request->modifier == 1) {
             $id = $request->id;
@@ -118,7 +118,7 @@ class WelcomeController extends Controller
         } else if ($request->supprimer == 1) {
             DB::table('posts')
                 ->where('id', $request->id)
-                ->update(['supprimé' => 1, 'created_at' => DB::raw('created_at')]);
+                ->update(['delete' => 1, 'created_at' => DB::raw('created_at')]);
             return redirect('/');
         } else {
             return redirect('/');
