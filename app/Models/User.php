@@ -18,10 +18,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'identifiant',
-        'nom',
+        'id_unistra',
+        'id_bde',
+        'last_name',
+        'first_name',
+        'username',
         'email',
-        'redacteur',
+        'redacteur'
     ];
 
     /**
@@ -34,5 +37,10 @@ class User extends Authenticatable
 
     public function setUpdatedAtAttribute($value) {
         // to Disable updated_at
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }
