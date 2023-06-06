@@ -74,35 +74,6 @@ class WelcomeController extends Controller
         return redirect('/');
     }
 
-    public function delete(Request $request)
-    {
-        DB::table('posts')
-            ->where('id', $request->id)
-            ->update(['delete' => 1, 'created_at' => DB::raw('created_at')]);
-        return redirect('/');
-    }
-
-    public function erased(Request $request)
-    {
-        if ($request->supprimer == 1) {
-            DB::table('posts')
-                ->where('id', $request->id)
-                ->delete();
-            return redirect('/');
-        } else if ($request->restaurer == 1) {
-            DB::table('posts')
-                ->where('id', $request->id)
-                ->update(['delete' => 0, 'created_at' => DB::raw('created_at')]);
-            return redirect('/');
-        } else if ($request->modifier == 1) {
-            $id = $request->id;
-            $modify = json_decode(json_encode(DB::table('posts')->select('*')->where('id', $id)->first()), true);
-            return view('create-article', compact('modify', 'id'));
-        } else {
-            return redirect('/');
-        }
-    }
-
     public function available(Request $request)
     {
         if ($request->modifier == 1) {
