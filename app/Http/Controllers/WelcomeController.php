@@ -74,19 +74,4 @@ class WelcomeController extends Controller
         return redirect('/');
     }
 
-    public function available(Request $request)
-    {
-        if ($request->modifier == 1) {
-            $id = $request->id;
-            $modify = json_decode(json_encode(DB::table('posts')->select('*')->where('id', $id)->first()), true);
-            return view('create-article', compact('modify', 'id'));
-        } else if ($request->supprimer == 1) {
-            DB::table('posts')
-                ->where('id', $request->id)
-                ->update(['delete' => 1, 'created_at' => DB::raw('created_at')]);
-            return redirect('/');
-        } else {
-            return redirect('/');
-        }
-    }
 }

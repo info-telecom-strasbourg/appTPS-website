@@ -24,9 +24,9 @@ Route::get('/', [WelcomeController::class, 'welcome'])->middleware('cas:authenti
 
 Route::get('/fouaille', [FouailleController::class, 'show'])->middleware('cas:authenticated');
 
-Route::get('/articles-hidden-json', [WelcomeController::class, 'app_articles']);
-
-Route::post('/gestion-article', [WelcomeController::class, 'available'])->middleware('cas:authenticated');
+Route::prefix('/post')->group(function () {
+    Route::get('/create', [PostController::class, 'index']);
+});
 
 Route::post('/admin-view', [WelcomeController::class, 'toggle_view'])->middleware('cas:admin');
 
@@ -38,7 +38,6 @@ Route::get('/users', [UsersController::class, 'users'])->middleware('cas:admin')
 
 Route::post('/update-user', [UsersController::class, 'update'])->name('users.update')->middleware('cas:admin');
 
-Route::get('/create-article', [CreateArticleController::class, 'index'])->middleware('cas:authenticated');
 
 Route::post('/send-article', [CreateArticleController::class, 'store'])->name('create-article.store')->middleware('cas:authenticated');
 

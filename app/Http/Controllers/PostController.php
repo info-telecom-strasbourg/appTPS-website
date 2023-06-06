@@ -45,4 +45,9 @@ class PostController extends Controller
 
         return redirect()->route('/');
     }
+
+
+    public function create(){
+        return view('create-article');
+    }
 }
