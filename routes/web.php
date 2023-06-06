@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CreateArticleController;
 use App\Http\Controllers\FouailleController;
+use App\Http\Controllers\Api\ApiFouailleController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AppLoginController;
@@ -23,9 +24,9 @@ Route::get('/api', [FouailleController::class, 'api']);
 
 Route::get('/', [WelcomeController::class, 'welcome'])->middleware('cas:authenticated');
 
-Route::get('/app-fouaille', [FouailleController::class, 'app_fouaille'])/* ->middleware('cas:authenticated') */;
+Route::get('/app-fouaille', [ApiFouailleController::class, 'show'])/* ->middleware('cas:authenticated') */;
 
-Route::get('/fouaille', [FouailleController::class, 'fouaille'])->middleware('cas:authenticated');
+Route::get('/fouaille', [FouailleController::class, 'show'])->middleware('cas:authenticated');
 
 Route::get('/articles-hidden-json', [WelcomeController::class, 'app_articles']);
 
