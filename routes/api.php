@@ -21,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/fouaille/show',[ApiFouailleController::class, 'show']);
+
+Route::get('/post/index',[ApiPostController::class, 'index']);

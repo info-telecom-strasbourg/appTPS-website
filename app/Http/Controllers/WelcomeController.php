@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Post;
 use App\Http\Middleware\CheckCas;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -60,17 +61,10 @@ class WelcomeController extends Controller
         if ($user_in_db == "") // if user is not in database yet (first time he logs in)
             $user->save();
 
-        $articles = DB::select('select * from posts order by id desc');
+        $articles = Post::all()->sortByDesc('created_at');
         $articles = json_decode(json_encode($articles), true);
 
         return view('welcome', compact('articles'));
-    }
-    
-    public function app_articles()
-    {
-        $articles = DB::select('select * from posts order by id desc');
-        // $articles = json_decode(json_encode($articles), true);
-        return $articles;
     }
 
     public function toggle_view(Request $request)

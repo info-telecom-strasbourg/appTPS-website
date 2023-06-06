@@ -18,14 +18,17 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('author');
+            $table->bigInteger('id_user');
             $table->string('email');
             $table->text('content');
             $table->string('asso_club');
             $table->json('file')->nullable();
-            $table->boolean('delete')->default(FALSE);
+            $table->boolean('is_delete')->default(FALSE);
+            $table->timestamp('deleted_at')->nullable()->default(NULL);
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
+
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 
