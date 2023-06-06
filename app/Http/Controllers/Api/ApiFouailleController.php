@@ -11,11 +11,10 @@ class ApiFouailleController extends Controller
 {
     public function show(FouailleService $Fouaille_service, Request $request)
     {
-        $key=$request->query('key');
-        $last_name=$request->query('last_name');
-        $first_name=$request->query('first_name');
+        $key=$request->query('api_key');
+        $last_name=$request->query('id_user');
         
-        if($key==hash('sha256',env('API_KEY').$last_name.$first_name)){
+        if($key==hash('sha256',env('API_KEY').$id_user)){
 
             $fouaille['current_balance'] = $FouailleService->getBalance($request);
             $fouaille['last_commands'] = $FouailleService->getLastCommands($request);
