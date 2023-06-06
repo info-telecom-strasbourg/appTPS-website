@@ -11,9 +11,9 @@ use App\Services\FouailleService;
 
 class FouailleController extends Controller
 {
-    public function show(FouailleService $FouailleService, Request $request){
-        $fouaille['current_balance'] = $FouailleService->getBalance($request);
-        $fouaille['last_commands'] = $FouailleService->getLastCommands($request);
+    public function show(FouailleService $Fouaille_service, Request $request){
+        $fouaille['current_balance'] = $Fouaille_service->getBalance($request);
+        $fouaille['last_commands'] = $Fouaille_service->getLastCommands($request);
         $fouaille = json_decode(json_encode($fouaille), true);
         return view('fouaille', compact('fouaille'));
     }

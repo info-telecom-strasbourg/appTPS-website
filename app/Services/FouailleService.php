@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class FouailleService
 {
+
+    /*
+    * Get the last commands of the user in the BDE database
+    */
     public function getLastCommands(Request $request){
         $user_id_bde = DB::table('users')
             ->select('id_bde')
@@ -32,6 +36,9 @@ class FouailleService
         return $last_commands;
     }
 
+    /*
+    * Get the current balance of the user in the BDE database
+    */
     public function getBalance(Request $request){
         $user_id_bde = DB::table('users')
             ->select('id_bde')

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+
 use App\Services\FouailleService;
+
 
 class ApiFouailleController extends Controller
 {
-    public function show(Request $request)
+    public function show(FouailleService $Fouaille_service, Request $request)
     {
         $key=$request->query('key');
         $last_name=$request->query('last_name');

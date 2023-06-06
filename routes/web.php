@@ -20,11 +20,7 @@ use App\Http\Controllers\AppLoginController;
 |
 */
 
-Route::get('/api', [FouailleController::class, 'api']);
-
 Route::get('/', [WelcomeController::class, 'welcome'])->middleware('cas:authenticated');
-
-Route::get('/app-fouaille', [ApiFouailleController::class, 'show'])/* ->middleware('cas:authenticated') */;
 
 Route::get('/fouaille', [FouailleController::class, 'show'])->middleware('cas:authenticated');
 
