@@ -40,6 +40,8 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        event(new Registered($user));
+
         return response()->json([
             'user' => $user,
         ], 201);
