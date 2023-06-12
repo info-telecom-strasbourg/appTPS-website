@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -29,7 +30,7 @@ Route::prefix('v1')->group(function () {
         ->middleware('guest')
         ->name('register');
 
-    Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+    Route::post('/login', [LoginUserController::class, 'authenticate'])
         ->middleware('guest')
         ->name('login');
 
