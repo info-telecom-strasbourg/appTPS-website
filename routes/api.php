@@ -46,9 +46,9 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('fouaille/{id}', [FouailleController::class, 'show'])
-        ->name('fouaille.show');
-
     Route::post('/logout', [AuthUserController::class, 'logout'])
         ->name('logout');
+
 });
+
+Route::get('fouaille/{id}', [FouailleController::class, 'show']);
