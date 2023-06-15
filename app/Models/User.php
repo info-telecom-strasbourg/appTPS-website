@@ -35,10 +35,6 @@ class User extends Authenticatable
     protected $hidden = [
     ];
 
-    public function setUpdatedAtAttribute($value) {
-        // to Disable updated_at
-    }
-
     public function posts()
     {
         return $this->hasMany(Post::class);

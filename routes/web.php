@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\ApiFouailleController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AppLoginController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CalendarController;
 
 
 /*
@@ -60,3 +62,8 @@ Route::group(['prefix' => 'logo-manager', 'middleware' => 'cas:admin'], function
 Route::get('/logos', function () {
     return view('logos');
 })->middleware('cas:authenticated');
+
+Route::get('/test', [CalendarController::class, 'index']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

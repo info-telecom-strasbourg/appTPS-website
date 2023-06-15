@@ -11,11 +11,13 @@
         "php": "^7.3|^8.0",
         "alymosul/laravel-exponent-push-notifications": "^3.0",
         "apereo/phpcas": "^1.6",
+        "eluceo/ical": "^2.12",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "^4.2",
         "subfission/cas": "^4.2",
         "unisharp/laravel-filemanager": "^2.5",
         "yieldstudio/laravel-expo-notifier": "^0.0.6"
