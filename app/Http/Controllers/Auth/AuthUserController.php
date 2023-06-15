@@ -12,12 +12,9 @@ class AuthUserController extends Controller
         try {
             $request->authenticate();
 
-            if (!$request->user()->tokenCan('auth_token')) {
-                $request->user()->tokens()->delete();
-                $token = $request->user()->createToken('auth_token')->plainTextToken;
-            } else {
-                $token = $request->user()->tokens()->where('name', 'auth_token')->first()->plainTextToken;
-            }
+            $request->user()->tokens()->delete();
+
+            $token = $request->user()->createToken('auth_token')->plainTextToken;
 
             return response()->json([
                 'user' => $request->user(),
