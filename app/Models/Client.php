@@ -18,23 +18,23 @@ class Client extends Model
         'fouaille_token'
     ];
 
-    public function getFouailleToken()
-    {
-        if (!isset($this->fouaille_token)
-            || HTTP::withToken($this->fouaille_token)
-                ->get(env('FOUAILLE_APP_URL').'/api/tokenAvailable')
-                ->status() != 200){
-            $token = HTTP::acceptJson()
-                ->post(env('FOUAILLE_APP_URL').'/api/login', [
-                    'name' => $this->name,
-                    'password' => env('PASSWORD_FOUAILLE_APP')
-                ])->json()['token'];
+    // public function getFouailleToken()
+    // {
+    //     if (!isset($this->fouaille_token)
+    //         || HTTP::withToken($this->fouaille_token)
+    //             ->get(env('FOUAILLE_APP_URL').'/api/tokenAvailable')
+    //             ->status() != 200){
+    //         $token = HTTP::acceptJson()
+    //             ->post(env('FOUAILLE_APP_URL').'/api/login', [
+    //                 'name' => $this->name,
+    //                 'password' => env('PASSWORD_FOUAILLE_APP')
+    //             ])->json()['token'];
 
-            $this->update([
-                'fouaille_token' => $token
-            ]);
-        }
+    //         $this->update([
+    //             'fouaille_token' => $token
+    //         ]);
+    //     }
 
-        return $this->fouaille_token;
-    }
+    //     return $this->fouaille_token;
+    // }
 }
