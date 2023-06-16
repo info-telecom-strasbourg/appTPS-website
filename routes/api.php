@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthUserController::class, 'logout'])
         ->name('logout');
 
+    Route::get('fouaille/{id}', [FouailleController::class, 'show']);
+
 });
 
-Route::get('fouaille/{id}', [FouailleController::class, 'show']);
+
