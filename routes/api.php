@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\FouailleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -50,6 +51,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         ->name('logout');
 
     Route::get('fouaille/{id}', [FouailleController::class, 'show']);
+
+    Route::prefix('user')->group(function () {
+        Route::get('/', [UserController::class, 'show']);
+
+        Route::put('/', [UserController::class, 'update']);
+    });
 
 });
 
