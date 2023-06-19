@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 use function PHPUnit\Framework\isEmpty;
 
 class FouailleController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-        
     }
 }

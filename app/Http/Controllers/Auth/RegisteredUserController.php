@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\DB;
 
 class RegisteredUserController extends Controller
 {
@@ -36,16 +37,29 @@ class RegisteredUserController extends Controller
             ], 401);
         }
 
-        $user = User::create([
-            'user_name' => $request->nickname,
+        if(DB::connection('bde_bdd')
+        ->table('members')
+        ->insert([
             'last_name' => $request->last_name,
             'first_name' => $request->first_name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'redactor' => $request->redactor,
-            'password' => Hash::make($request->password),
-            'avatar' => $request->avatar
+            'created_at' => now(),
+        ])) {
+            return response()->json([
+                'errors' => 'Erreur lors de l\'enregistrement dans la base de données du BDE',
+            ], 401);
+        }
+
+        $user = User::create([
+            'bde_id' => DB::connection('bde_bdd')->table('members')->where('email', '=', $request->email)->first()->id,
+            'last_name' => $request->last_name,
+            'first_name' => $request->first_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => Hash::make($request->password)
         ]);
+
 
         $token = $user->createToken('auth_token')->plainTextToken;
 

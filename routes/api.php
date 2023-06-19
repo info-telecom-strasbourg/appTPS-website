@@ -50,9 +50,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthUserController::class, 'logout'])
         ->name('logout');
 
-    Route::get('fouaille', [FouailleController::class, 'show']);
-
     Route::prefix('user')->group(function () {
+        Route::get('fouaille', [FouailleController::class, 'show']);
+
         Route::get('/', [UserController::class, 'show']);
 
         Route::put('/', [UserController::class, 'update']);
