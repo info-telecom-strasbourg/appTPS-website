@@ -23,4 +23,12 @@ class EmailVerificationNotificationController extends Controller
 
         return response()->json(['status' => 'verification-link-sent']);
     }
+
+    /**
+     * Show the email verification notification.
+     */
+    public function show(): JsonResponse
+    {
+        return response()->json(['status' => 'verification-link-sent'], 200);
+    }
 }
