@@ -93,6 +93,14 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'bde_bdd' => [
+            'driver' => env('BDE_DB_CONNECTION', 'mysql'),
+            'host' => env('BDE_DB_HOST'),
+            'port' => env('BDE_DB_PORT', '3307'),
+            'database' => env('BDE_DB_DATABASE', 'BdeData'),
+            'username' => env('BDE_DB_USERNAME', 'root'),
+            'password' => env('BDE_DB_PASSWORD', 'root')
+        ] 
     ],
 
     /*
