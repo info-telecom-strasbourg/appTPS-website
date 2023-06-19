@@ -51,12 +51,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         ->name('logout');
 
     Route::prefix('user')->group(function () {
-        Route::get('fouaille', [FouailleController::class, 'show']);
 
         Route::get('/', [UserController::class, 'show']);
 
         Route::put('/', [UserController::class, 'update']);
     });
+
+    Route::get('/fouaille', [FouailleController::class, 'show'])
+        ->name('fouaille.details');
 
 });
 

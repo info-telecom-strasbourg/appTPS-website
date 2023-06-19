@@ -45,11 +45,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'created_at' => now(),
-        ])) {
-            return response()->json([
-                'errors' => 'Erreur lors de l\'enregistrement dans la base de données du BDE',
-            ], 401);
-        }
+        ]))
 
         $user = User::create([
             'bde_id' => DB::connection('bde_bdd')->table('members')->where('email', '=', $request->email)->first()->id,
