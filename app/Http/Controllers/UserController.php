@@ -40,7 +40,25 @@ class UserController extends Controller
 
     public function show(Request $request)
     {
-        $user = $request->user();
-        return response()->json($user, 200)->setEncodingOptions(JSON_PRETTY_PRINT);
+        $user = $request->user()->get();
+        
+        $datas = $user->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'last_name' => $item->last_name,
+                'first_name' => $item->first_name,
+                'user_name' => $item->user_name,
+                'email' => $item->email,
+                'phone' => $item->phone,
+                'user_name' => $item->user_name,
+                'bde_id' => $item->bde_id,
+                'avatar_url' => $item->getAvatarPath(),
+                'created_at' => $item->created_at,
+                'updated_at' => $item->updated_at,
+                'email_verified_at' => $item->email_verified_at,
+            ];
+        });
+
+        return response()->json(['data' => $datas], 200)->setEncodingOptions(JSON_PRETTY_PRINT);
     }
 }
