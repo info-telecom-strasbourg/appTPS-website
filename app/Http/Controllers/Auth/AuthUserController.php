@@ -12,19 +12,18 @@ class AuthUserController extends Controller
         try {
             $request->authenticate();
 
-            $request->user()->tokens()->delete();
-
             $token = $request->user()->createToken('auth_token')->plainTextToken;
-
+    
             return response()->json([
                 'user' => $request->user(),
                 'token' => $token
             ]);
-        } catch (ValidationException $exception) {
+        } catch (ValidationException $e) {
             return response()->json([
-                'message' => $exception->getMessage(),
-            ], 422);
+                $e->errors()
+            ], $e->status);
         }
+
     }
 
     public function logout(){
