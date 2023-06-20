@@ -3,12 +3,11 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Client>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class ClientFactory extends Factory
+class MediaTypeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +17,7 @@ class ClientFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => env('NAME_FOUAILLE_APP', 'insidepsbs'),
-            'fouaille_token' => null
+            'media_type' => $this->faker->word(), 
         ];
     }
 }

@@ -18,3 +18,6 @@ Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
 
+Route::get('send_test_email', function(){
+    Mail::raw('Hello World!', function($msg) {$msg->to('bergaminienzo62@gmail.com')->subject('Test Email'); });
+});

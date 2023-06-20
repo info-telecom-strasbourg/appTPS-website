@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Event>
@@ -17,14 +19,14 @@ class EventFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => 1,
-            'organization_id' => 1,
+            'user_id' => User::InRandomOrder()->first()->id,
+            'organization_id' => DB::connection('bde_bdd')->table('organizations')->inRandomOrder()->first()->id,
+            'start_date' => $this->faker->dateTimeBetween('now', '+1 years'),
+            'end_date' => $this->faker->dateTimeBetween('now', '+1 years'),
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
             'summary' => $this->faker->paragraph(),
-            'location' => $this->faker->address(),
-            'start_date' => $this->faker->dateTimeBetween('now', '+1 years'),
-            'end_date' => $this->faker->dateTimeBetween('now', '+1 years')
+            'location' => $this->faker->address()
         ];
     }
 }

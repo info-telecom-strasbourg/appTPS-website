@@ -28,44 +28,36 @@ Route::post('/register', [RegisteredUserController::class, 'store'])
 Route::post('/login', [AuthUserController::class, 'login'])
     ->name('login');
 
-// Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
-//     ->middleware('guest')
-//     ->name('password.email');
+/*Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+    ->middleware('guest')
+    ->name('password.email');
 
-// Route::post('/reset-password', [NewPasswordController::class, 'store'])
-//     ->middleware('guest')
-//     ->name('password.store');
+Route::post('/reset-password', [NewPasswordController::class, 'store'])
+    ->middleware('guest')
+    ->name('password.store');
 
 Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
-->middleware(['signed', 'throttle:6,1'])
-->name('verification.verify');
+    ->middleware(['auth', 'signed', 'throttle:6,1'])
+    ->name('verification.verify');
+
+Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification.send');*/
+
+
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthUserController::class, 'logout'])
         ->name('logout');
 
-    Route::get('/email/verify', function(){
-        return response()->json([
-            'message' => 'Email verification required'
-        ], 403);
-    })->name('verification.notice');
+    Route::prefix('user')->group(function () {
 
-    Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-        ->middleware('throttle:6,1')
-        ->name('verification.send');
+        Route::get('/', [UserController::class, 'show']);
 
-    Route::group(['middleware' => ['verified']], function () {
-        Route::prefix('user')->group(function () {
-
-            Route::get('/', [UserController::class, 'show']);
-    
-            Route::put('/', [UserController::class, 'update']);
-        });
-    
-        Route::get('/fouaille', [FouailleController::class, 'show'])
-            ->name('fouaille.details');
+        Route::put('/', [UserController::class, 'update']);
     });
 
+    Route::get('/fouaille', [FouailleController::class, 'show'])
+        ->name('fouaille.details');
+
 });
-
-
