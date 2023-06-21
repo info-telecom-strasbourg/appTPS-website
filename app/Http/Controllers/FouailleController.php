@@ -13,7 +13,13 @@ class FouailleController extends Controller
     {
         $user = $request->user();
 
-        $fouaille = DB::connection('bde_bdd')
+        $per_page = $request->query('per_page');
+
+        if ($per_page == null) {
+            $per_page = 10;
+        }
+
+        $datas = DB::connection('bde_bdd')
         ->table('orders')
         ->select(
             'orders.date',
@@ -24,33 +30,46 @@ class FouailleController extends Controller
             'products.color',
             )
         ->leftJoin('products', 'orders.product_id', '=', 'products.id')
-        ->where('orders.member_id', '=', $user->bde_id)
-        ->get();
-
-        $balance = DB::connection('bde_bdd')->table('members')->where('id', '=', $user->bde_id)->first()->balance;
+        ->where('orders.member_id', '=', 6)
+        ->orderByDesc('orders.date')
+        ->paginate($per_page);
         
-        $orders = $fouaille->map(function ($item) {
+        $orders = $datas->map(function ($data) {
             return [
-                'date' => $item->date,
-                'total_price' => $item->price,
-                'amount' => $item->amount,
-                'product' => ($item->name == null) ? null : [
-                    'name' => $item->name,
-                    'title' => $item->title,
-                    'unit_price' => strval($item->price / $item->amount),
-                    'color' => $item->color,
+                'date' => $data->date,
+                'total_price' => $data->price,
+                'amount' => $data->amount,
+                'product' => ($data->name == null) ? null : [
+                    'name' => $data->name,
+                    'title' => $data->title,
+                    'unit_price' => strval($data->price / $data->amount),
+                    'color' => $data->color,
                 ]
             ];
         });
 
+
         return response()->json([
             'data' => [
-                'balance' => $balance,
+                'balance' => DB::connection('bde_bdd')->table('members')->where('id', '=', 6)->first()->balance,
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
                 'user_name' => $user->user_name,
                 'orders' => $orders
             ],
+            'meta' => [
+                'total' => $datas->total(),
+                'per_page' => $datas->perPage(),
+                'current_page' => $datas->currentPage(),
+                'last_page' => $datas->lastPage(),
+                'first_page_url' => $datas->url(1)."&per_page=".$per_page,
+                'last_page_url' => $datas->url($datas->lastPage())."&per_page=".$per_page,
+                'next_page_url' => $datas->nextPageUrl()."&per_page=".$per_page,
+                'prev_page_url' => $datas->previousPageUrl()."&per_page=".$per_page,
+                'path' => $datas->path(),
+                'from' => $datas->firstItem(),
+                'to' => $datas->lastItem()
+            ]
         ], 200);
     }
 }
