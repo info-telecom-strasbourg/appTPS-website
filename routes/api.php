@@ -1,10 +1,12 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\FouailleController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -50,14 +52,25 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthUserController::class, 'logout'])
         ->name('logout');
 
-    Route::prefix('user')->group(function () {
+    Route::group(['middleware' => ['verified']], function () {
 
-        Route::get('/', [UserController::class, 'show']);
+        Route::prefix('user')->group(function () {
 
-        Route::put('/', [UserController::class, 'update']);
+            Route::get('/', [UserController::class, 'show']);
+
+            Route::put('/', [UserController::class, 'update']);
+        });
+
+        Route::get('/fouaille', [FouailleController::class, 'show'])
+            ->name('fouaille.details');
+
+        Route::prefix('event')->group(function () {
+            Route::get('/', [EventController::class, 'index']);
+
+            Route::get('/{id}', [EventController::class, 'show']);
+
+            Route::post('/', [EventController::class, 'store']);
+        });
     });
-
-    Route::get('/fouaille', [FouailleController::class, 'show'])
-        ->name('fouaille.details');
 
 });

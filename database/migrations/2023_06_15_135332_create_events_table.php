@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime('end_at')->nullable();
             $table->string('title');
             $table->longText('description')->nullable();
-            $table->text('summary')->nullable();
+            $table->string('summary')->nullable();
             $table->string('location')->nullable();
             $table->timestamps();
         });
