@@ -13,9 +13,12 @@ return new class extends Migration
     {
         schema::create('post_medias', function (Blueprint $table) {
             $table->id();
-            $table->integer('post_id');
-            $table->integer('media_type_id');
-            $table->string('media_url');
+            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('media_type_id');
+            $table->string('url');
+
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->foreign('media_type_id')->references('id')->on('media_types');
         });
     }
 

@@ -73,6 +73,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
             Route::post('/', [EventController::class, 'store']);
         });
+
+        Route::prefix('post')->group(function () {
+            Route::post('/', [OrganizationController::class, 'store']);
+        });
     });
 
 });

@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        schema::create('media_types', function (Blueprint $table) {
+        Schema::create('reaction_types', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
+            $table->string('name');
         });
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        schema::dropIfExists('media_types');
+        Schema::dropIfExists('reaction_types');
     }
 };

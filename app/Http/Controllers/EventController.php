@@ -22,7 +22,7 @@ class EventController extends Controller
             'end_at' => 'date',
             'summary' => 'max:255',
             'location' => 'max:255',
-            'organization_id' => 'integer',
+            'organization_id' => 'integer|exists:organizations,id',
         ]);
 
         if ($validation->fails()) {
