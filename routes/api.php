@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\FouailleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\OrganizationController;
+
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -73,4 +75,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         });
     });
 
+});
+
+Route::prefix('organization')->group(function () {
+    Route::get('/', [OrganizationController::class, 'index']);
+
+    Route::get('/{id}', [OrganizationController::class, 'show']);
 });

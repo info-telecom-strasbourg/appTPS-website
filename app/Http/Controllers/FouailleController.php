@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use App\Models\Bde\Member;
 use Illuminate\Http\Request;
 use function PHPUnit\Framework\isEmpty;
 

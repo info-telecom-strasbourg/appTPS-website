@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use App\Models\Bde\Organization;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
  
@@ -11,6 +14,7 @@ use App\Models\Event;
 class EventController extends Controller
 {
     public function store(Request $request){
+
         $validation = Validator::make($request->all(), [
             'title' => 'required|max:255',
             'description' => 'max:10000',
@@ -50,6 +54,7 @@ class EventController extends Controller
 
 
     public function index(Request $request){
+        
         $per_page = $request->query('per_page');
 
         if ($per_page == null) {
@@ -69,14 +74,7 @@ class EventController extends Controller
         
                 if ($event->organization_id != null){
         
-                    $data = DB::connection('bde_bdd')
-                    ->table('organizations')
-                    ->select(
-                        'name',
-                        'acronym',
-                        'logo',
-                    )
-                    ->where('id', '=', $event->organization_id)->first();
+                    $data = Organization::find($event->organization_id)->first();
 
                     $organization = [
                         'name' => $data->name,
@@ -134,14 +132,7 @@ class EventController extends Controller
 
         if ($event->organization_id != null){
 
-            $data = DB::connection('bde_bdd')
-            ->table('organizations')
-            ->select(
-                'name',
-                'acronym',
-                'logo',
-            )
-            ->where('id', '=', $event->organization_id)->first();
+            $data = Organization::find($event->organization_id)->first();
 
             $organization = [
                 'name' => $data->name,
