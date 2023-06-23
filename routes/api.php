@@ -31,6 +31,10 @@ Route::post('/register', [RegisteredUserController::class, 'store'])
 
 Route::post('/login', [AuthUserController::class, 'login'])
     ->name('login');
+    
+Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
+    ->middleware(['signed', 'throttle:6,1'])
+    ->name('verification.verify');
 
 /*Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
     ->middleware('guest')
@@ -39,10 +43,6 @@ Route::post('/login', [AuthUserController::class, 'login'])
 Route::post('/reset-password', [NewPasswordController::class, 'store'])
     ->middleware('guest')
     ->name('password.store');
-
-Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
-    ->middleware(['auth', 'signed', 'throttle:6,1'])
-    ->name('verification.verify');
 
 Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
     ->middleware(['auth', 'throttle:6,1'])
@@ -53,6 +53,10 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthUserController::class, 'logout'])
         ->name('logout');
+
+    Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+        ->middleware(['throttle:6,1'])
+        ->name('verification.send');
 
     Route::group(['middleware' => ['verified']], function () {
 
