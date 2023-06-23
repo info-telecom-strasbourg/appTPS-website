@@ -3,12 +3,17 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Client;
 use Illuminate\Database\Seeder;
-use App\Models\MediaType;
-use App\Models\PostMedia;
-use App\Models\Post;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\MediaTypeSeeder;
+use Database\Seeders\ReactionTypeSeeder;
+use App\Models\User;
+use App\Models\Category;
 use App\Models\Event;
+use App\Models\Post;
+use App\Models\PostMedia;
+use App\Models\PostComment;
 
 
 class DatabaseSeeder extends Seeder
@@ -18,9 +23,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        MediaType::factory(2)->create();
-        PostMedia::factory(10)->create();
-        Post::factory(10)->create();
+        $this->call([
+            UserSeeder::class,
+            CategorySeeder::class,
+            MediaTypeSeeder::class,
+            ReactionTypeSeeder::class,
+        ]);
+
         Event::factory(10)->create();
+
+        Post::factory(20)->create();
+
+        PostMedia::factory(5)->create();
+
+        PostComment::factory(20)->create();
     }
 }

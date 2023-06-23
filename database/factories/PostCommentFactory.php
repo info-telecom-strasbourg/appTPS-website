@@ -4,15 +4,13 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Post;
-use App\Models\MediaType;
-use App\Models\PostMedia;
+use App\Models\User;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PostMedia>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PostComment>
  */
-class PostMediaFactory extends Factory
+class PostCommentFactory extends Factory
 {
-
     /**
      * Define the model's default state.
      *
@@ -20,11 +18,10 @@ class PostMediaFactory extends Factory
      */
     public function definition(): array
     {
-
         return [
-            'media' => $this->faker->imageUrl(),
+            'body' => $this->faker->text(),
             'post_id' => Post::inRandomOrder()->first()->id,
-            'media_type_id' => MediaType::inRandomOrder()->first()->id,
+            'user_id' => User::inRandomOrder()->first()->id,
         ];
     }
 }

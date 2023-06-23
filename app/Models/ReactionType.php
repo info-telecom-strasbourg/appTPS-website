@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Models\Post;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class mediaType extends Model
+class ReactionType extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
 
     protected $fillable = [
-        'type'
+        'name',
     ];
 
-    public function postMedia(){
-        return $this->hasMany(PostMedia::class);
-    }
+    public function reactions()
+    {
+        return $this->hasMany(Reaction::class);
+    }   
 }

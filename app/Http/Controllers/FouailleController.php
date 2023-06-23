@@ -31,7 +31,7 @@ class FouailleController extends Controller
             'products.color',
             )
         ->leftJoin('products', 'orders.product_id', '=', 'products.id')
-        ->where('orders.member_id', '=', 7)
+        ->where('orders.member_id', '=', $user->bde_id)
         ->orderByDesc('orders.date')
         ->paginate($per_page);
         
@@ -52,7 +52,7 @@ class FouailleController extends Controller
 
         return response()->json([
             'data' => [
-                'balance' => DB::connection('bde_bdd')->table('members')->where('id', '=', 7)->first()->balance,
+                'balance' => DB::connection('bde_bdd')->table('members')->where('id', '=', $user->bde_id)->first()->balance,
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
                 'user_name' => $user->user_name,

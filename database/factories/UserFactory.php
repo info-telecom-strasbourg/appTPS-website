@@ -3,7 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use App\Models\User;
+use App\Models\Bde\Member;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -18,17 +19,15 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            
+            'user_name' => $this->faker->unique()->userName(),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'phone' => $this->faker->phoneNumber(),
+            'email_verified_at' => now(),
+            'password' => bcrypt('azertyuiop'),
+            'avatar' => 'default.png',
+            'bde_id' => Member::inRandomOrder()->first()->id,
         ];
-    }
-
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
     }
 }

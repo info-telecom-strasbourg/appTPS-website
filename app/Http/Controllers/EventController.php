@@ -47,7 +47,7 @@ class EventController extends Controller
 
         return response()->json([
             'message' => 'Event created',
-            'event' => $event
+            'data' => $event
         ], 201);
     }
 

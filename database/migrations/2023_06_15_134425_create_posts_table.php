@@ -13,17 +13,19 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('organization_id')->nullable();
             $table->unsignedBigInteger('event_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->string('title');
-            $table->text('color');
+            $table->string('color');
             $table->longText('body');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('event_id')->references('id')->on('events')->nullOnDelete();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('category_id')->references('id')->on('categories')->nullOnDelete();
         });
     }
 
