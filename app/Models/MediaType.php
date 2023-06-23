@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class mediaType extends Model
+use App\Models\PostMedia;
+
+class MediaType extends Model
 {
     use HasFactory;
 
@@ -15,7 +17,7 @@ class mediaType extends Model
         'type'
     ];
 
-    public function postMedia(){
+    public function medias(){
         return $this->hasMany(PostMedia::class);
     }
 }

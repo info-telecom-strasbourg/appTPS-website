@@ -4,6 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Bde\Organization;
+use App\Models\Event;
+use App\Models\PostMedia;
+use App\Models\Category;
+use App\Models\Reaction;
 
 class Post extends Model
 {
@@ -13,10 +19,9 @@ class Post extends Model
         'user_id',
         'organization_id',
         'event_id',
+        'category_id',
         'title',
         'description',
-        'summary',
-        'location',
     ];
 
     public function user(){
@@ -25,5 +30,21 @@ class Post extends Model
 
     public function event(){
         return $this->hasMany(Event::class);
+    }
+
+    public function organization(){
+        return $this->belongsTo(Organization::class);
+    }
+
+    public function medias(){
+        return $this->hasMany(PostMedia::class);
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function reactions(){
+        return $this->hasMany(Reaction::class);
     }
 }

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Post;
 
 use Illuminate\Http\Request;
-use App\Http\Model\Post;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Post;
+
 
 class PostController extends Controller
 {
@@ -51,8 +54,48 @@ class PostController extends Controller
 
         $posts = Post::orderByDesc('created_at')->paginate($per_page);
 
+        $datas = $posts->map(function ($post) {
+            return [
+                'title' => $post->title,
+                'body' => $post->body,
+                'date' => $post->created_at->format('Y-m-d H:i:s'),
+                'color' => $post->color,
+                'author' => $post->user ? [
+                    'id' => $post->user->id,
+                    'last_name' => $post->user->last_name,
+                    'first_name' => $post->user->first_name,
+                    'user_name' => $post->user->user_name,
+                    'avatar_url' => $post->user->getAvatarPath()
+                ] : null,
+                'medias' => !$post->medias->isEmpty() ? $post->medias->map(function ($media) {
+                    return [
+                        'type' => $media->mediaType->type,
+                        'url' => $media->media
+                    ];
+                }) : null,
+                'organization' => $post->organization ? [
+                    'id' => $post->organization->id,
+                    'name' => $post->organization->name,
+                    'short_name' => $post->organization->short_name,
+                    'logo_url' => $post->organization->getLogoPath()
+                ] : null,
+                'reactions' => !$post->reactions->isEmpty() ? $post->reactions->map(function ($reaction) {
+                    return [
+                        'icon' => $reaction->reactionType->icon,
+                        'user' => [
+                            'id' => $reaction->user->id,
+                            'last_name' => $reaction->user->last_name,
+                            'first_name' => $reaction->user->first_name,
+                            'user_name' => $reaction->user->user_name,
+                            'avatar_url' => $reaction->user->getAvatarPath()
+                        ]
+                    ];
+                }) : null, 
+            ];
+        });
+
         return response()->json([
-            'data' => $posts
+            'data' => $datas
         ], 200);
     }
 }

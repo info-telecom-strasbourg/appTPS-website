@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Post;
+use App\Models\MediaType;
+
 class PostMedia extends Model
 {
     use HasFactory;
@@ -12,6 +15,8 @@ class PostMedia extends Model
     protected $table = 'post_medias';
 
     public $timestamps = false;
+
+    protected $with = ['mediaType'];
 
     protected $fillable = [
         'post_id',
@@ -24,6 +29,6 @@ class PostMedia extends Model
     }
 
     public function mediaType(){
-        return $this->belongsTo(mediaType::class);
+        return $this->belongsTo(MediaType::class);
     }
 }

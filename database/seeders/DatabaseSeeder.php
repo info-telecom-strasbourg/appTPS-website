@@ -14,6 +14,7 @@ use App\Models\Event;
 use App\Models\Post;
 use App\Models\PostMedia;
 use App\Models\PostComment;
+use App\Models\Reaction;
 
 
 class DatabaseSeeder extends Seeder
@@ -37,5 +38,7 @@ class DatabaseSeeder extends Seeder
         PostMedia::factory(5)->create();
 
         PostComment::factory(20)->create();
+
+        Reaction::factory(50)->create();
     }
 }

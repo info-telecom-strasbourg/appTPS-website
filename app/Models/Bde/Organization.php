@@ -31,4 +31,8 @@ class Organization extends Model
         }
         return env('FOUAILLE_URL') . 'storage/organizations/' . $this->logo;
     }
+
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
 }

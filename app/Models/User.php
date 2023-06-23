@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Post;
+use App\Models\Reaction;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -48,7 +51,19 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+
+    public function reaction(){
+        return $this->hasMany(Reaction::class);
+    }
+
     public function getAvatarPath(){
         return asset('storage/images/avatar/'.$this->avatar);
+    }
+
+    public function getFullName(){
+        return $this->first_name . ' ' . $this->last_name;
     }
 }

@@ -13,6 +13,7 @@ class ReactionType extends Model
 
     protected $fillable = [
         'name',
+        'icon'
     ];
 
     public function reactions()

@@ -5,6 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\ReactionType;
+use App\Models\Post;
+
+
+
+
 class Reaction extends Model
 {
     use HasFactory;
@@ -26,11 +32,6 @@ class Reaction extends Model
     public function post()
     {
         return $this->belongsTo(Post::class);
-    }
-
-    public function postComment()
-    {
-        return $this->belongsTo(PostComment::class);
     }
 
     public function user()
