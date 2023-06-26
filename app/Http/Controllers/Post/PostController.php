@@ -90,7 +90,7 @@ class PostController extends Controller
                             'avatar_url' => $reaction->user->getAvatarPath()
                         ]
                     ];
-                }) : null, 
+                }) : null,
             ];
         });
 

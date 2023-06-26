@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Bde\Organization;
 
 class OrganizationController extends Controller
 {
-    public function index(){
+
+    /**
+     * give all the organizations store in the database with the logo url
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index() : JsonResponse
+    {
         $associations = Organization::select('id', 'acronym', 'name', 'logo')->where('association', '=', 1)->get();
         $associations_tab = $associations->map(function ($asso) {
             return [
@@ -34,7 +41,13 @@ class OrganizationController extends Controller
         ]])->setEncodingOptions(JSON_PRETTY_PRINT);
     }
 
-    public function show($id){
+    /**
+     * give the organization with the id given
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show($id) : JsonResponse
+    {
         $organization = Organization::find($id);
         if ($organization->website_link != null
         || $organization->facebook_link != null
