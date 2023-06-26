@@ -3,20 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     public function update(Request $request)
     {
+
         $validation = Validator::make($request->all(), [
             'user_name' => 'string|min:3|max:255|unique:users',
             'phone' => 'string|max:255|regex:/^[0-9]{10,}$/',
+            'avatar' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
-
 
         if ($validation->fails()) {
             return response()->json([
@@ -27,41 +28,33 @@ class UserController extends Controller
 
         $user = $request->user();
 
-        $updatedUser = $validation->validated();
+        $avatar_file = $request->file('avatar');
+
+        if (!is_null(!$user->avatar)
+        && !(strcmp($user->avatar, "default.png") == 0)
+        && File::exists(storage_path('app/public/images/avatars/').$user->avatar)){
+            File::delete(storage_path('app/public/images/avatars/').$user->avatar);
+        }
+
+        $avatar_file_name = time() . "_" . $user->first_name . "_" . $user->last_name . "." . $avatar_file->extension();
+
+        $avatar_file->move(storage_path('app/public/images/avatars'), $avatar_file_name);
 
         $user->update([
             'user_name' => $request->user_name,
-            'phone' => $request->phone
+            'phone' => $request->phone,
+            'avatar' => $avatar_file_name
         ]);
 
         return response()->json([
             'message' => 'User updated successfully',
-            'user' => $user
+            'data' => $this->show($request)->getData()->data
             ], 200);
     }
 
     public function show(Request $request)
     {
         $user = $request->user();
-
-
-        $organization = DB::connection('bde_bdd')
-        ->table('organizations')
-        ->select(
-            'organizations.name',
-            'organizations.acronym',
-            'organization_members.role',
-        )
-        ->join('organization_members', 'organization_members.organization_id', '=', 'organizations.id')
-        ->where('organization_members.member_id', '=', $user->bde_id)->get();
-
-        $organization_tab = $organization->map(function ($item) {
-            return [
-                'name' => $item->name,
-                'acronym' => $item->acronym,
-                'role' => $item->role,
-            ];
-        })->values();
 
         return response()->json(['data' => [
             'id' => $user->id,
@@ -70,13 +63,11 @@ class UserController extends Controller
             'user_name' => $user->user_name,
             'email' => $user->email,
             'phone' => $user->phone,
-            'user_name' => $user->user_name,
             'bde_id' => $user->bde_id,
             'avatar_url' => $user->getAvatarPath(),
             'created_at' => $user->created_at,
             'updated_at' => $user->updated_at,
             'email_verified_at' => $user->email_verified_at,
-            'organization' => $organization_tab
             ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT);
     }
