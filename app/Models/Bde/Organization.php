@@ -4,6 +4,8 @@ namespace App\Models\Bde;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use app\Models\Post;
+use app\Models\User;
 
 class Organization extends Model
 {
@@ -34,5 +36,9 @@ class Organization extends Model
 
     public function posts(){
         return $this->hasMany(Post::class);
+    }
+
+    public function users(){
+        return $this->hasMany(User::class);
     }
 }

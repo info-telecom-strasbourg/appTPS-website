@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bde\Member;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
@@ -28,6 +29,7 @@ class RegisteredUserController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'phone' => ['string', 'max:255'],
+            'promotion_year' => ['string'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ]);
 
@@ -37,15 +39,14 @@ class RegisteredUserController extends Controller
             ], 401);
         }
 
-        if(DB::connection('bde_bdd')
-        ->table('members')
-        ->insert([
+        Member::create([
             'last_name' => $request->last_name,
             'first_name' => $request->first_name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'created_at' => now(),
-        ]))
+            'class' => $request->promotion_year,
+            'created_at' => now()
+        ]);
 
         $user = User::create([
             'bde_id' => DB::connection('bde_bdd')->table('members')->where('email', '=', $request->email)->first()->id,

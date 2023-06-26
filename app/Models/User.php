@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Bde\Organization;
+use App\Models\Bde\OrganizationMember;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -23,12 +25,13 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'last_name',
         'first_name',
-        'nickname',
         'email',
         'password',
         'phone',
         'user_name',
-        'bde_id'
+        'bde_id',
+        'avatar',
+        'promotion_year'
     ];
 
     /**
@@ -55,12 +58,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Post::class);
     }
 
-    public function reaction(){
+    public function reactions(){
         return $this->hasMany(Reaction::class);
     }
 
+    public function organization_roles(){
+        return $this->hasMany(OrganizationMember::class, 'member_id');
+    }
+
     public function getAvatarPath(){
-        return asset('storage/images/avatar/'.$this->avatar);
+        return asset('storage/images/avatars/'.$this->avatar);
     }
 
     public function getFullName(){
