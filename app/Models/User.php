@@ -31,7 +31,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'user_name',
         'bde_id',
         'avatar',
-        'promotion_year'
+        'promotion_year',
+        'sector_id'
     ];
 
     /**
@@ -53,6 +54,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function sector(){
+        return $this->belongsTo(Sector::class);
+    }
 
     public function posts(){
         return $this->hasMany(Post::class);

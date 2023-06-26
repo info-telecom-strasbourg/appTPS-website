@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Sector;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 use App\Models\Bde\Member;
@@ -27,7 +28,10 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => bcrypt('azertyuiop'),
             'avatar' => 'default.png',
+            'sector_id' => Sector::inRandomOrder()->first()->id,
+            'promotion_year' => random_int(2022, 2026),
             'bde_id' => Member::inRandomOrder()->first()->id,
+
         ];
     }
 }

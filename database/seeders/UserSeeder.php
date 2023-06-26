@@ -22,7 +22,9 @@ class UserSeeder extends Seeder
             'password' => bcrypt('azertyuiop'),
             'avatar' => 'default.png',
             'bde_id' => 1,
-            'email_verified_at' => now(),
+            'promotion_year' => 2024,
+            'sector_id' => 1,
+            'email_verified_at' => now()
         ]);
 
         User::factory(10)->create();

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('bde_id')->unique()->nullable();
+            $table->unsignedBigInteger('sector_id')->nullable();
             $table->string('unistra_id')->unique()->nullable();
             $table->string('user_name')->unique()->nullable();
             $table->string('last_name');
@@ -23,8 +24,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('avatar')->default('default.png');
-            $table->year('promotion_year');
+            $table->year('promotion_year')->nullable();
             $table->timestamps();
+
+            $table->foreign('sector_id')->references('id')->on('sectors')->nullOnDelete();
         });
     }
 

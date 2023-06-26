@@ -32,7 +32,7 @@ Route::post('/register', [RegisteredUserController::class, 'store'])
 
 Route::post('/login', [AuthUserController::class, 'login'])
     ->name('login');
-    
+
 Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
     ->middleware(['signed', 'throttle:6,1'])
     ->name('verification.verify');
@@ -93,4 +93,8 @@ Route::prefix('post')->group(function () {
     Route::post('/', [PostController::class, 'store']);
 
     Route::get('/', [PostController::class, 'index']);
+});
+
+Route::get('cas', function (){
+    dd(cas()->getConfig());
 });

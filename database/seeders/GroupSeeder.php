@@ -14,18 +14,18 @@ class GroupSeeder extends Seeder
     public function run(): void
     {
         Group::create([
-           'name' => 'Informatique et Réseaux',
-           'short_name' => 'IR'
+           'name' => 'Les foufou',
+           'short_name' => 'foufou'
         ]);
 
         Group::create([
-           'name' => 'Sciences et Technologies pour le Santé',
-           'short_name' => 'TI'
+           'name' => 'les dingo',
+           'short_name' => 'LD'
         ]);
 
         Group::create([
-           'name' => 'Généraliste',
-           'short_name' => 'Géné'
+           'name' => 'Les gentils',
+           'short_name' => 'LG'
         ]);
 
     }
