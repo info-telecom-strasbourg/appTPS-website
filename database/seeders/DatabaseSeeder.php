@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\GroupUser;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\CategorySeeder;
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             MediaTypeSeeder::class,
             ReactionTypeSeeder::class,
+            GroupSeeder::class
         ]);
 
         Event::factory(10)->create();
@@ -40,5 +42,7 @@ class DatabaseSeeder extends Seeder
         PostComment::factory(20)->create();
 
         Reaction::factory(50)->create();
+
+        GroupUser::factory(10)->create();
     }
 }
