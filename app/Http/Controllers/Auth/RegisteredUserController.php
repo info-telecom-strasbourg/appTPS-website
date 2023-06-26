@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
 
-class RegisteredUserController extends Controller
+class qRegisteredUserController extends Controller
 {
     /**
      * Handle an incoming registration request.
@@ -30,6 +30,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'phone' => ['string', 'max:255'],
             'promotion_year' => ['string'],
+            'contributor' => 0,
             'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ]);
 
@@ -44,8 +45,7 @@ class RegisteredUserController extends Controller
             'first_name' => $request->first_name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'class' => $request->promotion_year,
-            'created_at' => now()
+            'class' => $request->promotion_year
         ]);
 
         $user = User::create([

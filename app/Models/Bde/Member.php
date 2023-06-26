@@ -22,6 +22,10 @@ class Member extends Model
         'class'
     ];
 
+    public function getUpdatedAtColumn() {
+        return null;
+    }
+
     public function orders(){
         return $this->hasMany(Order::class);
     }
