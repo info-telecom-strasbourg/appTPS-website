@@ -27,8 +27,13 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 |
 */
 
-Route::post('/register', [RegisteredUserController::class, 'store'])
-    ->name('register');
+Route::prefix('register')->group(function (){
+    Route::post('/', [RegisteredUserController::class, 'store'])
+        ->name('register');
+
+    Route::get('availability', [RegisteredUserController::class, 'availability']);
+});
+
 
 Route::post('/login', [AuthUserController::class, 'login'])
     ->middleware(['verified', 'throttle:6,1'])
@@ -95,8 +100,6 @@ Route::prefix('post')->group(function () {
 
     Route::get('/', [PostController::class, 'index']);
 });
-
-Route::get('/search', [UserController::class, 'search']);
 
 Route::get('cas', function (){
     dd(cas()->getConfig());

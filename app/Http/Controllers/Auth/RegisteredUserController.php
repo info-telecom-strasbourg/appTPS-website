@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Bde\Member;
 use App\Models\User;
+use http\Env\Response;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -68,5 +69,23 @@ class RegisteredUserController extends Controller
             'user' => $user,
             'token' => $token,
         ], 201);
+    }
+
+    public function availability(Request $request){
+        $query = User::query();
+
+        foreach ($request->all() as $key => $value){
+            $query->orWhere($key, $value);
+        }
+
+        if($query->first()){
+            return response()->json([
+                'message' => 'Utilisateur déjà existant'
+            ], 409);
+        }else{
+            return response()->json([
+                'message' => 'Aucun Utilisateurs existant avec ces valeurs'
+            ], 200);
+        }
     }
 }

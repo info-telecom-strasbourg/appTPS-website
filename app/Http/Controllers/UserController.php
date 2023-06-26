@@ -72,9 +72,4 @@ class UserController extends Controller
             ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT);
     }
-
-    public function search(Request $request){
-        dd($request);
-        return User::all()->filter($request);
-    }
 }
