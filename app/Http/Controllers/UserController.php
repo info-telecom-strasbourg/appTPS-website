@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\File;
@@ -52,7 +53,7 @@ class UserController extends Controller
             ], 200);
     }
 
-    public function show(Request $request)
+    public function getMe(Request $request)
     {
         $user = $request->user();
 
@@ -70,5 +71,10 @@ class UserController extends Controller
             'email_verified_at' => $user->email_verified_at,
             ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT);
+    }
+
+    public function search(Request $request){
+        dd($request);
+        return User::all()->filter($request);
     }
 }

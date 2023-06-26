@@ -31,10 +31,11 @@ Route::post('/register', [RegisteredUserController::class, 'store'])
     ->name('register');
 
 Route::post('/login', [AuthUserController::class, 'login'])
+    ->middleware(['verified', 'throttle:6,1'])
     ->name('login');
 
 Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
-    ->middleware(['signed', 'throttle:6,1'])
+    ->middleware(['signed'])
     ->name('verification.verify');
 
 /*Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
@@ -63,7 +64,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::prefix('user')->group(function () {
 
-            Route::get('/', [UserController::class, 'show']);
+            Route::get('/me', [UserController::class, 'getMe']);
 
             Route::put('/', [UserController::class, 'update']);
         });
@@ -94,6 +95,8 @@ Route::prefix('post')->group(function () {
 
     Route::get('/', [PostController::class, 'index']);
 });
+
+Route::get('/search', [UserController::class, 'search']);
 
 Route::get('cas', function (){
     dd(cas()->getConfig());

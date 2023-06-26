@@ -32,5 +32,10 @@ class SectorSeeder extends Seeder
             'name' => 'Alternance',
             'short_name' => 'FIP'
         ]);
+
+        Sector::create([
+            'name' => 'ESBS',
+            'short_name' => 'BS'
+        ]);
     }
 }

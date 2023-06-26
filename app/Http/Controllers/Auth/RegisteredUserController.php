@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
 
-class qRegisteredUserController extends Controller
+class RegisteredUserController extends Controller
 {
     /**
      * Handle an incoming registration request.
@@ -24,13 +24,12 @@ class qRegisteredUserController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            'user_name' => ['string', 'max:255'],
+            'user_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'phone' => ['string', 'max:255'],
             'promotion_year' => ['string'],
-            'contributor' => 0,
             'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ]);
 
@@ -45,6 +44,7 @@ class qRegisteredUserController extends Controller
             'first_name' => $request->first_name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'contributor' => 0,
             'class' => $request->promotion_year
         ]);
 
@@ -52,8 +52,10 @@ class qRegisteredUserController extends Controller
             'bde_id' => DB::connection('bde_bdd')->table('members')->where('email', '=', $request->email)->first()->id,
             'last_name' => $request->last_name,
             'first_name' => $request->first_name,
+            'user_name' => $request->user_name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'promotion_year' => $request->promotion_year,
             'password' => Hash::make($request->password)
         ]);
 
