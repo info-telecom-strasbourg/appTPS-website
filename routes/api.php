@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SectorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,8 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
 
+
+Route::get('sector', [SectorController::class, 'index']);
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
