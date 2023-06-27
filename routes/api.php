@@ -28,6 +28,9 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 |
 */
 
+
+/** =============== Authentification =============== */
+
 Route::prefix('register')->group(function (){
     Route::post('/', [RegisteredUserController::class, 'store'])
         ->name('register');
@@ -35,25 +38,23 @@ Route::prefix('register')->group(function (){
     Route::get('availability', [RegisteredUserController::class, 'availability']);
 });
 
-
 Route::post('/login', [AuthUserController::class, 'login'])
     ->middleware(['throttle:6,1'])
     ->name('login');
+
+/** =============== Password verification =============== */
 
 Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
     ->middleware(['signed'])
     ->name('verification.verify');
 
+/** =============== Forgot password =============== */
+
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
-    ->middleware('guest')
     ->name('password.email');
 
 Route::post('/reset-password', [NewPasswordController::class, 'store'])
     ->name('password.store');
-
-Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-    ->middleware(['auth', 'throttle:6,1'])
-    ->name('verification.send');
 
 
 Route::get('sector', [SectorController::class, 'index']);
@@ -66,6 +67,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
         ->middleware(['throttle:6,1'])
         ->name('verification.send');
+
+    Route::put('update-password', [NewPasswordController::class, 'update']);
 
     Route::group(['middleware' => ['verified']], function () {
 
