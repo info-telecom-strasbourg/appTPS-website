@@ -6,6 +6,7 @@ use App\Models\Bde\Organization;
 use App\Models\Bde\OrganizationMember;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -15,7 +16,7 @@ use App\Models\Reaction;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -79,12 +80,4 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->first_name . ' ' . $this->last_name;
     }
 
-    public function scopeFilter($query, array $filter){
-        dd($query, $filter);
-        return $query->when($filter['search'] ?? false, function($query, $search){
-            return $query->where('last_name', 'like', '%'.$search.'%')
-                    ->orWhere('first_name', 'like', '%'.$search.'%')
-                    ->orWhere('user_name', 'like', '%'.$search.'%');
-        });
-    }
 }

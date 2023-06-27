@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('avatar')->default('default.png');
             $table->year('promotion_year')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('sector_id')->references('id')->on('sectors')->nullOnDelete();
         });

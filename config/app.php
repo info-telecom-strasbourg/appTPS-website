@@ -162,6 +162,7 @@ return [
          * Package Service Providers...
          */
         Subfission\Cas\CasServiceProvider::class,
+        Weidner\Goutte\GoutteServiceProvider::class,
         /*
          * Application Service Providers...
          */

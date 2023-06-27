@@ -25,9 +25,10 @@ class RegisteredUserController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            'user_name' => ['required', 'string', 'max:255'],
+            'user_name' => ['required', 'string', 'max:255', 'unique:' . User::class],
             'last_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
+            'sector' => ['required', 'integer'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'phone' => ['string', 'max:255'],
             'promotion_year' => ['string'],
@@ -53,6 +54,7 @@ class RegisteredUserController extends Controller
             'bde_id' => DB::connection('bde_bdd')->table('members')->where('email', '=', $request->email)->first()->id,
             'last_name' => $request->last_name,
             'first_name' => $request->first_name,
+            'sector_id' => $request->sector,
             'user_name' => $request->user_name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -73,6 +75,7 @@ class RegisteredUserController extends Controller
 
     public function availability(Request $request){
         $query = User::query();
+
 
         foreach ($request->all() as $key => $value){
             $query->orWhere($key, $value);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CrousController;
 use App\Http\Controllers\SectorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +60,7 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])
 
 Route::get('sector', [SectorController::class, 'index']);
 
+Route::get('crous', [CrousController::class, 'index']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthUserController::class, 'logout'])
@@ -77,6 +79,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::get('/me', [UserController::class, 'getMe']);
 
             Route::put('/', [UserController::class, 'update']);
+
+            Route::delete('/', [UserController::class, 'delete']);
         });
 
         Route::get('/fouaille', [FouailleController::class, 'show'])

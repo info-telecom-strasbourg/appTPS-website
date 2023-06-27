@@ -14,6 +14,11 @@ class SectorSeeder extends Seeder
     public function run(): void
     {
         Sector::create([
+            'name' => 'Non def',
+            'short_name' => 'AUTRE'
+        ]);
+
+        Sector::create([
             'name' => 'Informatique et Réseaux',
             'short_name' => 'IR'
         ]);

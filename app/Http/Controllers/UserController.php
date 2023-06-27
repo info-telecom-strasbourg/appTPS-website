@@ -66,10 +66,20 @@ class UserController extends Controller
             'phone' => $user->phone,
             'bde_id' => $user->bde_id,
             'avatar_url' => $user->getAvatarPath(),
+            'promotion_year' => $user->promotion_year,
             'created_at' => $user->created_at,
             'updated_at' => $user->updated_at,
             'email_verified_at' => $user->email_verified_at,
+            'sector' => $user->sector->short_name
             ]
+        ], 200)->setEncodingOptions(JSON_PRETTY_PRINT);
+    }
+
+    public function delete(Request $request){
+        $request->user()->delete();
+
+        return response()->json([
+            'message' => 'The user has been deleted'
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT);
     }
 }
