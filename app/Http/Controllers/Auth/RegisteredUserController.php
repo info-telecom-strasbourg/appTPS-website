@@ -84,7 +84,7 @@ class RegisteredUserController extends Controller
             ], 409);
         }else{
             return response()->json([
-                'message' => 'Aucun Utilisateurs existant avec ces valeurs'
+                'message' => 'Aucun utilisateur existant avec ces valeurs'
             ], 200);
         }
     }

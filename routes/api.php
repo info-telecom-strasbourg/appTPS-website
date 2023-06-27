@@ -36,24 +36,23 @@ Route::prefix('register')->group(function (){
 
 
 Route::post('/login', [AuthUserController::class, 'login'])
-    ->middleware(['verified', 'throttle:6,1'])
+    ->middleware(['throttle:6,1'])
     ->name('login');
 
 Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
     ->middleware(['signed'])
     ->name('verification.verify');
 
-/*Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
     ->middleware('guest')
     ->name('password.email');
 
 Route::post('/reset-password', [NewPasswordController::class, 'store'])
-    ->middleware('guest')
     ->name('password.store');
 
 Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
     ->middleware(['auth', 'throttle:6,1'])
-    ->name('verification.send');*/
+    ->name('verification.send');
 
 
 

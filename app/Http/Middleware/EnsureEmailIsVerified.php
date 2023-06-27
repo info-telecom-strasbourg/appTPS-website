@@ -17,14 +17,8 @@ class EnsureEmailIsVerified
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $is_user = Auth::attempt($request->only(['email', 'password']));
 
-        if ($is_user){
-            $user = Auth::user();
-        }
-
-        if ($is_user
-            && ($user instanceof MustVerifyEmail && !$user->hasVerifiedEmail())) {
+        if (!$request->user() || ($request->user() instanceof MustVerifyEmail && !$request->user()->hasVerifiedEmail())) {
             return response()->json(['message' => 'Your email address is not verified.'], 409);
         }
 
