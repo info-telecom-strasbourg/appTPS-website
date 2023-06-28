@@ -17,6 +17,8 @@ class UserController extends Controller
         $validation = Validator::make($request->all(), [
             'user_name' => 'string|min:3|max:255|unique:users',
             'phone' => 'string|max:255|regex:/^[0-9]{10,}$/',
+            'sector' =>  'integer',
+            'promotion_year' => 'string',
             'avatar' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
@@ -29,27 +31,27 @@ class UserController extends Controller
 
         $user = $request->user();
 
-        $avatar_file = $request->file('avatar');
+        if($request->avatar){
+            $avatar_file = $request->file('avatar');
 
-        if (!is_null(!$user->avatar)
-        && !(strcmp($user->avatar, "default.png") == 0)
-        && File::exists(storage_path('app/public/images/avatars/').$user->avatar)){
-            File::delete(storage_path('app/public/images/avatars/').$user->avatar);
+            if (!is_null(!$user->avatar)
+                && !(strcmp($user->avatar, "default.png") == 0)
+                && File::exists(storage_path('app/public/images/avatars/').$user->avatar)){
+                File::delete(storage_path('app/public/images/avatars/').$user->avatar);
+            }
+
+            $avatar_file_name = time() . "_" . $user->first_name . "_" . $user->last_name . "." . $avatar_file->extension();
+
+            $avatar_file->move(storage_path('app/public/images/avatars'), $avatar_file_name);
+        }else{
+            $avatar_file_name = $user->avatar;
         }
 
-        $avatar_file_name = time() . "_" . $user->first_name . "_" . $user->last_name . "." . $avatar_file->extension();
-
-        $avatar_file->move(storage_path('app/public/images/avatars'), $avatar_file_name);
-
-        $user->update([
-            'user_name' => $request->user_name,
-            'phone' => $request->phone,
-            'avatar' => $avatar_file_name
-        ]);
+        $user->update($validation->getData());
 
         return response()->json([
             'message' => 'User updated successfully',
-            'data' => $this->show($request)->getData()->data
+            'data' => $this->getMe($request)->getData()->data
             ], 200);
     }
 
@@ -70,7 +72,7 @@ class UserController extends Controller
             'created_at' => $user->created_at,
             'updated_at' => $user->updated_at,
             'email_verified_at' => $user->email_verified_at,
-            'sector' => $user->sector->short_name
+            'sector' => $user->sector ? $user->sector->short_name : null
             ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT);
     }
