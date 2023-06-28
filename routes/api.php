@@ -108,8 +108,24 @@ Route::prefix('post')->group(function () {
     Route::post('/', [PostController::class, 'store']);
 
     Route::get('/', [PostController::class, 'index']);
+
+    Route::get('{id}', [PostController::class, 'show']);
 });
 
-Route::get('cas', function (){
-    dd(cas()->getConfig());
+Route::prefix('event')->group(function () {
+    Route::post('/', [EventController::class, 'store']);
+
+    Route::get('/', [EventController::class, 'index']);
+});
+
+Route::get('cas', function (Request $request){
+    dd("salut");
+    dd(cas()->user());
+    if(!cas()->checkAuthentication())
+    {
+        if ($request->ajax()) {
+            return response('Unauthorized.', 401);
+        }
+        cas()->authenticate();
+    }
 });

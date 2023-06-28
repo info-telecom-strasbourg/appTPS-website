@@ -63,7 +63,7 @@ class NewPasswordController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => $validator->errors(),
-            ], 401);
+            ], 422);
         }
 
 
@@ -74,7 +74,7 @@ class NewPasswordController extends Controller
         } else {
             return response()->json([
                 'message' => 'the password does not match',
-            ], 401);
+            ], 422);
         }
 
         return response()->json([

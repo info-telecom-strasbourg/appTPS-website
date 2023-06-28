@@ -16,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
+})->name("home");
+
+Route::get('cas', function (Request $request){
+    dd(cas()->getConfig());
 });

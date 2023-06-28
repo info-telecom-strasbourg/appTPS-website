@@ -18,10 +18,23 @@ class PostCommentFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'body' => $this->faker->text(),
-            'post_id' => Post::inRandomOrder()->first()->id,
-            'user_id' => User::inRandomOrder()->first()->id,
-        ];
+        $post = Post::inRandomOrder()->first();
+        $postComments = $post->comments;
+
+        if (!$postComments->isEmpty()){
+            $comment_id = $postComments->pluck('id')->random();
+            return [
+                'body' => $this->faker->text(),
+                'post_id' => $post->id,
+                'user_id' => User::inRandomOrder()->first()->id,
+                'parent_comment_id' => $comment_id
+            ];
+        }else{
+            return [
+                'body' => $this->faker->text(),
+                'post_id' => $post->id,
+                'user_id' => User::inRandomOrder()->first()->id,
+            ];
+        }
     }
 }

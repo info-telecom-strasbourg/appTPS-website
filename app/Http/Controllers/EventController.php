@@ -8,7 +8,7 @@ use App\Models\Bde\Organization;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
- 
+
 use App\Models\Event;
 
 class EventController extends Controller
@@ -54,7 +54,7 @@ class EventController extends Controller
 
 
     public function index(Request $request){
-        
+
         $per_page = $request->query('per_page');
 
         if ($per_page == null) {
@@ -71,9 +71,9 @@ class EventController extends Controller
                     'user_name' => $event->user->user_name,
                     'avatar_url' => $event->user->getAvatarPath()
                 ];
-        
+
                 if ($event->organization_id != null){
-        
+
                     $data = Organization::find($event->organization_id)->first();
 
                     $organization = [
@@ -86,12 +86,10 @@ class EventController extends Controller
                 }
 
                 return [
-                    'id' => $event->id,
                     'title' => $event->title,
                     'description' => $event->description,
                     'start_at' => $event->start_at,
                     'end_at' => $event->end_at,
-                    'summary' => $event->summary,
                     'location' => $event->location,
                     'organization' => $organization,
                     'user' => $user

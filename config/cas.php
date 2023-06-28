@@ -6,7 +6,7 @@ return [
     |--------------------------------------------------------------------------
     | Example: 'cas.myuniv.edu'.
     */
-    'cas_hostname' => env('CAS_HOSTNAME', 'cas.unistra.fr'),
+    'cas_hostname' => env('CAS_HOSTNAME', 'cas-dev.unistra.fr'),
 
     /*
     |--------------------------------------------------------------------------
@@ -16,7 +16,7 @@ return [
     | recommended for protecting against DOS attacks.  If using load
     | balanced hosts, then separate each with a comma.
     */
-    'cas_real_hosts' => env('CAS_REAL_HOSTS', 'cas.unistra.fr'),
+    'cas_real_hosts' => env('CAS_REAL_HOSTS', 'cas-dev.unistra.fr'),
 
 
     /*
@@ -65,7 +65,7 @@ return [
     |--------------------------------------------------------------------------
     | Example: 'http://localhost', 'https://example.com:8888'
     */
-    'cas_client_service' => env('CAS_CLIENT_SERVICE', 'http://localhost'),
+    'cas_client_service' => env('CAS_CLIENT_SERVICE', 'http://google.com'),
 
 
     /*
@@ -104,14 +104,14 @@ return [
     |--------------------------------------------------------------------------
     | Empty is fine
     */
-    'cas_login_url' => env('CAS_LOGIN_URL', 'https://cas.unistra.fr/cas/login'),
+    'cas_login_url' => env('CAS_LOGIN_URL', 'https://cas-dev.unistra.fr/cas/login'),
 
     /*
     |--------------------------------------------------------------------------
     | CAS Logout URI
     |--------------------------------------------------------------------------
     */
-    'cas_logout_url' => env('CAS_LOGOUT_URL', 'https://cas.unistra.fr/cas/logout'),
+    'cas_logout_url' => env('CAS_LOGOUT_URL', 'https://cas-dev.unistra.fr/cas/logout'),
 
     /*
     |--------------------------------------------------------------------------

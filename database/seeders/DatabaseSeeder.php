@@ -42,7 +42,31 @@ class DatabaseSeeder extends Seeder
 
         PostComment::factory(20)->create();
 
-        Reaction::factory(50)->create();
+        PostComment::create([
+            'user_id' => 1,
+            'body' => "je suis un commentaire sous le post 1",
+            'post_id' => 1,
+        ]);
+
+        PostComment::create([
+            'user_id' => 2,
+            'body' => "je suis un commentaire sous le post 1 sous le commentaire",
+            'parent_comment_id' => 21
+        ]);
+
+        PostComment::create([
+            'user_id' => 3,
+            'body' => "je suis un commentaire sous le post 1 sous le commentaire par un autre utilisateur",
+            'parent_comment_id' => 21
+        ]);
+
+        PostComment::create([
+            'user_id' => 4,
+            'body' => "je suis un commentaire sous le post 1 sous le commentaire du commentaire",
+            'parent_comment_id' => 22
+        ]);
+
+        Reaction::factory(200)->create();
 
         GroupUser::factory(10)->create();
     }
