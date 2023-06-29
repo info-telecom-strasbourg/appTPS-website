@@ -57,6 +57,8 @@ class PostController extends Controller
 
 
         $datas = $posts->map(function ($post) {
+            $data = $post->reactions;
+
             return [
                 'id' => $post->id,
                 'title' => $post->title,

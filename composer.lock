@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "49077cb474045a85d0e84872d5178f9f",
+    "content-hash": "d1924e850a57ba6b77bd4b833937d9dc",
     "packages": [
         {
             "name": "apereo/phpcas",
@@ -6208,6 +6208,79 @@
                 "source": "https://github.com/dweidner/laravel-goutte/tree/2.3.0"
             },
             "time": "2023-03-16T08:45:21+00:00"
+        },
+        {
+            "name": "yieldstudio/laravel-expo-notifier",
+            "version": "0.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/YieldStudio/laravel-expo-notifier.git",
+                "reference": "8b0895ac73cf8faee29498e4b91e1d804c8d12dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/YieldStudio/laravel-expo-notifier/zipball/8b0895ac73cf8faee29498e4b91e1d804c8d12dd",
+                "reference": "8b0895ac73cf8faee29498e4b91e1d804c8d12dd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^9|^10",
+                "illuminate/support": "^9|^10",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "ciareis/bypass": "^1.0",
+                "dg/bypass-finals": "^1.4",
+                "laravel/pint": "^1.3",
+                "orchestra/testbench": "7.*|8.*",
+                "pestphp/pest": "^1.21",
+                "phpunit/phpunit": "^9.1"
+            },
+            "type": "plugin",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "YieldStudio\\LaravelExpoNotifier\\ExpoNotificationsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "YieldStudio\\LaravelExpoNotifier\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Hemery",
+                    "email": "james@yieldstudio.fr",
+                    "homepage": "https://yieldstudio.fr",
+                    "role": "Developer"
+                },
+                {
+                    "name": "David Tang",
+                    "email": "david@yieldstudio.fr",
+                    "homepage": "https://yieldstudio.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily send Expo notifications with Laravel.",
+            "homepage": "https://github.com/YieldStudio/laravel-expo-notifier",
+            "keywords": [
+                "expo",
+                "laravel",
+                "notification",
+                "notifier",
+                "yieldstudio"
+            ],
+            "support": {
+                "issues": "https://github.com/YieldStudio/laravel-expo-notifier/issues",
+                "source": "https://github.com/YieldStudio/laravel-expo-notifier/tree/0.0.7"
+            },
+            "time": "2023-05-29T12:38:23+00:00"
         }
     ],
     "packages-dev": [
