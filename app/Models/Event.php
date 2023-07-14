@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Bde\Organization;
+use App\Models\Bde\OrganizationMember;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,6 +26,10 @@ class Event extends Model
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function organization(){
+        return $this->belongsTo(Organization::class);
     }
 
     public function post(){

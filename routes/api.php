@@ -94,38 +94,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::post('/', [EventController::class, 'store']);
         });
 
+        Route::prefix('post')->group(function () {
+            Route::post('/', [PostController::class, 'store']);
+
+            Route::get('/', [PostController::class, 'index']);
+
+            Route::get('{id}', [PostController::class, 'show']);
+        });
     });
-
-});
-
-Route::prefix('organization')->group(function () {
-    Route::get('/', [OrganizationController::class, 'index']);
-
-    Route::get('/{id}', [OrganizationController::class, 'show']);
-});
-
-Route::prefix('post')->group(function () {
-    Route::post('/', [PostController::class, 'store']);
-
-    Route::get('/', [PostController::class, 'index']);
-
-    Route::get('{id}', [PostController::class, 'show']);
-});
-
-Route::prefix('event')->group(function () {
-    Route::post('/', [EventController::class, 'store']);
-
-    Route::get('/', [EventController::class, 'index']);
-});
-
-Route::get('cas', function (Request $request){
-    dd("salut");
-    dd(cas()->user());
-    if(!cas()->checkAuthentication())
-    {
-        if ($request->ajax()) {
-            return response('Unauthorized.', 401);
-        }
-        cas()->authenticate();
-    }
 });

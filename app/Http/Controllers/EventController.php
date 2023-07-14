@@ -20,9 +20,9 @@ class EventController extends Controller
             'description' => 'max:10000',
             'start_at' => 'date',
             'end_at' => 'date',
-            'summary' => 'max:255',
             'location' => 'max:255',
             'organization_id' => 'integer|exists:organizations,id',
+            'color' => 'string|max:7|min:7'
         ]);
 
         if ($validation->fails()) {
@@ -41,8 +41,8 @@ class EventController extends Controller
             'description' => $request->description,
             'start_at' => $request->start_at,
             'end_at' => $request->end_at,
-            'summary' => $request->summary,
             'location' => $request->location,
+            'color' => $request->color
         ]);
 
         return response()->json([
@@ -65,34 +65,26 @@ class EventController extends Controller
 
         return response()->json([
             'data' => $events->map(function ($event) {
-                $user = [
-                    'last_name' => $event->user->last_name,
-                    'first_name' => $event->user->first_name,
-                    'user_name' => $event->user->user_name,
-                    'avatar_url' => $event->user->getAvatarPath()
-                ];
-
-                if ($event->organization_id != null){
-
-                    $data = Organization::find($event->organization_id)->first();
-
-                    $organization = [
-                        'name' => $data->name,
-                        'acronym' => $data->acronym,
-                        'logo' => $data->logo
-                    ];
-                }else{
-                    $organization = null;
-                }
-
                 return [
                     'title' => $event->title,
                     'description' => $event->description,
                     'start_at' => $event->start_at,
                     'end_at' => $event->end_at,
                     'location' => $event->location,
-                    'organization' => $organization,
-                    'user' => $user
+                    'color' => $event->color,
+                    'author' => $event->organization ? [
+                        'is_organization' => true,
+                        'id' => $event->organization->id,
+                        'name' => $event->organization->name,
+                        'short_name' => $event->organization->short_name,
+                        'logo_url' => $event->organization->getLogoPath()
+                    ] : [
+                        'is_organization' => false,
+                        'id' => $event->user->id,
+                        'name' => $event->user->getFullName(),
+                        'short_name' => null,
+                        'logo_url' => $event->user->getAvatarPath()
+                    ]
                 ];
             }),
             'meta' => [
@@ -121,36 +113,27 @@ class EventController extends Controller
             ], 404);
         }
 
-        $user = [
-            'last_name' => $event->user->last_name,
-            'first_name' => $event->user->first_name,
-            'user_name' => $event->user->user_name,
-            'avatar_url' => $event->user->getAvatarPath()
-        ];
-
-        if ($event->organization_id != null){
-
-            $data = Organization::find($event->organization_id)->first();
-
-            $organization = [
-                'name' => $data->name,
-                'acronym' => $data->acronym,
-                'logo' => $data->logo
-            ];
-        }else{
-            $organization = null;
-        }
-
         return response()->json([
             'data' => [
                 'title' => $event->title,
                 'description' => $event->description,
                 'start_at' => $event->start_at,
                 'end_at' => $event->end_at,
-                'summary' => $event->summary,
                 'location' => $event->location,
-                'organization' => $organization,
-                'user' => $user
+                'color' => $event->color,
+                'author' => $event->organization ? [
+                    'is_organization' => true,
+                    'id' => $event->organization->id,
+                    'name' => $event->organization->name,
+                    'short_name' => $event->organization->short_name,
+                    'logo_url' => $event->organization->getLogoPath()
+                ] : [
+                    'is_organization' => false,
+                    'id' => $event->user->id,
+                    'name' => $event->user->getFullName(),
+                    'short_name' => null,
+                    'logo_url' => $event->user->getAvatarPath()
+                ]
             ]
         ], 200);
     }

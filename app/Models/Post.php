@@ -22,6 +22,8 @@ class Post extends Model
         'category_id',
         'title',
         'description',
+        'body',
+        'color'
     ];
 
     public function user(){

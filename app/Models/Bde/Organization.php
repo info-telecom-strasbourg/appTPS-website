@@ -2,6 +2,7 @@
 
 namespace App\Models\Bde;
 
+use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use app\Models\Post;
@@ -36,6 +37,10 @@ class Organization extends Model
 
     public function posts(){
         return $this->hasMany(Post::class);
+    }
+
+    public function events(){
+        return $this->hasMany(Event::class);
     }
 
     public function users(){

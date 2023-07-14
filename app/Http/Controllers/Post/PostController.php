@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\Post;
 
 use App\Models\PostComment;
+use App\Notifications\ActivateNotification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Post;
 
 
 class PostController extends Controller
 {
-    public function store($request){
+    public function store(Request $request){
         $validation = Validator::make($request->all(), [
             'title' => 'required|max:50|min:3',
             'body' => 'required|min:3',
@@ -39,6 +41,8 @@ class PostController extends Controller
             'user_id' => $user->id,
             'color' => $request->color
         ]);
+
+        $user->notify(new ActivateNotification($post));
 
         return response()->json([
             'message' => 'Post created',
