@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\NewPasswordController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,7 @@ Route::get('/', function () {
 Route::get('cas', function (Request $request){
     dd(cas()->getConfig());
 });
+
+Route::get('/password-reset/{token}', [NewPasswordController::class, 'index']);
+
+Route::post('/password-reset/{token}', [NewPasswordController::class, 'store']);

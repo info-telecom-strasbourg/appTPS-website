@@ -54,9 +54,6 @@ Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
     ->name('password.email');
 
-Route::post('/reset-password', [NewPasswordController::class, 'store'])
-    ->name('password.store');
-
 
 Route::get('sector', [SectorController::class, 'index']);
 

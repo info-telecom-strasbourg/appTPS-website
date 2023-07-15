@@ -21,18 +21,21 @@ class NewPasswordController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): JsonResponse
+    public function store(Request $request, $token): JsonResponse
     {
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $credentials = $request->only('email', 'password', 'password_confirmation');
+        $credentials['token'] = $token;
+
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
         // database. Otherwise we will parse the error and return the response.
         $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
+            $credentials,
             function ($user) use ($request) {
                 $user->forceFill([
                     'password' => Hash::make($request->password),
@@ -80,5 +83,9 @@ class NewPasswordController extends Controller
         return response()->json([
             'message' => 'Password updated successfully',
         ], 200);
+    }
+
+    public function index(Request $request){
+        return view('auth.reset-password');
     }
 }
