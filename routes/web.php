@@ -30,5 +30,3 @@ Route::get('/password-reset/{token}', [NewPasswordController::class, 'index'])
 Route::post('/password-reset/{token}', [NewPasswordController::class, 'store'])
     ->name('password.reset');
 
-Route::get('/email-verifications', [EmailVerificationNotificationController::class, 'show'])
-    ->name('verification.notice');

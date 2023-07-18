@@ -6,6 +6,6 @@
             class="logo-app"
             >
         </div>
-        <p class="reset-password-message">Salut {{$name}} ton adresse {{$email}} à bien été vérifiée !</p>
+        <p class="reset-password-message">Salut <strong>{{$name}}</strong> ton adresse email : <strong>{{$email}}</strong> à bien été vérifiée !</p>
     </div>
 </x-layout>

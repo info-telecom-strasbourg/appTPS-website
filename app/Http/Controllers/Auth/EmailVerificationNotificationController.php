@@ -29,13 +29,4 @@ class EmailVerificationNotificationController extends Controller
             'message' => 'Verification link sent'
         ], 200);
     }
-
-    /**
-     * Show the page that informs the user that his email has been verified.
-     * 
-     */
-    public function show()
-    {
-        return view('auth.verify-email');
-    }
 }

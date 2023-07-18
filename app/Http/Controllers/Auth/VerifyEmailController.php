@@ -21,8 +21,8 @@ class VerifyEmailController extends Controller
         $user = User::find($request->route('id'));
 
         if ($user->hasVerifiedEmail()) {
-            return redirect()->route(
-                'verification.notice',
+            return view(
+                'auth.verify-email',
                 [
                     'email' => $user->email,
                     'name' => $user->first_name.' '.$user->last_name
@@ -33,8 +33,8 @@ class VerifyEmailController extends Controller
             event(new Verified($user));
         }
 
-        return redirect()->route(
-            'verification.notice',
+        return view(
+            'auth.verify-email',
             [
                 'email' => $user->email,
                 'name' => $user->first_name.' '.$user->last_name
