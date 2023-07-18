@@ -9,7 +9,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class AuthUserController extends Controller
 {
-    public function login(LoginRequest $request){
+
+    /**
+     * Login a user
+     * 
+     * @param LoginRequest $request
+     * 
+     */
+    public function login(LoginRequest $request) {
         try {
             $request->authenticate();
 
@@ -36,7 +43,11 @@ class AuthUserController extends Controller
 
     }
 
-    public function logout(){
+    /**
+     * Logout a user
+     * 
+     */
+    public function logout() {
         auth()->user()->tokens()->delete();
         return response()->json([
             'message' => 'Successfully logged out',

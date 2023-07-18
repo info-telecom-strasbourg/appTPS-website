@@ -13,12 +13,13 @@ class PasswordResetLinkController extends Controller
     /**
      * Handle an incoming password reset link request.
      *
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): JsonResponse
-    {
+    public function store(Request $request) {
         $request->validate([
-            'email' => ['required', 'email'],
+            'email' => [
+                'required',
+                'email' // Do not verify if the email exists in the database to avoid giving information to a potential hacker
+            ]
         ]);
 
         // We will send the password reset link to this user. Once we have attempted

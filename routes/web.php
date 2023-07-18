@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,11 @@ Route::get('cas', function (Request $request){
     dd(cas()->getConfig());
 });
 
-Route::get('/password-reset/{token}', [NewPasswordController::class, 'index']);
+Route::get('/password-reset/{token}', [NewPasswordController::class, 'index'])
+    ->name('password.reset.form');
 
-Route::post('/password-reset/{token}', [NewPasswordController::class, 'store']);
+Route::post('/password-reset/{token}', [NewPasswordController::class, 'store'])
+    ->name('password.reset');
+
+Route::get('/email-verifications', [EmailVerificationNotificationController::class, 'show'])
+    ->name('verification.notice');

@@ -19,20 +19,58 @@ class RegisteredUserController extends Controller
 {
     /**
      * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): JsonResponse
-    {
+    public function store(Request $request){
         $validator = Validator::make($request->all(), [
-            'user_name' => ['required', 'string', 'max:255', 'unique:' . User::class],
-            'last_name' => ['required', 'string', 'max:255'],
-            'first_name' => ['required', 'string', 'max:255'],
-            'sector' => ['required', 'integer'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-            'phone' => ['string', 'max:255'],
-            'promotion_year' => ['string'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+            'user_name' => [
+                'string',
+                'min:3',
+                'max:30',
+                'unique:users,user_name'
+            ],
+            'last_name' => [
+                'required',
+                'string',
+                'min:3',
+                'max:255'
+            ],
+            'first_name' => [
+                'required',
+                'string',
+                'min:3',
+                'max:255'
+            ],
+            'sector' => [
+                'required',
+                'integer',
+                'exists:sectors,id'
+            ],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                'unique:users,email'
+            ],
+            'phone' => [
+                'string',
+                'min:3',
+                'max:10',
+                'unique:users,phone'
+            ],
+            'promotion_year' => [
+                'integer',
+                'min:4',
+                'max:4'
+            ],
+            'password' => [
+                'required',
+                'confirmed',
+                Rules\Password::min(8) // the password must be at least 8 characters in length, contain at least one uppercase letter, one lowercase letter, and one number.
+                    ->mixedCase()
+                    ->numbers()
+                    ->letters()
+            ]
         ]);
 
         if ($validator->fails()) {
@@ -40,6 +78,7 @@ class RegisteredUserController extends Controller
                 'errors' => $validator->errors(),
             ], 401);
         }
+
 
         Member::create([
             'last_name' => $request->last_name,
@@ -73,9 +112,13 @@ class RegisteredUserController extends Controller
         ], 201);
     }
 
+    /**
+     * Check if the user take unique values that are already taken by an other user
+     * 
+     * @param Request $request
+     */
     public function availability(Request $request){
         $query = User::query();
-
 
         foreach ($request->all() as $key => $value){
             $query->orWhere($key, $value);
@@ -83,11 +126,11 @@ class RegisteredUserController extends Controller
 
         if($query->first()){
             return response()->json([
-                'message' => 'Utilisateur déjà existant'
+                'message' => 'An other user already exist with this value'
             ], 409);
         }else{
             return response()->json([
-                'message' => 'Aucun utilisateur existant avec ces valeurs'
+                'message' => 'This value is available'
             ], 200);
         }
     }

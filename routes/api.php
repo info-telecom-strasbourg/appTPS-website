@@ -36,7 +36,8 @@ Route::prefix('register')->group(function (){
     Route::post('/', [RegisteredUserController::class, 'store'])
         ->name('register');
 
-    Route::get('availability', [RegisteredUserController::class, 'availability']);
+    Route::get('availability', [RegisteredUserController::class, 'availability'])
+    ->name('register.availability');
 });
 
 Route::post('/login', [AuthUserController::class, 'login'])
@@ -52,51 +53,80 @@ Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
 /** =============== Forgot password =============== */
 
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
-    ->name('password.email');
+    ->name('password.forgot.send');
 
+/** =============== Open api =============== */
 
-Route::get('sector', [SectorController::class, 'index']);
+Route::get('sector', [SectorController::class, 'index'])
+    ->name('sector.index');
 
-Route::get('crous', [CrousController::class, 'index']);
+Route::get('crous', [CrousController::class, 'index'])
+    ->name('crous.index');
+
+/** =============== Route protected by sanctum =============== */
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    /** =============== Authentification =============== */
+
     Route::post('/logout', [AuthUserController::class, 'logout'])
         ->name('logout');
 
-    Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-        ->middleware(['throttle:6,1'])
+    Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
         ->name('verification.send');
 
-    Route::put('update-password', [NewPasswordController::class, 'update']);
+    /** =============== Route allowed for verified users (email verification) =============== */
 
     Route::group(['middleware' => ['verified']], function () {
 
+        Route::put('/password', [NewPasswordController::class, 'update'])
+            ->name('password.update');
+
+        /** =============== User =============== */
+
         Route::prefix('user')->group(function () {
 
-            Route::get('/me', [UserController::class, 'getMe']);
+            Route::get('/me', [UserController::class, 'getMe'])
+                ->name('user.me');
 
-            Route::put('/', [UserController::class, 'update']);
+            Route::put('/', [UserController::class, 'update'])
+                ->name('user.update');
 
-            Route::delete('/', [UserController::class, 'delete']);
+            Route::delete('/', [UserController::class, 'delete'])
+                ->name('user.delete');
         });
+
+        /** =============== Fouaille =============== */
 
         Route::get('/fouaille', [FouailleController::class, 'show'])
-            ->name('fouaille.details');
+            ->name('fouaille.show');
+
+
+        /** =============== Event =============== */
 
         Route::prefix('event')->group(function () {
-            Route::get('/', [EventController::class, 'index']);
+            Route::get('/', [EventController::class, 'index'])
+                ->name('event.index');
 
-            Route::get('/{id}', [EventController::class, 'show']);
+            Route::get('/{id}', [EventController::class, 'show'])
+                ->name('event.show');
 
-            Route::post('/', [EventController::class, 'store']);
+            Route::post('/', [EventController::class, 'store'])
+                ->name('event.store');
         });
 
+
+        /** =============== Posts =============== */
+
         Route::prefix('post')->group(function () {
-            Route::post('/', [PostController::class, 'store']);
+            Route::post('/', [PostController::class, 'store'])
+                ->name('post.store');
 
-            Route::get('/', [PostController::class, 'index']);
+            Route::get('/', [PostController::class, 'index'])
+                ->name('post.index');
 
-            Route::get('{id}', [PostController::class, 'show']);
+            Route::get('{id}', [PostController::class, 'show'])
+                ->name('post.show');
         });
     });
 });

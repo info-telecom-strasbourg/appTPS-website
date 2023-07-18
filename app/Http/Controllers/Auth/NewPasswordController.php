@@ -17,19 +17,29 @@ use Illuminate\Validation\ValidationException;
 class NewPasswordController extends Controller
 {
     /**
-     * Handle an incoming new password request.
+     * Handle an incoming new password request from a web form.
+     * redirect to the password updated view
      *
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request, $token): JsonResponse
-    {
+    public function store(Request $request, $token) {
         $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'email' => [
+                'required',
+                'email:exists:users,email'
+            ],
+            'password' => [
+                'required',
+                'confirmed',
+                Rules\Password::min(8) // the password must be at least 8 characters in length, contain at least one uppercase letter, one lowercase letter, and one number.
+                    ->mixedCase()
+                    ->numbers()
+                    ->letters()
+            ],
         ]);
 
         $credentials = $request->only('email', 'password', 'password_confirmation');
         $credentials['token'] = $token;
+
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
@@ -47,20 +57,42 @@ class NewPasswordController extends Controller
         );
 
         if ($status != Password::PASSWORD_RESET) {
-            return response()->json([
-                'message' => 'Password not reset'
-            ], 404);
+            return view('auth.password-reset', 
+            [
+                'message' => 'Password not reset',
+                'status' => 422
+            ]);
         }
 
-        return response()->json([
-            'message' => 'Password updated'
-        ], 200);
+        return view('auth.password-reset',
+            [
+                'message' => 'Password updated successfully',
+                'status' => 200
+            ]);
     }
 
+
+    /**
+     * Handle an incoming new password request.
+     *
+     */
     public function update(Request $request){
         $validator = Validator::make($request->all(), [
-            'former_password' => ['required', Rules\Password::defaults()],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+            'former_password' => [
+                'required', 
+                Rules\Password::min(8) // the password must be at least 8 characters in length, contain at least one uppercase letter, one lowercase letter, and one number.
+                    ->mixedCase()
+                    ->numbers()
+                    ->letters()
+            ],
+            'password' => [
+                'required',
+                'confirmed',
+                Rules\Password::min(8) // the password must be at least 8 characters in length, contain at least one uppercase letter, one lowercase letter, and one number.
+                    ->mixedCase()
+                    ->numbers()
+                    ->letters()
+            ]
         ]);
 
         if ($validator->fails()) {
@@ -85,7 +117,26 @@ class NewPasswordController extends Controller
         ], 200);
     }
 
-    public function index(Request $request){
-        return view('auth.reset-password');
+    /**
+     * Display the password reset view.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function index(Request $request, $token){
+        return view(
+            'auth.password-reset-form',
+             [
+                'token' => $token,
+                'email' => $request->email
+            ]);
+    }
+
+    /**
+     * Display the password updated view.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function show(){
+        return view('auth.password-reset');
     }
 }
