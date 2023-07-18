@@ -59,15 +59,15 @@ class NewPasswordController extends Controller
         if ($status != Password::PASSWORD_RESET) {
             return view('auth.password-reset', 
             [
-                'message' => 'Password not reset',
-                'status' => 422
+                'message' => 'Votre mot de passe n\'a pas pu être réinitialisé',
+                'reset' => false
             ]);
         }
 
         return view('auth.password-reset',
             [
-                'message' => 'Password updated successfully',
-                'status' => 200
+                'message' => 'Votre mot de passe a été réinitialisé avec succès',
+                'reset' => true
             ]);
     }
 

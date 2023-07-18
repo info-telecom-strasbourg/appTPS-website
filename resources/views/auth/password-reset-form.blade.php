@@ -1,17 +1,30 @@
-<html>
-    <header>
-        <title>reset password</title>
-    </header>
-    <body>
-        <h1>reset password</h1>
-        <p>{{ url('password-reset') }}</p>
-        <p>{{ $token }}</p>
-        <p>{{ $email }}</p>
-        <form method="POST" action="{{$token.'?email='.$email}}">
+
+<x-layout>
+    <div class="card">
+        <div class="card-header">
+            <img src="/storage/images/App.svg" 
+            alt="Logo de insidePSBS"
+            class="logo-app"
+            >
+            <h1 class="title">Réinitialisation du mot de passe</h1>
+        </div>
+        <form class="reset-password-form" method="POST" action="{{$token.'?email='.$email}}">
             @csrf
-            <input type="password" name="password" placeholder="password">
-            <input type="password" name="password_confirmation" placeholder="password again">
-            <input type="submit">
+            <input type="password" 
+                class="reset-password-input"
+                name="password" 
+                placeholder="mot de passe"
+            >
+            <input type="password" 
+                class="reset-password-confirmation-input"
+                name="password_confirmation"
+                placeholder="T'es sure que celui tu l'oublie pas ? (confirmation)">
+
+            <button type="submit"
+                class="reset-password-button"
+            >
+                Reset
+            </button>
         </form>
-    </body>
-</html>
+    </div>
+</x-layout>
