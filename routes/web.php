@@ -20,8 +20,10 @@ Route::get('/', function () {
     return ['Laravel' => app()->version()];
 })->name("home");
 
-Route::get('cas', function (Request $request){
-    dd(cas()->getConfig());
+Route::get('cas', function (){
+    $config = Cas()->getConfig();
+
+    dd($config);
 });
 
 Route::get('/password-reset/{token}', [NewPasswordController::class, 'index'])

@@ -184,6 +184,8 @@ return [
     |
     */
 
+    'Cas' => Subfission\Cas\Facades\Cas::class,
+
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),

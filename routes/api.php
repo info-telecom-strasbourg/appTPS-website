@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CrousController;
+use App\Http\Controllers\LinkCasController;
 use App\Http\Controllers\SectorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -74,6 +75,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
         ->name('verification.send');
+
+    /** =============== Cas link =============== */
+
+    Route::get('cas', [LinkCasController::class, 'index'])
+        ->name('cas.index');
 
     /** =============== Route allowed for verified users (email verification) =============== */
 
