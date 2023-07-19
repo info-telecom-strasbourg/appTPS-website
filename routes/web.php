@@ -25,8 +25,8 @@ Route::get('cas', function (Request $request){
 });
 
 Route::get('/password-reset/{token}', [NewPasswordController::class, 'index'])
-    ->name('password.reset.form');
+    ->name('password.reset');
 
 Route::post('/password-reset/{token}', [NewPasswordController::class, 'store'])
-    ->name('password.reset');
+    ->name('password.reset.store');
 

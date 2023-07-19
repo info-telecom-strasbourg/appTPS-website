@@ -11,15 +11,41 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+
+    /* *
+     * Update the user's different fields (except password)
+     * 
+     * @param Request $request
+     */
     public function update(Request $request)
     {
-
         $validation = Validator::make($request->all(), [
-            'user_name' => 'string|min:3|max:255|unique:users',
-            'phone' => 'string|max:255|regex:/^[0-9]{10,}$/',
-            'sector' =>  'integer',
-            'promotion_year' => 'string',
-            'avatar' => 'image|mimes:jpeg,png,jpg|max:2048'
+            'user_name' => [
+                'string',
+                'min:3',
+                'max:255',
+                'unique:users,user_name'
+            ],
+            'phone' => [
+                'string',
+                'min:3',
+                'max:10',
+                'unique:users,phone'
+            ],
+            'sector' =>  [
+                'integer',
+                'exists:sectors,id'
+            ],
+            'promotion_year' => [
+                'integer',
+                'min:4',
+                'max:4'
+            ],
+            'avatar' => [
+                'image',
+                'mimes:jpeg,png,jpg',
+                'max:2048'
+            ]
         ]);
 
         if ($validation->fails()) {
@@ -55,6 +81,12 @@ class UserController extends Controller
             ], 200);
     }
 
+
+    /* *
+     * Get the user's different fields
+     * 
+     * @param Request $request
+     */
     public function getMe(Request $request)
     {
         $user = $request->user();

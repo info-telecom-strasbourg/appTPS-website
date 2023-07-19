@@ -73,3 +73,14 @@ html {
     font-weight: 500;
     margin-top: 20px;
 }
+
+.error-list {
+    font-size: 15px;
+    background-color: #a21b1b;
+    padding: 20px 20px 20px 40px;
+    border-radius: 5px;
+}
+
+.error-message {
+    margin-bottom: 10px;
+}

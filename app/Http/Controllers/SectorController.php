@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class SectorController extends Controller
 {
+    /**
+     * Get all sectors available
+     */
     public function index(){
         return response()->json([
             'data' => Sector::all()->map(function ($sector){

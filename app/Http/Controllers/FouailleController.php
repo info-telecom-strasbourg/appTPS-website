@@ -10,6 +10,13 @@ use function PHPUnit\Framework\isEmpty;
 
 class FouailleController extends Controller
 {
+
+
+    /**
+     * Get fouaille orders of the user 
+     * 
+     * @param Request $request
+     */
     public function show(Request $request)
     {
         $user = $request->user();

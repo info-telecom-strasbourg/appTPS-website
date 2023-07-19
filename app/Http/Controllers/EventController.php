@@ -13,16 +13,48 @@ use App\Models\Event;
 
 class EventController extends Controller
 {
+
+    /**
+     * Create a new event
+     * 
+     * @param Request $request
+     */
     public function store(Request $request){
 
         $validation = Validator::make($request->all(), [
-            'title' => 'required|max:255',
-            'description' => 'max:10000',
-            'start_at' => 'date',
-            'end_at' => 'date',
-            'location' => 'max:255',
-            'organization_id' => 'integer|exists:organizations,id',
-            'color' => 'string|max:7|min:7'
+            'title' => [
+                'required',
+                'string',
+                'max:30',
+                'min:3',
+            ],
+            'description' => [
+                'string',
+                'max:4000000',
+                'min:3'
+            ],
+            'start_at' => [
+                'required',
+                'date'
+            ],
+            'end_at' => [
+                'required',
+                'date'
+            ],
+            'location' => [
+                'string',
+                'max:255',
+                'min:3'
+            ],
+            'organization_id' => [
+                'integer',
+                'exists:organizations,id'
+            ],
+            'color' => [
+                'string',
+                'max:7',
+                'min:7'
+            ]
         ]);
 
         if ($validation->fails()) {
@@ -52,7 +84,11 @@ class EventController extends Controller
     }
 
 
-
+    /**
+     * Get all events in the calendar
+     * 
+     * @param Request $request
+     */
     public function index(Request $request){
 
         $per_page = $request->query('per_page');
@@ -103,7 +139,12 @@ class EventController extends Controller
         ], 200);
     }
 
-
+    /**
+     * Get a specific event
+     * 
+     * @param Request $request 
+     * @param int $id
+     */
     public function show(Request $request, $id){
         $event = Event::find($id);
 
