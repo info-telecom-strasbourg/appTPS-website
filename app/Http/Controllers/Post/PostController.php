@@ -77,8 +77,10 @@ class PostController extends Controller
             $per_page = 10;
         }
 
+        $posts = Post::orderByDesc('created_at')->paginate($per_page);
+
         return response()->json([
-            'data' => Post::orderByDesc('created_at')->paginate($per_page)
+            'data' => $posts
             ->map(function ($post) {
                 return [
                     'id' => $post->id,

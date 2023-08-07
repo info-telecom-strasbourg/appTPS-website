@@ -78,8 +78,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     /** =============== Cas link =============== */
 
-    Route::get('cas', [LinkCasController::class, 'index'])
-        ->name('cas.index');
 
     /** =============== Route allowed for verified users (email verification) =============== */
 
@@ -136,3 +134,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         });
     });
 });
+
+
+Route::get('cas', [LinkCasController::class, 'index'])
+    ->name('cas.index');
