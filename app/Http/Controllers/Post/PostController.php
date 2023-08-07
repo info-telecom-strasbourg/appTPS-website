@@ -41,10 +41,6 @@ class PostController extends Controller
                 'integer',
                 'exists:events,id'
             ],
-            'category_id' => [
-                'integer',
-                'exists:categories,id'
-            ],
             'color' => 'regex:/^#([a-f0-9]{6}|[a-f0-9]{3})$/i'
         ]);
 
@@ -62,7 +58,6 @@ class PostController extends Controller
                 'body' => $request->body,
                 'organization_id' => $request->organization_id,
                 'event_id' => $request->event_id,
-                'category_id' => $request->category_id,
                 'user_id' => $request->user()->id,
                 'color' => $request->color
             ])
