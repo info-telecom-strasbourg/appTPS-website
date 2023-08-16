@@ -38,8 +38,8 @@ class UserController extends Controller
             ],
             'promotion_year' => [
                 'integer',
-                'min:4',
-                'max:4'
+                'min:2000',
+                'max:2100'
             ],
             'avatar' => [
                 'image',

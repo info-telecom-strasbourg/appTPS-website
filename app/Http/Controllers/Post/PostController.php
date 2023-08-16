@@ -134,6 +134,12 @@ class PostController extends Controller
     public function show($id) : \Illuminate\Http\JsonResponse {
         $post = Post::where('id','=', $id)->first();
 
+        if ($post == null) {
+            return response()->json([
+                'message' => 'Post not found'
+            ], 404);
+        }
+
         return response()->json([
             'data' => [
                 'title' => $post->title,
