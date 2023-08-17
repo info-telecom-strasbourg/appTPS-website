@@ -60,8 +60,8 @@ class RegisteredUserController extends Controller
             ],
             'promotion_year' => [
                 'integer',
-                'min:4',
-                'max:4'
+                'min:2000',
+                'max:3000'
             ],
             'password' => [
                 'required',
@@ -114,7 +114,7 @@ class RegisteredUserController extends Controller
 
     /**
      * Check if the user take unique values that are already taken by an other user
-     * 
+     *
      * @param Request $request
      */
     public function availability(Request $request){

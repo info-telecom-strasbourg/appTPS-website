@@ -20,7 +20,7 @@ Créer un nouvel utilisateur dans la base de données de l'application et dans l
 | sector | integer | exists                              | oui         | Filiére de l'utilisateur        |
 | email | string | email, max:255, unique              | oui         | Email de l'utilisateur          |
 | phone | string | min:3, max:10, unique               | non         | Numéro de téléphone de l'utilisateur |
-| promotion_year | integer | min:4, max:4                        | non         | Année de promotion de l'utilisateur |
+| promotion_year | integer | min:2000, max:3000                  | non         | Année de promotion de l'utilisateur |
 | password | string | min:8, uppercase, lowercase, number | oui         | Mot de passe de l'utilisateur   |
 | password_confirmation | string | min:8, uppercase, lowercase, number | oui         | Confirmation du mot de passe de l'utilisateur   |
 

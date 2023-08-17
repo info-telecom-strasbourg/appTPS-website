@@ -14,7 +14,7 @@ class UserController extends Controller
 
     /* *
      * Update the user's different fields (except password)
-     * 
+     *
      * @param Request $request
      */
     public function update(Request $request)
@@ -39,7 +39,7 @@ class UserController extends Controller
             'promotion_year' => [
                 'integer',
                 'min:2000',
-                'max:2100'
+                'max:3000'
             ],
             'avatar' => [
                 'image',
@@ -84,7 +84,7 @@ class UserController extends Controller
 
     /* *
      * Get the user's different fields
-     * 
+     *
      * @param Request $request
      */
     public function getMe(Request $request)
