@@ -30,10 +30,6 @@ class NewPasswordController extends Controller
             'password' => [
                 'required',
                 'confirmed',
-                Rules\Password::min(8) // the password must be at least 8 characters in length, contain at least one uppercase letter, one lowercase letter, and one number.
-                    ->mixedCase()
-                    ->numbers()
-                    ->letters()
             ],
         ]);
 
@@ -57,7 +53,7 @@ class NewPasswordController extends Controller
         );
 
         if ($status != Password::PASSWORD_RESET) {
-            return view('auth.password-reset', 
+            return view('auth.password-reset',
             [
                 'message' => 'Votre mot de passe n\'a pas pu être réinitialisé',
                 'reset' => false
@@ -79,19 +75,11 @@ class NewPasswordController extends Controller
     public function update(Request $request){
         $validator = Validator::make($request->all(), [
             'former_password' => [
-                'required', 
-                Rules\Password::min(8) // the password must be at least 8 characters in length, contain at least one uppercase letter, one lowercase letter, and one number.
-                    ->mixedCase()
-                    ->numbers()
-                    ->letters()
+                'required',
             ],
             'password' => [
                 'required',
                 'confirmed',
-                Rules\Password::min(8) // the password must be at least 8 characters in length, contain at least one uppercase letter, one lowercase letter, and one number.
-                    ->mixedCase()
-                    ->numbers()
-                    ->letters()
             ]
         ]);
 

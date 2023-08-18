@@ -65,11 +65,7 @@ class RegisteredUserController extends Controller
             ],
             'password' => [
                 'required',
-                'confirmed',
-                Rules\Password::min(8) // the password must be at least 8 characters in length, contain at least one uppercase letter, one lowercase letter, and one number.
-                    ->mixedCase()
-                    ->numbers()
-                    ->letters()
+                'confirmed'
             ]
         ]);
 
