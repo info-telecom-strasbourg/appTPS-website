@@ -100,6 +100,9 @@ class RegisteredUserController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
+        // add the expo token to the user
+        $user->expo_token = $request->expo_token;
+
         event(new Registered($user));
 
         return response()->json([

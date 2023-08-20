@@ -16,7 +16,7 @@ class EventController extends Controller
 
     /**
      * Create a new event
-     * 
+     *
      * @param Request $request
      */
     public function store(Request $request){
@@ -79,14 +79,35 @@ class EventController extends Controller
 
         return response()->json([
             'message' => 'Event created',
-            'data' => $event
+            'data' => [
+                'id' => $event->id,
+                'title' => $event->title,
+                'description' => $event->description,
+                'start_at' => $event->start_at,
+                'end_at' => $event->end_at,
+                'location' => $event->location,
+                'color' => $event->color,
+                'author' => $event->organization ? [
+                'is_organization' => true,
+                'id' => $event->organization->id,
+                'name' => $event->organization->name,
+                'short_name' => $event->organization->short_name,
+                'logo_url' => $event->organization->getLogoPath()
+                ] : [
+                'is_organization' => false,
+                'id' => $event->user->id,
+                'name' => $event->user->getFullName(),
+                'short_name' => null,
+                'logo_url' => $event->user->getAvatarPath()
+                ]
+            ]
         ], 201);
     }
 
 
     /**
      * Get all events in the calendar
-     * 
+     *
      * @param Request $request
      */
     public function index(Request $request){
@@ -102,6 +123,7 @@ class EventController extends Controller
         return response()->json([
             'data' => $events->map(function ($event) {
                 return [
+                    'id' => $event->id,
                     'title' => $event->title,
                     'description' => $event->description,
                     'start_at' => $event->start_at,
@@ -141,8 +163,8 @@ class EventController extends Controller
 
     /**
      * Get a specific event
-     * 
-     * @param Request $request 
+     *
+     * @param Request $request
      * @param int $id
      */
     public function show(Request $request, $id){
@@ -156,6 +178,7 @@ class EventController extends Controller
 
         return response()->json([
             'data' => [
+                'id' => $event->id,
                 'title' => $event->title,
                 'description' => $event->description,
                 'start_at' => $event->start_at,

@@ -41,7 +41,10 @@ class PostController extends Controller
                 'integer',
                 'exists:events,id'
             ],
-            'color' => 'regex:/^#([a-f0-9]{6}|[a-f0-9]{3})$/i'
+            'color' => [
+                'regex:/^#([a-f0-9]{6}|[a-f0-9]{3})$/i',
+                'required'
+            ]
         ]);
 
         if ($validation->fails()) {
