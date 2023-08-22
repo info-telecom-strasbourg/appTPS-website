@@ -118,7 +118,13 @@ class EventController extends Controller
             $per_page = 10;
         }
 
-        $events = Event::orderByDesc('start_at')->paginate($per_page);
+
+        if(isset($request->start_at) && isset($request->end_at)){
+            $events = Event::orderByDesc('start_at')->Where('start_at', '>=', $request->start_at)->Where('end_at', '<=', $request->end_at)->paginate($per_page);
+        } else {
+            $events = Event::orderByDesc('start_at')->paginate($per_page);
+        }
+
 
         return response()->json([
             'data' => $events->map(function ($event) {

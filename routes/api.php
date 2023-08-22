@@ -83,6 +83,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::group(['middleware' => ['verified']], function () {
 
+        Route::get('/check', function () {
+            return response()->json([
+                'message' => 'You are connected and verified'
+            ], 200);
+        })->name('check');
+
+
         Route::put('/password', [NewPasswordController::class, 'update'])
             ->name('password.update');
 

@@ -6,6 +6,7 @@ use App\Models\Bde\Organization;
 use App\Models\Bde\OrganizationMember;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Event extends Model
 {
