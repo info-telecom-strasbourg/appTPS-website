@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Documentation de l'api - InsidePSBS Documentation backend</title>
+        <title>Authentification - InsidePSBS Documentation backend</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -34,7 +34,7 @@
                                 <a href=".." class="nav-link">Bienvenue sur la documentation du backend de l'application InsidePSBS</a>
                             </li>
                             <li class="navitem active">
-                                <a href="./" class="nav-link">Documentation de l'api</a>
+                                <a href="./" class="nav-link">Authentification</a>
                             </li>
                         </ul>
 
@@ -72,7 +72,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#documentation-de-lapi" class="nav-link">Documentation de l'api</a>
+            <li class="nav-item" data-level="1"><a href="#authentification" class="nav-link">Authentification</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#registration" class="nav-link">Registration</a>
               <ul class="nav flex-column">
@@ -102,7 +102,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#autres-routes" class="nav-link">Autres routes</a>
+            <li class="nav-item" data-level="2"><a href="#autres" class="nav-link">Autres</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -113,7 +113,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="documentation-de-lapi">Documentation de l'api</h1>
+<h1 id="authentification">Authentification</h1>
 <h2 id="registration">Registration</h2>
 <h3 id="register">Register</h3>
 <p>Créer un nouvel utilisateur dans la base de données de l'application et dans la base de données du BDE et envoie un mail de confirmation à l'utilisateur.</p>
@@ -192,7 +192,7 @@
 <tr>
 <td>promotion_year</td>
 <td>integer</td>
-<td>min:4, max:4</td>
+<td>min:2000, max:3000</td>
 <td>non</td>
 <td>Année de promotion de l'utilisateur</td>
 </tr>
@@ -229,7 +229,7 @@
         &quot;phone&quot;: &quot;phone&quot;,
         &quot;promotion_year&quot;: 2020,
         &quot;created_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;
+        &quot;updated_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;,
     },
     &quot;token&quot;: &quot;token&quot;
 }
@@ -316,7 +316,7 @@
         &quot;phone&quot;: &quot;phone&quot;,
         &quot;promotion_year&quot;: 2020,
         &quot;created_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;
+        &quot;updated_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;,
     },
     &quot;token&quot;: &quot;token&quot;
 }
@@ -1051,6 +1051,8 @@ exemple : https://app-pprd.its-tps.fr/api/fouaille?per_page=10&amp;page=2</p>
 </tr>
 </tbody>
 </table>
+<p>Paramètres dans la requête pour définir une période 
+exemple : /api/event?start_at=2021-03-01&amp;end_at=2021-03-31</p>
 <h4 id="reponses">Réponses</h4>
 <ul>
 <li>Code : <strong>201</strong></li>
@@ -1402,91 +1404,186 @@ exemple : https://app-pprd.its-tps.fr/api/fouaille?per_page=10&amp;page=2</p>
 <pre><code class="language-json">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 1,
-            &quot;title&quot;: &quot;Aut quisquam ex eius doloremque ipsa iste vitae ex.&quot;,
-            &quot;body&quot;: &quot;Qui dolorum aspernatur velit consectetur et ut atque laudantium. Debitis similique in voluptas quis maxime illum. Debitis ducimus eius blanditiis ut rerum aut officiis.&quot;,
-            &quot;date&quot;: &quot;2023-08-06 17:35:07&quot;,
-            &quot;color&quot;: &quot;#466d95&quot;,
+            &quot;id&quot;: 21,
+            &quot;title&quot;: &quot;Test&quot;,
+            &quot;body&quot;: &quot;Test&quot;,
+            &quot;date&quot;: &quot;2023-08-21 16:41:12&quot;,
+            &quot;color&quot;: &quot;#ffffff&quot;,
             &quot;author&quot;: {
                 &quot;is_organization&quot;: false,
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;enzo bergamini&quot;,
+                &quot;id&quot;: 15,
+                &quot;name&quot;: &quot;Gatien Test&quot;,
                 &quot;short_name&quot;: null,
-                &quot;logo_url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/avatars/default.png&quot;
+                &quot;logo_url&quot;: &quot;https:\/\/app-pprd.its-tps.fr\/storage\/images\/avatars\/default.png&quot;
+            },
+            &quot;medias&quot;: null
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;title&quot;: &quot;Minus dignissimos nobis corrupti praesentium corrupti.&quot;,
+            &quot;body&quot;: &quot;Et placeat eaque tenetur dolores. Qui ipsum ut nisi aut et. Et ullam et quo dolore molestiae. Incidunt voluptatem natus dolores.&quot;,
+            &quot;date&quot;: &quot;2023-08-21 15:41:54&quot;,
+            &quot;color&quot;: &quot;#ef4de6&quot;,
+            &quot;author&quot;: {
+                &quot;is_organization&quot;: true,
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Leblanc SARL&quot;,
+                &quot;short_name&quot;: &quot;explicabo&quot;,
+                &quot;logo_url&quot;: &quot;https:\/\/fouaille.its-tps.fr\/storage\/organizations\/\/tmp\/ce9f33fcf4433647ad04dcdccbe0ba25.png&quot;
             },
             &quot;medias&quot;: null
         },
         {
             &quot;id&quot;: 2,
-            &quot;title&quot;: &quot;Ut et ad dolor est dicta.&quot;,
-            &quot;body&quot;: &quot;Ut fugiat dolore natus placeat consectetur. Autem et omnis consequuntur facilis consequuntur. In tenetur et magnam alias. Incidunt voluptatum rem vitae excepturi.&quot;,
-            &quot;date&quot;: &quot;2023-08-06 17:35:07&quot;,
-            &quot;color&quot;: &quot;#9cd89a&quot;,
+            &quot;title&quot;: &quot;Quasi vel ipsum est laboriosam.&quot;,
+            &quot;body&quot;: &quot;Iste sed voluptatum ut ducimus. Aut voluptate quia itaque consequatur. Repellendus quasi quia sequi expedita ipsam vitae in.&quot;,
+            &quot;date&quot;: &quot;2023-08-21 15:41:54&quot;,
+            &quot;color&quot;: &quot;#d27737&quot;,
             &quot;author&quot;: {
                 &quot;is_organization&quot;: true,
                 &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Faivre Georges S.A.S.&quot;,
-                &quot;short_name&quot;: &quot;similique&quot;,
-                &quot;logo_url&quot;: &quot;https://fouaille.its-tps.fr/storage/organizations//tmp/9f583f0db1fc713e365beddcca10119e.png&quot;
+                &quot;name&quot;: &quot;Gilbert S.A.R.L.&quot;,
+                &quot;short_name&quot;: &quot;ut&quot;,
+                &quot;logo_url&quot;: &quot;https:\/\/fouaille.its-tps.fr\/storage\/organizations\/\/tmp\/0c6a4552bda4e958cdeeb9a74bde7f0d.png&quot;
             },
             &quot;medias&quot;: null
         },
         {
             &quot;id&quot;: 3,
-            &quot;title&quot;: &quot;Distinctio error suscipit cumque iusto aut.&quot;,
-            &quot;body&quot;: &quot;Aut natus error debitis qui qui veniam. Veritatis ratione quas ut et minima distinctio eligendi.&quot;,
-            &quot;date&quot;: &quot;2023-08-06 17:35:07&quot;,
-            &quot;color&quot;: &quot;#c31d76&quot;,
+            &quot;title&quot;: &quot;Nam optio itaque aliquid omnis enim eum voluptatem.&quot;,
+            &quot;body&quot;: &quot;Dolorem beatae pariatur deleniti id reprehenderit tempora facilis voluptas. Sit et aut rerum quo blanditiis. Qui id quo et dolor sunt saepe rerum molestiae. Quas ipsum earum sed.&quot;,
+            &quot;date&quot;: &quot;2023-08-21 15:41:54&quot;,
+            &quot;color&quot;: &quot;#43be9e&quot;,
             &quot;author&quot;: {
-                &quot;is_organization&quot;: true,
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Bernier&quot;,
-                &quot;short_name&quot;: &quot;ducimus&quot;,
-                &quot;logo_url&quot;: &quot;https://fouaille.its-tps.fr/storage/organizations//tmp/73b5ebb4711123cb581e1009ff325923.png&quot;
+                &quot;is_organization&quot;: false,
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Carlo Denesik&quot;,
+                &quot;short_name&quot;: null,
+                &quot;logo_url&quot;: &quot;https:\/\/app-pprd.its-tps.fr\/storage\/images\/avatars\/default.png&quot;
             },
             &quot;medias&quot;: [
                 {
-                    &quot;type&quot;: &quot;image&quot;,
-                    &quot;url&quot;: &quot;https://via.placeholder.com/640x480.png/00cc22?text=nulla&quot;
-                },
-                {
-                    &quot;type&quot;: &quot;image&quot;,
-                    &quot;url&quot;: &quot;https://via.placeholder.com/640x480.png/00aa77?text=facilis&quot;
+                    &quot;type&quot;: &quot;video&quot;,
+                    &quot;url&quot;: &quot;https:\/\/via.placeholder.com\/640x480.png\/002200?text=consequatur&quot;
                 }
             ]
         },
         {
             &quot;id&quot;: 4,
-            &quot;title&quot;: &quot;Sunt eos doloribus repellat.&quot;,
-            &quot;body&quot;: &quot;Autem qui beatae dolorum illo quia sint quasi. Impedit distinctio soluta ut voluptatem. Veritatis qui cumque quia sit necessitatibus. Laborum quia ad in veritatis nihil hic magni.&quot;,
-            &quot;date&quot;: &quot;2023-08-06 17:35:07&quot;,
-            &quot;color&quot;: &quot;#9146ed&quot;,
+            &quot;title&quot;: &quot;Repellendus voluptates placeat velit voluptas nemo.&quot;,
+            &quot;body&quot;: &quot;Sequi labore cum soluta omnis. Quas earum ab mollitia. Velit vitae cumque libero. Ut et est autem recusandae et maxime voluptatibus blanditiis.&quot;,
+            &quot;date&quot;: &quot;2023-08-21 15:41:54&quot;,
+            &quot;color&quot;: &quot;#abf8f0&quot;,
+            &quot;author&quot;: {
+                &quot;is_organization&quot;: true,
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Aubry Berthelot SA&quot;,
+                &quot;short_name&quot;: &quot;consectetur&quot;,
+                &quot;logo_url&quot;: &quot;https:\/\/fouaille.its-tps.fr\/storage\/organizations\/\/tmp\/2b7cae566eae32f67d2a12edd8b314ad.png&quot;
+            },
+            &quot;medias&quot;: null
+        },
+        {
+            &quot;id&quot;: 5,
+            &quot;title&quot;: &quot;Consequatur accusamus omnis sapiente excepturi et.&quot;,
+            &quot;body&quot;: &quot;Dicta aut labore ut velit eveniet. Nostrum dicta repellat est tempore sed deleniti voluptas minima. Sequi perspiciatis quos minus rerum itaque adipisci placeat.&quot;,
+            &quot;date&quot;: &quot;2023-08-21 15:41:54&quot;,
+            &quot;color&quot;: &quot;#bbe640&quot;,
+            &quot;author&quot;: {
+                &quot;is_organization&quot;: true,
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Jacob SARL&quot;,
+                &quot;short_name&quot;: &quot;omnis&quot;,
+                &quot;logo_url&quot;: &quot;https:\/\/fouaille.its-tps.fr\/storage\/organizations\/\/tmp\/98076264bb2ba9141c294f2d5f65c99c.png&quot;
+            },
+            &quot;medias&quot;: null
+        },
+        {
+            &quot;id&quot;: 6,
+            &quot;title&quot;: &quot;Tempore vitae molestiae ipsam sint ullam distinctio.&quot;,
+            &quot;body&quot;: &quot;Perspiciatis et atque et. Optio inventore voluptatem consequatur laboriosam qui. Aliquam voluptas dolor enim blanditiis omnis et. Molestiae eius quisquam deleniti eum repudiandae omnis.&quot;,
+            &quot;date&quot;: &quot;2023-08-21 15:41:54&quot;,
+            &quot;color&quot;: &quot;#65c71a&quot;,
+            &quot;author&quot;: {
+                &quot;is_organization&quot;: true,
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Mahe SARL&quot;,
+                &quot;short_name&quot;: &quot;hic&quot;,
+                &quot;logo_url&quot;: &quot;https:\/\/fouaille.its-tps.fr\/storage\/organizations\/\/tmp\/eb965c1df5cfd5ec4814254214ac8d0d.png&quot;
+            },
+            &quot;medias&quot;: null
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;title&quot;: &quot;Ullam eius accusantium enim est non dignissimos eius.&quot;,
+            &quot;body&quot;: &quot;Accusamus suscipit quia amet quia. Hic cum omnis reiciendis aut maxime eligendi. Molestiae molestiae molestiae quibusdam omnis.&quot;,
+            &quot;date&quot;: &quot;2023-08-21 15:41:54&quot;,
+            &quot;color&quot;: &quot;#2a85b6&quot;,
             &quot;author&quot;: {
                 &quot;is_organization&quot;: false,
                 &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Golda Kassulke&quot;,
+                &quot;name&quot;: &quot;Hulda Rolfson&quot;,
                 &quot;short_name&quot;: null,
-                &quot;logo_url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/avatars/default.png&quot;
+                &quot;logo_url&quot;: &quot;https:\/\/app-pprd.its-tps.fr\/storage\/images\/avatars\/default.png&quot;
             },
             &quot;medias&quot;: null
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;title&quot;: &quot;Excepturi qui iure tenetur pariatur libero.&quot;,
+            &quot;body&quot;: &quot;Dolorem deserunt et et quia. Impedit quos vel ratione quidem alias beatae a. Et sequi quos suscipit accusantium tempore unde voluptatem quis.&quot;,
+            &quot;date&quot;: &quot;2023-08-21 15:41:54&quot;,
+            &quot;color&quot;: &quot;#725fb6&quot;,
+            &quot;author&quot;: {
+                &quot;is_organization&quot;: true,
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Robin Guyon SARL&quot;,
+                &quot;short_name&quot;: &quot;iure&quot;,
+                &quot;logo_url&quot;: &quot;https:\/\/fouaille.its-tps.fr\/storage\/organizations\/\/tmp\/73032b3d75ea6e444b37ab480fa20c12.png&quot;
+            },
+            &quot;medias&quot;: null
+        },
+        {
+            &quot;id&quot;: 9,
+            &quot;title&quot;: &quot;Voluptate facilis consequatur dolore iure est.&quot;,
+            &quot;body&quot;: &quot;Laudantium asperiores quasi rerum vero. Eligendi aperiam quae est sequi rerum non distinctio. Ex eligendi ut similique quo.&quot;,
+            &quot;date&quot;: &quot;2023-08-21 15:41:54&quot;,
+            &quot;color&quot;: &quot;#bd6168&quot;,
+            &quot;author&quot;: {
+                &quot;is_organization&quot;: false,
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Kyleigh Lang&quot;,
+                &quot;short_name&quot;: null,
+                &quot;logo_url&quot;: &quot;https:\/\/app-pprd.its-tps.fr\/storage\/images\/avatars\/default.png&quot;
+            },
+            &quot;medias&quot;: [
+                {
+                    &quot;type&quot;: &quot;image&quot;,
+                    &quot;url&quot;: &quot;https:\/\/via.placeholder.com\/640x480.png\/004422?text=tempore&quot;
+                },
+                {
+                    &quot;type&quot;: &quot;video&quot;,
+                    &quot;url&quot;: &quot;https:\/\/via.placeholder.com\/640x480.png\/001155?text=sit&quot;
+                }
+            ]
         }
     ],
     &quot;meta&quot;: {
-        &quot;total&quot;: 20,
-        &quot;per_page&quot;: 4,
+        &quot;total&quot;: 21,
+        &quot;per_page&quot;: 10,
         &quot;current_page&quot;: 1,
-        &quot;last_page&quot;: 5,
-        &quot;first_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/post?page=1&amp;per_page=4&quot;,
-        &quot;last_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/post?page=5&amp;per_page=4&quot;,
-        &quot;next_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/post?page=2&amp;per_page=4&quot;,
-        &quot;prev_page_url&quot;: &quot;&amp;per_page=4&quot;,
-        &quot;path&quot;: &quot;https://app-pprd.its-tps.fr/api/post&quot;,
+        &quot;last_page&quot;: 3,
+        &quot;first_page_url&quot;: &quot;https:\/\/app-pprd.its-tps.fr\/api\/post?page=1&amp;per_page=10&quot;,
+        &quot;last_page_url&quot;: &quot;https:\/\/app-pprd.its-tps.fr\/api\/post?page=3&amp;per_page=10&quot;,
+        &quot;next_page_url&quot;: &quot;https:\/\/app-pprd.its-tps.fr\/api\/post?page=2&amp;per_page=10&quot;,
+        &quot;prev_page_url&quot;: &quot;&amp;per_page=10&quot;,
+        &quot;path&quot;: &quot;https:\/\/app-pprd.its-tps.fr\/api\/post&quot;,
         &quot;from&quot;: 1,
-        &quot;to&quot;: 4
+        &quot;to&quot;: 10
     }
 }
 </code></pre>
-<h5 id="erreurs">Erreurs</h5>
+<h5 id="erreur_15">Erreur</h5>
 <ul>
 <li>Code : <strong>401</strong></li>
 <li>Contenu :</li>
@@ -1495,8 +1592,8 @@ exemple : https://app-pprd.its-tps.fr/api/fouaille?per_page=10&amp;page=2</p>
     &quot;message&quot;: &quot;Unauthenticated.&quot;
 }
 </code></pre>
-<h3 id="afficher-un-post">afficher un post</h3>
-<p>Affiche un post en fonction de son id</p>
+<h3 id="afficher-un-post">Afficher un post</h3>
+<p>Affiche un post en fonction de son ID</p>
 <table>
 <thead>
 <tr>
@@ -1517,32 +1614,32 @@ exemple : https://app-pprd.its-tps.fr/api/fouaille?per_page=10&amp;page=2</p>
 </table>
 <h4 id="parametres_15">Paramètres</h4>
 <ul>
-<li><strong>id</strong> : identifiant du post</li>
+<li><strong>id</strong> : ID du post</li>
 </ul>
 <h4 id="reponses_5">Réponses</h4>
-<h5 id="succes_15">succès</h5>
+<h5 id="succes_15">Succès</h5>
 <ul>
 <li>Code : <strong>200</strong></li>
-<li>Contenue : </li>
+<li>Contenu :</li>
 </ul>
 <pre><code class="language-json">{
     &quot;data&quot;: {
-        &quot;title&quot;: &quot;Aut quisquam ex eius doloremque ipsa iste vitae ex.&quot;,
-        &quot;body&quot;: &quot;Qui dolorum aspernatur velit consectetur et ut atque laudantium. Debitis similique in voluptas quis maxime illum. Debitis ducimus eius blanditiis ut rerum aut officiis.&quot;,
+        &quot;title&quot;: &quot;Minus dignissimos nobis corrupti praesentium corrupti.&quot;,
+        &quot;body&quot;: &quot;Et placeat eaque tenetur dolores. Qui ipsum ut nisi aut et. Et ullam et quo dolore molestiae. Incidunt voluptatem natus dolores.&quot;,
         &quot;date&quot;: null,
-        &quot;color&quot;: &quot;#466d95&quot;,
+        &quot;color&quot;: &quot;#ef4de6&quot;,
         &quot;author&quot;: {
-            &quot;is_organization&quot;: false,
-            &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;enzo bergamini&quot;,
-            &quot;short_name&quot;: null,
-            &quot;logo_url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/avatars/default.png&quot;
+            &quot;is_organization&quot;: true,
+            &quot;id&quot;: 4,
+            &quot;name&quot;: &quot;Leblanc SARL&quot;,
+            &quot;short_name&quot;: &quot;explicabo&quot;,
+            &quot;logo_url&quot;: &quot;https:\/\/fouaille.its-tps.fr\/storage\/organizations\/\/tmp\/ce9f33fcf4433647ad04dcdccbe0ba25.png&quot;
         },
         &quot;medias&quot;: null
     }
 }
 </code></pre>
-<h5 id="erreurs_1">Erreurs</h5>
+<h5 id="erreur_16">Erreur</h5>
 <ul>
 <li>Code : <strong>401</strong></li>
 <li>Contenu :</li>
@@ -1559,9 +1656,9 @@ exemple : https://app-pprd.its-tps.fr/api/fouaille?per_page=10&amp;page=2</p>
     &quot;message&quot;: &quot;Post not found&quot;
 }
 </code></pre>
-<h2 id="autres-routes">Autres routes</h2>
-<h3 id="afficher-les-differentes-filieres">afficher les différentes filières</h3>
-<p>Affiche les différentes filières disponibles</p>
+<h2 id="autres">Autres</h2>
+<h3 id="afficher-les-filieres">Afficher les filières</h3>
+<p>Affiche les filières </p>
 <table>
 <thead>
 <tr>
@@ -1581,9 +1678,10 @@ exemple : https://app-pprd.its-tps.fr/api/fouaille?per_page=10&amp;page=2</p>
 </tbody>
 </table>
 <h4 id="reponses_6">Réponses</h4>
+<h5 id="succes_16">Succès</h5>
 <ul>
 <li>Code : <strong>200</strong></li>
-<li>Contenur : </li>
+<li>Contenu :</li>
 </ul>
 <pre><code class="language-json">{
     &quot;data&quot;: [
@@ -1619,32 +1717,7 @@ exemple : https://app-pprd.its-tps.fr/api/fouaille?per_page=10&amp;page=2</p>
         }
     ]
 }
-</code></pre>
-<h3 id="savoir-si-un-champ-est-deja-utilise">Savoir si un champ est deja utilisé</h3>
-<p>Vérifie si un champ est déjà utilisé par un autre utilisateur, utilisé pour la création d'un ou le changement d'informations d'un utilisateur</p>
-<table>
-<thead>
-<tr>
-<th>protocole</th>
-<th>methode</th>
-<th>url</th>
-<th>token</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>https</td>
-<td>GET</td>
-<td>/api/register/availability</td>
-<td>non</td>
-</tr>
-</tbody>
-</table>
-<h4 id="parametres_16">Paramètres</h4>
-<p>Donner en paramètre le nom du champ et sa valeur pour vérifier si il est déjà utilisé par un autre utilisateur, par exemple pour vérifier si un email est déjà utilisé : 
-<code>/api/register/availability?email=bergaminienzo62@gmail.com</code></p>
-<p>on peut cumuler les paramètres pour vérifier si plusieurs champs sont déjà utilisés, par exemple pour vérifier si un email et un nom sont déjà utilisés :
-<code>/api/register/availability?email=bergaminienzo62@gmail.com&amp;user_name=Enzo</code></p></div>
+</code></pre></div>
             </div>
         </div>
 
