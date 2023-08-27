@@ -251,6 +251,13 @@
     }
 }
 </code></pre>
+<p>-Code : <strong>409</strong>
+- Contenu :</p>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;An error occurred while creating the ... &quot;,
+    &quot;errors&quot;: &quot;SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'warnix3000@gmail.com' for key 'members_email_unique' (Connection: bde_bdd, SQL: insert into `members` (`last_name`, `first_name`, `email`, `phone`, `contributor`, `class`, `created_at`) values (Bergamini, Enzo, warnix3000@gmail.com, 0652894670, 0, 2025, 2023-08-27 13:50:56))&quot;
+}
+</code></pre>
 <h3 id="login">Login</h3>
 <p>Connecte un utilisateur à l'application et renvoie un token d'authentification.</p>
 <table>
