@@ -73,7 +73,11 @@ class UserController extends Controller
             $avatar_file_name = $user->avatar;
         }
 
-        $user->update($validation->getData());
+        $validate_data = $validation->getData();
+
+        $validate_data['avatar'] = $avatar_file_name;
+
+        $user->update($validate_data);
 
         return response()->json([
             'message' => 'User updated successfully',
