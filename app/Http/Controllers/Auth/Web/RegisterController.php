@@ -1,30 +1,43 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Web;
 
-use App\Http\Controllers\Controller;
 use App\Models\Bde\Member;
 use App\Models\User;
-use http\Env\Response;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use App\Models\Sector;
 
-class RegisteredUserController extends Controller
+class RegisterController extends Controller
 {
-    /**
-     * Handle an incoming registration request.
-     */
+
+
+
+    public function index()
+    {
+        return view('auth.register',
+            [
+                'sectors' => Sector::all()->map(function ($sector){
+                    return [
+                        'id' => $sector->id,
+                        'name' => $sector->name,
+                        'short_name' => $sector->short_name,
+                    ];
+                })
+            ]
+        );
+    }
+
     public function store(Request $request){
-        $validator = Validator::make($request->all(), [
+
+        $validation = Validator::make($request->all(), [
             'user_name' => [
                 'string',
+                'nullable',
                 'min:3',
                 'max:30',
                 'unique:users,user_name'
@@ -54,12 +67,14 @@ class RegisteredUserController extends Controller
                 'unique:users,email'
             ],
             'phone' => [
+                'nullable',
                 'string',
                 'min:3',
                 'max:10',
                 'unique:users,phone'
             ],
             'promotion_year' => [
+                'nullable',
                 'integer',
                 'min:2000',
                 'max:3000'
@@ -69,18 +84,16 @@ class RegisteredUserController extends Controller
                 'confirmed'
             ],
             'birth_date' => [
+                'required',
                 'date',
                 'before:today'
             ],
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'errors' => $validator->errors(),
-            ], 422);
+        if ($validation->fails()) {
+            return redirect()->back()->withErrors($validation->errors())->withInput();
         }
 
-        
         try{
 
             Member::create([
@@ -90,14 +103,15 @@ class RegisteredUserController extends Controller
                 'phone' => $request->phone,
                 'contributor' => 0,
                 'class' => $request->promotion_year,
+                'birth_date' => $request->birth_date,
                 'sector' => Sector::find($request->sector)->short_name,
             ]);
 
         }catch (\Exception $e){
-            return response()->json([
+            return view('auth.register-fail',[
                 'message' => 'An error occurred while creating the member (bde)',
                 'error' => $e->getMessage()
-            ], 409);
+            ]);
         }
 
         try{
@@ -114,10 +128,10 @@ class RegisteredUserController extends Controller
                 'birth_date' => $request->birth_date,
             ]);
         } catch (\Exception $e){
-            return response()->json([
+            return view('auth.register-fail',[
                 'message' => 'An error occurred while creating the user (app)',
                 'error' => $e->getMessage()
-            ], 409);
+            ]);
         }
 
 
@@ -128,32 +142,9 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return response()->json([
-            'user' => $user,
-            'token' => $token,
-        ], 201);
-    }
-
-    /**
-     * Check if the user take unique values that are already taken by an other user
-     *
-     * @param Request $request
-     */
-    public function availability(Request $request){
-        $query = User::query();
-
-        foreach ($request->all() as $key => $value){
-            $query->orWhere($key, $value);
-        }
-
-        if($query->first()){
-            return response()->json([
-                'message' => 'An other user already exist with this value'
-            ], 409);
-        }else{
-            return response()->json([
-                'message' => 'This value is available'
-            ], 200);
-        }
+        return view('auth.register-success', [
+            'name' => $request->first_name,
+            'email' => $request->email,
+        ]);
     }
 }

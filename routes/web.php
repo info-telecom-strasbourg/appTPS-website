@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Auth\Web\RegisterController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,10 @@ Route::get('/password-reset/{token}', [NewPasswordController::class, 'index'])
 
 Route::post('/password-reset/{token}', [NewPasswordController::class, 'store'])
     ->name('password.reset.store');
+
+Route::post('/register', [RegisterController::class, 'store'])
+    ->name('register.store');
+
+Route::get('/register', [RegisterController::class, 'index'])
+    ->name('register.index');
 
