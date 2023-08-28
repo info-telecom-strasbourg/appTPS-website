@@ -93,8 +93,6 @@ class RegisterController extends Controller
         if ($validation->fails()) {
             return redirect()->back()->withErrors($validation->errors())->withInput();
         }
-    
-    
 
         try{
 

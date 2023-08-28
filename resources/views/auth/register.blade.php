@@ -7,6 +7,12 @@
     <title>Inside PSBS</title>
     
     <script type="module" crossorigin src="/js/index-8ef1cc3c.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js" onload="initializeFormLogic()"></script>
+
+    <script type="module" crossorigin src="/js/main.js"></script>
+
+
     <link rel="stylesheet" href="/css/index-26c21b6d.css">
     <link rel="stylesheet" href="/css/main.css">
   </head>
@@ -305,4 +311,30 @@
     </form>
     
   </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const email_input = document.getElementById("email");
+      const password_input = document.getElementById("password");
+      const password_confirmation_input = document.getElementById("password-confirmation");
+  
+      document.getElementById("container").addEventListener("submit", function (event) {
+        event.preventDefault();
+  
+        const email = email_input.value;
+        const password = password_input.value;
+        const password_confirmation = password_confirmation_input.value;
+  
+        if (email && password && password_confirmation && password === password_confirmation) {
+          const hash_password = CryptoJS.SHA256(password + email).toString();
+          const hash_password_confirmation = CryptoJS.SHA256(password_confirmation + email).toString();
+  
+          password_input.value = hash_password;
+          password_confirmation_input.value = hash_password_confirmation;
+  
+          // Now, submit the form with the updated password field
+          event.target.submit();
+        }
+      });
+    });
+  </script>
 </html>
