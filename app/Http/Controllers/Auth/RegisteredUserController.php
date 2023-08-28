@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
+use App\Models\Sector;
 
 class RegisteredUserController extends Controller
 {
@@ -66,7 +67,11 @@ class RegisteredUserController extends Controller
             'password' => [
                 'required',
                 'confirmed'
-            ]
+            ],
+            'birth_date' => [
+                'date',
+                'before:today'
+            ],
         ]);
 
         if ($validator->fails()) {
@@ -84,7 +89,8 @@ class RegisteredUserController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'contributor' => 0,
-                'class' => $request->promotion_year
+                'class' => $request->promotion_year,
+                'sector' => Sector::find($request->sector)->short_name,
             ]);
 
         }catch (\Exception $e){
@@ -104,7 +110,8 @@ class RegisteredUserController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'promotion_year' => $request->promotion_year,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'birth_date' => $request->birth_date,
             ]);
         } catch (\Exception $e){
             return response()->json([

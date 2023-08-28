@@ -19,7 +19,9 @@ class Member extends Model
         'phone',
         'admin',
         'contributor',
-        'class'
+        'class',
+        'birth_date',
+        'sector'
     ];
 
     public function getUpdatedAtColumn() {

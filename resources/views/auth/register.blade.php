@@ -36,7 +36,7 @@
             @error('email')
               <span class="Error">{{ $message }}</span>
             @enderror
-            <label for="email">Email</label>
+            <label for="email">Email *</label>
             <input
               type="email"
               id="email"
@@ -50,7 +50,7 @@
             @error('password')
               <span class="Error">{{ $message }}</span>
             @enderror
-            <label for="password">Mot de passe</label>
+            <label for="password">Mot de passe *</label>
             <input
               type="password"
               name="password"
@@ -64,7 +64,7 @@
             @error('password_confirmation')
               <span class="Error">{{ $message }}</span>
             @enderror
-            <label for="password-confirmation">Confirmer le mot de passe</label>
+            <label for="password-confirmation">Confirmer le mot de passe *</label>
             <input
               type="password"
               name="password_confirmation"
@@ -110,10 +110,23 @@
             </div>
           </div>
           <div class="InputContainer">
+            @error('birth_date')
+              <span class="Error">{{ $message }}</span>
+            @enderror
+            <label for="birth-date">Date de naissance *</label>
+            <input
+              type="date"
+              name="birth_date"
+              id="birth-date"
+              value="2000-01-01"
+              required
+            />
+          </div>
+          <div class="InputContainer">
             @error('user_name')
               <span class="Error">{{ $message }}</span>
             @enderror
-            <label for="user-name">Nom d'utilisateur *</label>
+            <label for="user-name">Nom d'utilisateur</label>
             <input
               type="text"
               name="user_name"
@@ -126,7 +139,7 @@
             @error('phone')
               <span class="Error">{{ $message }}</span>
             @enderror
-            <label for="phone">Numéro de téléphone *</label>
+            <label for="phone">Numéro de téléphone</label>
             <input
               type="text"
               name="phone"
@@ -172,7 +185,58 @@
       </div>
 
       <div id="step-3" class="Step">
-        <h3>Conditions d'utilisations</h3>
+        <h3>Conditions d'utilisations de InsidePSBS</h3>
+        <div class="Scroll">
+          <h4>Politique de confidentialité pour l'application InsidePSBS:</h4>
+          <p>
+            L'application InsidePSBS a été conçue pour faciliter la
+            communication associative pour les écoles de Télécom Physique
+            Strasbourg (TPS) et l'école supérieure de biologie de Strasbourg
+            (ESBS). Nous sommes attachés à la protection de la vie privée de nos
+            utilisateurs et nous nous engageons à respecter les lois et
+            réglementations applicables en matière de protection des données.
+          </p>
+          <h4>Collecte et utilisation des données</h4>
+          <p>
+            Lorsque vous utilisez l'application InsidePSBS, nous collectons
+            certaines informations vous concernant, notamment votre nom, prénom,
+            identifiants relatifs à votre école (id, e-mail), vos photos de
+            profil, vos appartenances à un club ou une association de l'école,
+            ainsi que les informations nécessaires au fonctionnement de
+            l'application (identifiants de notification). Ces informations sont
+            nécessaires pour assurer le bon fonctionnement de l'application et
+            pour faciliter la communication entre les utilisateurs. Elles ne
+            seront jamais vendues à des tiers.
+          </p>
+          <h4>Sécurité et confidentialité</h4>
+          <p>
+            Nous prenons la sécurité et la confidentialité de vos données très
+            au sérieux. Nous avons mis en place des mesures de sécurité
+            appropriées pour protéger vos données contre tout accès non
+            autorisé, toute utilisation abusive, toute altération ou toute perte
+            de données. Toutes les données sensibles sont chiffrées pour
+            empêcher tout accès non autorisé. Les données sont stockées sur des
+            serveurs sécurisés, qui sont régulièrement mis à jour et surveillés
+            pour détecter toute violation de sécurité.
+          </p>
+          <h4>Vos droits</h4>
+          <p>
+            Vous avez le droit de consulter les données que nous avons
+            collectées vous concernant et de les supprimer si vous le souhaitez.
+            Pour exercer ces droits, veuillez contacter un administrateur de
+            l'application.
+          </p>
+          <h4>Modifications de la politique de confidentialité</h4>
+          <p>
+            Nous nous réservons le droit de modifier cette politique de
+            confidentialité à tout moment, en publiant une version mise à jour
+            sur notre site web ou sur l'application. Il est de votre
+            responsabilité de consulter régulièrement cette politique de
+            confidentialité pour prendre connaissance des éventuelles
+            modifications.
+          </p>
+        </div>
+        <h3>Conditions de cotisation au bde</h3>
         <div class="Scroll">
           <h4>Politique de confidentialité pour l'application InsidePSBS:</h4>
           <p>
@@ -226,7 +290,11 @@
         <div class="flex w-full gap-2">
           <input type="checkbox" id="cgu" required />
           <label for="cgu" class="flex-1 text-neutral-50"
-            >J'accepte les conditions d'utilisations</label
+            >J'accepte les conditions d'utilisations de insidePSBS</label
+          >
+          <input type="checkbox" id="cgu" required />
+          <label for="cgu" class="flex-1 text-neutral-50"
+            >J'accepte les conditions d'utilisations du BDE</label
           >
         </div>
         <div class="flex w-full items-center justify-center gap-3">

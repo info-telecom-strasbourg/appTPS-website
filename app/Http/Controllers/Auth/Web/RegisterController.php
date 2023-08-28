@@ -37,6 +37,7 @@ class RegisterController extends Controller
         $validation = Validator::make($request->all(), [
             'user_name' => [
                 'string',
+                'nullable',
                 'min:3',
                 'max:30',
                 'unique:users,user_name'
@@ -66,12 +67,14 @@ class RegisterController extends Controller
                 'unique:users,email'
             ],
             'phone' => [
+                'nullable',
                 'string',
                 'min:3',
                 'max:10',
                 'unique:users,phone'
             ],
             'promotion_year' => [
+                'nullable',
                 'integer',
                 'min:2000',
                 'max:3000'
@@ -79,7 +82,12 @@ class RegisterController extends Controller
             'password' => [
                 'required',
                 'confirmed'
-            ]
+            ],
+            'birth_date' => [
+                'required',
+                'date',
+                'before:today'
+            ],
         ]);
 
         if ($validation->fails()) {
@@ -96,7 +104,9 @@ class RegisterController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'contributor' => 0,
-                'class' => $request->promotion_year
+                'class' => $request->promotion_year,
+                'birth_date' => $request->birth_date,
+                'sector' => Sector::find($request->sector)->short_name,
             ]);
 
         }catch (\Exception $e){
@@ -116,7 +126,8 @@ class RegisterController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'promotion_year' => $request->promotion_year,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'birth_date' => $request->birth_date,
             ]);
         } catch (\Exception $e){
             return view('auth.register-fail',[
