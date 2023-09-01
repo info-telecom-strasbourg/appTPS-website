@@ -242,55 +242,48 @@
             modifications.
           </p>
         </div>
-        <h3>Conditions de cotisation au bde</h3>
+        <h3>Charte du fouaille</h3>
         <div class="Scroll">
-          <h4>Politique de confidentialité pour l'application InsidePSBS:</h4>
+          <h4>PREAMBULE :</h4>
           <p>
-            L'application InsidePSBS a été conçue pour faciliter la
-            communication associative pour les écoles de Télécom Physique
-            Strasbourg (TPS) et l'école supérieure de biologie de Strasbourg
-            (ESBS). Nous sommes attachés à la protection de la vie privée de nos
-            utilisateurs et nous nous engageons à respecter les lois et
-            réglementations applicables en matière de protection des données.
+            La présente Charte a pour objet de définir les règles d'utilisation des biens et des services du Foyer des Élèves de Télécom Physique Strasbourg. Elle présente les conditions indispensables au bon fonctionnement du Foyer et établit les engagements des membres de l'Association des Élèves le fréquentant. Réciproquement, elle établit les engagements que le Foyer prend lorsqu'il les accueille.
+            Cette charte peut être sujette à modification, d'une année à l'autre, à la demande d'une des parties. La nouvelle Charte doit être validée par le Bureau des Élèves.
+            Cette Charte sera signée par le Président du BDE et les Vice-présidents chargés du Foyer ainsi que par le
+            membre de l'Association.
+            De plus, la signature de cette charte témoigne du paiement de la cotisation au Foyer des élèves de Télécom Physique Strasbourg.
           </p>
-          <h4>Collecte et utilisation des données</h4>
+          <h4>ARTICLE 1 :</h4>
           <p>
-            Lorsque vous utilisez l'application InsidePSBS, nous collectons
-            certaines informations vous concernant, notamment votre nom, prénom,
-            identifiants relatifs à votre école (id, e-mail), vos photos de
-            profil, vos appartenances à un club ou une association de l'école,
-            ainsi que les informations nécessaires au fonctionnement de
-            l'application (identifiants de notification). Ces informations sont
-            nécessaires pour assurer le bon fonctionnement de l'application et
-            pour faciliter la communication entre les utilisateurs. Elles ne
-            seront jamais vendues à des tiers.
+            Avant tout, il est indispensable que l'usager du Foyer soit adhérent de l'Association des Élèves de Télécom Physique Strasbourg, et que de ce fait, il se soit acquitté de la cotisation annuelle. Il doit à tout moment être
+            capable de présenter sa carte d'adhérent à l'Association.            
           </p>
-          <h4>Sécurité et confidentialité</h4>
+          <h4>ARTICLE 2 :</h4>
           <p>
-            Nous prenons la sécurité et la confidentialité de vos données très
-            au sérieux. Nous avons mis en place des mesures de sécurité
-            appropriées pour protéger vos données contre tout accès non
-            autorisé, toute utilisation abusive, toute altération ou toute perte
-            de données. Toutes les données sensibles sont chiffrées pour
-            empêcher tout accès non autorisé. Les données sont stockées sur des
-            serveurs sécurisés, qui sont régulièrement mis à jour et surveillés
-            pour détecter toute violation de sécurité.
+            Chaque usager se doit de respecter le Foyer. L'abandon de déchets, la dégradation des meubles ou du matériel et le vol sont formellement interdits.
+            En échange, le Foyer s'engage à mettre des poubelles à la disposition des usagers.
           </p>
-          <h4>Vos droits</h4>
+          <h4>ARTICLE 3 :</h4>
           <p>
-            Vous avez le droit de consulter les données que nous avons
-            collectées vous concernant et de les supprimer si vous le souhaitez.
-            Pour exercer ces droits, veuillez contacter un administrateur de
-            l'application.
+            Par contre, le Foyer ne s'engage pas à ce que le bar soit ouvert en continu. Ceci dépend de la disponibilité des barmans. Seuls les membres du BDE et les barmans sont habilités à servir et à encaisser.
+            Il est interdit d'aller derrière le bar ou de pénétrer dans la petite salle derrière le bar. Seuls les membres du BDE et les barmans sont habilités à le faire. Cette salle devra rester fermée en l'absence de barman.
+            Une personne ne faisant pas partie des personnes suscitées pourra passer derrière le bar uniquement lorsque’ lle viendra nettoyer la vaisselle qu'elle vient d'utiliser.
           </p>
-          <h4>Modifications de la politique de confidentialité</h4>
+          <h4>ARTICLE 4 :</h4>
           <p>
-            Nous nous réservons le droit de modifier cette politique de
-            confidentialité à tout moment, en publiant une version mise à jour
-            sur notre site web ou sur l'application. Il est de votre
-            responsabilité de consulter régulièrement cette politique de
-            confidentialité pour prendre connaissance des éventuelles
-            modifications.
+            Il est interdit de fumer dans le foyer. L'introduction et la détention de substances illicites sera aussi sanctionnée.
+          </p>
+          <h4>ARTICLE 5 :</h4>
+          <p>
+            Tout membre de l'Association s'engage à aider ponctuellement les barmans à nettoyer le Foyer à la demande de ces derniers.
+          </p>
+          <h4>ARTICLE 6 :</h4>
+          <p>
+            En cas de non respect de ces différentes règles par un usager, des sanctions peuvent être prises par un membre du BDE : un simple avertissement, l’aide au nettoyage, le remboursement pour bris voire la radiation
+            de l'Association.
+          </p>
+          <h4>ARTICLE 7 :</h4>
+          <p>
+            Les membres du BDE et les barmans s'engagent au respect de l'usager, à l'intégrité et à la bonne tenue des comptes. Sûrs de nos intentions, forts de notre conscience, nous nous engageons, devant cette Assemblée, à être fidèles à cette Charte, nous réservant d'en juger le maintien.
           </p>
         </div>
         <div class="flex w-full gap-2">
@@ -300,7 +293,7 @@
           >
           <input type="checkbox" id="cgu" required />
           <label for="cgu" class="flex-1 text-neutral-50"
-            >J'accepte les conditions d'utilisations du BDE</label
+            >J'accepte les conditions d'utilisations du fouaille</label
           >
         </div>
         <div class="flex w-full items-center justify-center gap-3">
