@@ -100,7 +100,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::get('/me', [UserController::class, 'getMe'])
                 ->name('user.me');
 
-            Route::put('/', [UserController::class, 'update'])
+            Route::post('/', [UserController::class, 'update'])
                 ->name('user.update');
 
             Route::delete('/', [UserController::class, 'delete'])
