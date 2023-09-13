@@ -103,6 +103,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::put('/', [UserController::class, 'update'])
                 ->name('user.update');
 
+            Route::post('/avatar', [UserController::class, 'update'])
+                ->name('user.avatar.update');
+
             Route::delete('/', [UserController::class, 'delete'])
                 ->name('user.delete');
         });
