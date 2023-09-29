@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\FouailleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserAvatarController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\Post\PostController;
@@ -103,7 +104,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::put('/', [UserController::class, 'update'])
                 ->name('user.update');
             
-            Route::post('/avatar', [UserController::class, 'update'])
+            Route::post('/avatar', [UserAvatarController::class, 'update'])
                 ->name('user.avatar.update');
 
             Route::delete('/', [UserController::class, 'delete'])

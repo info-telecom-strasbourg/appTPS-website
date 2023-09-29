@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Post;
+use App\Models\PostMedia;
 
 
 class PostController extends Controller
@@ -44,8 +45,18 @@ class PostController extends Controller
             'color' => [
                 'regex:/^#([a-f0-9]{6}|[a-f0-9]{3})$/i',
                 'required'
-            ]
+            ],
+            // 'files' => 'array',
+            // 'files.*' => [
+            //     'image',
+            //     'mimes:jpeg,png,jpg,gif,svg',
+            //     'max:50000'
+            // ]
         ]);
+        // return response()->json([
+        //     'message' => 'Request',
+        //     'data' => $request->all()
+        // ], 201);
 
         if ($validation->fails()) {
             return response()->json([
@@ -54,16 +65,39 @@ class PostController extends Controller
             ], 422);
         }
 
+
+        $post = Post::create([
+            'title' => $request->title,
+            'body' => $request->body,
+            'organization_id' => $request->organization_id,
+            'event_id' => $request->event_id,
+            'user_id' => $request->user()->id,
+            'color' => $request->color
+        ]);
+
+        if ($request->has('files')) {
+            $postImages = [];
+            // dd($request->files);
+            foreach ($request->files as $image) {
+                dd($image);
+                $path = $image->move(storage_path('app/public/images/articles/', $image));
+                $postImages[] = $path;
+            }
+            // dd($postImages);
+            $post_medias = PostMedia::create([
+                'post_id' => $post->id,
+                'media_type_id' => 1,
+                'media' => json_encode($postImages, JSON_UNESCAPED_SLASHES),
+            ]);
+            return response()->json([
+                'message' => 'Media uploaded',
+                'data' => $post_medias
+            ], 201);
+        }
+
         return response()->json([
             'message' => 'Post created',
-            'data' => Post::create([
-                'title' => $request->title,
-                'body' => $request->body,
-                'organization_id' => $request->organization_id,
-                'event_id' => $request->event_id,
-                'user_id' => $request->user()->id,
-                'color' => $request->color
-            ])
+            'data' => $post
         ], 201);
     }
 
