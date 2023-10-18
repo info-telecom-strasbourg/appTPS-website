@@ -11,7 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\Post\PostController;
-
+use App\Http\Controllers\UserAvatarController;
 use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -103,8 +103,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::put('/', [UserController::class, 'update'])
                 ->name('user.update');
 
-            Route::post('/avatar', [UserController::class, 'update'])
-                ->name('user.avatar.update');
+            Route::post('/avatar', [UserAvatarController::class, 'store'])
+                ->name('user.avatar.store');
 
             Route::delete('/', [UserController::class, 'delete'])
                 ->name('user.delete');

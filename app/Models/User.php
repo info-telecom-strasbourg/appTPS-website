@@ -13,6 +13,8 @@ use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Post;
 use App\Models\Reaction;
+use App\Models\Sector;
+use App\Models\UserAvatar;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -77,7 +79,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function avatar(){
-        return $this->hasOne(Avatar::class);
+        return $this->hasOne(UserAvatar::class);
     }
 
     public function getFullName(){

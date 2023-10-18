@@ -160,7 +160,7 @@ class PostController extends Controller
                     'id' => $post->user->id,
                     'name' => $post->user->getFullName(),
                     'short_name' => null,
-                    'logo_url' => $post->user->getAvatarPath()
+                    'logo_url' => $post->user->avatar->path
                 ],
                 'medias' => !$post->medias->isEmpty() ? $post->medias->map(function ($media) {
                     return [
