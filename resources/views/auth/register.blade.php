@@ -8,7 +8,7 @@
     
     <script type="module" crossorigin src="/js/index-8ef1cc3c.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js" onload="initializeFormLogic()"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js" defer></script>
 
     <script type="module" crossorigin src="/js/main.js"></script>
 
@@ -291,8 +291,8 @@
           <label for="cgu" class="flex-1 text-neutral-50"
             >J'accepte les conditions d'utilisations de insidePSBS</label
           >
-          <input type="checkbox" id="cgu" required />
-          <label for="cgu" class="flex-1 text-neutral-50"
+          <input type="checkbox" id="condition-fouaille" required />
+          <label for="condition-fouaille" class="flex-1 text-neutral-50"
             >J'accepte les conditions d'utilisations du fouaille</label
           >
         </div>
