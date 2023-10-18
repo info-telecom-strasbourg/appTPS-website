@@ -77,12 +77,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(OrganizationMember::class, 'member_id');
     }
 
-    public function getAvatarPath(){
-        return asset('storage/images/avatars/'.$this->avatar);
+    public function avatar(){
+        return $this->hasOne(Avatar::class);
     }
 
     public function getFullName(){
         return $this->first_name . ' ' . $this->last_name;
     }
+
 
 }
