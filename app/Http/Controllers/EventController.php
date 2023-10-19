@@ -98,7 +98,7 @@ class EventController extends Controller
                     'id' => $event->user->id,
                     'name' => $event->user->getFullName(),
                     'short_name' => null,
-                    'logo_url' => $event->user->avatar
+                    'logo_url' => $event->user->avatar->path
                 ]
             ]
         ], 201);
@@ -147,7 +147,7 @@ class EventController extends Controller
                         'id' => $event->user->id,
                         'name' => $event->user->getFullName(),
                         'short_name' => null,
-                        'logo_url' => $event->user->avatar
+                        'logo_url' => $event->user->avatar->path
                     ]
                 ];
             }),
@@ -202,7 +202,7 @@ class EventController extends Controller
                     'id' => $event->user->id,
                     'name' => $event->user->getFullName(),
                     'short_name' => null,
-                    'logo_url' => $event->user->avatar
+                    'logo_url' => $event->user->avatar->path
                 ]
             ]
         ], 200);

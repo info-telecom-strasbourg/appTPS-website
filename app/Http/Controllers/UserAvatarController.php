@@ -30,15 +30,23 @@ class UserAvatarController extends Controller
             ], 422);
         }
 
+
         $user = $request->user();
+
+        if ($user->avatar->name != 'default.png') {
+            Storage::delete('public/images/avatars/' . $user->avatar->name);
+            $user->avatar->delete();
+        }
 
         $avatar = $request->file('avatar');
 
-        $stored_path = $avatar->storeAs('public/images/avatars', $avatar->getClientOriginalName());
+        $name = $user->id . '_' . time() . '_' . $avatar->getClientOriginalName();
+
+        $stored_path = $avatar->storeAs('public/images/avatars', $name);
 
         $user->avatar()->create([
-            'name' => $avatar->getClientOriginalName(),
-            'path' => asset('storage/images/avatars/' . $avatar->getClientOriginalName()),
+            'name' => $name,
+            'path' => asset('storage/images/avatars/' . $name),
             'size' => $avatar->getSize()
         ]);
 
