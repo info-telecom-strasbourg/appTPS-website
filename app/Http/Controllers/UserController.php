@@ -78,7 +78,7 @@ class UserController extends Controller
             'email' => $user->email,
             'phone' => $user->phone,
             'bde_id' => $user->bde_id,
-            'avatar_url' => $user->avatar->path,
+            'avatar_url' => $user->avatar,
             'promotion_year' => $user->promotion_year,
             'created_at' => $user->created_at,
             'updated_at' => $user->updated_at,
