@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\NotificationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +68,9 @@ Route::get('crous', [CrousController::class, 'index'])
 /** =============== Route protected by sanctum =============== */
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::get('/notifications', [NotificationsController::class, 'send'])
+        ->name('notifications.send');
 
     /** =============== Authentification =============== */
 

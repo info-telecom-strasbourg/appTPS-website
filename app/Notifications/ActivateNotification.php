@@ -6,8 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use YieldStudio\LaravelExpoNotifier\Dto\ExpoMessage;
-use YieldStudio\LaravelExpoNotifier\ExpoNotificationsChannel;
+use NotificationChannels\ExpoPushNotifications\ExpoChannel;
+use NotificationChannels\ExpoPushNotifications\ExpoMessage;
 
 class ActivateNotification extends Notification
 {
@@ -21,23 +21,18 @@ class ActivateNotification extends Notification
         //
     }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @return array<int, string>
-     */
-    public function via(object $notifiable): array
+    public function via($notifiable)
     {
-        return [ExpoNotificationsChannel::class];
+        return [ExpoChannel::class];
     }
 
-    public function toExpoNotification($notifiable) : ExpoMessage
+    public function toExpoPush($notifiable)
     {
-      return (new ExpoMessage())
-          ->to([$notifiable->expoTokens->value])
-          ->title('Le titre de la notification')
-          ->body('le contenue de la notification')
-          ->channelId('default');
+        return ExpoMessage::create()
+            ->badge(1)
+            ->enableSound()
+            ->title("Congratulations!")
+            ->body("Your {$notifiable->service} account was approved!");
     }
 
     /**
