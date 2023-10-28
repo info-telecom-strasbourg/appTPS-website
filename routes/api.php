@@ -69,9 +69,6 @@ Route::get('crous', [CrousController::class, 'index'])
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
-    Route::get('/notifications', [NotificationsController::class, 'send'])
-        ->name('notifications.send');
-
     /** =============== Authentification =============== */
 
     Route::post('/logout', [AuthUserController::class, 'logout'])

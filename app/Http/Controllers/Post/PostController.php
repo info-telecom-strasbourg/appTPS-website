@@ -9,10 +9,29 @@ use App\Http\Controllers\Controller;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Post;
-
+use App\Models\User;
+use App\Notifications\PostNotification;
 
 class PostController extends Controller
 {
+    /*
+    * Send a notification
+    *
+    @return \Illuminate\Http\JsonResponse
+    */
+    public function notify() {
+        // $user = User::find(13);
+        // $user->notify(new PostNotification());
+        $users = User::all();
+        foreach ($users as $user) {
+            $user->notify(new PostNotification());
+        }
+        // Notification::sendNow($users, new PostNotification());
+
+        return response()->json([
+            'message' => 'Notification sent successfully',
+        ], 200);
+    }
 
     /*
     * Create a new post
@@ -63,7 +82,8 @@ class PostController extends Controller
                 'event_id' => $request->event_id,
                 'user_id' => $request->user()->id,
                 'color' => $request->color
-            ])
+            ]),
+            'notification' => PostController::notify()
         ], 201);
     }
 
