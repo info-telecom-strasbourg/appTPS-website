@@ -147,7 +147,7 @@ class PostController extends Controller
             'data' => [
                 'title' => $post->title,
                 'body' => $post->body,
-                'date' => $post->date,
+                'date' => $post->created_at->format('Y-m-d H:i:s'),
                 'color' => $post->color,
                 'author' => $post->organization ? [
                     'is_organization' => true,
