@@ -99,8 +99,8 @@ class PostController extends Controller
         return response()->json([
             'message' => 'Post created',
             'data' => $post,
-            'image' => $image
-            // 'notification' => PostController::notify()
+            'image' => $image,
+            'notification' => PostController::notify()
         ], 201);
     }
 
