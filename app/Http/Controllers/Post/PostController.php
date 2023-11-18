@@ -13,6 +13,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Notifications\PostNotification;
 
+
 class PostController extends Controller
 {
     /*
@@ -71,6 +72,10 @@ class PostController extends Controller
                 'max:10240'
             ]
         ]);
+        // return response()->json([
+        //     'message' => 'Request',
+        //     'data' => $request->all()
+        // ], 201);
 
         if ($validation->fails()) {
             return response()->json([
@@ -78,6 +83,7 @@ class PostController extends Controller
                 'errors' => $validation->errors()
             ], 422);
         }
+
 
         $post = Post::create([
             'title' => $request->title,

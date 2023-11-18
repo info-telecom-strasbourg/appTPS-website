@@ -36,6 +36,8 @@ class NewPasswordController extends Controller
         $credentials = $request->only('email', 'password', 'password_confirmation');
         $credentials['token'] = $token;
 
+        dd($request->password);
+
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
