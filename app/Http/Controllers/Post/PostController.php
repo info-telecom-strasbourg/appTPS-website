@@ -3,37 +3,16 @@
 namespace App\Http\Controllers\Post;
 
 use App\Models\PostComment;
-use App\Models\PostMedia;
 use App\Notifications\ActivateNotification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Post;
-use App\Models\User;
-use App\Notifications\PostNotification;
 
 
 class PostController extends Controller
 {
-    /*
-    * Send a notification
-    *
-    @return \Illuminate\Http\JsonResponse
-    */
-    public function notify() {
-        // $user = User::find(13);
-        // $user->notify(new PostNotification());
-        $users = User::all();
-        foreach ($users as $user) {
-            $user->notify(new PostNotification());
-        }
-        // Notification::sendNow($users, new PostNotification());
-
-        return response()->json([
-            'message' => 'Notification sent successfully',
-        ], 200);
-    }
 
     /*
     * Create a new post
@@ -65,17 +44,8 @@ class PostController extends Controller
             'color' => [
                 'regex:/^#([a-f0-9]{6}|[a-f0-9]{3})$/i',
                 'required'
-            ],
-            'image' => [
-                'image',
-                'mimes:jpeg,png,jpg,gif,svg',
-                'max:10240'
             ]
         ]);
-        // return response()->json([
-        //     'message' => 'Request',
-        //     'data' => $request->all()
-        // ], 201);
 
         if ($validation->fails()) {
             return response()->json([
@@ -84,29 +54,16 @@ class PostController extends Controller
             ], 422);
         }
 
-
-        $post = Post::create([
-            'title' => $request->title,
-            'body' => $request->body,
-            'organization_id' => $request->organization_id,
-            'event_id' => $request->event_id,
-            'user_id' => $request->user()->id,
-            'color' => $request->color
-        ]);
-
-        $image=$request->image ? (
-            PostMedia::create([
-            'post_id' => $post->id,
-            'media_type_id' => 1,
-            'media_url' => env('APP_URL') . '/' . substr($request->file('image')->store('public/images/posts'), 7)
-            ])
-            ) : null;
-        
         return response()->json([
             'message' => 'Post created',
-            'data' => $post,
-            'image' => $image,
-            'notification' => PostController::notify()
+            'data' => Post::create([
+                'title' => $request->title,
+                'body' => $request->body,
+                'organization_id' => $request->organization_id,
+                'event_id' => $request->event_id,
+                'user_id' => $request->user()->id,
+                'color' => $request->color
+            ])
         ], 201);
     }
 
@@ -145,12 +102,12 @@ class PostController extends Controller
                         'id' => $post->user->id,
                         'name' => $post->user->getFullName(),
                         'short_name' => null,
-                        'logo_url' => $post->user->avatar->path
+                        'logo_url' => $post->user->getAvatarPath()
                     ],
                     'medias' => !$post->medias->isEmpty() ? $post->medias->map(function ($media) {
                         return [
                             'type' => $media->mediaType->type,
-                            'url' => $media->media_url
+                            'url' => $media->media
                         ];
                     }) : null
                 ];
@@ -203,12 +160,12 @@ class PostController extends Controller
                     'id' => $post->user->id,
                     'name' => $post->user->getFullName(),
                     'short_name' => null,
-                    'logo_url' => $post->user->avatar->path
+                    'logo_url' => $post->user->getAvatarPath()
                 ],
                 'medias' => !$post->medias->isEmpty() ? $post->medias->map(function ($media) {
                     return [
                         'type' => $media->mediaType->type,
-                        'url' => $media->media_url
+                        'url' => $media->media
                     ];
                 }) : null
             ]
