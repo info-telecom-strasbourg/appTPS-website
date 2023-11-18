@@ -6,7 +6,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "alymosul/laravel-exponent-push-notifications": "^4.0",
         "fabpot/goutte": "^4.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
@@ -16,7 +15,8 @@
         "symfony/browser-kit": "^6.3",
         "symfony/http-client": "^6.3",
         "symfony/mailgun-mailer": "^6.3",
-        "weidner/goutte": "^2.3"
+        "weidner/goutte": "^2.3",
+        "yieldstudio/laravel-expo-notifier": "^0.0.7"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

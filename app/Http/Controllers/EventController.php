@@ -88,17 +88,17 @@ class EventController extends Controller
                 'location' => $event->location,
                 'color' => $event->color,
                 'author' => $event->organization ? [
-                    'is_organization' => true,
-                    'id' => $event->organization->id,
-                    'name' => $event->organization->name,
-                    'short_name' => $event->organization->short_name,
-                    'logo_url' => $event->organization->getLogoPath()
+                'is_organization' => true,
+                'id' => $event->organization->id,
+                'name' => $event->organization->name,
+                'short_name' => $event->organization->short_name,
+                'logo_url' => $event->organization->getLogoPath()
                 ] : [
-                    'is_organization' => false,
-                    'id' => $event->user->id,
-                    'name' => $event->user->getFullName(),
-                    'short_name' => null,
-                    'logo_url' => $event->user->avatar->path
+                'is_organization' => false,
+                'id' => $event->user->id,
+                'name' => $event->user->getFullName(),
+                'short_name' => null,
+                'logo_url' => $event->user->getAvatarPath()
                 ]
             ]
         ], 201);
@@ -147,7 +147,7 @@ class EventController extends Controller
                         'id' => $event->user->id,
                         'name' => $event->user->getFullName(),
                         'short_name' => null,
-                        'logo_url' => $event->user->avatar->path
+                        'logo_url' => $event->user->getAvatarPath()
                     ]
                 ];
             }),
@@ -202,7 +202,7 @@ class EventController extends Controller
                     'id' => $event->user->id,
                     'name' => $event->user->getFullName(),
                     'short_name' => null,
-                    'logo_url' => $event->user->avatar->path
+                    'logo_url' => $event->user->getAvatarPath()
                 ]
             ]
         ], 200);

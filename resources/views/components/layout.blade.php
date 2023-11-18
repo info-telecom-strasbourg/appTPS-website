@@ -5,7 +5,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="stylesheet" href="/css/main.css">
-
     <title>InsidePSBS</title>
 </head>
 <body>
