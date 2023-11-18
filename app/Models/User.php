@@ -13,6 +13,8 @@ use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Post;
 use App\Models\Reaction;
+use App\Models\Sector;
+use App\Models\UserAvatar;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -31,7 +33,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'user_name',
         'bde_id',
-        'avatar',
         'promotion_year',
         'sector_id',
         'birth_date'
@@ -77,12 +78,19 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(OrganizationMember::class, 'member_id');
     }
 
-    public function getAvatarPath(){
-        return asset('storage/images/avatars/'.$this->avatar);
+    public function avatar(){
+        return $this->hasOne(UserAvatar::class)
+            ->withDefault([
+                'path' => asset('storage/images/avatars/default.png'),
+                'name' => 'default.png',
+                'size' => '3000'
+            ]
+        );
     }
 
     public function getFullName(){
         return $this->first_name . ' ' . $this->last_name;
     }
+
 
 }

@@ -28,7 +28,6 @@ class UserFactory extends Factory
             'phone' => $this->faker->phoneNumber(),
             'email_verified_at' => now(),
             'password' => Hash::make('Azertyuiop1#'),
-            'avatar' => 'default.png',
             'sector_id' => Sector::inRandomOrder()->first()->id,
             'promotion_year' => random_int(2022, 2026),
             'bde_id' => Member::inRandomOrder()->first()->id,
