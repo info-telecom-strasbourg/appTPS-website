@@ -152,8 +152,9 @@ pas d'erreur possible
 
 | protocole | methode | url           | token |
 |-----------|---------|---------------|-------|
-| https     | POST    | /api/verification-notification | oui   |
+| https     | POST    | /api/email/verification-notification | oui   |
 
+<!-- enzo je te detester on a passé 2 heures avec alexander pour régler ce bug -->
 #### Paramètres
 
 Aucun

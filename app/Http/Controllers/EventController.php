@@ -88,17 +88,17 @@ class EventController extends Controller
                 'location' => $event->location,
                 'color' => $event->color,
                 'author' => $event->organization ? [
-                'is_organization' => true,
-                'id' => $event->organization->id,
-                'name' => $event->organization->name,
-                'short_name' => $event->organization->short_name,
-                'logo_url' => $event->organization->getLogoPath()
+                    'is_organization' => true,
+                    'id' => $event->organization->id,
+                    'name' => $event->organization->name,
+                    'short_name' => $event->organization->short_name,
+                    'logo_url' => $event->organization->getLogoPath()
                 ] : [
-                'is_organization' => false,
-                'id' => $event->user->id,
-                'name' => $event->user->getFullName(),
-                'short_name' => null,
-                'logo_url' => $event->user->getAvatarPath()
+                    'is_organization' => false,
+                    'id' => $event->user->id,
+                    'name' => $event->user->getFullName(),
+                    'short_name' => null,
+                    'logo_url' => $event->user->avatar->path
                 ]
             ]
         ], 201);
@@ -120,9 +120,9 @@ class EventController extends Controller
 
 
         if(isset($request->start_at) && isset($request->end_at)){
-            $events = Event::orderByDesc('start_at')->Where('start_at', '>=', $request->start_at)->Where('end_at', '<=', $request->end_at)->paginate($per_page);
+            $events = Event::orderBy('start_at',"asc")->Where('start_at', '>=', $request->start_at)->Where('end_at', '<=', $request->end_at)->paginate($per_page);
         } else {
-            $events = Event::orderByDesc('start_at')->paginate($per_page);
+            $events = Event::orderBy('start_at',"asc")->paginate($per_page);
         }
 
 
@@ -147,7 +147,7 @@ class EventController extends Controller
                         'id' => $event->user->id,
                         'name' => $event->user->getFullName(),
                         'short_name' => null,
-                        'logo_url' => $event->user->getAvatarPath()
+                        'logo_url' => $event->user->avatar->path
                     ]
                 ];
             }),
@@ -202,7 +202,7 @@ class EventController extends Controller
                     'id' => $event->user->id,
                     'name' => $event->user->getFullName(),
                     'short_name' => null,
-                    'logo_url' => $event->user->getAvatarPath()
+                    'logo_url' => $event->user->avatar->path
                 ]
             ]
         ], 200);

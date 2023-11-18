@@ -3,17 +3,37 @@
 namespace App\Http\Controllers\Post;
 
 use App\Models\PostComment;
+use App\Models\PostMedia;
 use App\Notifications\ActivateNotification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Post;
-use App\Models\PostMedia;
+use App\Models\User;
+use App\Notifications\PostNotification;
 
 
 class PostController extends Controller
 {
+    /*
+    * Send a notification
+    *
+    @return \Illuminate\Http\JsonResponse
+    */
+    public function notify() {
+        // $user = User::find(13);
+        // $user->notify(new PostNotification());
+        $users = User::all();
+        foreach ($users as $user) {
+            $user->notify(new PostNotification());
+        }
+        // Notification::sendNow($users, new PostNotification());
+
+        return response()->json([
+            'message' => 'Notification sent successfully',
+        ], 200);
+    }
 
     /*
     * Create a new post
@@ -46,12 +66,11 @@ class PostController extends Controller
                 'regex:/^#([a-f0-9]{6}|[a-f0-9]{3})$/i',
                 'required'
             ],
-            // 'files' => 'array',
-            // 'files.*' => [
-            //     'image',
-            //     'mimes:jpeg,png,jpg,gif,svg',
-            //     'max:50000'
-            // ]
+            'image' => [
+                'image',
+                'mimes:jpeg,png,jpg,gif,svg',
+                'max:10240'
+            ]
         ]);
         // return response()->json([
         //     'message' => 'Request',
@@ -75,29 +94,19 @@ class PostController extends Controller
             'color' => $request->color
         ]);
 
-        if ($request->has('files')) {
-            $postImages = [];
-            // dd($request->files);
-            foreach ($request->files as $image) {
-                dd($image);
-                $path = $image->move(storage_path('app/public/images/articles/', $image));
-                $postImages[] = $path;
-            }
-            // dd($postImages);
-            $post_medias = PostMedia::create([
-                'post_id' => $post->id,
-                'media_type_id' => 1,
-                'media' => json_encode($postImages, JSON_UNESCAPED_SLASHES),
-            ]);
-            return response()->json([
-                'message' => 'Media uploaded',
-                'data' => $post_medias
-            ], 201);
-        }
-
+        $image=$request->image ? (
+            PostMedia::create([
+            'post_id' => $post->id,
+            'media_type_id' => 1,
+            'media_url' => env('APP_URL') . '/' . substr($request->file('image')->store('public/images/posts'), 7)
+            ])
+            ) : null;
+        
         return response()->json([
             'message' => 'Post created',
-            'data' => $post
+            'data' => $post,
+            'image' => $image,
+            'notification' => PostController::notify()
         ], 201);
     }
 
@@ -136,12 +145,12 @@ class PostController extends Controller
                         'id' => $post->user->id,
                         'name' => $post->user->getFullName(),
                         'short_name' => null,
-                        'logo_url' => $post->user->getAvatarPath()
+                        'logo_url' => $post->user->avatar->path
                     ],
                     'medias' => !$post->medias->isEmpty() ? $post->medias->map(function ($media) {
                         return [
                             'type' => $media->mediaType->type,
-                            'url' => $media->media
+                            'url' => $media->media_url
                         ];
                     }) : null
                 ];
@@ -181,7 +190,7 @@ class PostController extends Controller
             'data' => [
                 'title' => $post->title,
                 'body' => $post->body,
-                'date' => $post->date,
+                'date' => $post->created_at->format('Y-m-d H:i:s'),
                 'color' => $post->color,
                 'author' => $post->organization ? [
                     'is_organization' => true,
@@ -194,12 +203,12 @@ class PostController extends Controller
                     'id' => $post->user->id,
                     'name' => $post->user->getFullName(),
                     'short_name' => null,
-                    'logo_url' => $post->user->getAvatarPath()
+                    'logo_url' => $post->user->avatar->path
                 ],
                 'medias' => !$post->medias->isEmpty() ? $post->medias->map(function ($media) {
                     return [
                         'type' => $media->mediaType->type,
-                        'url' => $media->media
+                        'url' => $media->media_url
                     ];
                 }) : null
             ]
