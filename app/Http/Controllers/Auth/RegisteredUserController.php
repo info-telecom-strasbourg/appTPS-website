@@ -80,7 +80,7 @@ class RegisteredUserController extends Controller
             ], 422);
         }
 
-        
+
         try{
 
             Member::create([
@@ -95,7 +95,7 @@ class RegisteredUserController extends Controller
 
         }catch (\Exception $e){
             return response()->json([
-                'message' => 'An error occurred while creating the member (bde)',
+                'message' => 'An error occurred while creating the member (Bde)',
                 'error' => $e->getMessage()
             ], 409);
         }
