@@ -11,6 +11,8 @@ class Member extends Model
 
     protected $connection = 'bde_bdd';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'last_name',
         'first_name',

@@ -11,6 +11,8 @@ class ProductType extends Model
 
     protected $connection = 'bde_bdd';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'type'
     ];
