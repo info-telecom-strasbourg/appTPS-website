@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('media_type_id');
-            $table->string('media');
+            $table->string('media_url');
 
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->foreign('media_type_id')->references('id')->on('media_types');
