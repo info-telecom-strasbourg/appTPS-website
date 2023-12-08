@@ -3,14 +3,14 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Bde\Member;
+use App\Models\Bde\Order;
+use App\Models\Bde\Organization;
+use App\Models\Bde\OrganizationMember;
 use App\Models\GroupUser;
+use Database\Seeders\Bde\ProductSeeder;
+use Database\Seeders\Bde\ProductTypeSeeder;
 use Illuminate\Database\Seeder;
-use Database\Seeders\UserSeeder;
-use Database\Seeders\CategorySeeder;
-use Database\Seeders\MediaTypeSeeder;
-use Database\Seeders\ReactionTypeSeeder;
-use App\Models\User;
-use App\Models\Category;
 use App\Models\Event;
 use App\Models\Post;
 use App\Models\PostMedia;
@@ -25,6 +25,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        // Bde bdd seeder
+        Member::factory(50)->create();
+
+        $this->call([
+            ProductTypeSeeder::class,
+            ProductSeeder::class,
+        ]);
+
+        Order::factory(200)->create();
+
+        Organization::factory(10)->create();
+
+        OrganizationMember::factory(50)->create();
+
+        // app bdd seeder
+
         $this->call([
             SectorSeeder::class,
             UserSeeder::class,

@@ -109,7 +109,7 @@ class RegisterController extends Controller
 
         }catch (\Exception $e){
             return view('auth.register-fail',[
-                'message' => 'An error occurred while creating the member (bde)',
+                'message' => 'An error occurred while creating the member (Bde)',
                 'error' => $e->getMessage()
             ]);
         }

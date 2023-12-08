@@ -901,5 +901,42 @@ Aucun
 ##### succès
 
 - Code : **200**
-- 
+
+## Notifications
+
+### subscribe
+
+Permet de liéer un expoToken à son utilisateur 
+
+| protocole | methode | url        | token |
+|-----------|---------|------------|-------|
+| https     | GET     | /api/exponent/devices/subscribe  | oui   |
+
+#### Paramètres
+
+Aucun
+
+#### Réponses
+
+##### succès
+
+- Code : **200**
+
+### unsubscribe
+
+Permet de retirer un expoToken à l'utilisateur
+
+| protocole | methode | url        | token |
+|-----------|---------|------------|-------|
+| https     | GET     | /api/exponent/devices/unsubscribe  | oui   |
+
+#### Paramètres
+
+Aucun
+
+#### Réponses
+
+##### succès
+
+- Code : **200**
 

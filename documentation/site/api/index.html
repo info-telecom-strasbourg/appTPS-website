@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Authentification - InsidePSBS Documentation backend</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">InsidePSBS Documentation backend</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Bienvenue sur la documentation du backend de l'application InsidePSBS</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Authentification</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#authentification" class="nav-link">Authentification</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#registration" class="nav-link">Registration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#email-verification" class="nav-link">Email verification</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#password" class="nav-link">Password</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#user" class="nav-link">User</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#fouaille" class="nav-link">fouaille</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#event" class="nav-link">Event</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#post" class="nav-link">Post</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#notifications" class="nav-link">Notifications</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="authentification">Authentification</h1>
+<h2 id="registration">Registration</h2>
+<h3 id="register">Register</h3>
+<p>Créer un nouvel utilisateur dans la base de données de l'application et dans la base de données du BDE et envoie un mail de confirmation à l'utilisateur.</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>POST</td>
+<td>/api/register</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres">Paramètres</h4>
+<table>
+<thead>
+<tr>
+<th>nom</th>
+<th>type</th>
+<th>contraintes</th>
+<th>obligatoire</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_name</td>
+<td>string</td>
+<td>min:3, max:30, unique</td>
+<td>non</td>
+<td>Nom de l'utilisateur</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>string</td>
+<td>min:3, max:255</td>
+<td>oui</td>
+<td>Nom de famille de l'utilisateur</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>string</td>
+<td>min:3, max:255</td>
+<td>oui</td>
+<td>Prénom de l'utilisateur</td>
+</tr>
+<tr>
+<td>sector</td>
+<td>integer</td>
+<td>exists</td>
+<td>oui</td>
+<td>Filiére de l'utilisateur</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>email, max:255, unique</td>
+<td>oui</td>
+<td>Email de l'utilisateur</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>min:3, max:10, unique</td>
+<td>non</td>
+<td>Numéro de téléphone de l'utilisateur</td>
+</tr>
+<tr>
+<td>promotion_year</td>
+<td>integer</td>
+<td>min:2000, max:3000</td>
+<td>non</td>
+<td>Année de promotion de l'utilisateur</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>min:8, uppercase, lowercase, number</td>
+<td>oui</td>
+<td>Mot de passe de l'utilisateur</td>
+</tr>
+<tr>
+<td>password_confirmation</td>
+<td>string</td>
+<td>min:8, uppercase, lowercase, number</td>
+<td>oui</td>
+<td>Confirmation du mot de passe de l'utilisateur</td>
+</tr>
+</tbody>
+</table>
+<h4 id="reponse">Réponse</h4>
+<h5 id="succes">Succès</h5>
+<ul>
+<li>Code : <strong>201</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;user&quot;: {
+        &quot;id&quot;: 1,
+        &quot;user_name&quot;: &quot;user_name&quot;,
+        &quot;last_name&quot;: &quot;last_name&quot;,
+        &quot;first_name&quot;: &quot;first_name&quot;,
+        &quot;sector&quot;: 1,
+        &quot;email&quot;: &quot;email&quot;,
+        &quot;phone&quot;: &quot;phone&quot;,
+        &quot;promotion_year&quot;: 2020,
+        &quot;created_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;,
+    },
+    &quot;token&quot;: &quot;token&quot;
+}
+</code></pre>
+<h5 id="erreur">Erreur</h5>
+<ul>
+<li>Code : <strong>422</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;email&quot;: [
+            &quot;The email has already been taken.&quot;
+        ],
+        &quot;user_name&quot;: [
+            &quot;The user name has already been taken.&quot;
+        ]
+    }
+}
+</code></pre>
+<h3 id="login">Login</h3>
+<p>Connecte un utilisateur à l'application et renvoie un token d'authentification.</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>POST</td>
+<td>/api/login</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_1">Paramètres</h4>
+<table>
+<thead>
+<tr>
+<th>nom</th>
+<th>type</th>
+<th>contraintes</th>
+<th>obligatoire</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>email, max:255, exists</td>
+<td>oui</td>
+<td>Email de l'utilisateur</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>min:8, uppercase, lowercase, number</td>
+<td>oui</td>
+<td>Mot de passe de l'utilisateur</td>
+</tr>
+</tbody>
+</table>
+<h4 id="reponse_1">Réponse</h4>
+<h5 id="succes_1">Succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+<li>Contenu : </li>
+</ul>
+<pre><code class="language-json">{
+    &quot;user&quot;: {
+        &quot;id&quot;: 1,
+        &quot;user_name&quot;: &quot;user_name&quot;,
+        &quot;last_name&quot;: &quot;last_name&quot;,
+        &quot;first_name&quot;: &quot;first_name&quot;,
+        &quot;sector&quot;: 1,
+        &quot;email&quot;: &quot;email&quot;,
+        &quot;phone&quot;: &quot;phone&quot;,
+        &quot;promotion_year&quot;: 2020,
+        &quot;created_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;,
+    },
+    &quot;token&quot;: &quot;token&quot;
+}
+</code></pre>
+<h5 id="erreur_1">Erreur</h5>
+<ul>
+<li>Code : <strong>401</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: [
+        &quot;mauvais identifiants&quot;
+    ]
+}
+</code></pre>
+<h3 id="logout">Logout</h3>
+<p>Déconnecte un utilisateur de l'application. (retirer sont token)</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>POST</td>
+<td>/api/logout</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_2">Paramètres</h4>
+<p>Aucun</p>
+<h4 id="reponse_2">Réponse</h4>
+<h5 id="succes_2">Succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+<li>Contenu : </li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Successfully logged out&quot;
+}
+</code></pre>
+<h5 id="erreur_2">Erreur</h5>
+<p>pas d'erreur possible</p>
+<h2 id="email-verification">Email verification</h2>
+<h3 id="send-verification-email">Send verification email</h3>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>POST</td>
+<td>/api/email/verification-notification</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<!-- enzo je te detester on a passé 2 heures avec alexander pour régler ce bug -->
+<h4 id="parametres_3">Paramètres</h4>
+<p>Aucun</p>
+<h4 id="reponse_3">Réponse</h4>
+<h5 id="succes_3">Succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+<li>Contenu : </li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Verification link sent&quot;
+}
+</code></pre>
+<h5 id="erreur_3">Erreur</h5>
+<ul>
+<li>Code : <strong>400</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Email is already verified&quot;
+}
+</code></pre>
+<h3 id="verification-de-lemail">vérification de l'email</h3>
+<p>Gestion de cette route par l'email de vérification, met l'utilisateur en vérifié.</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>GET</td>
+<td>/api/verify-email/{id}/{hash}</td>
+<td>non</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_4">Paramètres</h4>
+<ul>
+<li>id : id de l'utilisateur</li>
+<li>hash : hash de l'utilisateur (généré par l'app)</li>
+</ul>
+<h4 id="reponse_4">Réponse</h4>
+<h5 id="succes_4">Succès</h5>
+<ul>
+<li>redirection vers une page web de succès</li>
+</ul>
+<h5 id="erreur_4">Erreur</h5>
+<ul>
+<li>pas de gestion d'erreur</li>
+</ul>
+<h2 id="password">Password</h2>
+<h3 id="send-password-reset-email">Send password reset email</h3>
+<p>Envoie un email de réinitialisation de mot de passe à l'utilisateur.</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>POST</td>
+<td>/api/forgot-password</td>
+<td>non</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_5">Paramètres</h4>
+<table>
+<thead>
+<tr>
+<th>nom</th>
+<th>type</th>
+<th>contraintes</th>
+<th>obligatoire</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>email</td>
+<td>oui</td>
+<td>Email de l'utilisateur</td>
+</tr>
+</tbody>
+</table>
+<h4 id="reponse_5">Réponse</h4>
+<h5 id="succes_5">Succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+<li>Contenu : </li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Reset email link send&quot;
+}
+</code></pre>
+<h5 id="erreur_5">Erreur</h5>
+<ul>
+<li>Code : <strong>404</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Email not send&quot;
+}
+</code></pre>
+<h3 id="update-password">Update password</h3>
+<p>met à jour le mot de passe de l'utilisateur.</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>PUT</td>
+<td>/api/password</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_6">Paramètres</h4>
+<table>
+<thead>
+<tr>
+<th>nom</th>
+<th>type</th>
+<th>contraintes</th>
+<th>obligatoire</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>former_password</td>
+<td>string</td>
+<td>min:8, uppercase, lowercase, number</td>
+<td>oui</td>
+<td>Ancien mot de passe de l'utilisateur</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>min:8, uppercase, lowercase, number</td>
+<td>oui</td>
+<td>Nouveau mot de passe de l'utilisateur</td>
+</tr>
+<tr>
+<td>password_confirmation</td>
+<td>string</td>
+<td>min:8, uppercase, lowercase, number</td>
+<td>oui</td>
+<td>Confirmation du nouveau mot de passe de l'utilisateur</td>
+</tr>
+</tbody>
+</table>
+<h4 id="reponse_6">Réponse</h4>
+<h5 id="succes_6">Succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+<li>Contenu : </li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Password updated successfully&quot;
+}
+</code></pre>
+<h5 id="erreur_6">Erreur</h5>
+<ul>
+<li>Code : <strong>422</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;the password does not match&quot;
+}
+</code></pre>
+<h2 id="user">User</h2>
+<h3 id="get-user">Get user</h3>
+<p>Renvoie les informations de l'utilisateur connecté (grace au token).</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>GET</td>
+<td>/api/user/me</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_7">Paramètres</h4>
+<p>Aucun</p>
+<h4 id="reponse_7">Réponse</h4>
+<h5 id="succes_7">Succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+<li>Contenu : </li>
+</ul>
+<pre><code class="language-json">{
+    &quot;data&quot;: {
+            &quot;id&quot;: 1,
+            &quot;last_name&quot;: &quot;bergamini&quot;,
+            &quot;first_name&quot;: &quot;enzo&quot;,
+            &quot;user_name&quot;: &quot;zozoLeZozo&quot;,
+            &quot;email&quot;: &quot;bergaminienzo62@gmail.com&quot;,
+            &quot;phone&quot;: &quot;0606060606&quot;,
+            &quot;bde_id&quot;: 1,
+            &quot;avatar_url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/avatars/default.png&quot;,
+            &quot;promotion_year&quot;: &quot;2024&quot;,
+            &quot;created_at&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;,
+            &quot;email_verified_at&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;,
+            &quot;sector&quot;: &quot;AUTRE&quot;
+        }
+}
+</code></pre>
+<h5 id="erreur_7">Erreur</h5>
+<ul>
+<li>Code : <strong>401</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}
+</code></pre>
+<h3 id="update-user">Update user</h3>
+<p>Met à jour les informations de l'utilisateur connecté (grace au token).</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>PUT</td>
+<td>/api/user</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_8">Paramètres</h4>
+<table>
+<thead>
+<tr>
+<th>nom</th>
+<th>type</th>
+<th>contraintes</th>
+<th>obligatoire</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_name</td>
+<td>string</td>
+<td>min:3, max:255</td>
+<td>non</td>
+<td>Nom d'utilisateur de l'utilisateur</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>max:255, regex:/^[0-9]{10,}$/</td>
+<td>non</td>
+<td>Numéro de téléphone de l'utilisateur</td>
+</tr>
+<tr>
+<td>sector</td>
+<td>integer</td>
+<td></td>
+<td>non</td>
+<td>Identifiant du secteur de l'utilisateur</td>
+</tr>
+<tr>
+<td>promotion_year</td>
+<td>string</td>
+<td></td>
+<td>non</td>
+<td>Année de promotion de l'utilisateur</td>
+</tr>
+<tr>
+<td>avatar</td>
+<td>image</td>
+<td>mimes:jpeg,png,jpg</td>
+<td>max:2048</td>
+<td>non</td>
+</tr>
+</tbody>
+</table>
+<h4 id="reponse_8">Réponse</h4>
+<h5 id="succes_8">Succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+<li>Contenu : </li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;User updated successfully&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;last_name&quot;: &quot;bergamini&quot;,
+        &quot;first_name&quot;: &quot;enzo&quot;,
+        &quot;user_name&quot;: &quot;zozoLeZozo&quot;,
+        &quot;email&quot;: &quot;bergaminienzo62@gmail.com&quot;,
+        &quot;phone&quot;: &quot;0606060606&quot;,
+        &quot;bde_id&quot;: 1,
+        &quot;avatar_url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/avatars/default.png&quot;,
+        &quot;promotion_year&quot;: &quot;2024&quot;,
+        &quot;created_at&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;,
+        &quot;email_verified_at&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;,
+        &quot;sector&quot;: &quot;AUTRE&quot;
+    }
+}
+</code></pre>
+<h5 id="erreur_8">Erreur</h5>
+<ul>
+<li>Code : <strong>401</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}
+</code></pre>
+<ul>
+<li>Code : <strong>422</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Validation failed&quot;,
+    &quot;errors&quot;: {
+        &quot;user_name&quot;: [
+            &quot;The user name must be at least 3 characters.&quot;
+        ],
+        &quot;phone&quot;: [
+            &quot;The phone format is invalid.&quot;
+        ],
+        &quot;sector&quot;: [
+            &quot;The sector must be an integer.&quot;
+        ],
+        &quot;promotion_year&quot;: [
+            &quot;The promotion year must be a string.&quot;
+        ],
+        &quot;avatar&quot;: [
+            &quot;The avatar must be an image.&quot;
+        ]
+    }
+}
+</code></pre>
+<h3 id="delete-user">Delete user</h3>
+<p>Supprime l'utilisateur connecté (grace au token).</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>DELETE</td>
+<td>/api/user</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h4 id="reponse_9">Réponse</h4>
+<h5 id="succes_9">Succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+<li>Contenu : </li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;The user has been deleted&quot;
+}
+</code></pre>
+<h5 id="erreur_9">Erreur</h5>
+<ul>
+<li>Code : <strong>401</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}
+</code></pre>
+<h2 id="fouaille">fouaille</h2>
+<h3 id="show-fouaille">show fouaille</h3>
+<p>Renvoie les informations fouaille de l'utilisateur connecté (grace au token).</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>GET</td>
+<td>/api/fouaille</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_9">Paramètres</h4>
+<p>Passage de parametre dans l'url pour la pagination
+exemple : https://app-pprd.its-tps.fr/api/fouaille?per_page=10&amp;page=2</p>
+<h4 id="reponse_10">Réponse</h4>
+<h5 id="succes_10">Succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+<li>Contenu : </li>
+</ul>
+<pre><code class="language-json">{
+    &quot;data&quot;: {
+        &quot;balance&quot;: &quot;12.71&quot;,
+        &quot;first_name&quot;: &quot;enzo&quot;,
+        &quot;last_name&quot;: &quot;bergamini&quot;,
+        &quot;user_name&quot;: &quot;zozoLeZozo&quot;,
+        &quot;orders&quot;: [
+            {
+                &quot;date&quot;: &quot;2023-06-21 09:56:09&quot;,
+                &quot;total_price&quot;: &quot;5.00&quot;,
+                &quot;amount&quot;: 1,
+                &quot;product&quot;: null
+            },
+            {
+                &quot;date&quot;: &quot;2023-06-20 16:46:15&quot;,
+                &quot;total_price&quot;: &quot;-6.00&quot;,
+                &quot;amount&quot;: 2,
+                &quot;product&quot;: {
+                    &quot;name&quot;: &quot;fromage&quot;,
+                    &quot;title&quot;: &quot;fromage&quot;,
+                    &quot;unit_price&quot;: &quot;-3&quot;,
+                    &quot;color&quot;: &quot;#61385c&quot;
+                }
+            },
+            {
+                &quot;date&quot;: &quot;2023-06-20 07:44:01&quot;,
+                &quot;total_price&quot;: &quot;-4.80&quot;,
+                &quot;amount&quot;: 4,
+                &quot;product&quot;: {
+                    &quot;name&quot;: &quot;cocktail12&quot;,
+                    &quot;title&quot;: &quot;cocktail12&quot;,
+                    &quot;unit_price&quot;: &quot;-1.2&quot;,
+                    &quot;color&quot;: &quot;#c2d5ac&quot;
+                }
+            },
+            {
+                &quot;date&quot;: &quot;2023-06-19 06:02:22&quot;,
+                &quot;total_price&quot;: &quot;-3.60&quot;,
+                &quot;amount&quot;: 3,
+                &quot;product&quot;: {
+                    &quot;name&quot;: &quot;cocktail12&quot;,
+                    &quot;title&quot;: &quot;cocktail12&quot;,
+                    &quot;unit_price&quot;: &quot;-1.2&quot;,
+                    &quot;color&quot;: &quot;#c2d5ac&quot;
+                }
+            },
+            {
+                &quot;date&quot;: &quot;2023-06-16 15:05:50&quot;,
+                &quot;total_price&quot;: &quot;-4.80&quot;,
+                &quot;amount&quot;: 4,
+                &quot;product&quot;: {
+                    &quot;name&quot;: &quot;metre&quot;,
+                    &quot;title&quot;: &quot;metre&quot;,
+                    &quot;unit_price&quot;: &quot;-1.2&quot;,
+                    &quot;color&quot;: &quot;#d35b71&quot;
+                }
+            },
+            {
+                &quot;date&quot;: &quot;2023-06-15 05:55:22&quot;,
+                &quot;total_price&quot;: &quot;-2.40&quot;,
+                &quot;amount&quot;: 2,
+                &quot;product&quot;: {
+                    &quot;name&quot;: &quot;metre&quot;,
+                    &quot;title&quot;: &quot;metre&quot;,
+                    &quot;unit_price&quot;: &quot;-1.2&quot;,
+                    &quot;color&quot;: &quot;#d35b71&quot;
+                }
+            },
+            {
+                &quot;date&quot;: &quot;2023-06-15 03:04:53&quot;,
+                &quot;total_price&quot;: &quot;-6.60&quot;,
+                &quot;amount&quot;: 3,
+                &quot;product&quot;: {
+                    &quot;name&quot;: &quot;cookies&quot;,
+                    &quot;title&quot;: &quot;cookies&quot;,
+                    &quot;unit_price&quot;: &quot;-2.2&quot;,
+                    &quot;color&quot;: &quot;#2d3a24&quot;
+                }
+            },
+            {
+                &quot;date&quot;: &quot;2023-06-14 23:54:57&quot;,
+                &quot;total_price&quot;: &quot;-6.40&quot;,
+                &quot;amount&quot;: 4,
+                &quot;product&quot;: {
+                    &quot;name&quot;: &quot;cocktail16&quot;,
+                    &quot;title&quot;: &quot;cocktail16&quot;,
+                    &quot;unit_price&quot;: &quot;-1.6&quot;,
+                    &quot;color&quot;: &quot;#0403ff&quot;
+                }
+            },
+            {
+                &quot;date&quot;: &quot;2023-06-14 01:53:45&quot;,
+                &quot;total_price&quot;: &quot;-4.80&quot;,
+                &quot;amount&quot;: 3,
+                &quot;product&quot;: {
+                    &quot;name&quot;: &quot;cocktail16&quot;,
+                    &quot;title&quot;: &quot;cocktail16&quot;,
+                    &quot;unit_price&quot;: &quot;-1.6&quot;,
+                    &quot;color&quot;: &quot;#0403ff&quot;
+                }
+            },
+            {
+                &quot;date&quot;: &quot;2023-06-13 04:04:22&quot;,
+                &quot;total_price&quot;: &quot;-6.00&quot;,
+                &quot;amount&quot;: 5,
+                &quot;product&quot;: {
+                    &quot;name&quot;: &quot;metre&quot;,
+                    &quot;title&quot;: &quot;metre&quot;,
+                    &quot;unit_price&quot;: &quot;-1.2&quot;,
+                    &quot;color&quot;: &quot;#d35b71&quot;
+                }
+            }
+        ]
+    },
+    &quot;meta&quot;: {
+        &quot;total&quot;: 10,
+        &quot;per_page&quot;: 10,
+        &quot;current_page&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;first_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/fouaille?page=1&amp;per_page=10&quot;,
+        &quot;last_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/fouaille?page=1&amp;per_page=10&quot;,
+        &quot;next_page_url&quot;: &quot;&amp;per_page=10&quot;,
+        &quot;prev_page_url&quot;: &quot;&amp;per_page=10&quot;,
+        &quot;path&quot;: &quot;https://app-pprd.its-tps.fr/api/fouaille&quot;,
+        &quot;from&quot;: 1,
+        &quot;to&quot;: 10
+    }
+}
+</code></pre>
+<h5 id="erreur_10">Erreur</h5>
+<ul>
+<li>Code : <strong>401</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}
+</code></pre>
+<h2 id="event">Event</h2>
+<h3 id="creer-un-evenement">Créer un événement</h3>
+<p>Creation d'un nouvel événement</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>POST</td>
+<td>/api/event</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_10">Paramètres</h4>
+<table>
+<thead>
+<tr>
+<th>nom</th>
+<th>type</th>
+<th>contraintes</th>
+<th>description</th>
+<th>obligatoire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>max:255</td>
+<td>Titre de l'événement</td>
+<td>oui</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>max:10000</td>
+<td>Description de l'événement</td>
+<td>non</td>
+</tr>
+<tr>
+<td>start_at</td>
+<td>datetime</td>
+<td>date</td>
+<td>Date de début de l'événement</td>
+<td>oui</td>
+</tr>
+<tr>
+<td>end_at</td>
+<td>datetime</td>
+<td>date</td>
+<td>Date de fin de l'événement</td>
+<td>oui</td>
+</tr>
+<tr>
+<td>location</td>
+<td>string</td>
+<td>max:255</td>
+<td>Lieu de l'événement</td>
+<td>non</td>
+</tr>
+<tr>
+<td>color</td>
+<td>string</td>
+<td>max:7|min:7</td>
+<td>Couleur de l'événement</td>
+<td>non</td>
+</tr>
+<tr>
+<td>organization_id</td>
+<td>integer</td>
+<td>exists</td>
+<td>ID de l'organisation</td>
+<td>non</td>
+</tr>
+</tbody>
+</table>
+<h4 id="reponses">Réponses</h4>
+<ul>
+<li>Code : <strong>201</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Event created&quot;,
+    &quot;data&quot;: {
+        &quot;title&quot;: &quot;Event 1&quot;,
+        &quot;description&quot;: &quot;Description event 1&quot;,
+        &quot;start_at&quot;: &quot;2021-03-01 00:00:00&quot;,
+        &quot;end_at&quot;: &quot;2021-03-01 00:00:00&quot;,
+        &quot;location&quot;: &quot;Location event 1&quot;,
+        &quot;color&quot;: &quot;#000000&quot;,
+        &quot;author&quot;: {
+            &quot;is_organization&quot;: true,
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Organization 1&quot;,
+            &quot;short_name&quot;: &quot;Org 1&quot;,
+            &quot;logo_url&quot;: &quot;http://localhost:8000/storage/organizations/1/logo.png&quot;
+        }
+    }
+}
+</code></pre>
+<h5 id="erreur_11">Erreur</h5>
+<ul>
+<li>Code : <strong>422</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Validation failed&quot;,
+    &quot;errors&quot;: {
+        &quot;title&quot;: [
+            &quot;The title field is required.&quot;
+        ],
+        &quot;start_at&quot;: [
+            &quot;The start at field is required.&quot;
+        ]
+    }
+}
+</code></pre>
+<h3 id="lister-les-evenements">Lister les événements</h3>
+<p>Liste des événements paginés</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>GET</td>
+<td>/api/event</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_11">Paramètres</h4>
+<p>paramètres de pagination a passer dans l'url exemple : /api/event?per_page=10&amp;page=1</p>
+<h4 id="reponses_1">Réponses</h4>
+<h5 id="succes_11">Succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+<li>Contenue : </li>
+</ul>
+<pre><code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;title&quot;: &quot;Facere reprehenderit ullam modi.&quot;,
+            &quot;description&quot;: &quot;Et aliquam et officiis facere cupiditate in. Error vero explicabo ea amet. Et qui quam ea doloremque error tempora. Blanditiis et consectetur a consequuntur. Voluptatem sit beatae officia voluptatem adipisci.&quot;,
+            &quot;start_at&quot;: &quot;2023-08-07 16:39:00&quot;,
+            &quot;end_at&quot;: &quot;2023-08-08 07:09:45&quot;,
+            &quot;location&quot;: &quot;67028 Christian Divide\nSchroederview, DC 73702&quot;,
+            &quot;color&quot;: &quot;#4b6c87&quot;,
+            &quot;author&quot;: {
+                &quot;is_organization&quot;: false,
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Karianne Sauer&quot;,
+                &quot;short_name&quot;: null,
+                &quot;logo_url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/avatars/default.png&quot;
+            }
+        },
+        {
+            &quot;title&quot;: &quot;Unde accusantium occaecati velit eius maiores non fugiat optio.&quot;,
+            &quot;description&quot;: &quot;Aliquid sapiente ipsam id adipisci consequatur qui maiores. Maxime repellat molestias et quo ut et aperiam ut. Dolore vero facilis et ipsum enim.&quot;,
+            &quot;start_at&quot;: &quot;2023-08-07 10:28:00&quot;,
+            &quot;end_at&quot;: &quot;2023-08-07 11:22:30&quot;,
+            &quot;location&quot;: &quot;9528 Nicolas Branch Apt. 332\nHuelsbury, NV 41670&quot;,
+            &quot;color&quot;: &quot;#6b3fe7&quot;,
+            &quot;author&quot;: {
+                &quot;is_organization&quot;: true,
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Mathieu&quot;,
+                &quot;short_name&quot;: &quot;occaecati&quot;,
+                &quot;logo_url&quot;: &quot;https://fouaille.its-tps.fr/storage/organizations//tmp/183997ba4f51116a762bd6e68fe18818.png&quot;
+            }
+        },
+        {
+            &quot;title&quot;: &quot;Temporibus modi eligendi numquam veniam maxime aut accusantium inventore.&quot;,
+            &quot;description&quot;: &quot;Error autem doloremque quidem sunt est placeat harum. Quis quia aliquam nihil doloribus voluptas voluptatem. Quisquam qui repellendus exercitationem quia tempore id ipsum. Perspiciatis corporis tenetur natus cumque.&quot;,
+            &quot;start_at&quot;: &quot;2023-08-06 18:03:01&quot;,
+            &quot;end_at&quot;: &quot;2023-08-07 02:06:24&quot;,
+            &quot;location&quot;: &quot;3392 Ritchie Island Apt. 070\nLegroschester, ME 60627-7890&quot;,
+            &quot;color&quot;: &quot;#1431a2&quot;,
+            &quot;author&quot;: {
+                &quot;is_organization&quot;: false,
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Alvis Hammes&quot;,
+                &quot;short_name&quot;: null,
+                &quot;logo_url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/avatars/default.png&quot;
+            }
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;total&quot;: 10,
+        &quot;per_page&quot;: 3,
+        &quot;current_page&quot;: 1,
+        &quot;last_page&quot;: 4,
+        &quot;first_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/event?page=1&amp;per_page=3&quot;,
+        &quot;last_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/event?page=4&amp;per_page=3&quot;,
+        &quot;next_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/event?page=2&amp;per_page=3&quot;,
+        &quot;prev_page_url&quot;: &quot;&amp;per_page=3&quot;,
+        &quot;path&quot;: &quot;https://app-pprd.its-tps.fr/api/event&quot;,
+        &quot;from&quot;: 1,
+        &quot;to&quot;: 3
+    }
+}
+</code></pre>
+<h5 id="erreur_12">Erreur</h5>
+<ul>
+<li>Code : <strong>401</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}
+</code></pre>
+<h3 id="afficher-un-evenement">Afficher un événement</h3>
+<p>Affiche un événement en fonction de son ID</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>GET</td>
+<td>/api/event/{id}</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_12">Paramètres</h4>
+<ul>
+<li><strong>id</strong> : ID de l'événement</li>
+</ul>
+<h4 id="reponses_2">Réponses</h4>
+<h5 id="succes_12">Succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;data&quot;: {
+        &quot;title&quot;: &quot;Consequatur dolor molestias rerum non et repellat nisi.&quot;,
+        &quot;description&quot;: &quot;Consequatur laudantium ipsa et aliquam vitae vitae tempore. Animi dolore eum ut atque quo consectetur. Dolore corporis qui at facere. Minus accusamus rerum qui vero et.&quot;,
+        &quot;start_at&quot;: &quot;2023-08-06 11:33:19&quot;,
+        &quot;end_at&quot;: &quot;2023-08-06 11:36:42&quot;,
+        &quot;location&quot;: &quot;5413 Brown Village Apt. 865\nNew Mariamstad, FL 16176-6230&quot;,
+        &quot;color&quot;: &quot;#bc8a01&quot;,
+        &quot;author&quot;: {
+            &quot;is_organization&quot;: false,
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;enzo bergamini&quot;,
+            &quot;short_name&quot;: null,
+            &quot;logo_url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/avatars/default.png&quot;
+        }
+    }
+}
+</code></pre>
+<h5 id="erreur_13">Erreur</h5>
+<ul>
+<li>Code : <strong>401</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}
+</code></pre>
+<ul>
+<li>Code : <strong>404</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Event not found&quot;
+}
+</code></pre>
+<h2 id="post">Post</h2>
+<h3 id="creer-un-post">Créer un post</h3>
+<p>Créer un post</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>POST</td>
+<td>/api/post</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_13">Paramètres</h4>
+<table>
+<thead>
+<tr>
+<th>nom</th>
+<th>type</th>
+<th>contraintes</th>
+<th>description</th>
+<th>obligatoire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>min:3, max:50</td>
+<td>Titre du post</td>
+<td>oui</td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>min:3, max:4000000000</td>
+<td>Contenu du post</td>
+<td>oui</td>
+</tr>
+<tr>
+<td>organization_id</td>
+<td>integer</td>
+<td>exists:organizations,id</td>
+<td>ID de l'organisation</td>
+<td>non</td>
+</tr>
+<tr>
+<td>event_id</td>
+<td>integer</td>
+<td>exists:events,id</td>
+<td>ID de l'événement rataché au post</td>
+<td>non</td>
+</tr>
+<tr>
+<td>color</td>
+<td>string</td>
+<td>regex:/^#([a-f0-9]{6}</td>
+<td>[a-f0-9]{3})$/i</td>
+<td>Couleur du post</td>
+</tr>
+</tbody>
+</table>
+<h4 id="reponses_3">Réponses</h4>
+<h5 id="succes_13">succès</h5>
+<ul>
+<li>Code : <strong>201</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Post created&quot;,
+&quot;data&quot;: {
+        &quot;title&quot;: &quot;Consequatur dolor molestias rerum non et repellat nisi.&quot;,
+        &quot;body&quot;: &quot;Consequatur laudantium ipsa et aliquam vitae vitae tempore. Animi dolore eum ut atque quo consectetur. Dolore corporis qui at facere. Minus accusamus rerum qui vero et.&quot;,
+        &quot;event_id&quot;: 1,
+        &quot;organization_id&quot;: 1,
+        &quot;user_id&quot;: 1,
+        &quot;color&quot; : &quot;#bc8a01&quot;
+    }
+
+}
+</code></pre>
+<h5 id="erreur_14">Erreur</h5>
+<ul>
+<li>Code : <strong>401</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}
+</code></pre>
+<ul>
+<li>Code : <strong>422</strong></li>
+<li>Contenu :</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;title&quot;: [
+            &quot;The title field is required.&quot;
+        ],
+        &quot;body&quot;: [
+            &quot;The body field is required.&quot;
+        ]
+    }
+}
+</code></pre>
+<h3 id="afficher-les-posts">afficher les posts</h3>
+<p>Affiche tout les posts</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>GET</td>
+<td>/api/post</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_14">Paramètres</h4>
+<p>Aucun</p>
+<h4 id="reponses_4">Réponses</h4>
+<h5 id="succes_14">succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+</ul>
+<h2 id="notifications">Notifications</h2>
+<h3 id="subscribe">subscribe</h3>
+<p>Permet de liéer un expoToken à son utilisateur </p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>GET</td>
+<td>/api/exponent/devices/subscribe</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_15">Paramètres</h4>
+<p>Aucun</p>
+<h4 id="reponses_5">Réponses</h4>
+<h5 id="succes_15">succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+</ul>
+<h3 id="unsubscribe">unsubscribe</h3>
+<p>Permet de retirer un expoToken à l'utilisateur</p>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>GET</td>
+<td>/api/exponent/devices/unsubscribe</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parametres_16">Paramètres</h4>
+<p>Aucun</p>
+<h4 id="reponses_6">Réponses</h4>
+<h5 id="succes_16">succès</h5>
+<ul>
+<li>Code : <strong>200</strong></li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

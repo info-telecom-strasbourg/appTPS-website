@@ -11,6 +11,8 @@ class Order extends Model
 
     protected $connection = 'bde_bdd';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'product_id',
         'member_id',
