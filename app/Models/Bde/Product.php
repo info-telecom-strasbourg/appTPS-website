@@ -11,6 +11,8 @@ class Product extends Model
 
     protected $connection = 'bde_bdd';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
         'title',

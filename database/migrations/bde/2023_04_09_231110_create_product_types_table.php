@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::connection('bde_bdd')->create('product_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50)->unique();
+            $table->string('type', 50)->unique();
         });
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::connection('bde_bdd')->dropIfExists('product_types');
     }
 };

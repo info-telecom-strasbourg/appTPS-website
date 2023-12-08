@@ -11,6 +11,8 @@ class OrganizationMember extends Model
 
     protected $connection = 'bde_bdd';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'member_id',
         'organization_id',
