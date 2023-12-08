@@ -22,7 +22,7 @@ class PostMediaFactory extends Factory
     {
 
         return [
-            'media' => $this->faker->imageUrl(),
+            'media_url' => $this->faker->imageUrl(),
             'post_id' => Post::inRandomOrder()->first()->id,
             'media_type_id' => MediaType::inRandomOrder()->first()->id,
         ];
