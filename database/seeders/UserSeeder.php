@@ -21,14 +21,13 @@ class UserSeeder extends Seeder
             'email' => 'bergaminienzo62@gmail.com',
             'phone' => '0606060606',
             'password' => Hash::make(hash('sha256', 'Azertyuiop1#'.'bergaminienzo62@gmail.com')),
-            'avatar' => 'default.png',
             'bde_id' => 1,
             'promotion_year' => 2024,
             'sector_id' => 1,
             'email_verified_at' => now()
         ]);
 
-        User::factory(10)->create();
+        User::factory(5)->create();
 
         User::all()->each(function ($user) {
             $user->tokens()->create([
