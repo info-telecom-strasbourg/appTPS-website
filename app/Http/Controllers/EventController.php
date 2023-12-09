@@ -98,10 +98,10 @@ class EventController extends Controller
                 'id' => $event->user->id,
                 'name' => $event->user->getFullName(),
                 'short_name' => null,
-                'logo_url' => $event->user->getAvatarPath()
+                'logo_url' => $event->user->avatar->path
                 ]
             ]
-        ], 201);
+        ], 201)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 
 
@@ -147,7 +147,7 @@ class EventController extends Controller
                         'id' => $event->user->id,
                         'name' => $event->user->getFullName(),
                         'short_name' => null,
-                        'logo_url' => $event->user->getAvatarPath()
+                        'logo_url' => $event->user->avatar->path
                     ]
                 ];
             }),
@@ -164,7 +164,7 @@ class EventController extends Controller
                 'from' => $events->firstItem(),
                 'to' => $events->lastItem()
             ]
-        ], 200);
+        ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 
     /**
@@ -202,9 +202,9 @@ class EventController extends Controller
                     'id' => $event->user->id,
                     'name' => $event->user->getFullName(),
                     'short_name' => null,
-                    'logo_url' => $event->user->getAvatarPath()
+                    'logo_url' => $event->user->avatar->path
                 ]
             ]
-        ], 200);
+        ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 }
