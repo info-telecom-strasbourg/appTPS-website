@@ -40,7 +40,7 @@ class UserAvatarController extends Controller
 
         $avatar = $request->file('avatar');
 
-        $name = $user->id . '_' . time() . '_' . $user->getFullName() . '_' . random_int(0, 1000) . '.' . $avatar->getClientOriginalExtension();
+        $name = $user->id . '_' . time() . '_' . $user->last_name . '_' . $user->first_name . '_' . random_int(0, 1000) . '.' . $avatar->getClientOriginalExtension();
 
         $stored_path = $avatar->storeAs('public/images/avatars', $name);
 

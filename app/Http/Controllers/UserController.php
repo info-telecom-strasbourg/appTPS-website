@@ -86,7 +86,7 @@ class UserController extends Controller
             'sector' => $user->sector ? $user->sector->short_name : null,
             'birth_date' => $user->birth_date
         ]
-        ], 200)->setEncodingOptions(JSON_PRETTY_PRINT);
+        ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 
     public function delete(Request $request){
