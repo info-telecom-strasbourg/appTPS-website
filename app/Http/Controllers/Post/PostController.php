@@ -102,7 +102,7 @@ class PostController extends Controller
                         'id' => $post->user->id,
                         'name' => $post->user->getFullName(),
                         'short_name' => null,
-                        'logo_url' => $post->user->getAvatarPath()
+                        'logo_url' => $post->user->avatar->path
                     ],
                     'medias' => !$post->medias->isEmpty() ? $post->medias->map(function ($media) {
                         return [
@@ -125,7 +125,7 @@ class PostController extends Controller
                 'from' => $posts->firstItem(),
                 'to' => $posts->lastItem()
             ]
-        ], 200);
+        ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 
     /*
@@ -160,7 +160,7 @@ class PostController extends Controller
                     'id' => $post->user->id,
                     'name' => $post->user->getFullName(),
                     'short_name' => null,
-                    'logo_url' => $post->user->getAvatarPath()
+                    'logo_url' => $post->user->avatar->path
                 ],
                 'medias' => !$post->medias->isEmpty() ? $post->medias->map(function ($media) {
                     return [
@@ -169,6 +169,6 @@ class PostController extends Controller
                     ];
                 }) : null
             ]
-        ], 200);
+        ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 }
