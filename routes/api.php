@@ -3,7 +3,7 @@
 use App\Http\Controllers\CrousController;
 use App\Http\Controllers\LinkCasController;
 use App\Http\Controllers\SectorController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\UserAvatarController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\FouailleController;
@@ -103,8 +103,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::put('/', [UserController::class, 'update'])
                 ->name('user.update');
 
-            Route::post('/avatar', [UserController::class, 'update'])
-                ->name('user.avatar.update');
+            Route::post('/avatar', [UserAvatarController::class, 'store'])
+                ->name('user.avatar.store');
 
             Route::delete('/', [UserController::class, 'delete'])
                 ->name('user.delete');

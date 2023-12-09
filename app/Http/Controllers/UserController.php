@@ -40,11 +40,6 @@ class UserController extends Controller
                 'integer',
                 'min:2000',
                 'max:3000'
-            ],
-            'avatar' => [
-                'image',
-                'mimes:jpeg,png,jpg',
-                'max:2048'
             ]
         ]);
 
@@ -57,32 +52,12 @@ class UserController extends Controller
 
         $user = $request->user();
 
-        if($request->avatar){
-            $avatar_file = $request->file('avatar');
-
-            if (!is_null(!$user->avatar)
-                && !(strcmp($user->avatar, "default.png") == 0)
-                && File::exists(storage_path('app/public/images/avatars/').$user->avatar)){
-                File::delete(storage_path('app/public/images/avatars/').$user->avatar);
-            }
-
-            $avatar_file_name = time() . "_" . $user->first_name . "_" . $user->last_name . "." . $avatar_file->extension();
-
-            $avatar_file->move(storage_path('app/public/images/avatars'), $avatar_file_name);
-        }else{
-            $avatar_file_name = $user->avatar;
-        }
-
-        $validate_data = $validation->getData();
-
-        $validate_data['avatar'] = $avatar_file_name;
-
-        $user->update($validate_data);
+        $user->update($validation->validated());
 
         return response()->json([
             'message' => 'User updated successfully',
             'data' => $this->getMe($request)->getData()->data
-            ], 200);
+        ], 200);
     }
 
 
@@ -103,14 +78,14 @@ class UserController extends Controller
             'email' => $user->email,
             'phone' => $user->phone,
             'bde_id' => $user->bde_id,
-            'avatar_url' => $user->getAvatarPath(),
+            'avatar_url' => $user->avatar->path,
             'promotion_year' => $user->promotion_year,
             'created_at' => $user->created_at,
             'updated_at' => $user->updated_at,
             'email_verified_at' => $user->email_verified_at,
             'sector' => $user->sector ? $user->sector->short_name : null,
             'birth_date' => $user->birth_date
-            ]
+        ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT);
     }
 
