@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/users/update/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Update user - InsidePSBS API</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Update user";
+        var mkdocs_page_input_path = "users/update.md";
+        var mkdocs_page_url = "/users/update/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> InsidePSBS API
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Authentication</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/register/">Register</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/login/">Login</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/logout/">Logout</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/forgot-password/">Forgot password</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/verify-email/">Verify email</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/check/">Check</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/availability/">Availability</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Users</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../get/">Get user</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Update user</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#requete">Requête</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#parametres">Paramètres</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reponse">Réponse</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#succes">Succès</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#erreur">Erreur</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../delete/">Delete user</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../avatar/">Avatar</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../new-password/">New Password</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Fouaille</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../fouaille/fouaille/">fouaille</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Events</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../events/">Index events</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../events/show/">Show event</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../events/create/">Create event</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Posts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../posts/">Index posts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../posts/show/">Show post</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../posts/create/">Create post</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Other</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/sectors/">sectors</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">InsidePSBS API</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>Users &raquo;</li>
+      <li class="breadcrumb-item active">Update user</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="update-user">Update user</h1>
+<p>Met à jour les informations de l'utilisateur connecté (grace au token).</p>
+<h2 id="requete">Requête</h2>
+<table>
+<thead>
+<tr>
+<th>protocole</th>
+<th>methode</th>
+<th>url</th>
+<th>token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https</td>
+<td>PUT</td>
+<td>/api/user</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<h2 id="parametres">Paramètres</h2>
+<table>
+<thead>
+<tr>
+<th>nom</th>
+<th>type</th>
+<th>contraintes</th>
+<th>obligatoire</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_name</td>
+<td>string</td>
+<td>min:3, max:255</td>
+<td>non</td>
+<td>Nom d'utilisateur de l'utilisateur</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>max:255, regex:/^[0-9]{10,}$/</td>
+<td>non</td>
+<td>Numéro de téléphone de l'utilisateur</td>
+</tr>
+<tr>
+<td>sector</td>
+<td>integer</td>
+<td></td>
+<td>non</td>
+<td>Identifiant du secteur de l'utilisateur</td>
+</tr>
+<tr>
+<td>promotion_year</td>
+<td>string</td>
+<td></td>
+<td>non</td>
+<td>Année de promotion de l'utilisateur</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reponse">Réponse</h2>
+<h3 id="succes">Succès</h3>
+<p><code>status: 200</code></p>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;User updated successfully&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;last_name&quot;: &quot;bergamini&quot;,
+        &quot;first_name&quot;: &quot;enzo&quot;,
+        &quot;user_name&quot;: &quot;zozoLeZozo&quot;,
+        &quot;email&quot;: &quot;bergaminienzo62@gmail.com&quot;,
+        &quot;phone&quot;: &quot;0606060606&quot;,
+        &quot;bde_id&quot;: 1,
+        &quot;avatar_url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/avatars/default.png&quot;,
+        &quot;promotion_year&quot;: &quot;2024&quot;,
+        &quot;created_at&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;,
+        &quot;email_verified_at&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;,
+        &quot;sector&quot;: &quot;AUTRE&quot;
+    }
+}
+</code></pre>
+<h3 id="erreur">Erreur</h3>
+<p><code>status: 401</code></p>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}
+</code></pre>
+<p><code>status: 422</code></p>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Validation failed&quot;,
+    &quot;errors&quot;: {
+        &quot;user_name&quot;: [&quot;The user name must be at least 3 characters.&quot;],
+        &quot;phone&quot;: [&quot;The phone format is invalid.&quot;],
+        &quot;sector&quot;: [&quot;The sector must be an integer.&quot;],
+        &quot;promotion_year&quot;: [&quot;The promotion year must be a string.&quot;],
+        &quot;avatar&quot;: [&quot;The avatar must be an image.&quot;]
+    }
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../get/" class="btn btn-neutral float-left" title="Get user"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../delete/" class="btn btn-neutral float-right" title="Delete user">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../get/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../delete/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
