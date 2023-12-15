@@ -1,2 +1,32 @@
-site_name: InsidePSBS Documentation backend
+site_name: InsidePSBS API
+site_url: https://app.its-tps.fr
+nav:
+  - Home: index.md
+  - Authentication:
+      - Register: authentification/register.md
+      - Login: authentification/login.md
+      - Logout: authentification/logout.md
+      - Forgot password: authentification/forgot-password.md
+      - Verify email: authentification/verify-email.md
+      - Check: authentification/check.md
+      - Availability: authentification/availability.md
+  - Users:
+      - Get user: users/get.md
+      - Update user: users/update.md
+      - Delete user: users/delete.md
+      - Avatar: users/avatar.md
+      - New Password: users/new-password.md
+  - Fouaille:
+      - fouaille: fouaille/fouaille.md
+  - Events:
+      - Index events: events/index.md
+      - Show event: events/show.md
+      - Create event: events/create.md
+  - Posts:
+      - Index posts: posts/index.md
+      - Show post: posts/show.md
+      - Create post: posts/create.md
+  - Other:
+      - sectors: others/sectors.md
 
+theme: readthedocs
