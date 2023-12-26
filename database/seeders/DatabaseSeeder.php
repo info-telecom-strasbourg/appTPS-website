@@ -34,8 +34,6 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
         ]);
 
-        Order::factory(200)->create();
-
         Organization::factory(10)->create();
 
         OrganizationMember::factory(50)->create();
@@ -50,6 +48,8 @@ class DatabaseSeeder extends Seeder
             ReactionTypeSeeder::class,
             GroupSeeder::class
         ]);
+
+        Order::factory(200)->create();
 
         Event::factory(10)->create();
 
