@@ -28,5 +28,6 @@ nav:
       - Create post: posts/create.md
   - Other:
       - sectors: others/sectors.md
+      - cgu: others/cgu.md
 
 theme: readthedocs
