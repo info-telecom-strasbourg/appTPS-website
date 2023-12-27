@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/others/cgu/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/contents/create/" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>cgu - InsidePSBS API</title>
+    <title>Create - InsidePSBS API</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "cgu";
-        var mkdocs_page_input_path = "others/cgu.md";
-        var mkdocs_page_url = "/others/cgu/";
+        var mkdocs_page_name = "Create";
+        var mkdocs_page_input_path = "contents/create.md";
+        var mkdocs_page_url = "/contents/create/";
       </script>
     
     <!--[if lt IE 9]>
@@ -78,39 +78,44 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../fouaille/fouaille/">fouaille</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Events</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../events/">Index events</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../events/show/">Show event</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../events/create/">Create event</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Posts</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../posts/">Index posts</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../posts/show/">Show post</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../posts/create/">Create post</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Other</span></p>
+              <p class="caption"><span class="caption-text">Contents</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../sectors/">sectors</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../store/">Store</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">cgu</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Create</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#requete">Requête</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#parametres">Paramètres</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#reponses">Réponses</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#succes">Succès</a>
+    <li class="toctree-l3"><a class="reference internal" href="#succes">succès</a>
     </li>
         </ul>
     </li>
     </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Events</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../events/">Index events</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../events/show/">Show event</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Posts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../posts/">Index posts</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../posts/show/">Show post</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Other</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/sectors/">sectors</a>
                   </li>
               </ul>
       </div>
@@ -127,8 +132,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Other &raquo;</li>
-      <li class="breadcrumb-item active">cgu</li>
+          <li>Contents &raquo;</li>
+      <li class="breadcrumb-item active">Create</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -137,8 +142,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="liste-les-cgu">Liste les cgu</h1>
-<p>Permet d'afficher les cgu</p>
+                <h1 id="aquisition-des-donnees-pour-la-creation-dun-contenue">Aquisition des données pour la creation d'un contenue</h1>
+<p>on peut avoir les categories et les organization disponible pour l'utilisateur</p>
 <h2 id="requete">Requête</h2>
 <table>
 <thead>
@@ -153,42 +158,53 @@
 <tr>
 <td>https</td>
 <td>GET</td>
-<td>/api/cgu</td>
-<td>non</td>
+<td>/api/contents/create</td>
+<td>oui</td>
 </tr>
 </tbody>
 </table>
+<h2 id="parametres">Paramètres</h2>
+<p>Aucun</p>
 <h2 id="reponses">Réponses</h2>
-<h3 id="succes">Succès</h3>
-<p><code>status : 200</code></p>
-<pre><code class="language-json">[
-   {
-    &quot;title&quot;: &quot;CGU pour l'application InsidePSBS:&quot;,
-    &quot;sections&quot;: [
-        {
-            &quot;title&quot;: &quot;Politique de confidentialité pour l'application InsidePSBS:&quot;,
-            &quot;content&quot;: &quot;Lorsque vous utilisez l'application InsidePSBS, nous collectons certaines informations vous concernant, notamment votre nom, prénom, identifiants relatifs à votre école (id, e-mail), vos photos de profil, vos appartenances à un club ou une association de l'école, ainsi que les informations nécessaires au fonctionnement de l'application (identifiants de notification). Ces informations sont nécessaires pour assurer le bon fonctionnement de l'application et pour faciliter la communication entre les utilisateurs. Elles ne seront jamais vendues à des tiers. Nous prenons la sécurité et la confidentialité de vos données très au sérieux. Nous avons mis en place des mesures de sécurité appropriées pour protéger vos données contre tout accès non autorisé, toute utilisation abusive, toute altération ou toute perte de données. Toutes les données sensibles sont chiffrées pour empêcher tout accès non autorisé. Les données sont stockées sur des serveurs sécurisés, qui sont régulièrement mis à jour et surveillés pour détecter toute violation de sécurité.&quot;
-        },
-        {
-            &quot;title&quot;: &quot;Sécurité et confidentialité:&quot;,
-            &quot;content&quot;: &quot;Nous prenons la sécurité et la confidentialité de vos données très au sérieux. Nous avons mis en place des mesures de sécurité appropriées pour protéger vos données contre tout accès non autorisé, toute utilisation abusive, toute altération ou toute perte de données. Toutes les données sensibles sont chiffrées pour empêcher tout accès non autorisé. Les données sont stockées sur des serveurs sécurisés, qui sont régulièrement mis à jour et surveillés pour détecter toute violation de sécurité.&quot;
-        },
-        {
-            &quot;title&quot;: &quot;Vos droits:&quot;,
-            &quot;content&quot;: &quot;Vous avez le droit de consulter les données que nous avons collectées vous concernant et de les supprimer si vous le souhaitez. Pour exercer ces droits, veuillez contacter un administrateur de l'application.&quot;
-        },
-        {
-            &quot;title&quot;: &quot;Modifications de la politique de confidentialité:&quot;,
-            &quot;content&quot;: &quot;Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment, en publiant une version mise à jour sur notre site web ou sur l'application. Il est de votre responsabilité de consulter régulièrement cette politique de confidentialité pour prendre connaissance des éventuelles modifications.&quot;
-        }
-    ]
-]
+<h3 id="succes">succès</h3>
+<p><code>status: 200</code></p>
+<pre><code class="language-json">{
+    &quot;data&quot;: {
+        &quot;oragizations&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Lagardesss&quot;,
+                &quot;role&quot;: &quot;président&quot;
+            },
+            {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Blot S.A.R.L.&quot;,
+                &quot;role&quot;: &quot;secrétaire&quot;
+            }
+        ],
+        &quot;categories&quot;: [
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Activité&quot;
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Poly&quot;
+            },
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Soirée&quot;
+            }
+        ]
+    }
+}
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../sectors/" class="btn btn-neutral float-left" title="sectors"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../store/" class="btn btn-neutral float-left" title="Store"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../events/" class="btn btn-neutral float-right" title="Index events">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -211,8 +227,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../sectors/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../store/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../events/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
