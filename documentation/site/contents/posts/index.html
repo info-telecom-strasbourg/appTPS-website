@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/events/create/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/contents/posts/" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Create event - InsidePSBS API</title>
+    <title>Index posts - InsidePSBS API</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Create event";
-        var mkdocs_page_input_path = "events/create.md";
-        var mkdocs_page_url = "/events/create/";
+        var mkdocs_page_name = "Index posts";
+        var mkdocs_page_input_path = "contents/posts/index.md";
+        var mkdocs_page_url = "/contents/posts/";
       </script>
     
     <!--[if lt IE 9]>
@@ -78,36 +78,39 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../fouaille/fouaille/">fouaille</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Events</span></p>
+              <p class="caption"><span class="caption-text">Contents</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../">Index events</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../store/">Store</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../show/">Show event</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../create/">Create</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Create event</a>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Events</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../events/">Index events</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../events/show/">Show event</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Posts</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#requete">Requête</a>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Index posts</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#requete">Requête</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#parametres">Paramètres</a>
+    <li class="toctree-l3"><a class="reference internal" href="#parametres">Paramètres</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#reponses">Réponses</a>
+    <li class="toctree-l3"><a class="reference internal" href="#reponses">Réponses</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#succes">Succès</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#erreur">Erreur</a>
+    <li class="toctree-l4"><a class="reference internal" href="#succes">succès</a>
     </li>
         </ul>
     </li>
     </ul>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Posts</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../posts/">Index posts</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../posts/show/">Show post</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../posts/create/">Create post</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="show/">Show post</a>
+                </li>
+    </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Other</span></p>
@@ -131,8 +134,9 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Events &raquo;</li>
-      <li class="breadcrumb-item active">Create event</li>
+          <li>Contents &raquo;</li>
+          <li>Posts &raquo;</li>
+      <li class="breadcrumb-item active">Index posts</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -141,8 +145,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="creer-un-evenement">Créer un événement</h1>
-<p>Creation d'un nouvel événement</p>
+                <h1 id="afficher-les-posts">afficher les posts</h1>
+<p>Affiche tout les posts</p>
 <h2 id="requete">Requête</h2>
 <table>
 <thead>
@@ -156,113 +160,23 @@
 <tbody>
 <tr>
 <td>https</td>
-<td>POST</td>
-<td>/api/event</td>
+<td>GET</td>
+<td>/api/post</td>
 <td>oui</td>
 </tr>
 </tbody>
 </table>
 <h2 id="parametres">Paramètres</h2>
-<table>
-<thead>
-<tr>
-<th>nom</th>
-<th>type</th>
-<th>contraintes</th>
-<th>description</th>
-<th>obligatoire</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>max:255</td>
-<td>Titre de l'événement</td>
-<td>oui</td>
-</tr>
-<tr>
-<td>description</td>
-<td>string</td>
-<td>max:10000</td>
-<td>Description de l'événement</td>
-<td>non</td>
-</tr>
-<tr>
-<td>start_at</td>
-<td>datetime</td>
-<td>date</td>
-<td>Date de début de l'événement</td>
-<td>oui</td>
-</tr>
-<tr>
-<td>end_at</td>
-<td>datetime</td>
-<td>date</td>
-<td>Date de fin de l'événement</td>
-<td>oui</td>
-</tr>
-<tr>
-<td>location</td>
-<td>string</td>
-<td>max:255</td>
-<td>Lieu de l'événement</td>
-<td>non</td>
-</tr>
-<tr>
-<td>color</td>
-<td>string</td>
-<td>max:7|min:7</td>
-<td>Couleur de l'événement</td>
-<td>non</td>
-</tr>
-<tr>
-<td>organization_id</td>
-<td>integer</td>
-<td>exists</td>
-<td>ID de l'organisation</td>
-<td>non</td>
-</tr>
-</tbody>
-</table>
+<p>Aucun</p>
 <h2 id="reponses">Réponses</h2>
-<h3 id="succes">Succès</h3>
-<p><code>status: 201</code></p>
-<pre><code class="language-json">{
-    &quot;message&quot;: &quot;Event created&quot;,
-    &quot;data&quot;: {
-        &quot;title&quot;: &quot;Event 1&quot;,
-        &quot;description&quot;: &quot;Description event 1&quot;,
-        &quot;start_at&quot;: &quot;2021-03-01 00:00:00&quot;,
-        &quot;end_at&quot;: &quot;2021-03-01 00:00:00&quot;,
-        &quot;location&quot;: &quot;Location event 1&quot;,
-        &quot;color&quot;: &quot;#000000&quot;,
-        &quot;author&quot;: {
-            &quot;is_organization&quot;: true,
-            &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;Organization 1&quot;,
-            &quot;short_name&quot;: &quot;Org 1&quot;,
-            &quot;logo_url&quot;: &quot;http://localhost:8000/storage/organizations/1/logo.png&quot;
-        }
-    }
-}
-</code></pre>
-<h3 id="erreur">Erreur</h3>
-<p><code>status: 422</code></p>
-<pre><code class="language-json">{
-    &quot;message&quot;: &quot;Validation failed&quot;,
-    &quot;errors&quot;: {
-        &quot;title&quot;: [&quot;The title field is required.&quot;],
-        &quot;start_at&quot;: [&quot;The start at field is required.&quot;]
-    }
-}
-</code></pre>
+<h3 id="succes">succès</h3>
+<p><code>status: 200</code></p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../show/" class="btn btn-neutral float-left" title="Show event"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../../posts/" class="btn btn-neutral float-right" title="Index posts">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../events/show/" class="btn btn-neutral float-left" title="Show event"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="show/" class="btn btn-neutral float-right" title="Show post">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -285,10 +199,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../show/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../events/show/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../../posts/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="show/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

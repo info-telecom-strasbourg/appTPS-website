@@ -1,71 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Post;
+namespace App\Http\Controllers\Content;
 
-use App\Models\PostComment;
-use App\Notifications\ActivateNotification;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 
 class PostController extends Controller
 {
-
-    /*
-    * Create a new post
-    *
-    * @param Request $request
-    * @return \Illuminate\Http\JsonResponse
-    */
-    public function store(Request $request) : \Illuminate\Http\JsonResponse {
-
-        $validation = Validator::make($request->all(), [
-            'title' => [
-                'required',
-                'min:3',
-                'max:50'
-            ],
-            'body' => [
-                'required',
-                'min:3',
-                'max:4000000000'
-            ],
-            'organization_id' => [
-                'integer',
-                'exists:organizations,id'
-            ],
-            'event_id' => [
-                'integer',
-                'exists:events,id'
-            ],
-            'color' => [
-                'regex:/^#([a-f0-9]{6}|[a-f0-9]{3})$/i',
-                'required'
-            ]
-        ]);
-
-        if ($validation->fails()) {
-            return response()->json([
-                'message' => 'Validation failed',
-                'errors' => $validation->errors()
-            ], 422);
-        }
-
-        return response()->json([
-            'message' => 'Post created',
-            'data' => Post::create([
-                'title' => $request->title,
-                'body' => $request->body,
-                'organization_id' => $request->organization_id,
-                'event_id' => $request->event_id,
-                'user_id' => $request->user()->id,
-                'color' => $request->color
-            ])
-        ], 201);
-    }
 
     /*
     * Show all posts in the database
@@ -104,12 +48,6 @@ class PostController extends Controller
                         'short_name' => null,
                         'logo_url' => $post->user->avatar->path
                     ],
-                    'medias' => !$post->medias->isEmpty() ? $post->medias->map(function ($media) {
-                        return [
-                            'type' => $media->mediaType->type,
-                            'url' => $media->media
-                        ];
-                    }) : null
                 ];
             }),
             'meta' => [
@@ -162,12 +100,6 @@ class PostController extends Controller
                     'short_name' => null,
                     'logo_url' => $post->user->avatar->path
                 ],
-                'medias' => !$post->medias->isEmpty() ? $post->medias->map(function ($media) {
-                    return [
-                        'type' => $media->mediaType->type,
-                        'url' => $media->media
-                    ];
-                }) : null
             ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }

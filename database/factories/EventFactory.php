@@ -30,7 +30,7 @@ class EventFactory extends Factory
 
         return [
             'title' => $this->faker->sentence(),
-            'description' => $this->faker->paragraph(),
+            'body' => $this->faker->paragraph(),
             'start_at' => $start_date,
             'end_at' => $this->faker->dateTimeBetween($start_date, $start_date->format('Y-m-d H:i:s').' +1 day'),
             'color' => $this->faker->hexColor(),

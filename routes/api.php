@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\FouailleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\OrganizationController;
-use App\Http\Controllers\Post\PostController;
 
 use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -20,6 +17,9 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Content\ContentController;
+use App\Http\Controllers\Content\EventController;
+use App\Http\Controllers\Content\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -145,6 +145,12 @@ Route::get('crous', [CrousController::class, 'index'])
             Route::get('{id}', [PostController::class, 'show'])
             ->name('post.show');
         });
+
+        Route::get('contents/create', [ContentController::class, 'create'])
+            ->name('contents.create');
+
+        Route::post('contents', [ContentController::class, 'store'])
+            ->name('contents.store');
 
         /** =============== CTS =============== */
 
