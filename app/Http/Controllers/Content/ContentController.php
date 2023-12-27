@@ -26,6 +26,7 @@ class ContentController extends Controller
                 'min:3'
             ],
             'color' => [
+                'required',
                 'string'
             ],
             'organization_id' => [
