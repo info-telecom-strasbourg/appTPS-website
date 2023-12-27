@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Content\ContentController;
 use App\Http\Controllers\Content\EventController;
 use App\Http\Controllers\Content\PostController;
 use App\Http\Controllers\CrousController;
@@ -140,6 +141,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::get('{id}', [PostController::class, 'show'])
                 ->name('post.show');
         });
+
+        Route::get('contents/create', [ContentController::class, 'create'])
+            ->name('contents.create');
     });
 });
 

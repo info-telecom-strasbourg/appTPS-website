@@ -73,8 +73,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Reaction::class);
     }
 
-    public function organization_roles(){
-        return $this->hasMany(OrganizationMember::class, 'member_id');
+    public function organizations(){
+        return $this->belongsToMany(Organization::class, 'organization_members', 'member_id', 'organization_id')
+            ->withPivot('role');
     }
 
     public function avatar(){

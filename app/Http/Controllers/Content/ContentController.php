@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Content;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Post;
+use Illuminate\Support\Facades\Http;
 
 class ContentController extends Controller
 {
@@ -127,5 +128,25 @@ class ContentController extends Controller
         return response()->json([
             'message' => 'Nothing created'
         ], 400);
+    }
+
+    public function create(){
+        $user = request()->user();
+
+        if($user->organizations() == null) {
+            return response()->json([
+                'data' => []
+            ], 200);
+        }
+
+        return response()->json([
+            'data' => $user->organizations()->get()->map(function ($organization) {
+                return [
+                    'id' => $organization->id,
+                    'name' => $organization->name,
+                    'role' => $organization->pivot->role
+                ];
+            })
+        ], 200);
     }
 }
