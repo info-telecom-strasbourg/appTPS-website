@@ -1,23 +1,21 @@
 <?php
 
-use App\Http\Controllers\CrousController;
-use App\Http\Controllers\LinkCasController;
-use App\Http\Controllers\SectorController;
-use App\Http\Controllers\UserAvatarController;
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\FouailleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\OrganizationController;
-use App\Http\Controllers\Post\PostController;
-
 use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Content\EventController;
+use App\Http\Controllers\Content\PostController;
+use App\Http\Controllers\CrousController;
+use App\Http\Controllers\FouailleController;
+use App\Http\Controllers\LinkCasController;
+use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\SectorController;
+use App\Http\Controllers\UserAvatarController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Post;
+namespace App\Http\Controllers\Content;
 
-use App\Models\PostComment;
-use App\Notifications\ActivateNotification;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 
 class PostController extends Controller

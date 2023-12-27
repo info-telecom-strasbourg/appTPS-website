@@ -19,13 +19,13 @@ return new class extends Migration
             $table->dateTime('start_at')->nullable();
             $table->dateTime('end_at')->nullable();
             $table->string('title');
-            $table->longText('description')->nullable();
+            $table->longText('body')->nullable();
             $table->string('color');
             $table->string('location')->nullable();
             $table->timestamps();
             $table ->softDeletes();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->nullOnDelete();
         });
     }
