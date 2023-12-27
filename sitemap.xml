@@ -96,6 +96,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://app.its-tps.fr/others/cgu/</loc>
+         <lastmod>2023-12-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://app.its-tps.fr/others/sectors/</loc>
          <lastmod>2023-12-27</lastmod>
          <changefreq>daily</changefreq>
