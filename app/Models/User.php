@@ -74,8 +74,16 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function organizations(){
-        return $this->belongsToMany(Organization::class, 'organization_members', 'member_id', 'organization_id')
+        return $this->belongsToMany(Organization::class,
+                'organization_members',
+                'member_id',
+                'organization_id',
+                'bde_id')
             ->withPivot('role');
+    }
+
+    public function isInOrganization($organization_id){
+        return $this->organizations()->where('organization_id', $organization_id)->exists();
     }
 
     public function avatar(){

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Event;
 use App\Models\Post;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ContentController extends Controller
 {
@@ -27,15 +29,16 @@ class ContentController extends Controller
                 'string'
             ],
             'organization_id' => [
-                'integer',
-                'exists:organizations,id'
+                'integer'
+            ],
+            'category_id' => [
+                'required',
+                'integer'
             ],
             'start_at' => [
-                'required',
                 'date'
             ],
             'end_at' => [
-                'required',
                 'date'
             ],
             'location' => [
@@ -58,8 +61,26 @@ class ContentController extends Controller
             ], 422);
         }
 
+
+        // check if the user is in the organization
+        if(!$request->user()->isInOrganization($request->organization_id)){
+            return response()->json([
+                'message' => 'You are not in the organization'
+            ], 403);
+        }
+
         // Create only a post
-        if($request->create_event == 0 && $request->create_post == 1){
+        if($request->create_event == null && $request->create_post == 1){
+
+            if ($request->body == null) {
+                return response()->json([
+                    'message' => 'Validation failed',
+                    'error' => [
+                        'body' => 'The body field is not allowed when creating a post'
+                    ]
+                ], 422);
+            }
+
             $post = Post::create([
                 'title' => $request->title,
                 'body' => $request->body,
@@ -75,7 +96,7 @@ class ContentController extends Controller
         }
 
         // Create only an event
-        if($request->create_event == 1 && $request->create_post == 0){
+        if($request->create_event == 1 && $request->create_post == null){
             $event = Event::create([
                 'title' => $request->title,
                 'body' => $request->body,
@@ -94,7 +115,6 @@ class ContentController extends Controller
         }
 
         // Create both an post attached to an event
-
         if($request->create_event == 1 && $request->create_post == 1){
             $event = Event::create([
                 'title' => $request->title,
@@ -133,20 +153,22 @@ class ContentController extends Controller
     public function create(){
         $user = request()->user();
 
-        if($user->organizations() == null) {
-            return response()->json([
-                'data' => []
-            ], 200);
-        }
-
         return response()->json([
-            'data' => $user->organizations()->get()->map(function ($organization) {
-                return [
-                    'id' => $organization->id,
-                    'name' => $organization->name,
-                    'role' => $organization->pivot->role
-                ];
-            })
+            'data' => [
+                'organizations' => $user->organizations()->get()->map(function ($organization) {
+                    return [
+                        'id' => $organization->id,
+                        'name' => $organization->name,
+                        'role' => $organization->pivot->role
+                    ];
+                }),
+                'categories' => Category::all()->map(function ($category) {
+                    return [
+                        'id' => $category->id,
+                        'name' => $category->name
+                    ];
+                })
+            ]
         ], 200);
     }
 }

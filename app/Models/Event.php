@@ -20,6 +20,7 @@ class Event extends Model
         'title',
         'body',
         'location',
+        'color'
     ];
 
     protected $with = ['user'];

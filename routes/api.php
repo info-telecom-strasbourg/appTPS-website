@@ -144,6 +144,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::get('contents/create', [ContentController::class, 'create'])
             ->name('contents.create');
+
+        Route::post('contents', [ContentController::class, 'store'])
+            ->name('contents.store');
     });
 });
 
