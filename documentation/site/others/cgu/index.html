@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/authentification/login/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/others/cgu/" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Login - InsidePSBS API</title>
+    <title>cgu - InsidePSBS API</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Login";
-        var mkdocs_page_input_path = "authentification/login.md";
-        var mkdocs_page_url = "/authentification/login/";
+        var mkdocs_page_name = "cgu";
+        var mkdocs_page_input_path = "others/cgu.md";
+        var mkdocs_page_url = "/others/cgu/";
       </script>
     
     <!--[if lt IE 9]>
@@ -44,34 +44,20 @@
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">Authentication</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../register/">Register</a>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/register/">Register</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Login</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#requete">Requête</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#parametres">Paramètres</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#reponse">Réponse</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#succes">Succès</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#erreur">Erreur</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/login/">Login</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../logout/">Logout</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/logout/">Logout</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../forgot-password/">Forgot password</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/forgot-password/">Forgot password</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../verify-email/">Verify email</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/verify-email/">Verify email</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../check/">Check</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/check/">Check</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../availability/">Availability</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/availability/">Availability</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Users</span></p>
@@ -116,10 +102,20 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Other</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../others/sectors/">sectors</a>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../sectors/">sectors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../others/cgu/">cgu</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">cgu</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#requete">Requête</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reponses">Réponses</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#succes">Succès</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                   </li>
               </ul>
       </div>
@@ -136,8 +132,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Authentication &raquo;</li>
-      <li class="breadcrumb-item active">Login</li>
+          <li>Other &raquo;</li>
+      <li class="breadcrumb-item active">cgu</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -146,8 +142,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="connexion">Connexion</h1>
-<p>Connecte un utilisateur à l'application et renvoie un token d'authentification.</p>
+                <h1 id="liste-les-cgu">Liste les cgu</h1>
+<p>Permet d'afficher les cgu</p>
 <h2 id="requete">Requête</h2>
 <table>
 <thead>
@@ -161,71 +157,43 @@
 <tbody>
 <tr>
 <td>https</td>
-<td>POST</td>
-<td>/api/login</td>
-<td>no</td>
+<td>GET</td>
+<td>/api/cgu</td>
+<td>non</td>
 </tr>
 </tbody>
 </table>
-<h2 id="parametres">Paramètres</h2>
-<table>
-<thead>
-<tr>
-<th>nom</th>
-<th>type</th>
-<th>contraintes</th>
-<th>obligatoire</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>email</td>
-<td>string</td>
-<td>email, max:255, exists</td>
-<td>oui</td>
-<td>Email de l'utilisateur</td>
-</tr>
-<tr>
-<td>password</td>
-<td>string</td>
-<td>Vérification dans le front</td>
-<td>oui</td>
-<td>Mot de passe de l'utilisateur</td>
-</tr>
-</tbody>
-</table>
-<h2 id="reponse">Réponse</h2>
+<h2 id="reponses">Réponses</h2>
 <h3 id="succes">Succès</h3>
-<p><code>status: 200</code></p>
-<pre><code class="language-json">{
-    &quot;user&quot;: {
-        &quot;id&quot;: 1,
-        &quot;user_name&quot;: &quot;user_name&quot;,
-        &quot;last_name&quot;: &quot;last_name&quot;,
-        &quot;first_name&quot;: &quot;first_name&quot;,
-        &quot;sector&quot;: 1,
-        &quot;email&quot;: &quot;email&quot;,
-        &quot;phone&quot;: &quot;phone&quot;,
-        &quot;promotion_year&quot;: 2020,
-        &quot;created_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;
-    },
-    &quot;token&quot;: &quot;token&quot;
-}
-</code></pre>
-<h3 id="erreur">Erreur</h3>
-<p><code>status: 401</code></p>
-<pre><code class="language-json">{
-    &quot;message&quot;: [&quot;mauvais identifiants&quot;]
-}
+<p><code>status : 200</code></p>
+<pre><code class="language-json">[
+   {
+    &quot;title&quot;: &quot;CGU pour l'application InsidePSBS:&quot;,
+    &quot;sections&quot;: [
+        {
+            &quot;title&quot;: &quot;Politique de confidentialité pour l'application InsidePSBS:&quot;,
+            &quot;content&quot;: &quot;Lorsque vous utilisez l'application InsidePSBS, nous collectons certaines informations vous concernant, notamment votre nom, prénom, identifiants relatifs à votre école (id, e-mail), vos photos de profil, vos appartenances à un club ou une association de l'école, ainsi que les informations nécessaires au fonctionnement de l'application (identifiants de notification). Ces informations sont nécessaires pour assurer le bon fonctionnement de l'application et pour faciliter la communication entre les utilisateurs. Elles ne seront jamais vendues à des tiers. Nous prenons la sécurité et la confidentialité de vos données très au sérieux. Nous avons mis en place des mesures de sécurité appropriées pour protéger vos données contre tout accès non autorisé, toute utilisation abusive, toute altération ou toute perte de données. Toutes les données sensibles sont chiffrées pour empêcher tout accès non autorisé. Les données sont stockées sur des serveurs sécurisés, qui sont régulièrement mis à jour et surveillés pour détecter toute violation de sécurité.&quot;
+        },
+        {
+            &quot;title&quot;: &quot;Sécurité et confidentialité:&quot;,
+            &quot;content&quot;: &quot;Nous prenons la sécurité et la confidentialité de vos données très au sérieux. Nous avons mis en place des mesures de sécurité appropriées pour protéger vos données contre tout accès non autorisé, toute utilisation abusive, toute altération ou toute perte de données. Toutes les données sensibles sont chiffrées pour empêcher tout accès non autorisé. Les données sont stockées sur des serveurs sécurisés, qui sont régulièrement mis à jour et surveillés pour détecter toute violation de sécurité.&quot;
+        },
+        {
+            &quot;title&quot;: &quot;Vos droits:&quot;,
+            &quot;content&quot;: &quot;Vous avez le droit de consulter les données que nous avons collectées vous concernant et de les supprimer si vous le souhaitez. Pour exercer ces droits, veuillez contacter un administrateur de l'application.&quot;
+        },
+        {
+            &quot;title&quot;: &quot;Modifications de la politique de confidentialité:&quot;,
+            &quot;content&quot;: &quot;Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment, en publiant une version mise à jour sur notre site web ou sur l'application. Il est de votre responsabilité de consulter régulièrement cette politique de confidentialité pour prendre connaissance des éventuelles modifications.&quot;
+        }
+    ]
+]
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../register/" class="btn btn-neutral float-left" title="Register"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../logout/" class="btn btn-neutral float-right" title="Logout">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../sectors/" class="btn btn-neutral float-left" title="sectors"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -248,10 +216,8 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../register/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../sectors/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../logout/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

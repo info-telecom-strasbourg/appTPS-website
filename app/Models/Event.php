@@ -18,9 +18,9 @@ class Event extends Model
         'start_at',
         'end_at',
         'title',
-        'description',
-        'summary',
+        'body',
         'location',
+        'color'
     ];
 
     protected $with = ['user'];
