@@ -155,3 +155,6 @@ Route::get('crous', [CrousController::class, 'index'])
 
 Route::get('cas', [LinkCasController::class, 'index'])
     ->name('cas.index');
+
+Route::get('cas-link', [LinkCasController::class, 'link'])
+    ->name('cas.link');

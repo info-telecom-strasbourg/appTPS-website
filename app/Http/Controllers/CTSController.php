@@ -21,19 +21,6 @@ class CTSController extends Controller
             $response = $response->json();
 
             $tmp_json = json_decode(json_encode($response), true);
-            // // Remove unnecessary data
-            // unset($tmp_json['ServiceDelivery']['RequestMessageRef']);
-            // unset($tmp_json['ServiceDelivery']['ResponseTimestamp']);
-            // unset($tmp_json['ServiceDelivery']['StopMonitoringDelivery'][0]['version']);
-            // unset($tmp_json['ServiceDelivery']['StopMonitoringDelivery'][0]['ShortestPossibleCycle']);
-            // for ($i = 0; $i<count($tmp_json['ServiceDelivery']['StopMonitoringDelivery'][0]['MonitoredStopVisit']); $i++){ // Iterate through all the trams schedules
-            //     unset($tmp_json['ServiceDelivery']['StopMonitoringDelivery'][0]['MonitoredStopVisit'][$i]['MonitoringRef']);
-            //     unset($tmp_json['ServiceDelivery']['StopMonitoringDelivery'][0]['MonitoredStopVisit'][$i]['MonitoredVehicleJourney']['FramedVehicleJourneyRef']);
-            //     unset($tmp_json['ServiceDelivery']['StopMonitoringDelivery'][0]['MonitoredStopVisit'][$i]['MonitoredVehicleJourney']['PublishedLineName']);
-            //     unset($tmp_json['ServiceDelivery']['StopMonitoringDelivery'][0]['MonitoredStopVisit'][$i]['MonitoredVehicleJourney']['DestinationShortName']);
-            //     unset($tmp_json['ServiceDelivery']['StopMonitoringDelivery'][0]['MonitoredStopVisit'][$i]['MonitoredVehicleJourney']['Via']);
-            //     unset($tmp_json['ServiceDelivery']['StopMonitoringDelivery'][0]['MonitoredStopVisit'][$i]['MonitoredVehicleJourney']['MonitoredCall']['ExpectedArrivalTime']);
-            // }
             $keysToRemove = [
                 'ServiceDelivery.RequestMessageRef',
                 'ServiceDelivery.ResponseTimestamp',
