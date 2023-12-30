@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Content;
 
-use Illuminate\Http\Request;
-
-use App\Models\Bde\Organization;
-
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
-
+use App\Http\Controllers\Controller;
 use App\Models\Event;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
@@ -28,7 +24,7 @@ class EventController extends Controller
                 'max:30',
                 'min:3',
             ],
-            'description' => [
+            'body' => [
                 'string',
                 'max:4000000',
                 'min:3'

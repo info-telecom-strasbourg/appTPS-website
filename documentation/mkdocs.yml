@@ -18,15 +18,17 @@ nav:
       - New Password: users/new-password.md
   - Fouaille:
       - fouaille: fouaille/fouaille.md
-  - Events:
-      - Index events: events/index.md
-      - Show event: events/show.md
-      - Create event: events/create.md
-  - Posts:
-      - Index posts: posts/index.md
-      - Show post: posts/show.md
-      - Create post: posts/create.md
+  - Contents:
+      - Store : contents/store.md
+      - Create: contents/create.md
+      - Events:
+          - Index events: contents/events/index.md
+          - Show event: contents/events/show.md
+      - Posts:
+          - Index posts: contents/posts/index.md
+          - Show post: contents/posts/show.md
   - Other:
       - sectors: others/sectors.md
+      - cgu: others/cgu.md
 
 theme: readthedocs

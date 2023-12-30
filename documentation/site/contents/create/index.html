@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/authentification/login/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/contents/create/" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Login - InsidePSBS API</title>
+    <title>Create - InsidePSBS API</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Login";
-        var mkdocs_page_input_path = "authentification/login.md";
-        var mkdocs_page_url = "/authentification/login/";
+        var mkdocs_page_name = "Create";
+        var mkdocs_page_input_path = "contents/create.md";
+        var mkdocs_page_url = "/contents/create/";
       </script>
     
     <!--[if lt IE 9]>
@@ -44,34 +44,20 @@
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">Authentication</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../register/">Register</a>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/register/">Register</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Login</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#requete">Requête</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#parametres">Paramètres</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#reponse">Réponse</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#succes">Succès</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#erreur">Erreur</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/login/">Login</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../logout/">Logout</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/logout/">Logout</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../forgot-password/">Forgot password</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/forgot-password/">Forgot password</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../verify-email/">Verify email</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/verify-email/">Verify email</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../check/">Check</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/check/">Check</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../availability/">Availability</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../authentification/availability/">Availability</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Users</span></p>
@@ -93,24 +79,36 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Contents</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../contents/store/">Store</a>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../store/">Store</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../contents/create/">Create</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Create</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#requete">Requête</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#parametres">Paramètres</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reponses">Réponses</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#succes">succès</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="#">Events</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../contents/events/">Index events</a>
+                <li class="toctree-l2"><a class="reference internal" href="../events/">Index events</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../contents/events/show/">Show event</a>
+                <li class="toctree-l2"><a class="reference internal" href="../events/show/">Show event</a>
                 </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="#">Posts</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../contents/posts/">Index posts</a>
+                <li class="toctree-l2"><a class="reference internal" href="../posts/">Index posts</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../contents/posts/show/">Show post</a>
+                <li class="toctree-l2"><a class="reference internal" href="../posts/show/">Show post</a>
                 </li>
     </ul>
                   </li>
@@ -136,8 +134,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Authentication &raquo;</li>
-      <li class="breadcrumb-item active">Login</li>
+          <li>Contents &raquo;</li>
+      <li class="breadcrumb-item active">Create</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -146,8 +144,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="connexion">Connexion</h1>
-<p>Connecte un utilisateur à l'application et renvoie un token d'authentification.</p>
+                <h1 id="aquisition-des-donnees-pour-la-creation-dun-contenue">Aquisition des données pour la creation d'un contenue</h1>
+<p>on peut avoir les categories et les organization disponible pour l'utilisateur</p>
 <h2 id="requete">Requête</h2>
 <table>
 <thead>
@@ -161,71 +159,54 @@
 <tbody>
 <tr>
 <td>https</td>
-<td>POST</td>
-<td>/api/login</td>
-<td>no</td>
+<td>GET</td>
+<td>/api/contents/create</td>
+<td>oui</td>
 </tr>
 </tbody>
 </table>
 <h2 id="parametres">Paramètres</h2>
-<table>
-<thead>
-<tr>
-<th>nom</th>
-<th>type</th>
-<th>contraintes</th>
-<th>obligatoire</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>email</td>
-<td>string</td>
-<td>email, max:255, exists</td>
-<td>oui</td>
-<td>Email de l'utilisateur</td>
-</tr>
-<tr>
-<td>password</td>
-<td>string</td>
-<td>Vérification dans le front</td>
-<td>oui</td>
-<td>Mot de passe de l'utilisateur</td>
-</tr>
-</tbody>
-</table>
-<h2 id="reponse">Réponse</h2>
-<h3 id="succes">Succès</h3>
+<p>Aucun</p>
+<h2 id="reponses">Réponses</h2>
+<h3 id="succes">succès</h3>
 <p><code>status: 200</code></p>
 <pre><code class="language-json">{
-    &quot;user&quot;: {
-        &quot;id&quot;: 1,
-        &quot;user_name&quot;: &quot;user_name&quot;,
-        &quot;last_name&quot;: &quot;last_name&quot;,
-        &quot;first_name&quot;: &quot;first_name&quot;,
-        &quot;sector&quot;: 1,
-        &quot;email&quot;: &quot;email&quot;,
-        &quot;phone&quot;: &quot;phone&quot;,
-        &quot;promotion_year&quot;: 2020,
-        &quot;created_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2020-12-12T00:00:00.000000Z&quot;
-    },
-    &quot;token&quot;: &quot;token&quot;
-}
-</code></pre>
-<h3 id="erreur">Erreur</h3>
-<p><code>status: 401</code></p>
-<pre><code class="language-json">{
-    &quot;message&quot;: [&quot;mauvais identifiants&quot;]
+    &quot;data&quot;: {
+        &quot;oragizations&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Lagardesss&quot;,
+                &quot;role&quot;: &quot;président&quot;
+            },
+            {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Blot S.A.R.L.&quot;,
+                &quot;role&quot;: &quot;secrétaire&quot;
+            }
+        ],
+        &quot;categories&quot;: [
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Activité&quot;
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Poly&quot;
+            },
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Soirée&quot;
+            }
+        ]
+    }
 }
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../register/" class="btn btn-neutral float-left" title="Register"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../logout/" class="btn btn-neutral float-right" title="Logout">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../store/" class="btn btn-neutral float-left" title="Store"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../events/" class="btn btn-neutral float-right" title="Index events">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -248,10 +229,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../register/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../store/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../logout/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../events/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

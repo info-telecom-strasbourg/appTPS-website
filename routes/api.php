@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CGUController;
 use App\Http\Controllers\CrousController;
+use App\Http\Controllers\CTSController;
 use App\Http\Controllers\LinkCasController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\UserAvatarController;
@@ -8,9 +10,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\FouailleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\OrganizationController;
-use App\Http\Controllers\Post\PostController;
 
 use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -18,6 +17,9 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Content\ContentController;
+use App\Http\Controllers\Content\EventController;
+use App\Http\Controllers\Content\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,17 +66,18 @@ Route::get('sector', [SectorController::class, 'index'])
 Route::get('crous', [CrousController::class, 'index'])
     ->name('crous.index');
 
-/** =============== Route protected by sanctum =============== */
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
+    /** =============== Route protected by sanctum =============== */
 
-    /** =============== Authentification =============== */
+    Route::group(['middleware' => ['auth:sanctum']], function () {
+
+        /** =============== Authentification =============== */
 
     Route::post('/logout', [AuthUserController::class, 'logout'])
-        ->name('logout');
+    ->name('logout');
 
     Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-        ->name('verification.send');
+    ->name('verification.send');
 
     /** =============== Cas link =============== */
 
@@ -91,42 +94,45 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
         Route::put('/password', [NewPasswordController::class, 'update'])
-            ->name('password.update');
+        ->name('password.update');
 
         /** =============== User =============== */
 
         Route::prefix('user')->group(function () {
 
             Route::get('/me', [UserController::class, 'getMe'])
-                ->name('user.me');
+            ->name('user.me');
 
             Route::put('/', [UserController::class, 'update'])
-                ->name('user.update');
-
+            ->name('user.update');
+            
             Route::post('/avatar', [UserAvatarController::class, 'store'])
-                ->name('user.avatar.store');
-
+            ->name('user.avatar.store');
+            
             Route::delete('/', [UserController::class, 'delete'])
-                ->name('user.delete');
+            ->name('user.delete');
         });
+
+        Route::get('cas', [LinkCasController::class, 'index'])
+            ->name('cas.index');
 
         /** =============== Fouaille =============== */
 
         Route::get('/fouaille', [FouailleController::class, 'show'])
-            ->name('fouaille.show');
+        ->name('fouaille.show');
 
 
         /** =============== Event =============== */
 
         Route::prefix('event')->group(function () {
             Route::get('/', [EventController::class, 'index'])
-                ->name('event.index');
+            ->name('event.index');
 
             Route::get('/{id}', [EventController::class, 'show'])
-                ->name('event.show');
+            ->name('event.show');
 
             Route::post('/', [EventController::class, 'store'])
-                ->name('event.store');
+            ->name('event.store');
         });
 
 
@@ -134,17 +140,27 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::prefix('post')->group(function () {
             Route::post('/', [PostController::class, 'store'])
-                ->name('post.store');
+            ->name('post.store');
 
             Route::get('/', [PostController::class, 'index'])
-                ->name('post.index');
+            ->name('post.index');
 
             Route::get('{id}', [PostController::class, 'show'])
-                ->name('post.show');
+            ->name('post.show');
         });
-    });
+
+        Route::get('contents/create', [ContentController::class, 'create'])
+            ->name('contents.create');
+
+        Route::post('contents', [ContentController::class, 'store'])
+            ->name('contents.store');
+
+        /** =============== CTS =============== */
+
+        Route::get('cts', [CTSController::class, 'index'])
+            ->name('cts.index');
+        });
 });
 
-
-Route::get('cas', [LinkCasController::class, 'index'])
-    ->name('cas.index');
+Route::get('cgu', [CGUController::class, 'index'])
+    ->name('cgu.index');
