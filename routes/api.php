@@ -105,13 +105,16 @@ Route::get('crous', [CrousController::class, 'index'])
 
             Route::put('/', [UserController::class, 'update'])
             ->name('user.update');
-
+            
             Route::post('/avatar', [UserAvatarController::class, 'store'])
             ->name('user.avatar.store');
-
+            
             Route::delete('/', [UserController::class, 'delete'])
             ->name('user.delete');
         });
+
+        Route::get('cas', [LinkCasController::class, 'index'])
+            ->name('cas.index');
 
         /** =============== Fouaille =============== */
 
@@ -156,15 +159,8 @@ Route::get('crous', [CrousController::class, 'index'])
 
         Route::get('cts', [CTSController::class, 'index'])
             ->name('cts.index');
-    });
+        });
 });
-
-
-Route::get('cas', [LinkCasController::class, 'index'])
-    ->name('cas.index');
-
-Route::get('cas-link', [LinkCasController::class, 'link'])
-    ->name('cas.link');
 
 Route::get('cgu', [CGUController::class, 'index'])
     ->name('cgu.index');

@@ -2,31 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Subfission\Cas\Facades\Cas;
 use Illuminate\Support\Facades\Auth;
 
 class LinkCasController extends Controller
-{
-    /**
-     * This function returns an array with all keys/values returned by the CAS.
-     *
-     * @return array of attributes.
-     */
-    public static function getAttributes()
-    {
-        if (Cas()->isAuthenticated()) {
-            return Cas()->getAttributes();
-        } else {
-            return array();
-        }
-    }
-
+{    
     public function index(Request $request){
-        Cas()->authenticate();
-    }
-
-    public function link(Request $request){
-        return response()->json($this->getAttributes());
+        if (Cas()->isAuthenticated()) {
+            $user = $request->user();
+            $user->unistra_id = Cas()->getAttributes()['uid'];
+            $user->update();
+            $cas_infos = Cas()->getAttributes();
+            return view('cas', compact('cas_infos'));
+        } else {
+            Cas()->authenticate();
+            return "ok";
+        }
     }
 }

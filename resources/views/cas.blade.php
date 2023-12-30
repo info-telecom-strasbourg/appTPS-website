@@ -90,34 +90,26 @@
             <div class="col-md-8">
                 <div class="card responsive-card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center">
-                        <img src="logo.png" class="card-img-top" alt="Logo InsidePSBS">
-                        <div class="card-header" style="font-size: 2.5em">Bienvenue sur InsidePSBS !
+                        <img src="../logo.png" class="card-img-top" alt="Logo InsidePSBS">
+                        <div class="card-header" style="font-size: 2.5em">Compte Unistra relié !
                         </div>
                     </div>
                     <br>
                     <div class="card-body">
-                        <p>InsidePSBS est une application à destination des étudiant.e.s de Télécom Physique Strasbourg
-                            et de l'École Supérieure de Biotechnologie de Strasbourg !</p>
-                        <p>Téléchargez vite notre app sur Android et iOS : </p>
-                        <div class="row badges-line"
-                            style="display: flex; justify-content: space-between; align-items: center; margin-inline: 3em">
-                            <div class="col-md-6 badges">
-                                <a href='https://play.google.com/store/apps/details?id=com.ITS.InsidePSBS&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'
-                                    target=”_blank”><img alt='Disponible sur Google Play'
-                                        src='https://play.google.com/intl/en_us/badges/static/images/badges/fr_badge_web_generic.png' /></a>
-                            </div>
-                            <div class="col-md-6 badges">
-                                <a href="https://apps.apple.com/us/app/insidepsbs/id6446891622?itsct=apps_box_badge&amp;itscg=30200"
-                                    style="display: inline-block; overflow: hidden; border-radius: 13px; height: 83px;"
-                                    target=”_blank”><img
-                                        src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/fr-fr?size=250x83&amp;releaseDate=1693180800"
-                                        alt="Download on the App Store" style="border-radius: 13px; height: 83px;"></a>
-                            </div>
-                        </div>
+                        <p>Ton compte InsidePSBS est désormais relié au compte Unistra : <br>
+                        </p>
+                        <p style="background-color: green; border-radius: 10px; padding: 5%">
+                            {{ $cas_infos['uid'] }}
+                            -
+                            {{ $cas_infos['udsDisplayName'] }}
+                            - {{ $cas_infos['mail'] }}</p>
                     </div>
                 </div>
             </div>
         </div>
+        <br>
+        <button class="btn btn-primary" style="margin: auto; width: 40%; background-color: blue"
+            onclick="window.ReactNativeWebView.postMessage('Back');">Retour à l'App</button>
     </div>
 </body>
 
