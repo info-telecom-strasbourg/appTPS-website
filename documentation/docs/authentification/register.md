@@ -35,10 +35,10 @@ Créer un nouvel utilisateur dans la base de données de l'application et dans l
         "user_name": "user_name",
         "last_name": "last_name",
         "first_name": "first_name",
-        "sector": 1,
+        "sector_id": 1,
         "email": "email",
         "phone": "phone",
-        "promotion_year": 2020,
+        "promotion_year": "2020",
         "created_at": "2020-12-12T00:00:00.000000Z",
         "updated_at": "2020-12-12T00:00:00.000000Z"
     },

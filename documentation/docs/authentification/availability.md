@@ -9,7 +9,7 @@
 ## Paramètres
 
 -   **email** email de l'utilisateur dans l'url exemple : /api/register/availability?email=**email**
--   **username** username de l'utilisateur dans l'url exemple : /api/register/availability?username=**username**
+-   **user_name** user_name de l'utilisateur dans l'url exemple : /api/register/availability?user_name=**username**
 -   **phone** phone de l'utilisateur dans l'url exemple : /api/register/availability?phone=**phone**
 
 ## Réponses
