@@ -2,132 +2,132 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://app.its-tps.fr/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/api/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/authentification/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/authentification/availability/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/authentification/check/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/authentification/forgot-password/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/authentification/login/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/authentification/logout/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/authentification/register/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/authentification/verify-email/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/contents/create/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/contents/store/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/contents/events/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/contents/events/create/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/contents/events/show/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/contents/posts/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/contents/posts/create/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/contents/posts/show/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/fouaille/fouaille/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/others/cgu/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/others/sectors/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/users/avatar/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/users/delete/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/users/get/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/users/new-password/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://app.its-tps.fr/users/update/</loc>
-         <lastmod>2023-12-27</lastmod>
+         <lastmod>2024-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
