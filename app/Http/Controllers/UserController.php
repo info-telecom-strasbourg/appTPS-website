@@ -84,7 +84,8 @@ class UserController extends Controller
             'updated_at' => $user->updated_at,
             'email_verified_at' => $user->email_verified_at,
             'sector' => $user->sector ? $user->sector->short_name : null,
-            'birth_date' => $user->birth_date
+            'birth_date' => $user->birth_date,
+            'unistra_id' => $user->unistra_id,
         ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
