@@ -36,6 +36,9 @@ class ContentController extends Controller
             'category_id' => [
                 'integer'
             ],
+            'medias' => [
+                'array'
+            ],
             'start_at' => [
                 'date'
             ],

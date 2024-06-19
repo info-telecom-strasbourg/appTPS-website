@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\PostMedia;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -25,8 +26,7 @@ class PostController extends Controller
         $posts = Post::orderByDesc('created_at')->paginate($per_page);
 
         return response()->json([
-            'data' => $posts
-            ->map(function ($post) {
+            'data' => $posts->map(function ($post) {
                 return [
                     'id' => $post->id,
                     'body' => $post->body,
@@ -34,6 +34,13 @@ class PostController extends Controller
                     'color' => $post->color,
                     'category' => $post->category->name,
                     'updated_at' => $post->updated_at,
+                    'medias' => $post->media()->map(function ($media) {
+                        return [
+                            'id' => $media->id,
+                            'url' => $media->path,
+                            'type' => $media->mediaType()->name
+                        ];
+                    }),
                     'author' => $post->organization ? [
                         'is_organization' => true,
                         'id' => $post->organization->id,
@@ -87,6 +94,13 @@ class PostController extends Controller
                 'color' => $post->color,
                 'category' => $post->category->name,
                 'updated_at' => $post->updated_at,
+                'medias' => $post->medias->map(function ($media) {
+                    return [
+                        'id' => $media->id,
+                        'url' => $media->path,
+                        'type' => $media->name->mediaType(),
+                    ];
+                }),
                 'author' => $post->organization ? [
                     'is_organization' => true,
                     'id' => $post->organization->id,
