@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Bde\Organization;
 use App\Models\Post;
 use App\Models\User;
 
@@ -21,11 +22,18 @@ class PostCommentFactory extends Factory
         $post = Post::inRandomOrder()->first();
         $postComments = $post->comments;
 
-        if (!$postComments->isEmpty()){
-            $comment_id = $postComments->pluck('id')->random();
+        if (random_int(0, 1) == 1) {
+            $organization_id = Organization::inRandomOrder()->first()->id;
+        }else{
+            $organization_id = null;
+        }
+
+        if ($postComments->isNotEmpty()){
+            $comment_id = $postComments->value('id')->random();
             return [
                 'body' => $this->faker->text(),
                 'post_id' => $post->id,
+                'organization_id' => $organization_id,
                 'user_id' => User::inRandomOrder()->first()->id,
                 'parent_comment_id' => $comment_id
             ];
@@ -33,6 +41,7 @@ class PostCommentFactory extends Factory
             return [
                 'body' => $this->faker->text(),
                 'post_id' => $post->id,
+                'organization_id' => $organization_id,
                 'user_id' => User::inRandomOrder()->first()->id,
             ];
         }

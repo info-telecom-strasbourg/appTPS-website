@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Content;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-
 
 class PostController extends Controller
 {
@@ -83,7 +81,6 @@ class PostController extends Controller
 
         return response()->json([
             'data' => [
-                'title' => $post->title,
                 'body' => $post->body,
                 'date' => $post->created_at->format('Y-m-d H:i:s'),
                 'color' => $post->color,

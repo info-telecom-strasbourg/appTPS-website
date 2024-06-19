@@ -17,13 +17,14 @@ class Post extends Model
 
     protected $fillable = [
         'user_id',
-        'organization_id',
         'event_id',
+        'organization_id',
+        'media_id',
         'category_id',
-        'title',
         'description',
         'body',
-        'color'
+        'color',
+        'created_at',
     ];
 
     public function user(){

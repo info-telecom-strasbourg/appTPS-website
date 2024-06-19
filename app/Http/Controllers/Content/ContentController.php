@@ -15,12 +15,12 @@ class ContentController extends Controller
 
         $validation = Validator::make($request->all(), [
             'title' => [
-                'required',
                 'string',
-                'max:30',
-                'min:3',
+                'max:255',
+                'min:3'
             ],
             'body' => [
+                'required',
                 'string',
                 'max:4000000',
                 'min:3'
@@ -30,7 +30,8 @@ class ContentController extends Controller
                 'string'
             ],
             'organization_id' => [
-                'integer'
+                'integer',
+                'exists:bde_bdd.bdedatapsbs.organizations,id'
             ],
             'category_id' => [
                 'required',
@@ -52,7 +53,7 @@ class ContentController extends Controller
             ],
             'create_post' => [
                 'in:0,1'
-            ]
+            ],
         ]);
 
         if ($validation->fails()) {
@@ -64,7 +65,7 @@ class ContentController extends Controller
 
 
         // check if the user is in the organization
-        if(!$request->user()->isInOrganization($request->organization_id)){
+        if(!$request->user()->isInOrganization($request->organization_id) && $request->organization_id != null){
             return response()->json([
                 'message' => 'You are not in the organization'
             ], 403);
@@ -83,11 +84,12 @@ class ContentController extends Controller
             }
 
             $post = Post::create([
-                'title' => $request->title,
                 'body' => $request->body,
                 'color' => $request->color,
                 'organization_id' => $request->organization_id,
-                'user_id' => $request->user()->id
+                'user_id' => $request->user()->id,
+                'category_id' => $request->category_id,
+                'created_at' => time()
             ]);
 
             return response()->json([
@@ -97,16 +99,24 @@ class ContentController extends Controller
         }
 
         // Create only an event
-        if($request->create_event == 1 && $request->create_post == null){
+        if($request->create_event == 1 && $request->create_post == null && $request->organization_id != null){
+
+            if ($request->start_at == null || $request->end_at == null) {
+                return response()->json([
+                    'message' => 'Validation failed',
+                    'error' => 'vous devez spécifier une date de début et de fin pour l\'événement'
+                ], 422);
+            }
+
             $event = Event::create([
-                'title' => $request->title,
                 'body' => $request->body,
                 'color' => $request->color,
                 'organization_id' => $request->organization_id,
                 'user_id' => $request->user()->id,
                 'start_at' => $request->start_at,
                 'end_at' => $request->end_at,
-                'location' => $request->location
+                'location' => $request->location,
+                'created_at' => time()
             ]);
 
             return response()->json([
@@ -116,7 +126,15 @@ class ContentController extends Controller
         }
 
         // Create both an post attached to an event
-        if($request->create_event == 1 && $request->create_post == 1){
+        if($request->create_event == 1 && $request->create_post == 1 && $request->organization_id != null){
+
+            if ($request->start_at == null || $request->end_at == null) {
+                return response()->json([
+                    'message' => 'Validation failed',
+                    'error' => 'vous devez spécifier une date de début et de fin pour l\'événement'
+                ], 422);
+            }
+
             $event = Event::create([
                 'title' => $request->title,
                 'body' => $request->body,
@@ -125,16 +143,18 @@ class ContentController extends Controller
                 'user_id' => $request->user()->id,
                 'start_at' => $request->start_at,
                 'end_at' => $request->end_at,
-                'location' => $request->location
+                'location' => $request->location,
+                'created_at' => time()
             ]);
 
             $post = Post::create([
-                'title' => $request->title,
                 'body' => $request->body,
                 'color' => $request->color,
                 'organization_id' => $request->organization_id,
                 'user_id' => $request->user()->id,
-                'event_id' => $event->id
+                'event_id' => $event->id,
+                "category_id" => $request->category_id,
+                'created_at' => time()
             ]);
 
             return response()->json([
@@ -144,6 +164,12 @@ class ContentController extends Controller
                     'post' => $post
                 ]
             ], 201);
+        }
+
+        if ($request->organization_id == null) {
+            return response()->json([
+                'message' => 'Vous devez etre dans une association pour créer un event'
+            ], 422);
         }
 
         return response()->json([
@@ -171,5 +197,7 @@ class ContentController extends Controller
                 })
             ]
         ], 200);
+
+
     }
 }
