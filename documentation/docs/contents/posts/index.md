@@ -28,6 +28,7 @@ Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1&parent_comm
             "body": "Ceci est le contenu du premier post",
             "user_id": 2,
             "organization_id": 1,
+            "category": "Admis2023",
             "created_at": "2023-12-27T16:43:39.000000Z",
             "updated_at": "2023-12-27T16:43:39.000000Z",
             "author": {
@@ -43,6 +44,7 @@ Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1&parent_comm
             "body": "Ceci est le contenu du deuxième post",
             "user_id": 3,
             "organization_id": 1,
+            "category": "Neurchi",
             "created_at": "2023-12-27T16:44:27.000000Z",
             "updated_at": "2023-12-27T16:44:27.000000Z",
             "author": {

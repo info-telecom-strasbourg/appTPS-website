@@ -36,8 +36,8 @@ class PostCommentController extends Controller
         $comment = PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => $request->user()->id,
-            'organization_id' => $request-> user()->organization_id ?? null,
-            'parent_comment_id' => $request->parent_comment_id ?? null,
+            'organization_id' => $request->organization_id,
+            'parent_comment_id' => $request->parent_comment_id,
             'body' => $request->body,
         ]);
 
@@ -60,14 +60,20 @@ class PostCommentController extends Controller
 
         $comments = PostComment::orderByDesc('created_at')->where('post_id',$id)->where('parent_comment_id',$parent_id)->paginate($per_page);
 
+        if ($comments->isEmpty()) {
+            return response()->json([
+                'message' => 'Pas de commentaires'
+            ], 404);
+        }
 
         return response()->json([
             'data' => $comments
             ->map(function ($comment) {
                 return [
+                    'id' => $comment->id,
                     'post_id' => $comment->post_id,
                     'user_id' => $comment->user_id,
-                    'parent_comment_id' => $request->parent_comment_id ?? null,
+                    'parent_comment_id' => $comment->parent_comment_id,
                     'body' => $comment->body,
                     'created_at' => $comment->created_at,
                     'updated_at' => $comment->updated_at,

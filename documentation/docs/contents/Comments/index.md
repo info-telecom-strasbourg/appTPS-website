@@ -25,6 +25,7 @@ Sous la forme https://app-pprd.its-tps.fr/api/post/1/comment?per_page=3&page=1&p
 {
     "data": [
         {
+            "id": 1,
             "post_id": 1,
             "user_id": 2,
             "parent_comment_id": null,
@@ -40,6 +41,7 @@ Sous la forme https://app-pprd.its-tps.fr/api/post/1/comment?per_page=3&page=1&p
             }
         },
         {
+            "id": 2,
             "post_id": 1,
             "user_id": 3,
             "parent_comment_id": null,

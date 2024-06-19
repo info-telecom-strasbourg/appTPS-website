@@ -4,13 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 use App\Models\Bde\Organization;
-use App\Models\Event;
-use App\Models\PostMedia;
-use App\Models\Category;
-use App\Models\Reaction;
-
 class Post extends Model
 {
     use HasFactory;
