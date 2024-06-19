@@ -34,7 +34,6 @@ class ContentController extends Controller
                 'exists:bde_bdd.bdedatapsbs.organizations,id'
             ],
             'category_id' => [
-                'required',
                 'integer'
             ],
             'start_at' => [
@@ -89,7 +88,6 @@ class ContentController extends Controller
                 'organization_id' => $request->organization_id,
                 'user_id' => $request->user()->id,
                 'category_id' => $request->category_id,
-                'created_at' => time()
             ]);
 
             return response()->json([
@@ -116,7 +114,6 @@ class ContentController extends Controller
                 'start_at' => $request->start_at,
                 'end_at' => $request->end_at,
                 'location' => $request->location,
-                'created_at' => time()
             ]);
 
             return response()->json([
@@ -144,7 +141,6 @@ class ContentController extends Controller
                 'start_at' => $request->start_at,
                 'end_at' => $request->end_at,
                 'location' => $request->location,
-                'created_at' => time()
             ]);
 
             $post = Post::create([
@@ -154,7 +150,6 @@ class ContentController extends Controller
                 'user_id' => $request->user()->id,
                 'event_id' => $event->id,
                 "category_id" => $request->category_id,
-                'created_at' => time()
             ]);
 
             return response()->json([

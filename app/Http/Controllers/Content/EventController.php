@@ -41,6 +41,8 @@ class EventController extends Controller
                     'end_at' => $event->end_at,
                     'location' => $event->location,
                     'color' => $event->color,
+                    'created_at' => $event->created_at,
+                    'updated_at' => $event->updated_at,
                     'author' => $event->organization ? [
                         'is_organization' => true,
                         'id' => $event->organization->id,

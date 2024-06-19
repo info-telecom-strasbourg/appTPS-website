@@ -33,6 +33,8 @@ class PostController extends Controller
                     'body' => $post->body,
                     'date' => $post->created_at->format('Y-m-d H:i:s'),
                     'color' => $post->color,
+                    'created_at' => $post->created_at,
+                    'updated_at' => $post->updated_at,
                     'author' => $post->organization ? [
                         'is_organization' => true,
                         'id' => $post->organization->id,

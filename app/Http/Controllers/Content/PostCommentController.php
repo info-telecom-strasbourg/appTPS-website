@@ -20,14 +20,14 @@ class PostCommentController extends Controller
 
         $validation = Validator::make($request->all(), [
             'post_id' => 'required|exists:posts,id',
-            'body' => 'required|string|max:255',
+            'body' => 'required|string|min:3, max:4000000000',
             'parent_comment_id' => 'nullable|exists:post_comments,id',
             'organization_id' => 'nullable|exists:bde_bdd.bdedatapsbs.organizations,id',
         ]);
 
         if ($validation->fails()) {
             return response()->json([
-                'message' => 'Validation failed',
+                'message' =>  'The given data was invalid.',
                 'errors' => $validation->errors()
             ], 422);
         }
@@ -49,6 +49,7 @@ class PostCommentController extends Controller
     }
 
     public function index(Request $request,$id) : \Illuminate\Http\JsonResponse {
+
         $per_page = $request->query('per_page');
 
         $parent_id = $request->query('parent_id');
@@ -68,6 +69,8 @@ class PostCommentController extends Controller
                     'user_id' => $comment->user_id,
                     'parent_comment_id' => $request->parent_comment_id ?? null,
                     'body' => $comment->body,
+                    'created_at' => $comment->created_at,
+                    'updated_at' => $comment->updated_at,
                     'author' => $comment->organization ? [
                         'is_organization' => true,
                         'id' => $comment->organization->id,
