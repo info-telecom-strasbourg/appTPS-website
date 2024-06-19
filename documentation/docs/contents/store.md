@@ -12,11 +12,11 @@ Permet la creation d'un contenu post ou event ou alors les deux en même temps. 
 
 | nom             | type    | contraintes             | description          | obligatoire        | quel contenu  |
 |-----------------| ------- |-------------------------|----------------------|--------------------|---------------|
-| title           | string  | min:3, max:50           | Titre du post        | oui                | post et event |
+| title           | string  | min:3, max:50           | Titre de l'event     | non                | event         |
 | body            | string  | min:3, max:4000000000   | Contenu du post      | oui (pour un post) | post et event |
 | organization_id | integer | exists:organizations,id | ID de l'organisation | non                | post et event |
 | category_id     | integer | exists:cotegories,id    | ID de la category    | oui                | post et event |
-| color           | string  | string                  | Couleur du post      | non                | post et event |
+| color           | string  | string                  | Couleur du post      | oui                | post et event |
 | start_at        | date    | date                    | Date de début        | non                | event         |
 | end_at          | date    | date                    | Date de fin          | non                | event         |
 | location        | string  | string                  | Lieu de l'event      | non                | event         |
@@ -38,7 +38,6 @@ Permet la creation d'un contenu post ou event ou alors les deux en même temps. 
 {
     "message": "Post created",
     "data": {
-        "title": "titre 1",
         "body": "C'est une description",
         "color": "#ffffff",
         "organization_id": "1",
@@ -87,7 +86,6 @@ Permet la creation d'un contenu post ou event ou alors les deux en même temps. 
 			"id": 12
 		},
 		"post": {
-			"title": "titre 1",
 			"body": "C'est une description",
 			"color": "#ffffff",
 			"organization_id": "1",
@@ -119,6 +117,13 @@ Permet la creation d'un contenu post ou event ou alors les deux en même temps. 
             "The category id field is required."
         ]
     }
+}
+```
+
+```json
+{
+"message": "Validation failed",
+"error": "vous devez spécifier une date de début et de fin pour l'événement"
 }
 ```
 

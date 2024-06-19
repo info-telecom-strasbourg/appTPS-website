@@ -20,6 +20,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Content\ContentController;
 use App\Http\Controllers\Content\EventController;
 use App\Http\Controllers\Content\PostController;
+use App\Http\Controllers\Content\PostCommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,10 +106,10 @@ Route::get('crous', [CrousController::class, 'index'])
 
             Route::put('/', [UserController::class, 'update'])
             ->name('user.update');
-            
+
             Route::post('/avatar', [UserAvatarController::class, 'store'])
             ->name('user.avatar.store');
-            
+
             Route::delete('/', [UserController::class, 'delete'])
             ->name('user.delete');
         });
@@ -147,6 +148,12 @@ Route::get('crous', [CrousController::class, 'index'])
 
             Route::get('{id}', [PostController::class, 'show'])
             ->name('post.show');
+
+            Route::get('{id}/comment', [PostCommentController::class, 'index'])
+            ->name('comment.index');
+
+            Route::post('{id}/comment', [PostCommentController::class, 'store'])
+                ->name('comment.store');
         });
 
         Route::get('contents/create', [ContentController::class, 'create'])

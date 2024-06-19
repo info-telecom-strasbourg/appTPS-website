@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Bde\Organization;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +16,7 @@ class PostComment extends Model
         'post_id',
         'user_id',
         'parent_comment_id',
+        'organization_id',
         'body',
     ];
 
@@ -28,9 +30,8 @@ class PostComment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function replies()
-    {
-        return $this->hasMany(PostComment::class, 'parent_comment_id', 'id')->with('replies');
+    public function organization(){
+        return $this->belongsTo(Organization::class);
     }
 
 }

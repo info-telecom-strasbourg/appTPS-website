@@ -27,6 +27,9 @@ nav:
       - Posts:
           - Index posts: contents/posts/index.md
           - Show post: contents/posts/show.md
+          - Comments:
+                - Index comments: contents/posts/comments/index.md
+                - Show comment: contents/posts/comments/show.md
   - Other:
       - sectors: others/sectors.md
       - cgu: others/cgu.md

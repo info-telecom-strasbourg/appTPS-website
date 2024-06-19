@@ -22,6 +22,8 @@ class EventFactory extends Factory
 
         $start_date = $this->faker->dateTimeBetween('-1 day', '+1 day');
 
+        $fake_date = $this->faker->dateTimeBetween('-30 day', '+0 day');
+
         if (random_int(0, 1) == 1) {
             $organization_id = Organization::inRandomOrder()->first()->id;
         }else{
@@ -38,6 +40,7 @@ class EventFactory extends Factory
             'user_id' => User::inRandomOrder()->first()->id,
             'category_id' => Category::inRandomOrder()->first()->id,
             'organization_id' => $organization_id,
+            'created_at' => $fake_date,
         ];
     }
 }

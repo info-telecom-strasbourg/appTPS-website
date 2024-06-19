@@ -38,6 +38,12 @@ class DatabaseSeeder extends Seeder
 
         OrganizationMember::factory(50)->create();
 
+        OrganizationMember::create([
+            'member_id' => 101,
+            'role' => 'Président',
+            'organization_id' => 1
+        ]);
+
         // app bdd seeder
 
         $this->call([
@@ -53,11 +59,11 @@ class DatabaseSeeder extends Seeder
 
         Event::factory(10)->create();
 
-        Post::factory(20)->create();
+        Post::factory(10)->create();
 
         PostMedia::factory(5)->create();
 
-        PostComment::factory(20)->create();
+        PostComment::factory(30)->create();
 
         PostComment::create([
             'user_id' => 1,
@@ -68,19 +74,22 @@ class DatabaseSeeder extends Seeder
         PostComment::create([
             'user_id' => 2,
             'body' => "je suis un commentaire sous le post 1 sous le commentaire",
-            'parent_comment_id' => 21
+            'post_id' => 1,
+            'parent_comment_id' => 31
         ]);
 
         PostComment::create([
             'user_id' => 3,
             'body' => "je suis un commentaire sous le post 1 sous le commentaire par un autre utilisateur",
-            'parent_comment_id' => 21
+            'post_id' => 1,
+            'parent_comment_id' => 31
         ]);
 
         PostComment::create([
             'user_id' => 4,
             'body' => "je suis un commentaire sous le post 1 sous le commentaire du commentaire",
-            'parent_comment_id' => 22
+            'post_id' => 1,
+            'parent_comment_id' => 32
         ]);
 
         Reaction::factory(200)->create();
