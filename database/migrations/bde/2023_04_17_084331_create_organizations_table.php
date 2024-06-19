@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('bde_bdd')->dropIfExists('organization');
+        Schema::connection('bde_bdd')->dropIfExists('organizations');
     }
 };

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('organization_id')->nullable();
             $table->unsignedBigInteger('event_id')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->string('title');
             $table->string('color');
             $table->longText('body');
             $table->timestamps();

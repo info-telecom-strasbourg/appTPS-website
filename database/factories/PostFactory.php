@@ -21,6 +21,8 @@ class PostFactory extends Factory
     public function definition(): array
     {
 
+        $fake_date = $this->faker->dateTimeBetween('-30 day', '+0 day');
+
         if (random_int(0, 1) == 1) {
             $organization_id = Organization::inRandomOrder()->first()->id;
         }else{
@@ -34,13 +36,13 @@ class PostFactory extends Factory
         }
 
         return [
-            'title' => $this->faker->sentence(),
             'body' => $this->faker->text(),
             'user_id' => User::inRandomOrder()->first()->id,
             'organization_id' => $organization_id,
             'event_id' => $event_id,
             'category_id' => Category::inRandomOrder()->first()->id,
             'color' => $this->faker->hexColor(),
+            'created_at' => $fake_date,
         ];
     }
 }

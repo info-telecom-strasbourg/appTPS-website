@@ -11,97 +11,6 @@ class EventController extends Controller
 {
 
     /**
-     * Create a new event
-     *
-     * @param Request $request
-     */
-    public function store(Request $request){
-
-        $validation = Validator::make($request->all(), [
-            'title' => [
-                'required',
-                'string',
-                'max:30',
-                'min:3',
-            ],
-            'body' => [
-                'string',
-                'max:4000000',
-                'min:3'
-            ],
-            'start_at' => [
-                'required',
-                'date'
-            ],
-            'end_at' => [
-                'required',
-                'date'
-            ],
-            'location' => [
-                'string',
-                'max:255',
-                'min:3'
-            ],
-            'organization_id' => [
-                'integer',
-                'exists:organizations,id'
-            ],
-            'color' => [
-                'string',
-                'max:7',
-                'min:7'
-            ]
-        ]);
-
-        if ($validation->fails()) {
-            return response()->json([
-                'message' => 'Validation failed',
-                'errors' => $validation->errors()
-            ], 422);
-        }
-
-        $user = $request->user();
-
-        $event = Event::create([
-            'user_id' => $user->id,
-            'organization_id' => $request->organization_id,
-            'title' => $request->title,
-            'description' => $request->description,
-            'start_at' => $request->start_at,
-            'end_at' => $request->end_at,
-            'location' => $request->location,
-            'color' => $request->color
-        ]);
-
-        return response()->json([
-            'message' => 'Event created',
-            'data' => [
-                'id' => $event->id,
-                'title' => $event->title,
-                'description' => $event->description,
-                'start_at' => $event->start_at,
-                'end_at' => $event->end_at,
-                'location' => $event->location,
-                'color' => $event->color,
-                'author' => $event->organization ? [
-                'is_organization' => true,
-                'id' => $event->organization->id,
-                'name' => $event->organization->name,
-                'short_name' => $event->organization->short_name,
-                'logo_url' => $event->organization->getLogoPath()
-                ] : [
-                'is_organization' => false,
-                'id' => $event->user->id,
-                'name' => $event->user->getFullName(),
-                'short_name' => null,
-                'logo_url' => $event->user->avatar->path
-                ]
-            ]
-        ], 201)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
-    }
-
-
-    /**
      * Get all events in the calendar
      *
      * @param Request $request
@@ -132,6 +41,8 @@ class EventController extends Controller
                     'end_at' => $event->end_at,
                     'location' => $event->location,
                     'color' => $event->color,
+                    'created_at' => $event->created_at,
+                    'updated_at' => $event->updated_at,
                     'author' => $event->organization ? [
                         'is_organization' => true,
                         'id' => $event->organization->id,
