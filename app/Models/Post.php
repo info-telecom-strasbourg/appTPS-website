@@ -37,6 +37,10 @@ class Post extends Model
         return $this->hasMany(PostMedia::class);
     }
 
+    public function medias_type(){
+        return $this->belongsTo(MediaType::class,);
+    }
+
     public function category(){
         return $this->belongsTo(Category::class);
     }
@@ -48,4 +52,19 @@ class Post extends Model
     public function comments(){
         return $this->hasMany(PostComment::class);
     }
+
+    public function getDurationAttribute() {
+
+        $date1 = $this->created_at; // Date de création du post
+
+        $duration = $date1->diffForHumans();// Différence entre les dates
+
+        return $duration; // Objet DateInterval
+
+    }
+
+    public function mediaType(){
+        return $this->belongsTo(MediaType::class);
+    }
 }
+

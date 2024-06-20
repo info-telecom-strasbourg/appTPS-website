@@ -38,12 +38,6 @@ class DatabaseSeeder extends Seeder
 
         OrganizationMember::factory(50)->create();
 
-        OrganizationMember::create([
-            'member_id' => 101,
-            'role' => 'Président',
-            'organization_id' => 1
-        ]);
-
         // app bdd seeder
 
         $this->call([

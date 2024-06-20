@@ -34,4 +34,14 @@ class PostComment extends Model
         return $this->belongsTo(Organization::class);
     }
 
+    public function getDurationAttribute() {
+
+        $date1 = $this->created_at; // Date de création du post
+
+        $duration = $date1->diffForHumans();// Différence entre les dates
+
+        return $duration; // Objet DateInterval
+
+    }
+
 }
