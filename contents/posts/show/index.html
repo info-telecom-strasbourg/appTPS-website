@@ -106,6 +106,8 @@
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#succes">succès</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#erreur">Erreur</a>
+    </li>
         </ul>
     </li>
     </ul>
@@ -183,13 +185,45 @@
 <p><code>status: 200</code></p>
 <pre><code class="language-json">{
     &quot;data&quot;: {
-        &quot;title&quot;: &quot;Consequatur dolor molestias rerum non et repellat nisi.&quot;,
-        &quot;body&quot;: &quot;Consequatur laudantium ipsa et aliquam vitae vitae tempore. Animi dolore eum ut atque quo consectetur. Dolore corporis qui at facere. Minus accusamus rerum qui vero et.&quot;,
-        &quot;event_id&quot;: 1,
+        &quot;id&quot;: 1,
+        &quot;body&quot;: &quot;Ceci est le contenu du premier post&quot;,
+        &quot;user_id&quot;: 2,
         &quot;organization_id&quot;: 1,
-        &quot;user_id&quot;: 1,
-        &quot;color&quot;: &quot;#bc8a01&quot;
+        &quot;category&quot;: &quot;Admis2023&quot;,
+        &quot;created_at&quot;: &quot;2023-12-27T16:43:39.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-12-27T16:43:39.000000Z&quot;,
+        &quot;reaction_count&quot;: 2,
+        &quot;media&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;url&quot;: &quot;/chemin/vers/image.jpg&quot;,
+                &quot;type&quot;: &quot;image&quot;
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;url&quot;: &quot;/chemin/vers/video.mp4&quot;,
+                &quot;type&quot;: &quot;video&quot;
+            }
+        ],
+        &quot;author&quot;: {
+            &quot;is_organization&quot;: true,
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Nom complet de l'utilisateur&quot;,
+            &quot;short_name&quot;: null,
+            &quot;logo_url&quot;: &quot;/chemin/vers/avatar.jpg&quot;
+        }
     }
+}
+</code></pre>
+<h3 id="erreur">Erreur</h3>
+<p><code>status: 401</code></p>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}
+</code></pre>
+<p><code>status: 404</code></p>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Post not found&quot;
 }
 </code></pre>
               

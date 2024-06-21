@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/contents/comments/store/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/contents/reactions/store/" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>Show comment - InsidePSBS API</title>
+    <title>Créer une réaction - InsidePSBS API</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Show comment";
-        var mkdocs_page_input_path = "contents\\comments\\store.md";
-        var mkdocs_page_url = "/contents/comments/store/";
+        var mkdocs_page_name = "Cr\u00e9er une r\u00e9action";
+        var mkdocs_page_input_path = "contents\\reactions\\store.md";
+        var mkdocs_page_url = "/contents/reactions/store/";
       </script>
     
     <!--[if lt IE 9]>
@@ -79,7 +79,7 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Contents</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../store/">Store</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../create/">Create</a>
@@ -100,23 +100,11 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" >Comments</a>
-    <ul class="current">
-                <li class="toctree-l2"><a class="reference internal" href="../">Index comments</a>
+                  <li class="toctree-l1"><a class="reference internal" >Comments</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../comments/">Index comments</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="#">Show comment</a>
-    <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#requete">Requête</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#parametres">Paramètres</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#succes">succès</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#erreur">erreur</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../comments/store/">Show comment</a>
                 </li>
     </ul>
                   </li>
@@ -142,9 +130,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Contents</li>
-          <li class="breadcrumb-item">Comments</li>
-      <li class="breadcrumb-item active">Show comment</li>
+      <li class="breadcrumb-item active">Créer une réaction</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -153,8 +139,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="creer-un-commentaire">Créer un commentaire</h1>
-<p>Permet la creation d'un commentaire.</p>
+                <h1 id="creer-une-reaction">Créer une réaction</h1>
+<p>Permet la création d'une réaction.</p>
 <h2 id="requete">Requête</h2>
 <table>
 <thead>
@@ -169,7 +155,7 @@
 <tr>
 <td>https</td>
 <td>POST</td>
-<td>/api/post/{id}/comment</td>
+<td>/api/post/{id}/reaction</td>
 <td>oui</td>
 </tr>
 </tbody>
@@ -187,28 +173,28 @@
 </thead>
 <tbody>
 <tr>
-<td>body</td>
-<td>string</td>
-<td>min:3, max:4000000000</td>
-<td>Contenu du commentaire</td>
-<td>oui (pour un post)</td>
+<td>reaction_type_id</td>
+<td>integer</td>
+<td>exists:reaction_types,id</td>
+<td>ID du type de réaction</td>
+<td>oui</td>
 </tr>
 <tr>
-<td>organization_id</td>
+<td>user_id</td>
 <td>integer</td>
-<td>exists:organizations,id</td>
-<td>ID de l'organisation</td>
-<td>non</td>
+<td>exists:users,id</td>
+<td>ID de l'utilisateur</td>
+<td>oui</td>
 </tr>
 <tr>
 <td>post_id</td>
 <td>integer</td>
 <td>exists:posts,id</td>
 <td>ID du post</td>
-<td>oui</td>
+<td>non</td>
 </tr>
 <tr>
-<td>parent_comment_id</td>
+<td>post_comment_id</td>
 <td>integer</td>
 <td>exists:post_comments,id</td>
 <td>ID du commentaire parent</td>
@@ -226,13 +212,36 @@
 <h3 id="succes">succès</h3>
 <p><code>status: 201</code></p>
 <pre><code class="language-json">{
-    &quot;message&quot;: &quot;Commentaire créé avec succès !&quot;,
+    &quot;message&quot;: &quot;Réaction créée avec succès !&quot;,
     &quot;data&quot;: {
-        &quot;body&quot;: &quot;C'est une description&quot;,
-        &quot;organization_id&quot;: &quot;1&quot;,
+        &quot;reaction_type_id&quot;: 1,
         &quot;user_id&quot;: 1,
-        &quot;post_id&quot;: 1,
-        &quot;parent_comment_id&quot;: 1
+        &quot;post_comment_id&quot;: 1
+    }
+}
+</code></pre>
+<p>ou :</p>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Réaction créée avec succès !&quot;,
+    &quot;data&quot;: {
+        &quot;reaction_type_id&quot;: 1,
+        &quot;user_id&quot;: 1,
+        &quot;post_id&quot;: 1
+    }
+}
+</code></pre>
+<p><code>status: 200</code></p>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Réaction suprimée avec succès !&quot;,
+}
+
+```json
+{
+    &quot;message&quot;: &quot;Réaction modifiée avec succès !&quot;,
+    &quot;data&quot;: {
+        &quot;reaction_type_id&quot;: 1,
+        &quot;user_id&quot;: 1,
+        &quot;post_id&quot;: 1
     }
 }
 </code></pre>
@@ -241,11 +250,14 @@
 <pre><code class="language-json">{
     &quot;message&quot;: &quot;The given data was invalid.&quot;,
     &quot;errors&quot;: {
-        &quot;body&quot;: [
-            &quot;The body field is required.&quot;
+        &quot;reaction_type_id&quot;: [
+            &quot;The reaction type id field is required.&quot;
         ],
-        &quot;category_id&quot;: [
-            &quot;The category id field is required.&quot;
+        &quot;user_id&quot;: [
+            &quot;The user id field is required.&quot;
+        ],
+        &quot;post_id&quot;: [
+            &quot;The post id field is required.&quot;
         ]
     }
 }
@@ -253,10 +265,6 @@
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../" class="btn btn-neutral float-left" title="Index comments"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../../../others/sectors/" class="btn btn-neutral float-right" title="sectors">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
 
   <hr/>
 
@@ -278,10 +286,6 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../../../others/sectors/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

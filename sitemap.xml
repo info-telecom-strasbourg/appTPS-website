@@ -101,6 +101,21 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://app.its-tps.fr/contents/reactionType/</loc>
+         <lastmod>2024-06-21</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://app.its-tps.fr/contents/reactions/</loc>
+         <lastmod>2024-06-21</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://app.its-tps.fr/contents/reactions/store/</loc>
+         <lastmod>2024-06-21</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://app.its-tps.fr/fouaille/fouaille/</loc>
          <lastmod>2024-06-21</lastmod>
          <changefreq>daily</changefreq>
