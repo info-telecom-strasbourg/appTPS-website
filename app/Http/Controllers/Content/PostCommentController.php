@@ -96,8 +96,8 @@ class PostCommentController extends Controller
                 ];
             }),
             'meta' => [
-                'nb_total_in_this_post' => $totalcomments,
-                'nb_total_commentaires_voisins' => $comments->total(),
+                'total' => $totalcomments,
+                'total_same_parent_id' => $comments->total(),
                 'per_page' => $comments->perPage(),
                 'current_page' => $comments->currentPage(),
                 'last_page' => $comments->lastPage(),

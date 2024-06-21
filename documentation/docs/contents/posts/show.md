@@ -21,12 +21,51 @@ Affiche un post
 ```json
 {
     "data": {
-        "title": "Consequatur dolor molestias rerum non et repellat nisi.",
-        "body": "Consequatur laudantium ipsa et aliquam vitae vitae tempore. Animi dolore eum ut atque quo consectetur. Dolore corporis qui at facere. Minus accusamus rerum qui vero et.",
-        "event_id": 1,
+        "id": 1,
+        "body": "Ceci est le contenu du premier post",
+        "user_id": 2,
         "organization_id": 1,
-        "user_id": 1,
-        "color": "#bc8a01"
+        "category": "Admis2023",
+        "created_at": "2023-12-27T16:43:39.000000Z",
+        "updated_at": "2023-12-27T16:43:39.000000Z",
+        "reaction_count": 2,
+        "media": [
+            {
+                "id": 1,
+                "url": "/chemin/vers/image.jpg",
+                "type": "image"
+            },
+            {
+                "id": 2,
+                "url": "/chemin/vers/video.mp4",
+                "type": "video"
+            }
+        ],
+        "author": {
+            "is_organization": true,
+            "id": 2,
+            "name": "Nom complet de l'utilisateur",
+            "short_name": null,
+            "logo_url": "/chemin/vers/avatar.jpg"
+        }
     }
+}
+```
+
+### Erreur
+
+`status: 401`
+
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+
+`status: 404`
+
+```json
+{
+    "message": "Post not found"
 }
 ```
