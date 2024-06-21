@@ -4,9 +4,9 @@ Permet de récupérer toutes les réactions d'un post spécifique.
 
 ## Requête
 
-| protocole | methode | url                      | token |
-| --------- | ------- |--------------------------| ----- |
-| https     | GET     | /api/post/{id}/reactions | oui   |
+| protocole | methode | url                     | token |
+| --------- | ------- |-------------------------| ----- |
+| https     | GET     | /api/post/{id}/reaction | oui   |
 
 ## Paramètres
 

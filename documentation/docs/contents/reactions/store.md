@@ -45,6 +45,25 @@ ou :
     }
 }
 ```
+
+`status: 200`
+
+```json
+{
+    "message": "Réaction suprimée avec succès !",
+}
+
+```json
+{
+    "message": "Réaction modifiée avec succès !",
+    "data": {
+        "reaction_type_id": 1,
+        "user_id": 1,
+        "post_id": 1
+    }
+}
+```
+
 ### erreur
 
 `status: 422`
@@ -66,11 +85,4 @@ ou :
 }
 ```
 
-`status: 400`
-
-```json
-{
-    "message": "Vous avez déjà réagi à ce post."
-}
-```
 

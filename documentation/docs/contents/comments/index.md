@@ -11,7 +11,7 @@ Affiche tout les commentaires d'un post en fonction de son parent
 ## Paramètres
 
 #### parent_comment_id : 
-ID du commentaire parent (optionnel, si nul ne rien mettre)
+ID du commentaire parent (optionnel, si pas de parents ne rien mettre)
 #### per_page : 
 Nombre de commentaires par page
 #### page : 
@@ -56,7 +56,8 @@ Sous la forme https://app-pprd.its-tps.fr/api/post/1/comment?per_page=3&page=1&p
         }
     ],
     "meta": {
-        "total": 2,
+        "total": 6,
+        "total_same_parent_id": 2,
         "per_page": 3,
         "current_page": 1,
         "last_page": 1,

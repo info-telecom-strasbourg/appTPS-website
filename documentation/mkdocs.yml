@@ -30,6 +30,10 @@ nav:
       - Comments:
           - Index comments: contents/comments/index.md
           - Show comment: contents/comments/store.md
+      - Reactions:
+          - Index reactions: contents/reactions/index.md
+          - Show reaction: contents/reactions/store.md
+          - Index reactions_type: contents/reactions_type/index.md
   - Other:
       - sectors: others/sectors.md
       - cgu: others/cgu.md

@@ -46,8 +46,8 @@ class ReactionController extends Controller
             $existingReaction->delete();
 
             return response()->json([
-                'message' => $existingReaction
-            ], 200);
+                'message' => 'Réaction suprimée avec succès !' ,
+            ], 205);
         } else {
             // Sinon, mettre à jour la réaction existante avec le nouveau type de réaction
             $existingReaction = Reaction::where('user_id', $request->user_id)
@@ -62,7 +62,7 @@ class ReactionController extends Controller
                 return response()->json([
                     'message' => 'La réaction a été mise à jour.',
                     'reaction' => $existingReaction,
-                ], 200);
+                ], 201);
             } else {
                 // Si aucune réaction existante ne correspond à l'ID de l'utilisateur et à l'ID du post, créer une nouvelle réaction
                 if ($request->post_id != null) {
@@ -82,7 +82,7 @@ class ReactionController extends Controller
                 return response()->json([
                     'message' => 'Réaction créée avec succès !',
                     'reaction' => $reaction,
-                ]);
+                ],201);
             }
         }
     }
