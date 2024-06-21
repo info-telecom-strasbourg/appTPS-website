@@ -16,7 +16,7 @@ class ReactionTypeController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function index($id) : \Illuminate\Http\JsonResponse {
+    public function index() : \Illuminate\Http\JsonResponse {
 
         $reaction_type = ReactionType::all();
 

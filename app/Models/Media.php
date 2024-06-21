@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Post;
 use App\Models\MediaType;
 
-class PostMedia extends Model
+class Media extends Model
 {
     use HasFactory;
 

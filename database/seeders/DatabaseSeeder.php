@@ -13,7 +13,7 @@ use Database\Seeders\Bde\ProductTypeSeeder;
 use Illuminate\Database\Seeder;
 use App\Models\Event;
 use App\Models\Post;
-use App\Models\PostMedia;
+use App\Models\Media;
 use App\Models\PostComment;
 use App\Models\Reaction;
 
@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
 
         Post::factory(10)->create();
 
-        PostMedia::factory(5)->create();
+        Media::factory(5)->create();
 
         PostComment::factory(30)->create();
 

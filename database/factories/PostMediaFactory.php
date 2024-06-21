@@ -5,10 +5,10 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Post;
 use App\Models\MediaType;
-use App\Models\PostMedia;
+use App\Models\Media;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PostMedia>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Media>
  */
 class PostMediaFactory extends Factory
 {

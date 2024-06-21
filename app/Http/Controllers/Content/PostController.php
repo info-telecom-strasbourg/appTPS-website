@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
-use App\Models\PostMedia;
+use App\Models\Media;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -35,16 +35,17 @@ class PostController extends Controller
                 return [
                     'id' => $post->id,
                     'body' => $post->body,
-                    'date' => $post->created_at->format('Y-m-d H:i:s'),
+                    'created_since' => $post->duration,
                     'color' => $post->color,
                     'category' => $post->category->name,
-                    'updated_at' => $post->updated_at,
-                    'reaction_count' => $post->reactions->count(),
-                    'medias' => $post->medias->map(function ($media) {
+                    'created_at' => $post->created_at->format('Y-m-d H:i:s'),
+                    'updated_at' => $post->updated_at->format('Y-m-d H:i:s'),
+                    'reaction_count' => $post->reaction->count(),
+                    'medias' => $post->media->map(function ($media) {
                         return [
                             'id' => $media->id,
                             'url' => $media->media_url,
-                            'type' => $media->mediaType ? $media->mediaType->name : null,
+                            'type' => $media->mediaType->type,
                         ];
                     }),
                     'author' => $post->organization ? [
@@ -101,12 +102,12 @@ class PostController extends Controller
                 'category' => $post->category->name,
                 'created_at' => $post->created_at->format('Y-m-d H:i:s'),
                 'updated_at' => $post->updated_at->format('Y-m-d H:i:s'),
-                'reaction_count' => $post->reactions->count(),
-                'medias' => $post->medias->map(function ($media) {
+                'reaction_count' => $post->reaction->count(),
+                'medias' => $post->media->map(function ($media) {
                     return [
                         'id' => $media->id,
                         'url' => $media->media_url,
-                        'type' => $media->media_type_id
+                        'type' => $media->mediaType->type,
                     ];
                 }),
                 'author' => $post->organization ? [
