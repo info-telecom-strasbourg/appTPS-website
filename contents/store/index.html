@@ -13,7 +13,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Store";
-        var mkdocs_page_input_path = "contents/store.md";
+        var mkdocs_page_input_path = "contents\\store.md";
         var mkdocs_page_url = "/contents/store/";
       </script>
     
@@ -80,7 +80,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Contents</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Store</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Store</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#requete">Requête</a>
     </li>
@@ -98,7 +98,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../create/">Create</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Events</a>
+                  <li class="toctree-l1"><a class="reference internal" >Events</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../events/">Index events</a>
                 </li>
@@ -106,11 +106,19 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Posts</a>
+                  <li class="toctree-l1"><a class="reference internal" >Posts</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../posts/">Index posts</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../posts/show/">Show post</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Comments</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../comments/">Index comments</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../comments/store/">Show comment</a>
                 </li>
     </ul>
                   </li>
@@ -135,8 +143,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Contents &raquo;</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Contents</li>
       <li class="breadcrumb-item active">Store</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -184,9 +192,9 @@
 <td>title</td>
 <td>string</td>
 <td>min:3, max:50</td>
-<td>Titre du post</td>
-<td>oui</td>
-<td>post et event</td>
+<td>Titre de l'event</td>
+<td>non</td>
+<td>event</td>
 </tr>
 <tr>
 <td>body</td>
@@ -217,7 +225,7 @@
 <td>string</td>
 <td>string</td>
 <td>Couleur du post</td>
-<td>non</td>
+<td>oui</td>
 <td>post et event</td>
 </tr>
 <tr>
@@ -274,7 +282,6 @@
 <pre><code class="language-json">{
     &quot;message&quot;: &quot;Post created&quot;,
     &quot;data&quot;: {
-        &quot;title&quot;: &quot;titre 1&quot;,
         &quot;body&quot;: &quot;C'est une description&quot;,
         &quot;color&quot;: &quot;#ffffff&quot;,
         &quot;organization_id&quot;: &quot;1&quot;,
@@ -319,7 +326,6 @@
             &quot;id&quot;: 12
         },
         &quot;post&quot;: {
-            &quot;title&quot;: &quot;titre 1&quot;,
             &quot;body&quot;: &quot;C'est une description&quot;,
             &quot;color&quot;: &quot;#ffffff&quot;,
             &quot;organization_id&quot;: &quot;1&quot;,
@@ -347,6 +353,11 @@
             &quot;The category id field is required.&quot;
         ]
     }
+}
+</code></pre>
+<pre><code class="language-json">{
+&quot;message&quot;: &quot;Validation failed&quot;,
+&quot;error&quot;: &quot;vous devez spécifier une date de début et de fin pour l'événement&quot;
 }
 </code></pre>
 <p><code>status: 403</code></p>

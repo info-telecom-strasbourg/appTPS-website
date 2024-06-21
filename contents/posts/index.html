@@ -13,7 +13,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Index posts";
-        var mkdocs_page_input_path = "contents/posts/index.md";
+        var mkdocs_page_input_path = "contents\\posts\\index.md";
         var mkdocs_page_url = "/contents/posts/";
       </script>
     
@@ -84,7 +84,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../create/">Create</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Events</a>
+                  <li class="toctree-l1"><a class="reference internal" >Events</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../events/">Index events</a>
                 </li>
@@ -92,13 +92,21 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Posts</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Posts</a>
     <ul class="current">
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">Index posts</a>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Index posts</a>
     <ul class="current">
     <li class="toctree-l3"><a class="reference internal" href="#requete">Requête</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#parametres">Paramètres</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#per_page">per_page :</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#page">page :</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exemple">exemple :</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#reponses">Réponses</a>
         <ul>
@@ -109,6 +117,14 @@
     </ul>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="show/">Show post</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Comments</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../comments/">Index comments</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../comments/store/">Show comment</a>
                 </li>
     </ul>
                   </li>
@@ -133,9 +149,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Contents &raquo;</li>
-          <li>Posts &raquo;</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Contents</li>
+          <li class="breadcrumb-item">Posts</li>
       <li class="breadcrumb-item active">Index posts</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -167,8 +183,65 @@
 </tbody>
 </table>
 <h2 id="parametres">Paramètres</h2>
-<p>Aucun</p>
+<h4 id="per_page">per_page :</h4>
+<p>Nombre de posts par page</p>
+<h4 id="page">page :</h4>
+<p>Numéro de la page</p>
+<h4 id="exemple">exemple :</h4>
+<p>Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&amp;page=1&amp;parent_comment_id=1</p>
 <h2 id="reponses">Réponses</h2>
+<pre><code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;body&quot;: &quot;Ceci est le contenu du premier post&quot;,
+            &quot;user_id&quot;: 2,
+            &quot;organization_id&quot;: 1,
+            &quot;category&quot;: &quot;Admis2023&quot;,
+            &quot;created_at&quot;: &quot;2023-12-27T16:43:39.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2023-12-27T16:43:39.000000Z&quot;,
+            &quot;author&quot;: {
+                &quot;is_organization&quot;: true,
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Nom complet de l'utilisateur&quot;,
+                &quot;short_name&quot;: null,
+                &quot;logo_url&quot;: &quot;/chemin/vers/avatar.jpg&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;body&quot;: &quot;Ceci est le contenu du deuxième post&quot;,
+            &quot;user_id&quot;: 3,
+            &quot;organization_id&quot;: 1,
+            &quot;category&quot;: &quot;Neurchi&quot;,
+            &quot;created_at&quot;: &quot;2023-12-27T16:44:27.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2023-12-27T16:44:27.000000Z&quot;,
+            &quot;author&quot;: {
+                &quot;is_organization&quot;: true,
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Nom complet de l'utilisateur&quot;,
+                &quot;short_name&quot;: null,
+                &quot;logo_url&quot;: &quot;/chemin/vers/avatar.jpg&quot;
+            }
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;total&quot;: 2,
+        &quot;per_page&quot;: 3,
+        &quot;current_page&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;first_page_url&quot;: &quot;/api/posts?page=1&amp;per_page=3&quot;,
+        &quot;last_page_url&quot;: &quot;/api/posts?page=1&amp;per_page=3&quot;,
+        &quot;next_page_url&quot;: null,
+        &quot;prev_page_url&quot;: null,
+        &quot;path&quot;: &quot;/api/posts&quot;,
+        &quot;from&quot;: 1,
+        &quot;to&quot;: 2,
+        &quot;in_page&quot;: 2
+    }
+}
+
+</code></pre>
 <h3 id="succes">succès</h3>
 <p><code>status: 200</code></p>
               
