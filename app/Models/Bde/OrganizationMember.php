@@ -4,12 +4,14 @@ namespace App\Models\Bde;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class OrganizationMember extends Model
+class OrganizationMember extends Pivot
 {
     use HasFactory;
 
     protected $connection = 'bde_bdd';
+    protected $table = 'organization_members';
 
     public $timestamps = false;
 

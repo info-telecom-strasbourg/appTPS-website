@@ -15,7 +15,7 @@ Nombre de posts par page
 #### page :
 Numéro de la page
 #### exemple :
-Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1&parent_comment_id=1
+Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1
 
 
 ## Réponses
@@ -26,6 +26,7 @@ Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1&parent_comm
         {
             "id": 1,
             "body": "Ceci est le contenu du premier post",
+            "created_since": "Il y a 2 jours",
             "user_id": 2,
             "organization_id": 1,
             "category": "Admis2023",

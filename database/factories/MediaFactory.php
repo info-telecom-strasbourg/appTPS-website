@@ -10,7 +10,7 @@ use App\Models\Media;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Media>
  */
-class PostMediaFactory extends Factory
+class MediaFactory extends Factory
 {
 
     /**

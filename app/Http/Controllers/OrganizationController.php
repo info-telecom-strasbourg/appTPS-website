@@ -1,13 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Bde\Organization;
-
 use Illuminate\Http\Request;
-
-use Intervention\Image\Facades\Image;
 
 class OrganizationController extends Controller
 {
@@ -21,9 +17,9 @@ class OrganizationController extends Controller
             $associations_tab = $associations->map(function ($asso) {
                 return [
                     'id' => $asso->id,
-                    'short_name' => $asso->short_name,
+                    'short_name' => $asso->short_name ? $asso->short_name : $asso->name,
                     'name' => $asso->name,
-                    'logo_url' => $asso->logo->path
+                    'logo_url' => $asso->getLogoPath()
                 ];
             })->values();
         }
@@ -37,9 +33,9 @@ class OrganizationController extends Controller
             $clubs_tab = $clubs->map(function ($club) {
                 return [
                     'id' => $club->id,
-                    'short_name' => $club->short_name,
+                    'short_name' => $club->short_name ? $club->short_name : $club->name,
                     'name' => $club->name,
-                    'logo_url' => $club->logo->path
+                    'logo_url' => $club->getLogoPath()
                 ];
             })->values();
         }
@@ -70,7 +66,7 @@ class OrganizationController extends Controller
             'instagram_link' => $organization->instagram_link,
             'discord_link' => $organization->discord_link,
             'email' => $organization->email,
-            'logo_url' => $organization->logo->path,
+            'logo_url' => $organization->getLogoPath(),
         ];
 
         $members_tab = $organization->users->map(function ($member) {
@@ -78,7 +74,6 @@ class OrganizationController extends Controller
                 'id' => $member->id,
                 'first_name' => $member->first_name,
                 'last_name' => $member->last_name,
-                'user_name' => $member->user_name,
                 'avatar_url' => $member->avatar->path,
             ];
         })->values();
@@ -114,25 +109,27 @@ class OrganizationController extends Controller
             ];
         })->values();
 
+        $posts = $organization->posts()->orderByDesc('created_at')->paginate($per_page);
+
         $meta = [
-            'total' => $post->total(),
-            'per_page' => $post->perPage(),
-            'current_page' => $post->currentPage(),
-            'last_page' => $post->lastPage(),
-            'first_page_url' => $post->url(1)."&per_page=".$per_page,
-            'last_page_url' => $post->url($post->lastPage())."&per_page=".$per_page,
-            'next_page_url' => $post->nextPageUrl()."&per_page=".$per_page,
-            'prev_page_url' => $post->previousPageUrl()."&per_page=".$per_page,
-            'path' => $post->path(),
-            'from' => $post->firstItem(),
-            'to' => $post->lastItem(),
-            'in_page' => $post->count()
+            'total' => $posts->total(),
+            'per_page' => $posts->perPage(),
+            'current_page' => $posts->currentPage(),
+            'last_page' => $posts->lastPage(),
+            'first_page_url' => $posts->url(1)."&per_page=".$per_page,
+            'last_page_url' => $posts->url($posts->lastPage())."&per_page=".$per_page,
+            'next_page_url' => $posts->nextPageUrl()."&per_page=".$per_page,
+            'prev_page_url' => $posts->previousPageUrl()."&per_page=".$per_page,
+            'path' => $posts->path(),
+            'from' => $posts->firstItem(),
+            'to' => $posts->lastItem(),
+            'in_page' => $posts->count()
         ];
 
 
         return response()->json(
             [
-                'Asso/club' => $organization_tab,
+                'organizations' => $organization_tab,
                 'members' => $members_tab,
                 'posts' => [
                     'data' => $posts_tab,

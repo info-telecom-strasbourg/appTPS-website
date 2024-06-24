@@ -9,6 +9,8 @@ class UserAvatar extends Model
 {
     use HasFactory;
 
+    protected $connection = 'mysql';
+
     protected $fillable = [
         'name',
         'path',

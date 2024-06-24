@@ -5,8 +5,8 @@ namespace App\Models\Bde;
 use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use app\Models\Post;
-use app\Models\User;
+use App\Models\Post;
+use App\Models\User;
 
 class Organization extends Model
 {
@@ -46,8 +46,16 @@ class Organization extends Model
     }
 
     public function users(){
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class,
+            'bdedatapsbs.organization_members',
+            'organization_id',
+            'member_id',
+            'id',
+            'bde_id')
+            ->using(OrganizationMember::class)
+            ->withPivot('role');
     }
+
 
     public function scopeOrder($query, $order_by, $order_direction)
     {
