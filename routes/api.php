@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CGUController;
+use App\Http\Controllers\Content\ReactionController;
+use App\Http\Controllers\Content\ReactionTypeController;
 use App\Http\Controllers\CrousController;
 use App\Http\Controllers\CTSController;
 use App\Http\Controllers\LinkCasController;
@@ -21,6 +23,7 @@ use App\Http\Controllers\Content\ContentController;
 use App\Http\Controllers\Content\EventController;
 use App\Http\Controllers\Content\PostController;
 use App\Http\Controllers\Content\PostCommentController;
+use App\Http\Controllers\Content\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +125,10 @@ Route::get('crous', [CrousController::class, 'index'])
         Route::get('/fouaille', [FouailleController::class, 'show'])
         ->name('fouaille.show');
 
+        /** =============== Catégories =============== */
+
+        Route::get('/categories', [CategoryController::class, 'index'])
+            ->name('categories.index');
 
         /** =============== Event =============== */
 
@@ -149,11 +156,24 @@ Route::get('crous', [CrousController::class, 'index'])
             Route::get('{id}', [PostController::class, 'show'])
             ->name('post.show');
 
+            /** =============== Commentaires =============== */
+
             Route::get('{id}/comment', [PostCommentController::class, 'index'])
             ->name('comment.index');
 
             Route::post('{id}/comment', [PostCommentController::class, 'store'])
                 ->name('comment.store');
+
+            /** =============== Réactions =============== */
+
+            Route::post('{id}/reaction', [ReactionController::class, 'store'])
+                ->name('reaction.store');
+
+            Route::get('{id}/reaction', [ReactionController::class, 'index'])
+                ->name('reaction.index');
+
+            Route::get('{id}/reactiontype', [ReactionTypeController::class, 'index'])
+                ->name('reactiontype.index');
         });
 
         Route::get('contents/create', [ContentController::class, 'create'])

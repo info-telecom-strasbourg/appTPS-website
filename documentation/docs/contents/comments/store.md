@@ -1,6 +1,6 @@
-# Créer un contenu post ou event
+# Créer un commentaire
 
-Permet la creation d'un contenu post ou event ou alors les deux en même temps. Avec le post qui peut être lié à un event.
+Permet la creation d'un commentaire.
 
 ## Requête
 

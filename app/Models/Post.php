@@ -33,19 +33,32 @@ class Post extends Model
         return $this->belongsTo(Organization::class);
     }
 
-    public function medias(){
-        return $this->hasMany(PostMedia::class);
+    public function media(){
+        return $this->hasMany(Media::class);
     }
 
     public function category(){
         return $this->belongsTo(Category::class);
     }
 
-    public function reactions(){
-        return $this->hasMany(Reaction::class);
-    }
 
     public function comments(){
         return $this->hasMany(PostComment::class);
     }
+
+    public function reaction()
+    {
+        return $this->hasMany(Reaction::class);
+    }
+
+    public function getDurationAttribute() {
+
+        $date1 = $this->created_at; // Date de création du post
+
+        $duration = $date1->diffForHumans();// Différence entre les dates
+
+        return $duration; // Objet DateInterval
+
+    }
 }
+

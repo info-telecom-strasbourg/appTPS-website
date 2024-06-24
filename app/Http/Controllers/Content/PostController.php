@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Media;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -17,23 +18,36 @@ class PostController extends Controller
     */
     public function index(Request $request) : \Illuminate\Http\JsonResponse {
         $per_page = $request->query('per_page');
+        $category = $request->query('category_id');
 
         if ($per_page == null) {
             $per_page = 10;
         }
 
-        $posts = Post::orderByDesc('created_at')->paginate($per_page);
+        if ($category != null) {
+            $posts = Post::where('category_id', '=', $category)->orderByDesc('created_at')->paginate($per_page);
+        } else {
+            $posts = Post::orderByDesc('created_at')->paginate($per_page);
+        }
 
         return response()->json([
-            'data' => $posts
-            ->map(function ($post) {
+            'data' => $posts->map(function ($post) {
                 return [
                     'id' => $post->id,
                     'body' => $post->body,
-                    'date' => $post->created_at->format('Y-m-d H:i:s'),
+                    'created_since' => $post->duration,
                     'color' => $post->color,
                     'category' => $post->category->name,
-                    'updated_at' => $post->updated_at,
+                    'created_at' => $post->created_at->format('Y-m-d H:i:s'),
+                    'updated_at' => $post->updated_at->format('Y-m-d H:i:s'),
+                    'reaction_count' => $post->reaction->count(),
+                    'medias' => $post->media->map(function ($media) {
+                        return [
+                            'id' => $media->id,
+                            'url' => $media->media_url,
+                            'type' => $media->mediaType->type,
+                        ];
+                    }),
                     'author' => $post->organization ? [
                         'is_organization' => true,
                         'id' => $post->organization->id,
@@ -83,10 +97,19 @@ class PostController extends Controller
         return response()->json([
             'data' => [
                 'body' => $post->body,
-                'date' => $post->created_at->format('Y-m-d H:i:s'),
+                'created_since' => $post->duration,
                 'color' => $post->color,
                 'category' => $post->category->name,
-                'updated_at' => $post->updated_at,
+                'created_at' => $post->created_at->format('Y-m-d H:i:s'),
+                'updated_at' => $post->updated_at->format('Y-m-d H:i:s'),
+                'reaction_count' => $post->reaction->count(),
+                'medias' => $post->media->map(function ($media) {
+                    return [
+                        'id' => $media->id,
+                        'url' => $media->media_url,
+                        'type' => $media->mediaType->type,
+                    ];
+                }),
                 'author' => $post->organization ? [
                     'is_organization' => true,
                     'id' => $post->organization->id,
@@ -103,4 +126,5 @@ class PostController extends Controller
             ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
+
 }

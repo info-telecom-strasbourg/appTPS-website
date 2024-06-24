@@ -141,6 +141,7 @@ class ContentController extends Controller
                 'start_at' => $request->start_at,
                 'end_at' => $request->end_at,
                 'location' => $request->location,
+                'post_id' => $request->post_id,
             ]);
 
             $post = Post::create([
@@ -149,7 +150,7 @@ class ContentController extends Controller
                 'organization_id' => $request->organization_id,
                 'user_id' => $request->user()->id,
                 'event_id' => $event->id,
-                "category_id" => $request->category_id,
+                'category_id' => $request->category_id,
             ]);
 
             return response()->json([

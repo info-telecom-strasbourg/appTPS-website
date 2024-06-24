@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Post;
 use App\Models\MediaType;
 
-class PostMedia extends Model
+class Media extends Model
 {
     use HasFactory;
 
@@ -22,8 +22,8 @@ class PostMedia extends Model
         'post_id',
         'media_url',
         'media_type_id'
-        ];  
-    
+        ];
+
     public function post(){
         return $this->belongsTo(Post::class);
     }

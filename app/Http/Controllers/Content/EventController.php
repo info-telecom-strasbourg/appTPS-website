@@ -24,8 +24,8 @@ class EventController extends Controller
         }
 
 
-        if(isset($request->start_at) && isset($request->end_at)){
-            $events = Event::orderBy('start_at',"asc")->Where('start_at', '>=', $request->start_at)->Where('end_at', '<=', $request->end_at)->paginate($per_page);
+        if(isset($request->start_at)){
+            $events = Event::orderBy('start_at',"asc")->Where('start_at', '>=', $request->start_at)->paginate($per_page);
         } else {
             $events = Event::orderBy('start_at',"asc")->paginate($per_page);
         }

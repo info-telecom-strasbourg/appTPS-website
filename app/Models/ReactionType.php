@@ -19,5 +19,10 @@ class ReactionType extends Model
     public function reactions()
     {
         return $this->hasMany(Reaction::class);
-    }   
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'reactions');
+    }
 }

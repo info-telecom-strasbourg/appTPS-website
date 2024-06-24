@@ -58,6 +58,8 @@ class PostCommentController extends Controller
             $per_page = 3;
         }
 
+        $totalcomments = PostComment::where('post_id',$id)->count();
+
         $comments = PostComment::orderByDesc('created_at')->where('post_id',$id)->where('parent_comment_id',$parent_id)->paginate($per_page);
 
         if ($comments->isEmpty()) {
@@ -73,10 +75,11 @@ class PostCommentController extends Controller
                     'id' => $comment->id,
                     'post_id' => $comment->post_id,
                     'user_id' => $comment->user_id,
+                    'created_since' => $comment->duration,
                     'parent_comment_id' => $comment->parent_comment_id,
                     'body' => $comment->body,
-                    'created_at' => $comment->created_at,
-                    'updated_at' => $comment->updated_at,
+                    'created_at' => $comment->created_at->format('Y-m-d H:i:s'),
+                    'updated_at' => $comment->updated_at->format('Y-m-d H:i:s'),
                     'author' => $comment->organization ? [
                         'is_organization' => true,
                         'id' => $comment->organization->id,
@@ -93,7 +96,8 @@ class PostCommentController extends Controller
                 ];
             }),
             'meta' => [
-                'total' => $comments->total(),
+                'total' => $totalcomments,
+                'total_same_parent_id' => $comments->total(),
                 'per_page' => $comments->perPage(),
                 'current_page' => $comments->currentPage(),
                 'last_page' => $comments->lastPage(),
