@@ -9,7 +9,13 @@ class OrganizationController extends Controller
 {
     public function index(){
 
-        $associations = Organization::all()->where('association', '=', 1); // 1 = association
+        $search = request()->query('search');
+
+        $organization = Organization::where('name', 'like', "%{$search}%")
+            ->orWhere('short_name', 'like', "%{$search}%")
+            ->get();
+
+        $associations = $organization->where('association', '=', 1); // 1 = association
 
         if ($associations->isEmpty()) {
             $associations_tab = [];
@@ -25,7 +31,7 @@ class OrganizationController extends Controller
         }
 
 
-        $clubs = Organization::all()->where('association', '=', 0); // 0 = club
+        $clubs = $organization->where('association', '=', 0); // 0 = club
 
         if ($clubs->isEmpty()) {
             $clubs_tab = [];
