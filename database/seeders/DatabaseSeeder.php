@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
 
         Media::factory(5)->create();
 
-        PostComment::factory(30)->create();
+        PostComment::factory(100)->create();
 
         PostComment::create([
             'user_id' => 1,

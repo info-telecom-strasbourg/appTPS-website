@@ -14,15 +14,31 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         Category::create([
-            'name' => 'Soirée'
+            'name' => 'Tout'
         ]);
 
         Category::create([
-            'name' => 'Activité'
+            'name' => 'Admis 2023'
         ]);
 
         Category::create([
-            'name' => 'Poly'
+            'name' => 'Admis 2024'
+        ]);
+
+        Category::create([
+            'name' => 'Nerchi'
+        ]);
+
+        Category::create([
+            'name' => 'Boite Tactique'
+        ]);
+
+        Category::create([
+            'name' => 'Objets Perdus'
+        ]);
+
+        Category::create([
+            'name' => 'Clubs et Assos'
         ]);
     }
 }

@@ -25,7 +25,6 @@ class OrganizationFactory extends Factory
             'twitter_link' => $this->faker->url,
             'instagram_link' => $this->faker->url,
             'discord_link' => $this->faker->url,
-            'logo' => $this->faker->image,
             'association' => $this->faker->boolean,
             'email' => $this->faker->unique()->safeEmail,
         ];

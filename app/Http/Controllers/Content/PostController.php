@@ -24,7 +24,8 @@ class PostController extends Controller
             $per_page = 10;
         }
 
-        if ($category != null) {
+        /* 1 correspond au filtre tout */
+        if ($category != 1 && $category != null) {
             $posts = Post::where('category_id', '=', $category)->orderByDesc('created_at')->paginate($per_page);
         } else {
             $posts = Post::orderByDesc('created_at')->paginate($per_page);
@@ -41,6 +42,7 @@ class PostController extends Controller
                     'created_at' => $post->created_at->format('Y-m-d H:i:s'),
                     'updated_at' => $post->updated_at->format('Y-m-d H:i:s'),
                     'reaction_count' => $post->reaction->count(),
+                    'comment_count' => $post->comments->count(),
                     'medias' => $post->media->map(function ($media) {
                         return [
                             'id' => $media->id,

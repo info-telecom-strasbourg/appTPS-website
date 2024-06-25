@@ -64,6 +64,7 @@ class PostCommentController extends Controller
 
         if ($comments->isEmpty()) {
             return response()->json([
+                'data' => [],
                 'message' => 'Pas de commentaires'
             ], 404);
         }
