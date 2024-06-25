@@ -108,6 +108,9 @@ Route::get('crous', [CrousController::class, 'index'])
             Route::get('/me', [UserController::class, 'getMe'])
             ->name('user.me');
 
+            Route::get('/{id}', [UserController::class, 'show'])
+                ->name('user.show');
+
             Route::put('/', [UserController::class, 'update'])
             ->name('user.update');
 

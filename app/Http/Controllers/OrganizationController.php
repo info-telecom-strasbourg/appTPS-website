@@ -9,11 +9,7 @@ class OrganizationController extends Controller
 {
     public function index(){
 
-        $search = request()->query('search');
-
-        $organization = Organization::where('name', 'like', "%{$search}%")
-            ->orWhere('short_name', 'like', "%{$search}%")
-            ->get();
+        $organization = Organization::filter(request(['search']))->get();
 
         $associations = $organization->where('association', '=', 1); // 1 = association
 
@@ -23,7 +19,7 @@ class OrganizationController extends Controller
             $associations_tab = $associations->map(function ($asso) {
                 return [
                     'id' => $asso->id,
-                    'short_name' => $asso->short_name ? $asso->short_name : $asso->name,
+                    'short_name' => $asso->short_name,
                     'name' => $asso->name,
                     'logo_url' => $asso->getLogoPath()
                 ];
@@ -39,7 +35,7 @@ class OrganizationController extends Controller
             $clubs_tab = $clubs->map(function ($club) {
                 return [
                     'id' => $club->id,
-                    'short_name' => $club->short_name ? $club->short_name : $club->name,
+                    'short_name' => $club->short_name,
                     'name' => $club->name,
                     'logo_url' => $club->getLogoPath()
                 ];
@@ -92,6 +88,7 @@ class OrganizationController extends Controller
                 'color' => $post->color,
                 'category' => $post->category->name,
                 'reaction_count' => $post->reaction->count(),
+                'comment_count' => $post->comments->count(),
                 'medias' => $post->media->map(function ($media) {
                     return [
                         'id' => $media->id,
@@ -135,7 +132,7 @@ class OrganizationController extends Controller
 
         return response()->json(
             [
-                'organizations' => $organization_tab,
+                'organization' => $organization_tab,
                 'members' => $members_tab,
                 'posts' => [
                     'data' => $posts_tab,
@@ -144,5 +141,6 @@ class OrganizationController extends Controller
             ]
         )->setEncodingOptions(JSON_PRETTY_PRINT);
     }
+
 
 }
