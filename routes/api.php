@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\FouailleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrganizationController;
 
 use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -143,6 +144,16 @@ Route::get('crous', [CrousController::class, 'index'])
             ->name('event.store');
         });
 
+        /** =============== Organisations =============== */
+
+        Route::prefix('organization')->group(function () {
+            Route::get('/', [OrganizationController::class, 'index'])
+            ->name('organization.index');
+
+            Route::get('/{id}', [OrganizationController::class, 'show'])
+            ->name('organization.show');
+        });
+
 
         /** =============== Posts =============== */
 
@@ -175,6 +186,8 @@ Route::get('crous', [CrousController::class, 'index'])
             Route::get('{id}/reactiontype', [ReactionTypeController::class, 'index'])
                 ->name('reactiontype.index');
         });
+
+        /** =============== Contenus =============== */
 
         Route::get('contents/create', [ContentController::class, 'create'])
             ->name('contents.create');

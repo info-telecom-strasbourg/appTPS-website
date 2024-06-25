@@ -18,6 +18,8 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
+    protected $connection = 'mysql';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -75,10 +77,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function organizations(){
         return $this->belongsToMany(Organization::class,
-                'organization_members',
-                'member_id',
-                'organization_id',
-                'bde_id')
+            'bdedatapsbs.organization_members',
+            'member_id',
+            'organization_id',
+            'bde_id')
+            ->using(OrganizationMember::class)
             ->withPivot('role');
     }
 

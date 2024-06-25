@@ -2,6 +2,7 @@
 
 namespace App\Models\Bde;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,6 +37,10 @@ class Member extends Model
 
     public function organizationMembers(){
         return $this->hasMany(OrganizationMember::class);
+    }
+
+    public function user(){
+        return $this->hasOne(User::class, 'bde_id', 'id');
     }
 
 }

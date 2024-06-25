@@ -20,6 +20,8 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $bde_id = $this->faker->unique()->numberBetween(1, Member::count());
+
         return [
             'user_name' => $this->faker->unique()->userName(),
             'first_name' => $this->faker->firstName(),
@@ -30,7 +32,7 @@ class UserFactory extends Factory
             'password' => Hash::make('Azertyuiop1#'),
             'sector_id' => Sector::inRandomOrder()->first()->id,
             'promotion_year' => random_int(2022, 2026),
-            'bde_id' => Member::inRandomOrder()->first()->id,
+            'bde_id' => $bde_id,
             'birth_date' => $this->faker->dateTimeBetween('-30 years', '-18 years')->format('Y-m-d'),
         ];
     }
