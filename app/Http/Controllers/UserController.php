@@ -85,6 +85,11 @@ class UserController extends Controller
                 'bde_id' => $user->bde_id,
                 'avatar_url' => $user->avatar->path,
                 'promotion_year' => $user->promotion_year,
+                'created_at' => $user->created_at->format('Y-m-d H:i:s'),
+                'updated_at' => $user->updated_at->format('Y-m-d H:i:s'),
+                'email_verified_at' => $user->email_verified_at,
+                'sector' => $user->sector ? $user->sector->short_name : null,
+                'birth_date' => $user->birth_date->format('Y-m-d'),
         ],
             'posts' => $user->posts->map(function ($post) {
                 return [
@@ -140,17 +145,12 @@ class UserController extends Controller
                 'last_name' => $user->last_name,
                 'first_name' => $user->first_name,
                 'user_name' => $user->user_name,
-                'email' => $user->email,
-                'phone' => $user->phone,
-                'bde_id' => $user->bde_id,
                 'avatar_url' => $user->avatar->path,
                 'promotion_year' => $user->promotion_year,
-                'created_at' => $user->created_at,
-                'updated_at' => $user->updated_at,
-                'email_verified_at' => $user->email_verified_at,
+                'created_at' => $user->created_at->format('Y-m-d H:i:s'),
+                'updated_at' => $user->updated_at->format('Y-m-d H:i:s'),
                 'sector' => $user->sector ? $user->sector->short_name : null,
-                'birth_date' => $user->birth_date,
-                'unistra_id' => $user->unistra_id,
+                'birth_date' => $user->birth_date->format('Y-m-d'),
             ],
             'posts' => [
                 'data' => $posts->map(function ($post) {
