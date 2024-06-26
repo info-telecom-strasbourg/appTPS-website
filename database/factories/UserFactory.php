@@ -20,7 +20,7 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $bde_id = $this->faker->unique()->numberBetween(1, Member::count());
+        $bde_id = $this->faker->unique()->numberBetween(1, Member::count()-1);
 
         return [
             'user_name' => $this->faker->unique()->userName(),

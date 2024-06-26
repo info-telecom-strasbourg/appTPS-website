@@ -71,12 +71,12 @@ class OrganizationController extends Controller
             'logo_url' => $organization->getLogoPath(),
         ];
 
-        $members_tab = $organization->users->map(function ($member) {
+        $members_tab = $organization->members->map(function ($member) {
             return [
-                'id' => $member->id,
-                'first_name' => $member->first_name,
-                'last_name' => $member->last_name,
-                'avatar_url' => $member->avatar->path,
+                'id' => $member->user->id,
+                'first_name' => $member->user->first_name,
+                'last_name' => $member->user->last_name,
+                'avatar_url' => $member->user->avatar->path,
             ];
         })->values();
 

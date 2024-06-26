@@ -12,6 +12,8 @@ class OrganizationMember extends Pivot
 
     protected $connection = 'bde_bdd';
 
+    public $table = 'organization_members';
+
     public $timestamps = false;
 
     protected $fillable = [

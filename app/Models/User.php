@@ -77,7 +77,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function organizations(){
         return $this->belongsToMany(Organization::class,
-            'bdedatapsbs.organization_members',
+            'organization_members',
             'member_id',
             'organization_id',
             'bde_id')

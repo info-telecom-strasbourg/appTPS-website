@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
     {
 
         // Bde bdd seeder
-        Member::factory(100)->create();
+        Member::factory(20)->create();
 
         $this->call([
             ProductTypeSeeder::class,
