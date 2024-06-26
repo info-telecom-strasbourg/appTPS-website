@@ -62,5 +62,12 @@ class Post extends Model
         return $duration; // Objet DateInterval
 
     }
+
+    public function scopeFilter($query, $filters){
+        $query->when($filters['search'] ?? null, function($query, $search){
+            $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('short_name', 'like', '%' . $search . '%');
+        });
+    }
 }
 

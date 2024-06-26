@@ -40,7 +40,7 @@ class Organization extends Model
 
     public function users(){
         return $this->belongsToMany(User::class,
-            'bdedatapsbs.organization_members',
+            env('BDE_DB_DATABASE').'.organization_members',
             'organization_id',
             'member_id',
             'id',
@@ -70,7 +70,7 @@ class Organization extends Model
     }
 
     public function getLogoPath(){
-        return env('FOUAILLE_URL') . $this->logo->path;
+        return $this->logo->path;
     }
 
 }

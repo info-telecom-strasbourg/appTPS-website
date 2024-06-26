@@ -129,6 +129,9 @@ Route::get('crous', [CrousController::class, 'index'])
         Route::get('/fouaille', [FouailleController::class, 'show'])
         ->name('fouaille.show');
 
+        Route::get('/fouaille/argent', [FouailleController::class, 'argent'])
+            ->name('fouaille.argent');
+
         /** =============== Catégories =============== */
 
         Route::get('/categories', [CategoryController::class, 'index'])
