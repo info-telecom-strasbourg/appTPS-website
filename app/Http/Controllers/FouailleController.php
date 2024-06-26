@@ -81,7 +81,7 @@ class FouailleController extends Controller
         ], 200);
     }
 
-    public function argent(Request $request)
+    public function balance(Request $request)
     {
         $user = $request->user();
 
