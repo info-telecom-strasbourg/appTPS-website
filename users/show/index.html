@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/users/avatar/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/users/show/" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Avatar - InsidePSBS API</title>
+    <title>User show - InsidePSBS API</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Avatar";
-        var mkdocs_page_input_path = "users\\avatar.md";
-        var mkdocs_page_url = "/users/avatar/";
+        var mkdocs_page_name = "User show";
+        var mkdocs_page_input_path = "users\\show.md";
+        var mkdocs_page_url = "/users/show/";
       </script>
     
     <!--[if lt IE 9]>
@@ -64,13 +64,7 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../get/">Get user</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../show/">User show</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../update/">Update user</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../delete/">Delete user</a>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Avatar</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">User show</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#requete">Requête</a>
     </li>
@@ -85,6 +79,12 @@
         </ul>
     </li>
     </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../update/">Update user</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../delete/">Delete user</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../avatar/">Avatar</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../new-password/">New Password</a>
                   </li>
@@ -170,7 +170,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Users</li>
-      <li class="breadcrumb-item active">Avatar</li>
+      <li class="breadcrumb-item active">User show</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -179,8 +179,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="update-user">Update user</h1>
-<p>Met à jour l'avater de l'utilisateur connecté (grace au token).</p>
+                <h1 id="get-user">Get user</h1>
+<p>Renvoie les informations de l'utilisateur en fonction de son id.</p>
 <h2 id="requete">Requête</h2>
 <table>
 <thead>
@@ -194,38 +194,73 @@
 <tbody>
 <tr>
 <td>https</td>
-<td>PUT</td>
-<td>/api/user/avatar</td>
+<td>GET</td>
+<td>/api/user/{id}</td>
 <td>oui</td>
 </tr>
 </tbody>
 </table>
 <h2 id="parametres">Paramètres</h2>
-<table>
-<thead>
-<tr>
-<th>nom</th>
-<th>type</th>
-<th>contraintes</th>
-<th>obligatoire</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>avatar</td>
-<td>file</td>
-<td>image mimes:jpeg,png,jpg max:2048</td>
-<td>oui</td>
-<td>Avatar de l'utilisateur</td>
-</tr>
-</tbody>
-</table>
+<p>Aucun</p>
 <h2 id="reponse">Réponse</h2>
 <h3 id="succes">Succès</h3>
 <p><code>status: 200</code></p>
 <pre><code class="language-json">{
-    &quot;message&quot;: &quot;Avatar uploaded successfully&quot;
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;last_name&quot;: &quot;bergamini&quot;,
+        &quot;first_name&quot;: &quot;enzo&quot;,
+        &quot;user_name&quot;: &quot;zozoLeZozo&quot;,
+        &quot;avatar_url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/avatars/default.png&quot;,
+        &quot;promotion_year&quot;: &quot;2024&quot;,
+        &quot;created_at&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;,
+        &quot;sector&quot;: &quot;AUTRE&quot;,
+        &quot;birth_date&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;
+    },
+    &quot;posts&quot;: {
+        &quot;data&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;title&quot;: &quot;test&quot;,
+                &quot;content&quot;: &quot;test&quot;,
+                &quot;user_id&quot;: 1,
+                &quot;created_at&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2023-08-06T15:35:05.000000Z&quot;,
+                &quot;deleted_at&quot;: null,
+                &quot;media&quot;: [
+                    {
+                        &quot;id&quot;: 1,
+                        &quot;url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/posts/default.png&quot;,
+                        &quot;type&quot;: &quot;image&quot;,
+                        &quot;post_id&quot;: 1
+                    },
+                    {
+                        &quot;id&quot;: 2,
+                        &quot;url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/posts/default.png&quot;,
+                        &quot;type&quot;: &quot;image&quot;,
+                        &quot;post_id&quot;: 1
+                    }
+                ],
+                &quot;author&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;last_name&quot;: &quot;bergamini&quot;,
+                    &quot;first_name&quot;: &quot;enzo&quot;,
+                    &quot;user_name&quot;: &quot;zozoLeZozo&quot;,
+                    &quot;email&quot;: &quot;email@email.com&quot;
+                }
+            }
+        ],
+        &quot;meta&quot;: {
+            &quot;current_page&quot;: 1,
+            &quot;from&quot;: 1,
+            &quot;last_page&quot;: 1,
+            &quot;path&quot;: &quot;https://app-pprd.its-tps.fr/api/posts&quot;,
+            &quot;per_page&quot;: 10,
+            &quot;to&quot;: 1,
+            &quot;total&quot;: 1
+        }
+    }
 }
 </code></pre>
 <h3 id="erreur">Erreur</h3>
@@ -234,20 +269,12 @@
     &quot;message&quot;: &quot;Unauthenticated.&quot;
 }
 </code></pre>
-<p><code>status: 422</code></p>
-<pre><code class="language-json">{
-    &quot;message&quot;: &quot;Validation failed&quot;,
-    &quot;errors&quot;: {
-        &quot;avatar&quot;: [&quot;The avatar must be a file of type: jpeg, png, jpg.&quot;]
-    }
-}
-</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../delete/" class="btn btn-neutral float-left" title="Delete user"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../new-password/" class="btn btn-neutral float-right" title="New Password">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../get/" class="btn btn-neutral float-left" title="Get user"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../update/" class="btn btn-neutral float-right" title="Update user">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -270,10 +297,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../delete/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../get/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../new-password/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../update/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

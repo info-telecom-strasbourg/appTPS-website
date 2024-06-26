@@ -166,6 +166,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://app.its-tps.fr/users/show/</loc>
+         <lastmod>2024-06-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://app.its-tps.fr/users/update/</loc>
          <lastmod>2024-06-26</lastmod>
          <changefreq>daily</changefreq>
