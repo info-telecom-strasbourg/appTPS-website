@@ -11,7 +11,6 @@ class OrganizationMember extends Pivot
     use HasFactory;
 
     protected $connection = 'bde_bdd';
-    protected $table = 'organization_members';
 
     public $timestamps = false;
 

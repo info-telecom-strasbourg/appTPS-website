@@ -14,8 +14,10 @@ Affiche tout les posts
 Nombre de posts par page
 #### page :
 Numéro de la page
+### category_id :
+Id de la catégorie
 #### exemple :
-Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1
+Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1?category_id=1
 
 
 ## Réponses

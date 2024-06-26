@@ -9,6 +9,8 @@ class OrganizationLogo extends Model
 {
     use HasFactory;
 
+    protected $connection = 'bde_bdd';
+
     protected $fillable = [
         'name',
         'path',

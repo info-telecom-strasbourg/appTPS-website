@@ -13,8 +13,8 @@ class FouailleController extends Controller
 
 
     /**
-     * Get fouaille orders of the user 
-     * 
+     * Get fouaille orders of the user
+     *
      * @param Request $request
      */
     public function show(Request $request)
@@ -31,9 +31,9 @@ class FouailleController extends Controller
         ->table('orders')
         ->select(
             'orders.date',
-            'orders.price', 
-            'orders.amount', 
-            'products.name', 
+            'orders.price',
+            'orders.amount',
+            'products.name',
             'products.title',
             'products.color',
             )
@@ -41,7 +41,7 @@ class FouailleController extends Controller
         ->where('orders.member_id', '=', $user->bde_id)
         ->orderByDesc('orders.date')
         ->paginate($per_page);
-        
+
         $orders = $datas->map(function ($data) {
             return [
                 'date' => $data->date,
@@ -79,5 +79,15 @@ class FouailleController extends Controller
                 'to' => $datas->lastItem()
             ]
         ], 200);
+    }
+
+    public function balance(Request $request)
+    {
+        $user = $request->user();
+
+        return response()->json([
+            'data' => [
+                'balance' => DB::connection('bde_bdd')->table('members')->where('id', '=', $user->bde_id)->first()->balance,
+            ],]);
     }
 }
