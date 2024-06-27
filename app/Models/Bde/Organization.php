@@ -38,19 +38,13 @@ class Organization extends Model
         return $this->hasMany(Event::class);
     }
 
-    public function users(){
-        return $this->belongsToMany(User::class,
-            env('BDE_DB_DATABASE').'.organization_members',
+    public function members(){
+        return $this->belongsToMany(Member::class,
+            'organization_members',
             'organization_id',
             'member_id',
-            'id',
-            'bde_id')
+            'id')
             ->using(OrganizationMember::class)
-            ->withPivot('role');
-    }
-
-    public function members(){
-        return $this->belongsToMany(Member::class, 'organization_members', 'organization_id', 'member_id')
             ->withPivot('role');
     }
 
@@ -63,7 +57,7 @@ class Organization extends Model
     public function logo(){
         return $this->hasOne(OrganizationLogo::class)->withDefault([
             'name' => 'default.png',
-            'path' => '/storage/images/organization_logo/default.png',
+            'path' => env('FOUAILLE_URL').'/storage/images/organization_logo/default.png',
             'size' => 0,
             'organization_id' => $this->id
         ]);
