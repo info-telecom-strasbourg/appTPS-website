@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bde\Organization;
 use App\Models\Post;
 use App\Models\Media;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -18,25 +20,48 @@ class PostController extends Controller
     */
     public function index(Request $request) : \Illuminate\Http\JsonResponse {
         $per_page = $request->query('per_page');
-        $category = $request->query('category_id');
+        $category_id = $request->query('category_id');
+        $user_name = $request->query('user_name');
+        $user_id = $request->query('user_id');
+        $asso_id = $request->query('asso_id');
 
         if ($per_page == null) {
             $per_page = 10;
         }
 
-        /* 1 correspond au filtre tout */
-        if ($category != 1 && $category != null) {
-            $posts = Post::where('category_id', '=', $category)->orderByDesc('created_at')->paginate($per_page);
-        } else {
-            $posts = Post::orderByDesc('created_at')->paginate($per_page);
+        $user = User::where('user_name', $user_name)->first();
+        $organization = Organization::where('user_name', $user_name)->first();
+
+        $query = Post::query();
+
+        if ($user) {
+            $query->orWhere('user_id', $user->id);
         }
+
+        if ($organization) {
+            $query->orWhere('organization_id', $organization->id);
+        }
+
+        if ($user_id) {
+            $query->orWhere('user_id', $user_id);
+        }
+
+        if ($asso_id) {
+            $query->orWhere('organization_id', $asso_id);
+        }
+
+        if ($category_id && $category_id != 1) {
+            $query->where('category_id', $category_id);
+        }
+
+        $posts = $query->paginate($per_page);
 
         return response()->json([
             'data' => $posts->map(function ($post) {
                 return [
                     'id' => $post->id,
                     'body' => $post->body,
-                    'created_since' => $post->duration,
+                    'uploaded_since' => $post->duration,
                     'color' => $post->color,
                     'category' => $post->category->name,
                     'created_at' => $post->created_at->format('Y-m-d H:i:s'),
@@ -54,12 +79,14 @@ class PostController extends Controller
                         'is_organization' => true,
                         'id' => $post->organization->id,
                         'name' => $post->organization->name,
+                        'username' => $post->organization->user_name,
                         'short_name' => $post->organization->short_name,
                         'logo_url' => $post->organization->getLogoPath()
                     ] : [
                         'is_organization' => false,
                         'id' => $post->user->id,
                         'name' => $post->user->getFullName(),
+                        'user_name' => $post->user->user_name,
                         'short_name' => null,
                         'logo_url' => $post->user->avatar->path
                     ],

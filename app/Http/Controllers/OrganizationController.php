@@ -80,64 +80,10 @@ class OrganizationController extends Controller
             ];
         })->values();
 
-        $posts_tab = $organization->posts->map(function ($post) {
-            return [
-                'id' => $post->id,
-                'body' => $post->body,
-                'created_since' => $post->duration,
-                'color' => $post->color,
-                'category' => $post->category->name,
-                'reaction_count' => $post->reaction->count(),
-                'comment_count' => $post->comments->count(),
-                'medias' => $post->media->map(function ($media) {
-                    return [
-                        'id' => $media->id,
-                        'url' => $media->media_url,
-                        'type' => $media->mediaType->type,
-                    ];
-                }),
-                'author' => $post->organization ? [
-                    'is_organization' => true,
-                    'id' => $post->organization->id,
-                    'name' => $post->organization->name,
-                    'short_name' => $post->organization->short_name,
-                    'logo_url' => $post->organization->getLogoPath()
-                ] : [
-                    'is_organization' => false,
-                    'id' => $post->user->id,
-                    'name' => $post->user->getFullName(),
-                    'short_name' => null,
-                    'logo_url' => $post->user->avatar->path
-                ],
-            ];
-        })->values();
-
-        $posts = $organization->posts()->orderByDesc('created_at')->paginate($per_page);
-
-        $meta = [
-            'total' => $posts->total(),
-            'per_page' => $posts->perPage(),
-            'current_page' => $posts->currentPage(),
-            'last_page' => $posts->lastPage(),
-            'first_page_url' => $posts->url(1)."&per_page=".$per_page,
-            'last_page_url' => $posts->url($posts->lastPage())."&per_page=".$per_page,
-            'next_page_url' => $posts->nextPageUrl()."&per_page=".$per_page,
-            'prev_page_url' => $posts->previousPageUrl()."&per_page=".$per_page,
-            'path' => $posts->path(),
-            'from' => $posts->firstItem(),
-            'to' => $posts->lastItem(),
-            'in_page' => $posts->count()
-        ];
-
-
         return response()->json(
             [
                 'organization' => $organization_tab,
                 'members' => $members_tab,
-                'posts' => [
-                    'data' => $posts_tab,
-                    'meta' => $meta
-                    ]
             ]
         )->setEncodingOptions(JSON_PRETTY_PRINT);
     }

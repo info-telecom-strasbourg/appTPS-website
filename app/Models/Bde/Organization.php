@@ -14,6 +14,7 @@ class Organization extends Model
     use HasFactory;
 
     protected $connection = 'bde_bdd';
+    protected $table = 'organizations';
 
     public $timestamps = false;
 

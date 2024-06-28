@@ -24,10 +24,12 @@ class RegisteredUserController extends Controller
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
             'user_name' => [
+                'required',
                 'string',
                 'min:3',
                 'max:30',
-                'unique:users,user_name'
+                'unique:users,user_name',
+                'unique:bde_bdd'.env("BDE_DB_DATABASE").'organizations,user_name'
             ],
             'last_name' => [
                 'required',

@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $test_member = Member::create([
-            'id' => 101,
+            'id' => 1001,
             'first_name' => 'first_name',
             'last_name' => 'last_name',
             'card_number' => '12345678',
@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
             'token' => hash('sha256', 'test')
         ]);
 
-        User::factory(Member::count())->create();
+        User::factory(Member::count()-1)->create();
 
         User::all()->each(function ($user) {
             $user->tokens()->create([

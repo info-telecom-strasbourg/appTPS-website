@@ -24,7 +24,8 @@ class UserController extends Controller
                 'string',
                 'min:3',
                 'max:255',
-                'unique:users,user_name'
+                'unique:users,user_name',
+                'unique:bde_bdd'.env(BDE_DB_DATABASE).'organizations,user_name'
             ],
             'phone' => [
                 'string',
@@ -72,8 +73,6 @@ class UserController extends Controller
 
         $user = $request->user();
 
-        $posts = $user->posts()->orderByDesc('created_at')->paginate($per_page);
-
         return response()->json([
             'data' => [
                 'id' => $user->id,
@@ -91,43 +90,6 @@ class UserController extends Controller
                 'sector' => $user->sector ? $user->sector->short_name : null,
                 'birth_date' => $user->birth_date,
             ],
-            'posts' => [
-                'data' => $posts->map(function ($post) {
-                    return [
-                        'id' => $post->id,
-                        'body' => $post->body,
-                        'created_since' => $post->duration,
-                        'created_at' => $post->created_at,
-                        'updated_at' => $post->updated_at,
-                        'reaction_count' => $post->reaction->count(),
-                        'comment_count' => $post->comments->count(),
-                        'media' => $post->media->map(function ($media) {
-                            return [
-                                'id' => $media->id,
-                                'url' => $media->media_url,
-                                'type' => $media->mediaType->type,
-                            ];
-                        }),
-                        'author' => [
-                            'id' => $post->user->id,
-                            'name' => $post->user->getFullName(),
-                            'avatar_url' => $post->user->avatar->path,
-                        ]
-                    ];})->values(),
-                'meta' => [
-                    'total' => $posts->total(),
-                    'per_page' => $posts->perPage(),
-                    'current_page' => $posts->currentPage(),
-                    'last_page' => $posts->lastPage(),
-                    'first_page_url' => $posts->url(1)."&per_page=".$per_page,
-                    'last_page_url' => $posts->url($posts->lastPage())."&per_page=".$per_page,
-                    'next_page_url' => $posts->nextPageUrl()."&per_page=".$per_page,
-                    'prev_page_url' => $posts->previousPageUrl()."&per_page=".$per_page,
-                    'path' => $posts->path(),
-                    'from' => $posts->firstItem(),
-                    'to' => $posts->lastItem()
-                ]
-            ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 
@@ -152,43 +114,6 @@ class UserController extends Controller
                 'sector' => $user->sector ? $user->sector->short_name : null,
                 'birth_date' => $user->birth_date,
             ],
-            'posts' => [
-                'data' => $posts->map(function ($post) {
-                return [
-                    'id' => $post->id,
-                    'body' => $post->body,
-                    'created_since' => $post->duration,
-                    'created_at' => $post->created_at,
-                    'updated_at' => $post->updated_at,
-                    'reaction_count' => $post->reaction->count(),
-                    'comment_count' => $post->comments->count(),
-                    'media' => $post->media->map(function ($media) {
-                        return [
-                            'id' => $media->id,
-                            'url' => $media->media_url,
-                            'type' => $media->mediaType->type,
-                        ];
-                    }),
-                    'author' => [
-                        'id' => $post->user->id,
-                        'name' => $post->user->getFullName(),
-                        'avatar_url' => $post->user->avatar->path,
-                    ]
-                ];})->values(),
-                'meta' => [
-                    'total' => $posts->total(),
-                    'per_page' => $posts->perPage(),
-                    'current_page' => $posts->currentPage(),
-                    'last_page' => $posts->lastPage(),
-                    'first_page_url' => $posts->url(1)."&per_page=".$per_page,
-                    'last_page_url' => $posts->url($posts->lastPage())."&per_page=".$per_page,
-                    'next_page_url' => $posts->nextPageUrl()."&per_page=".$per_page,
-                    'prev_page_url' => $posts->previousPageUrl()."&per_page=".$per_page,
-                    'path' => $posts->path(),
-                    'from' => $posts->firstItem(),
-                    'to' => $posts->lastItem()
-                ]
-            ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 

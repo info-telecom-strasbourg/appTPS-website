@@ -59,10 +59,6 @@ class FouailleController extends Controller
 
         return response()->json([
             'data' => [
-                'balance' => DB::connection('bde_bdd')->table('members')->where('id', '=', $user->bde_id)->first()->balance,
-                'first_name' => $user->first_name,
-                'last_name' => $user->last_name,
-                'user_name' => $user->user_name,
                 'orders' => $orders
             ],
             'meta' => [
@@ -88,6 +84,9 @@ class FouailleController extends Controller
         return response()->json([
             'data' => [
                 'balance' => DB::connection('bde_bdd')->table('members')->where('id', '=', $user->bde_id)->first()->balance,
-            ],]);
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'user_name' => $user->user_name,
+                ],]);
     }
 }

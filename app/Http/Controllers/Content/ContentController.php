@@ -31,7 +31,7 @@ class ContentController extends Controller
             ],
             'organization_id' => [
                 'integer',
-                'exists:bde_bdd.bdedatapsbs.organizations,id'
+                'exists:bde_bdd'.env("BDE_DB_DATABASE").'organizations,id'
             ],
             'category_id' => [
                 'integer'
@@ -40,6 +40,9 @@ class ContentController extends Controller
                 'date'
             ],
             'end_at' => [
+                'date'
+            ],
+            'uploaded_at' => [
                 'date'
             ],
             'location' => [
@@ -70,6 +73,13 @@ class ContentController extends Controller
             ], 403);
         }
 
+        if ($request->uploaded_at == null) {
+            $uploaded_at = now();
+        }
+        else{
+            $uploaded_at = $request->uploaded_at;
+        }
+
         // Create only a post
         if($request->create_event == null && $request->create_post == 1){
 
@@ -82,10 +92,12 @@ class ContentController extends Controller
                 ], 422);
             }
 
+
             $post = Post::create([
                 'body' => $request->body,
                 'color' => $request->color,
                 'organization_id' => $request->organization_id,
+                'uploaded_at' => $uploaded_at,
                 'user_id' => $request->user()->id,
                 'category_id' => $request->category_id,
             ]);
@@ -148,6 +160,7 @@ class ContentController extends Controller
                 'body' => $request->body,
                 'color' => $request->color,
                 'organization_id' => $request->organization_id,
+                'uploaded_at' => $uploaded_at,
                 'user_id' => $request->user()->id,
                 'event_id' => $event->id,
                 'category_id' => $request->category_id,

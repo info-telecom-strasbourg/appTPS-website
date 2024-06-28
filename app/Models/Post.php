@@ -5,11 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Bde\Organization;
+use Illuminate\Support\Carbon;
+
 class Post extends Model
 {
     use HasFactory;
 
     protected $connection = 'mysql';
+
+    protected $table = 'posts';
 
     protected $fillable = [
         'user_id',
@@ -21,6 +25,7 @@ class Post extends Model
         'body',
         'color',
         'created_at',
+        'uploaded_at',
     ];
 
     public function user(){
@@ -55,7 +60,7 @@ class Post extends Model
 
     public function getDurationAttribute() {
 
-        $date1 = $this->created_at; // Date de création du post
+        $date1 = new Carbon($this->uploaded_at); // Date d'upload du post
 
         $duration = $date1->diffForHumans();// Différence entre les dates
 
@@ -66,7 +71,8 @@ class Post extends Model
     public function scopeFilter($query, $filters){
         $query->when($filters['search'] ?? null, function($query, $search){
             $query->where('name', 'like', '%' . $search . '%')
-                ->orWhere('short_name', 'like', '%' . $search . '%');
+                ->orWhere('short_name', 'like', '%' . $search . '%')
+                ->orWhere('description', 'like', '%' . $search . '%');
         });
     }
 }

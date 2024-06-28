@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id')->nullable();
             $table->string('color');
             $table->longText('body');
+            $table->timestamp('uploaded_at');
             $table->timestamps();
             $table->softDeletes();
 
