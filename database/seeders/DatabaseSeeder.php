@@ -27,14 +27,15 @@ class DatabaseSeeder extends Seeder
     {
 
         // Bde bdd seeder
-        Member::factory(20)->create();
+
+        Member::factory(100)->create();
 
         $this->call([
             ProductTypeSeeder::class,
             ProductSeeder::class,
         ]);
 
-        Organization::factory(10)->create();
+        Organization::factory(20)->create();
 
         OrganizationMember::factory(50)->create();
 
@@ -51,13 +52,13 @@ class DatabaseSeeder extends Seeder
 
         Order::factory(200)->create();
 
-        Event::factory(10)->create();
+        Event::factory(20)->create();
 
-        Post::factory(10)->create();
+        Post::factory(100)->create();
 
-        Media::factory(5)->create();
+        Media::factory(10)->create();
 
-        PostComment::factory(100)->create();
+        PostComment::factory(200)->create();
 
         PostComment::create([
             'user_id' => 1,
@@ -86,7 +87,7 @@ class DatabaseSeeder extends Seeder
             'parent_comment_id' => 32
         ]);
 
-        Reaction::factory(200)->create();
+        Reaction::factory(500)->create();
 
         GroupUser::factory(10)->create();
     }

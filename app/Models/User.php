@@ -20,6 +20,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $connection = 'mysql';
 
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *

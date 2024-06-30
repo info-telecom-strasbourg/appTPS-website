@@ -39,6 +39,7 @@ class PostFactory extends Factory
             'body' => $this->faker->text(),
             'user_id' => User::inRandomOrder()->first()->id,
             'organization_id' => $organization_id,
+            'uploaded_at' => $fake_date,
             'event_id' => $event_id,
             'category_id' => Category::inRandomOrder()->first()->id,
             'color' => $this->faker->hexColor(),

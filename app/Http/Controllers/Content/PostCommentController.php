@@ -22,7 +22,7 @@ class PostCommentController extends Controller
             'post_id' => 'required|exists:posts,id',
             'body' => 'required|string|min:3, max:4000000000',
             'parent_comment_id' => 'nullable|exists:post_comments,id',
-            'organization_id' => 'nullable|exists:bde_bdd.bdedatapsbs.organizations,id',
+            'organization_id' => 'nullable|exists:bde_bdd'.env("BDE_DB_DATABASE").'organizations,id',
         ]);
 
         if ($validation->fails()) {
@@ -85,12 +85,14 @@ class PostCommentController extends Controller
                         'is_organization' => true,
                         'id' => $comment->organization->id,
                         'name' => $comment->organization->name,
+                        'user_name' => $comment->organization->user_name,
                         'short_name' => $comment->organization->short_name,
                         'logo_url' => $comment->organization->getLogoPath()
                     ] : [
                         'is_organization' => false,
                         'id' => $comment->user->id,
                         'name' => $comment->user->getFullName(),
+                        'user_name' => $comment->user->user_name,
                         'short_name' => null,
                         'logo_url' => $comment->user->avatar->path
                     ],

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('short_name', 50)->unique()->nullable();
             $table->string('name', 50)->unique();
+            $table->string('user_name', 50)->unique();
             $table->longText('description')->nullable();
             $table->string('website_link', 255)->nullable();
             $table->string('facebook_link', 255)->nullable();
