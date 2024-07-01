@@ -31,7 +31,7 @@ class ContentController extends Controller
             ],
             'organization_id' => [
                 'integer',
-                'exists:bde_bdd'.env("BDE_DB_DATABASE").'organizations,id'
+                'exists:bde_bdd.'.env("BDE_DB_DATABASE").'.organizations,id'
             ],
             'category_id' => [
                 'integer'

@@ -29,7 +29,7 @@ class RegisteredUserController extends Controller
                 'min:3',
                 'max:30',
                 'unique:users,user_name',
-                'unique:bde_bdd'.env("BDE_DB_DATABASE").'organizations,user_name'
+                'unique:bde_bdd.'.env("BDE_DB_DATABASE").'.organizations,user_name'
             ],
             'last_name' => [
                 'required',

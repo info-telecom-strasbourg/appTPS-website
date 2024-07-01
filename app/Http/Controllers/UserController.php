@@ -25,7 +25,7 @@ class UserController extends Controller
                 'min:3',
                 'max:255',
                 'unique:users,user_name',
-                'unique:bde_bdd'.env(BDE_DB_DATABASE).'organizations,user_name'
+                'unique:bde_bdd.'.env(BDE_DB_DATABASE).'.organizations,user_name'
             ],
             'phone' => [
                 'string',
@@ -41,7 +41,11 @@ class UserController extends Controller
                 'integer',
                 'min:2000',
                 'max:3000'
-            ]
+            ],
+            'description' => [
+                'string',
+                'max:100'
+            ],
         ]);
 
         if ($validation->fails()) {
@@ -79,6 +83,7 @@ class UserController extends Controller
                 'last_name' => $user->last_name,
                 'first_name' => $user->first_name,
                 'user_name' => $user->user_name,
+                'description' => $user->description,
                 'email' => $user->email,
                 'phone' => $user->phone,
                 'bde_id' => $user->bde_id,
@@ -107,6 +112,7 @@ class UserController extends Controller
                 'last_name' => $user->last_name,
                 'first_name' => $user->first_name,
                 'user_name' => $user->user_name,
+                'description' => $user->description,
                 'avatar_url' => $user->avatar->path,
                 'promotion_year' => $user->promotion_year,
                 'created_at' => $user->created_at->format('Y-m-d H:i:s'),

@@ -20,4 +20,8 @@ class Product extends Model
         'product_type_id',
         'color'
     ];
+
+    public function productType(){
+        return $this->belongsTo(ProductType::class);
+    }
 }

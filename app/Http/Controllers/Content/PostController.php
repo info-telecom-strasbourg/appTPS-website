@@ -62,6 +62,7 @@ class PostController extends Controller
                     'id' => $post->id,
                     'body' => $post->body,
                     'uploaded_since' => $post->duration,
+                    'uploaded_at' => $post->uploaded_at,
                     'color' => $post->color,
                     'category' => $post->category->name,
                     'created_at' => $post->created_at->format('Y-m-d H:i:s'),
@@ -79,7 +80,7 @@ class PostController extends Controller
                         'is_organization' => true,
                         'id' => $post->organization->id,
                         'name' => $post->organization->name,
-                        'username' => $post->organization->user_name,
+                        'user_name' => $post->organization->user_name,
                         'short_name' => $post->organization->short_name,
                         'logo_url' => $post->organization->getLogoPath()
                     ] : [
@@ -126,7 +127,8 @@ class PostController extends Controller
         return response()->json([
             'data' => [
                 'body' => $post->body,
-                'created_since' => $post->duration,
+                'uploaded_since' => $post->duration,
+                'uploaded_at' => $post->uploaded_at,
                 'color' => $post->color,
                 'category' => $post->category->name,
                 'created_at' => $post->created_at->format('Y-m-d H:i:s'),
@@ -144,12 +146,14 @@ class PostController extends Controller
                     'id' => $post->organization->id,
                     'name' => $post->organization->name,
                     'short_name' => $post->organization->short_name,
+                    'user_name' => $post->organization->user_name,
                     'logo_url' => $post->organization->getLogoPath()
                 ] : [
                     'is_organization' => false,
                     'id' => $post->user->id,
                     'name' => $post->user->getFullName(),
                     'short_name' => null,
+                    'user_name' => $post->user->user_name,
                     'logo_url' => $post->user->avatar->path
                 ],
             ]

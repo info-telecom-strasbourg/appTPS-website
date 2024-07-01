@@ -1,6 +1,6 @@
 # afficher les posts
 
-Affiche tout les posts
+Affiche tout les posts en fonction des paramètres de filtrage donnés
 
 ## Requête
 
@@ -16,6 +16,15 @@ Nombre de posts par page
 Numéro de la page
 ### category_id :
 Id de la catégorie
+### organization_id :
+Id de l'organisation
+### user_id :
+Id de l'utilisateur
+### user_name :
+Nom de l'utilisateur ou de l'association
+### search :
+Recherche par mot clé
+
 #### exemple :
 Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1?category_id=1
 
@@ -28,7 +37,8 @@ Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1?category_id
         {
             "id": 1,
             "body": "Ceci est le contenu du premier post",
-            "created_since": "Il y a 2 jours",
+            "uploaded_since": "Il y a 2 jours",
+            "uploaded_at": "2023-12-27T16:43:39.000000Z",
             "user_id": 2,
             "organization_id": 1,
             "category": "Admis2023",
@@ -39,6 +49,7 @@ Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1?category_id
                 "id": 2,
                 "name": "Nom complet de l'utilisateur",
                 "short_name": null,
+                "user_name": "Nom d'utilisateur",
                 "logo_url": "/chemin/vers/avatar.jpg"
             }
         },
@@ -55,6 +66,7 @@ Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1?category_id
                 "id": 3,
                 "name": "Nom complet de l'utilisateur",
                 "short_name": null,
+                "user_name": "Nom d'utilisateur",
                 "logo_url": "/chemin/vers/avatar.jpg"
             }
         }

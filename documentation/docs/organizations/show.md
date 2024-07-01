@@ -55,50 +55,7 @@ L'objet `posts` contient un tableau de posts associés à l'organisation et des 
             "first_name": "John",
             "last_name": "Doe",
             "avatar_url": "http://example.com/avatar1.png"
-        },
-        ...
-    ],
-    "posts": {
-        "data": [
-            {
-                "id": 1,
-                "body": "This is a post.",
-                "created_since": "1 day ago",
-                "color": "#FFFFFF",
-                "category": "General",
-                "reaction_count": 10,
-                "comment_count": 2,
-                "medias": [
-                    {
-                        "id": 1,
-                        "url": "http://example.com/media1.png",
-                        "type": "image"
-                    },
-                    ...
-                ],
-                "author": {
-                    "is_organization": true,
-                    "id": 1,
-                    "name": "Organization 1",
-                    "short_name": "org1",
-                    "logo_url": "http://example.com/logo1.png"
-                }
-            },
-            ...
-        ],
-        "meta": {
-            "total": 10,
-            "per_page": 5,
-            "current_page": 1,
-            "last_page": 2,
-            "first_page_url": "http://example.com/api/organizations/1/posts?page=1&per_page=5",
-            "last_page_url": "http://example.com/api/organizations/1/posts?page=2&per_page=5",
-            "next_page_url": "http://example.com/api/organizations/1/posts?page=2&per_page=5",
-            "prev_page_url": null,
-            "path": "http://example.com/api/organizations/1/posts",
-            "from": 1,
-            "to": 5,
-            "in_page": 5
         }
-    }
+    ]
 }
+```
