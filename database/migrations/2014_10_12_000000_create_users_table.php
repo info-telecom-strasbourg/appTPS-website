@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('sector_id')->nullable();
             $table->string('unistra_id')->unique()->nullable();
             $table->string('user_name')->unique();
+            $table->string('description')->nullable();
             $table->string('last_name');
             $table->string('first_name');
             $table->string('email')->unique();

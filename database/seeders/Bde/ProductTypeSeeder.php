@@ -36,5 +36,9 @@ class ProductTypeSeeder extends Seeder
         ProductType::factory()->create([
             'type' => 'Goûter',
         ]);
+
+        ProductType::factory()->create([
+            'type' => 'Repas',
+        ]);
     }
 }

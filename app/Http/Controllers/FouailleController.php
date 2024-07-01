@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bde\Order;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use App\Models\Bde\Member;
@@ -27,31 +28,17 @@ class FouailleController extends Controller
             $per_page = 10;
         }
 
-        $datas = DB::connection('bde_bdd')
-        ->table('orders')
-        ->select(
-            'orders.date',
-            'orders.price',
-            'orders.amount',
-            'products.name',
-            'products.title',
-            'products.color',
-            )
-        ->leftJoin('products', 'orders.product_id', '=', 'products.id')
-        ->where('orders.member_id', '=', $user->bde_id)
-        ->orderByDesc('orders.date')
-        ->paginate($per_page);
+        $orders = Order::where('member_id', $user->bde_id)->orderByDesc('date')->paginate($per_page);
 
-        $orders = $datas->map(function ($data) {
+        $datas = $orders->map(function ($order) {
             return [
-                'date' => $data->date,
-                'total_price' => $data->price,
-                'amount' => $data->amount,
-                'product' => ($data->name == null) ? null : [
-                    'name' => $data->name,
-                    'title' => $data->title,
-                    'unit_price' => strval($data->price / $data->amount),
-                    'color' => $data->color,
+                'date' => $order->date,
+                'total_price' => $order->price,
+                'amount' => $order->amount,
+                'product' => ($order->product == null) ? null : [
+                    'name' => $order->product->name,
+                    'type' => $order->product->productType->type,
+                    'unit_price' => strval($order->price / $order->amount),
                 ]
             ];
         });
@@ -59,20 +46,20 @@ class FouailleController extends Controller
 
         return response()->json([
             'data' => [
-                'orders' => $orders
+                'orders' => $datas
             ],
             'meta' => [
-                'total' => $datas->total(),
-                'per_page' => $datas->perPage(),
-                'current_page' => $datas->currentPage(),
-                'last_page' => $datas->lastPage(),
-                'first_page_url' => $datas->url(1)."&per_page=".$per_page,
-                'last_page_url' => $datas->url($datas->lastPage())."&per_page=".$per_page,
-                'next_page_url' => $datas->nextPageUrl()."&per_page=".$per_page,
-                'prev_page_url' => $datas->previousPageUrl()."&per_page=".$per_page,
-                'path' => $datas->path(),
-                'from' => $datas->firstItem(),
-                'to' => $datas->lastItem()
+                'total' => $orders->total(),
+                'per_page' => $orders->perPage(),
+                'current_page' => $orders->currentPage(),
+                'last_page' => $orders->lastPage(),
+                'first_page_url' => $orders->url(1)."&per_page=".$per_page,
+                'last_page_url' => $orders->url($orders->lastPage())."&per_page=".$per_page,
+                'next_page_url' => $orders->nextPageUrl()."&per_page=".$per_page,
+                'prev_page_url' => $orders->previousPageUrl()."&per_page=".$per_page,
+                'path' => $orders->path(),
+                'from' => $orders->firstItem(),
+                'to' => $orders->lastItem()
             ]
         ], 200);
     }

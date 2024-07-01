@@ -24,6 +24,7 @@ Affiche un post
         "id": 1,
         "body": "Ceci est le contenu du premier post",
         "created_since": "Il y a 2 jours",
+        "uploaded_at": "2023-12-27T16:43:39.000000Z",
         "user_id": 2,
         "organization_id": 1,
         "category": "Admis2023",
@@ -47,6 +48,7 @@ Affiche un post
             "id": 2,
             "name": "Nom complet de l'utilisateur",
             "short_name": null,
+            "user_name": "Nom d'utilisateur",
             "logo_url": "/chemin/vers/avatar.jpg"
         }
     }
