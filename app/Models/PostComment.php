@@ -34,6 +34,22 @@ class PostComment extends Model
         return $this->belongsTo(Organization::class);
     }
 
+    public function reaction()
+    {
+        return $this->hasMany(Reaction::class);
+    }
+
+    public function userReactionsType()
+    {
+        $reactionType = $this->reaction()
+            ->join('reaction_types', 'reactions.reaction_type_id', '=', 'reaction_types.id')
+            ->where('reactions.user_id', auth()->id())
+            ->value('reaction_types.name'); // Utilise `value` au lieu de `pluck` pour obtenir une seule valeur
+
+        return $reactionType ?: null; // Retourne le type de réaction ou `null` si aucun n'est trouvé
+    }
+
+
     public function getDurationAttribute() {
 
         $date1 = $this->created_at; // Date de création du post
