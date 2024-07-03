@@ -6,10 +6,13 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "algolia/algoliasearch-client-php": "^3.4",
+        "algolia/scout-extended": "^3.1",
         "fabpot/goutte": "^4.0",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
+        "laravel/scout": "^10.10",
         "laravel/tinker": "^2.8",
         "subfission/cas": "^4.4",
         "symfony/browser-kit": "^6.3",

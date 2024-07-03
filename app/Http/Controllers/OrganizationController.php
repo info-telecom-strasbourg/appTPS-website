@@ -59,6 +59,7 @@ class OrganizationController extends Controller
         }
 
         $organization_tab = [
+            'id' => $organization->id,
             'short_name' => $organization->short_name,
             'name' => $organization->name,
             'user_name' => $organization->user_name,

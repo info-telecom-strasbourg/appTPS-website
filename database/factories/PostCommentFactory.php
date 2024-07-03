@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\PostComment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Bde\Organization;
 use App\Models\Post;
@@ -20,30 +21,19 @@ class PostCommentFactory extends Factory
     public function definition(): array
     {
         $post = Post::inRandomOrder()->first();
-        $postComments = $post->comments;
+        $existingComments = PostComment::where('post_id', $post->id)->get();
 
-        if (random_int(0, 1) == 1) {
-            $organization_id = Organization::inRandomOrder()->first()->id;
-        }else{
-            $organization_id = null;
+        $parentCommentId = null;
+        if ($existingComments->isNotEmpty() && random_int(1, 4) !== 1) {
+            $parentCommentId = $existingComments->random()->id;
         }
 
-        if ($postComments->isNotEmpty()){
-            $comment_id = $postComments->value('id')->random();
-            return [
-                'body' => $this->faker->text(),
-                'post_id' => $post->id,
-                'organization_id' => $organization_id,
-                'user_id' => User::inRandomOrder()->first()->id,
-                'parent_comment_id' => $comment_id
-            ];
-        }else{
-            return [
-                'body' => $this->faker->text(),
-                'post_id' => $post->id,
-                'organization_id' => $organization_id,
-                'user_id' => User::inRandomOrder()->first()->id,
-            ];
-        }
+        return [
+            'body' => $this->faker->text(),
+            'post_id' => $post->id,
+            'organization_id' => Organization::inRandomOrder()->first()->id,
+            'user_id' => User::inRandomOrder()->first()->id,
+            'parent_comment_id' => $parentCommentId,
+        ];
     }
 }

@@ -21,7 +21,6 @@ class ReactionController extends Controller
     public function store(Request $request) : \Illuminate\Http\JsonResponse {
 
         $validation = Validator::make($request->all(), [
-            'user_id' => 'required|exists:users,id',
             'post_id' => 'nullable|exists:posts,id',
             'post_comment_id' => 'nullable|exists:post_comments,id',
             'reaction_type_id' => 'required|exists:reaction_types,id',
@@ -35,7 +34,7 @@ class ReactionController extends Controller
         }
 
         // Vérifier si l'utilisateur a déjà réagi au post avec le même type de réaction
-        $existingReaction = Reaction::where('user_id', $request->user_id)
+        $existingReaction = Reaction::where('user_id', $request->user()->id)
             ->where('post_id', $request->post_id)
             ->Where('post_comment_id', $request->post_comment_id)
             ->where('reaction_type_id', $request->reaction_type_id)
@@ -50,7 +49,7 @@ class ReactionController extends Controller
             ], 205);
         } else {
             // Sinon, mettre à jour la réaction existante avec le nouveau type de réaction
-            $existingReaction = Reaction::where('user_id', $request->user_id)
+            $existingReaction = Reaction::where('user_id',  $request->user()->id)
                 ->where('post_id', $request->post_id)
                 ->Where('post_comment_id', $request->post_comment_id)
                 ->first();
@@ -67,13 +66,13 @@ class ReactionController extends Controller
                 // Si aucune réaction existante ne correspond à l'ID de l'utilisateur et à l'ID du post, créer une nouvelle réaction
                 if ($request->post_id != null) {
                     $reaction = Reaction::create([
-                        'user_id' => $request->user_id,
+                        'user_id' =>  $request->user()->id,
                         'post_id' => $request->post_id,
                         'reaction_type_id' => $request->reaction_type_id,
                     ]);
                 } else {
                     $reaction = Reaction::create([
-                        'user_id' => $request->user_id,
+                        'user_id' =>  $request->user()->id,
                         'post_comment_id' => $request->post_comment_id,
                         'reaction_type_id' => $request->reaction_type_id,
                     ]);
