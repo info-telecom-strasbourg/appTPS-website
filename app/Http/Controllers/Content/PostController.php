@@ -24,6 +24,7 @@ class PostController extends Controller
         $user_name = $request->query('user_name');
         $user_id = $request->query('user_id');
         $asso_id = $request->query('asso_id');
+        $search = $request->query('search');
 
         if ($per_page == null) {
             $per_page = 10;
@@ -32,7 +33,7 @@ class PostController extends Controller
         $user = User::where('user_name', $user_name)->first();
         $organization = Organization::where('user_name', $user_name)->first();
 
-        $query = Post::query();
+        $query = Post::where('uploaded_at', '<=', now())->orderBy('uploaded_at', 'desc');
 
         if ($user) {
             $query->orWhere('user_id', $user->id);
@@ -51,7 +52,11 @@ class PostController extends Controller
         }
 
         if ($category_id && $category_id != 1) {
-            $query->where('category_id', $category_id);
+            $query->orwhere('category_id', $category_id);
+        }
+
+        if($search) {
+            $query->filter($search);
         }
 
         $posts = $query->paginate($per_page);
@@ -68,6 +73,7 @@ class PostController extends Controller
                     'created_at' => $post->created_at->format('Y-m-d H:i:s'),
                     'updated_at' => $post->updated_at->format('Y-m-d H:i:s'),
                     'reaction_count' => $post->reaction->count(),
+                    'has_reacted' => $post->userReactionsTypes(),
                     'comment_count' => $post->comments->count(),
                     'medias' => $post->media->map(function ($media) {
                         return [
@@ -134,6 +140,8 @@ class PostController extends Controller
                 'created_at' => $post->created_at->format('Y-m-d H:i:s'),
                 'updated_at' => $post->updated_at->format('Y-m-d H:i:s'),
                 'reaction_count' => $post->reaction->count(),
+                'has_reacted' => $post->userReactionsTypes(),
+                'comment_count' => $post->comments->count(),
                 'medias' => $post->media->map(function ($media) {
                     return [
                         'id' => $media->id,

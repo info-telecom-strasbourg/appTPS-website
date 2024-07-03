@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
             'parent_comment_id' => 32
         ]);
 
-        Reaction::factory(500)->create();
+        Reaction::factory(100)->create();
 
         GroupUser::factory(10)->create();
     }
