@@ -140,7 +140,7 @@ class PostController extends Controller
                 'created_at' => $post->created_at->format('Y-m-d H:i:s'),
                 'updated_at' => $post->updated_at->format('Y-m-d H:i:s'),
                 'reaction_count' => $post->reaction->count(),
-                'has_reacted' => $post->userReactionsTypes(),
+                'has_reacted' => $post->userReactionsType(),
                 'comment_count' => $post->comments->count(),
                 'medias' => $post->media->map(function ($media) {
                     return [
