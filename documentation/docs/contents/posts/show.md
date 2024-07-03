@@ -30,7 +30,9 @@ Affiche un post
         "category": "Admis2023",
         "created_at": "2023-12-27T16:43:39.000000Z",
         "updated_at": "2023-12-27T16:43:39.000000Z",
-        "reaction_count": 2,
+        "reaction_count": 0,
+        "has_reacted": ["like"],
+        "comment_count": 0,
         "media": [
             {
                 "id": 1,
