@@ -108,6 +108,14 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#category_id">category_id :</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#organization_id">organization_id :</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#user_id">user_id :</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#user_name">user_name :</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#search">search :</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#reponses">Réponses</a>
@@ -126,7 +134,7 @@
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../comments/">Index comments</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../comments/store/">Show comment</a>
+                <li class="toctree-l2"><a class="reference internal" href="../comments/store/">Store comment</a>
                 </li>
     </ul>
                   </li>
@@ -134,7 +142,7 @@
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../reactions/">Index reactions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../reactions/store/">Show reaction</a>
+                <li class="toctree-l2"><a class="reference internal" href="../reactions/store/">Store reaction</a>
                 </li>
                 <li class="toctree-l2"><a class="" href="../reactions_type/index.md">Index reactions_type</a>
                 </li>
@@ -187,7 +195,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="afficher-les-posts">afficher les posts</h1>
-<p>Affiche tout les posts</p>
+<p>Affiche tout les posts en fonction des paramètres de filtrage donnés</p>
 <h2 id="requete">Requête</h2>
 <table>
 <thead>
@@ -214,6 +222,14 @@
 <p>Numéro de la page</p>
 <h3 id="category_id">category_id :</h3>
 <p>Id de la catégorie</p>
+<h3 id="organization_id">organization_id :</h3>
+<p>Id de l'organisation</p>
+<h3 id="user_id">user_id :</h3>
+<p>Id de l'utilisateur</p>
+<h3 id="user_name">user_name :</h3>
+<p>Nom de l'utilisateur ou de l'association</p>
+<h3 id="search">search :</h3>
+<p>Recherche par mot clé ou phrase</p>
 <h4 id="exemple">exemple :</h4>
 <p>Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&amp;page=1?category_id=1</p>
 <h2 id="reponses">Réponses</h2>
@@ -222,17 +238,29 @@
         {
             &quot;id&quot;: 1,
             &quot;body&quot;: &quot;Ceci est le contenu du premier post&quot;,
-            &quot;created_since&quot;: &quot;Il y a 2 jours&quot;,
+            &quot;uploaded_since&quot;: &quot;Il y a 2 jours&quot;,
+            &quot;uploaded_at&quot;: &quot;2023-12-27T16:43:39.000000Z&quot;,
             &quot;user_id&quot;: 2,
             &quot;organization_id&quot;: 1,
             &quot;category&quot;: &quot;Admis2023&quot;,
             &quot;created_at&quot;: &quot;2023-12-27T16:43:39.000000Z&quot;,
             &quot;updated_at&quot;: &quot;2023-12-27T16:43:39.000000Z&quot;,
+            &quot;reaction_count&quot;: 0,
+            &quot;has_reacted&quot;: [&quot;like&quot;],
+            &quot;comment_count&quot;: 0,
+            &quot;medias&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;url&quot;: &quot;/chemin/vers/image.jpg&quot;,
+                    &quot;type&quot;: &quot;image&quot;
+                }
+            ],
             &quot;author&quot;: {
                 &quot;is_organization&quot;: true,
                 &quot;id&quot;: 2,
                 &quot;name&quot;: &quot;Nom complet de l'utilisateur&quot;,
                 &quot;short_name&quot;: null,
+                &quot;user_name&quot;: &quot;Nom d'utilisateur&quot;,
                 &quot;logo_url&quot;: &quot;/chemin/vers/avatar.jpg&quot;
             }
         },
@@ -249,6 +277,7 @@
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Nom complet de l'utilisateur&quot;,
                 &quot;short_name&quot;: null,
+                &quot;user_name&quot;: &quot;Nom d'utilisateur&quot;,
                 &quot;logo_url&quot;: &quot;/chemin/vers/avatar.jpg&quot;
             }
         }

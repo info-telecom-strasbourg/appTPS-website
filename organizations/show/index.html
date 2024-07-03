@@ -106,7 +106,7 @@
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../contents/comments/">Index comments</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../contents/comments/store/">Show comment</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../contents/comments/store/">Store comment</a>
                 </li>
     </ul>
                   </li>
@@ -114,7 +114,7 @@
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../contents/reactions/">Index reactions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../contents/reactions/store/">Show reaction</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../contents/reactions/store/">Store reaction</a>
                 </li>
                 <li class="toctree-l2"><a class="" href="../../contents/reactions_type/index.md">Index reactions_type</a>
                 </li>
@@ -206,73 +206,29 @@
 <p>L'objet <code>members</code> est un tableau d'objets, où chaque objet représente un membre de l'organisation.</p>
 <p>L'objet <code>posts</code> contient un tableau de posts associés à l'organisation et des métadonnées sur la pagination des posts.</p>
 <h3 id="exemple-de-reponse">Exemple de réponse</h3>
-<p>```json
-{
-    "organization": {
-        "short_name": "org1",
-        "name": "Organization 1",
-        "description": "This is a description of the organization.",
-        "website_link": "http://example.com",
-        "facebook_link": "http://facebook.com/org1",
-        "twitter_link": "http://twitter.com/org1",
-        "instagram_link": "http://instagram.com/org1",
-        "discord_link": "http://discord.com/org1",
-        "email": "org1@example.com",
-        "logo_url": "http://example.com/logo1.png"
+<pre><code class="language-json">{
+    &quot;organization&quot;: {
+        &quot;short_name&quot;: &quot;org1&quot;,
+        &quot;name&quot;: &quot;Organization 1&quot;,
+        &quot;description&quot;: &quot;This is a description of the organization.&quot;,
+        &quot;website_link&quot;: &quot;http://example.com&quot;,
+        &quot;facebook_link&quot;: &quot;http://facebook.com/org1&quot;,
+        &quot;twitter_link&quot;: &quot;http://twitter.com/org1&quot;,
+        &quot;instagram_link&quot;: &quot;http://instagram.com/org1&quot;,
+        &quot;discord_link&quot;: &quot;http://discord.com/org1&quot;,
+        &quot;email&quot;: &quot;org1@example.com&quot;,
+        &quot;logo_url&quot;: &quot;http://example.com/logo1.png&quot;
     },
-    "members": [
+    &quot;members&quot;: [
         {
-            "id": 1,
-            "first_name": "John",
-            "last_name": "Doe",
-            "avatar_url": "http://example.com/avatar1.png"
-        },
-        ...
-    ],
-    "posts": {
-        "data": [
-            {
-                "id": 1,
-                "body": "This is a post.",
-                "created_since": "1 day ago",
-                "color": "#FFFFFF",
-                "category": "General",
-                "reaction_count": 10,
-                "comment_count": 2,
-                "medias": [
-                    {
-                        "id": 1,
-                        "url": "http://example.com/media1.png",
-                        "type": "image"
-                    },
-                    ...
-                ],
-                "author": {
-                    "is_organization": true,
-                    "id": 1,
-                    "name": "Organization 1",
-                    "short_name": "org1",
-                    "logo_url": "http://example.com/logo1.png"
-                }
-            },
-            ...
-        ],
-        "meta": {
-            "total": 10,
-            "per_page": 5,
-            "current_page": 1,
-            "last_page": 2,
-            "first_page_url": "http://example.com/api/organizations/1/posts?page=1&amp;per_page=5",
-            "last_page_url": "http://example.com/api/organizations/1/posts?page=2&amp;per_page=5",
-            "next_page_url": "http://example.com/api/organizations/1/posts?page=2&amp;per_page=5",
-            "prev_page_url": null,
-            "path": "http://example.com/api/organizations/1/posts",
-            "from": 1,
-            "to": 5,
-            "in_page": 5
+            &quot;id&quot;: 1,
+            &quot;first_name&quot;: &quot;John&quot;,
+            &quot;last_name&quot;: &quot;Doe&quot;,
+            &quot;avatar_url&quot;: &quot;http://example.com/avatar1.png&quot;
         }
-    }
-}</p>
+    ]
+}
+</code></pre>
               
             </div>
           </div><footer>
