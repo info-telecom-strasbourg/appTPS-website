@@ -60,10 +60,16 @@ class Post extends Model
 
     public function userReactionsTypes()
     {
-        return $this->reaction()
+        $reaction_tab = $this->reaction()
             ->join('reaction_types', 'reactions.reaction_type_id', '=', 'reaction_types.id')
             ->where('reactions.user_id', auth()->id())
             ->pluck('reaction_types.name');
+
+        if ($reaction_tab->isEmpty()) {
+            return null;
+        }
+
+        return $reaction_tab;
     }
 
     public function getDurationAttribute() {
