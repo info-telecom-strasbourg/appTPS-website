@@ -25,7 +25,7 @@ class UserController extends Controller
                 'min:3',
                 'max:255',
                 'unique:users,user_name',
-                'unique:bde_bdd.'.env(BDE_DB_DATABASE).'.organizations,user_name'
+                'unique:bde_bdd.'.env("BDE_DB_DATABASE").'.organizations,user_name'
             ],
             'phone' => [
                 'string',
@@ -121,6 +121,24 @@ class UserController extends Controller
                 'birth_date' => $user->birth_date,
             ],
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+    }
+
+    public function index()
+    {
+        $users = User::filter(request(['search']))->get();
+
+        $users_tab = $users->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'short_name' => $user->short_name,
+                'name' => $user->name,
+                'logo_url' => $user->getLogoPath()
+            ];
+        })->values();
+
+        return response()->json(['data' => [
+            'users' => $users_tab,
+        ]])->setEncodingOptions(JSON_PRETTY_PRINT);
     }
 
     public function delete(Request $request){

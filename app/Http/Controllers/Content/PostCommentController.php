@@ -81,6 +81,8 @@ class PostCommentController extends Controller
                     'body' => $comment->body,
                     'created_at' => $comment->created_at->format('Y-m-d H:i:s'),
                     'updated_at' => $comment->updated_at->format('Y-m-d H:i:s'),
+                    'reaction_count' => $comment->reaction->count(),
+                    'has_reacted' => $comment->userReactionsTypes(),
                     'author' => $comment->organization ? [
                         'is_organization' => true,
                         'id' => $comment->organization->id,

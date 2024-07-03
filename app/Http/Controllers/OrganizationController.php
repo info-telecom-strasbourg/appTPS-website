@@ -36,12 +36,12 @@ class OrganizationController extends Controller
                 return [
                     'id' => $club->id,
                     'short_name' => $club->short_name,
+                    'user_name' => $club->user_name,
                     'name' => $club->name,
                     'logo_url' => $club->getLogoPath()
                 ];
             })->values();
         }
-
 
         return response()->json(['data' => [
             'associations' => $associations_tab,
