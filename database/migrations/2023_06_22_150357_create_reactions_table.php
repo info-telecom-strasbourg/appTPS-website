@@ -22,6 +22,10 @@ return new class extends Migration
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->foreign('post_comment_id')->references('id')->on('post_comments')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            // Ajout de la contrainte d'unicité
+            $table->unique(['user_id', 'post_id']);
+            $table->unique(['user_id', 'post_comment_id']);
         });
     }
 

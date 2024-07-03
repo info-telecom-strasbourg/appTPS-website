@@ -58,6 +58,14 @@ class Post extends Model
         return $this->hasMany(Reaction::class);
     }
 
+    public function userReactionsTypes()
+    {
+        return $this->reaction()
+            ->join('reaction_types', 'reactions.reaction_type_id', '=', 'reaction_types.id')
+            ->where('reactions.user_id', auth()->id())
+            ->pluck('reaction_types.name');
+    }
+
     public function getDurationAttribute() {
 
         $date1 = new Carbon($this->uploaded_at); // Date d'upload du post
@@ -68,12 +76,34 @@ class Post extends Model
 
     }
 
-    public function scopeFilter($query, $filters){
-        $query->when($filters['search'] ?? null, function($query, $search){
-            $query->where('name', 'like', '%' . $search . '%')
-                ->orWhere('short_name', 'like', '%' . $search . '%')
-                ->orWhere('description', 'like', '%' . $search . '%');
-        });
+    public function scopeFilter($query,$search)
+    {
+        // Vérifiez d'abord si la chaîne de recherche complète existe dans le corps du post
+        $determinant_table = array("l'","un", "de", "d'", "le", "la", "les", "des", "du", "ce", "cet", "cette", "ces", "mon", "ma", "mes", "ton", "ta", "tes", "son", "sa", "ses", "notre", "nos", "votre", "vos", "leur", "leurs");
+        $fullStringQuery = clone $query;
+        $postsWithFullString = $fullStringQuery->where('body', 'LIKE', '%' . $search . '%')->get();
+
+        if ($postsWithFullString->isNotEmpty()) {
+            return $query->where('body', 'LIKE', '%' . $search . '%')->get();
+        }
+        else
+        {
+            // Si aucun post ne contient la chaîne de recherche complète, recherchez par mots individuels
+            $searchWords = explode(' ', $search);
+
+            // Supprimer les déterminants de la recherche
+            $searchWords = array_diff($searchWords, $determinant_table);
+
+            if (!empty($searchWords)) {
+                foreach ($searchWords as $word) {
+                    $query->where(function ($query) use ($word) {
+                        $query->where('body', 'LIKE', '%' . $word . '%');
+                    });
+                }
+            }
+
+            return $query->get();
+        }
     }
 }
 
