@@ -30,10 +30,10 @@ nav:
           - Show post: contents/posts/show.md
       - Comments:
           - Index comments: contents/comments/index.md
-          - Show comment: contents/comments/store.md
+          - Store comment: contents/comments/store.md
       - Reactions:
           - Index reactions: contents/reactions/index.md
-          - Show reaction: contents/reactions/store.md
+          - Store reaction: contents/reactions/store.md
           - Index reactions_type: contents/reactions_type/index.md
       - Catégories:
           - categories: contents/category.md

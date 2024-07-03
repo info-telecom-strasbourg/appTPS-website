@@ -33,33 +33,33 @@ class PostController extends Controller
         $user = User::where('user_name', $user_name)->first();
         $organization = Organization::where('user_name', $user_name)->first();
 
-        $query = Post::where('uploaded_at', '<=', now())->orderBy('uploaded_at', 'desc');
+        $query = Post::where('uploaded_at', '<=', now());
 
         if ($user) {
-            $query->orWhere('user_id', $user->id);
+            $query->Where('user_id', $user->id);
         }
 
         if ($organization) {
-            $query->orWhere('organization_id', $organization->id);
+            $query->Where('organization_id', $organization->id);
         }
 
         if ($user_id) {
-            $query->orWhere('user_id', $user_id);
+            $query->Where('user_id', $user_id);
         }
 
         if ($asso_id) {
-            $query->orWhere('organization_id', $asso_id);
+            $query->Where('organization_id', $asso_id);
         }
 
         if ($category_id && $category_id != 1) {
-            $query->orwhere('category_id', $category_id);
+            $query->where('category_id', $category_id);
         }
 
         if($search) {
             $query->filter($search);
         }
 
-        $posts = $query->paginate($per_page);
+        $posts = $query->orderBy('uploaded_at', 'desc')->paginate($per_page);
 
         return response()->json([
             'data' => $posts->map(function ($post) {
