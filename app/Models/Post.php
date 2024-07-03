@@ -58,18 +58,14 @@ class Post extends Model
         return $this->hasMany(Reaction::class);
     }
 
-    public function userReactionsTypes()
+    public function userReactionsType()
     {
-        $reaction_tab = $this->reaction()
+        $reactionType = $this->reaction()
             ->join('reaction_types', 'reactions.reaction_type_id', '=', 'reaction_types.id')
             ->where('reactions.user_id', auth()->id())
-            ->pluck('reaction_types.name');
+            ->value('reaction_types.name'); // Utilise `value` au lieu de `pluck` pour obtenir une seule valeur
 
-        if ($reaction_tab->isEmpty()) {
-            return null;
-        }
-
-        return $reaction_tab;
+        return $reactionType ?: null; // Retourne le type de réaction ou `null` si aucun n'est trouvé
     }
 
     public function getDurationAttribute() {
@@ -84,11 +80,11 @@ class Post extends Model
 
     public function scopeFilter($query,$search)
     {
-        // Vérifiez d'abord si la chaîne de recherche complète existe dans le corps du post
         $determinant_table = array("l'","un", "de", "d'", "le", "la", "les", "des", "du", "ce", "cet", "cette", "ces", "mon", "ma", "mes", "ton", "ta", "tes", "son", "sa", "ses", "notre", "nos", "votre", "vos", "leur", "leurs");
         $fullStringQuery = clone $query;
         $postsWithFullString = $fullStringQuery->where('body', 'LIKE', '%' . $search . '%')->get();
 
+        // Vérifiez d'abord si la chaîne de recherche complète existe dans le corps du post
         if ($postsWithFullString->isNotEmpty()) {
             return $query->where('body', 'LIKE', '%' . $search . '%')->get();
         }
@@ -97,7 +93,7 @@ class Post extends Model
             // Si aucun post ne contient la chaîne de recherche complète, recherchez par mots individuels
             $searchWords = explode(' ', $search);
 
-            // Supprimer les déterminants de la recherche
+            // Supprime les déterminants de la recherche
             $searchWords = array_diff($searchWords, $determinant_table);
 
             if (!empty($searchWords)) {
