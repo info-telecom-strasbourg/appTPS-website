@@ -66,7 +66,6 @@ class Post extends Model
 
         return $reactionType ?: null; // Retourne le type de réaction ou `null` si aucun n'est trouvé
     }
-
     public function getDurationAttribute() {
 
         $date1 = new Carbon($this->uploaded_at); // Date d'upload du post
@@ -83,7 +82,9 @@ class Post extends Model
         $fullStringQuery = clone $query;
         $postsWithFullString = $fullStringQuery->where('body', 'LIKE', '%' . $search . '%')->get();
 
+
         // Vérifiez d'abord si la chaîne de recherche complète existe dans le corps du post
+
         if ($postsWithFullString->isNotEmpty()) {
             return $query->where('body', 'LIKE', '%' . $search . '%')->get();
         }
@@ -92,7 +93,9 @@ class Post extends Model
             // Si aucun post ne contient la chaîne de recherche complète, recherchez par mots individuels
             $searchWords = explode(' ', $search);
 
+
             // Supprime les déterminants de la recherche
+
             $searchWords = array_diff($searchWords, $determinant_table);
 
             if (!empty($searchWords)) {
