@@ -1,18 +1,20 @@
-# Get user
+# Index User
 
-Renvoie les informations de l'utilisateur en fonction de son id.
+Renvoie la liste de tous les utilisateurs.
 
 ## Requête
 
-| protocole | methode | url            | token |
-| --------- | ------- |----------------| ----- |
-| https     | GET     | /api/user/{id} | oui   |
+| protocole | méthode | url         | token |
+|-----------|---------|-------------|-------|
+| https     | GET     | /api/users  | oui   |
 
 ## Paramètres
 
-id de l'utilisateur dans l'url exemple : /api/user/1
+per_page : Nombre d'utilisateurs par page (optionnel)
 
-## Réponse
+search : Recherche par nom, prénom ou nom d'utilisateur (optionnel)
+
+## Réponses
 
 ### Succès
 
@@ -20,27 +22,45 @@ id de l'utilisateur dans l'url exemple : /api/user/1
 
 ```json
 {
-    "data": {
-        "id": 1,
-        "last_name": "bergamini",
-        "first_name": "enzo",
-        "user_name": "zozoLeZozo",
-        "avatar_url": "https://app-pprd.its-tps.fr/storage/images/avatars/default.png",
-        "promotion_year": "2024",
-        "created_at": "2023-08-06T15:35:05.000000Z",
-        "updated_at": "2023-08-06T15:35:05.000000Z",
-        "sector": "AUTRE",
-        "birth_date": "2023-08-06T15:35:05.000000Z"
+    "data": [
+        {
+            "id": 1,
+            "last_name": "Nom",
+            "first_name": "Prénom",
+            "user_name": "NomUtilisateur",
+            "avatar_url": "url_avatar",
+            "promotion_year": "année_promotion",
+            "created_at": "date_creation",
+            "updated_at": "date_mise_à_jour",
+            "sector": "secteur",
+            "birth_date": "date_naissance"
+        },
+        {
+            "id": 2,
+            "last_name": "Nom2",
+            "first_name": "Prénom2",
+            "user_name": "NomUtilisateur2",
+            "avatar_url": "url_avatar2",
+            "promotion_year": "année_promotion2",
+            "created_at": "date_creation2",
+            "updated_at": "date_mise_à_jour2",
+            "sector": "secteur2",
+            "birth_date": "date_naissance2"
+        }
+    ],
+    "meta": {
+        "total": 2,
+        "per_page": 3,
+        "current_page": 1,
+        "last_page": 1,
+        "first_page_url": "/api/posts?page=1&per_page=3",
+        "last_page_url": "/api/posts?page=1&per_page=3",
+        "next_page_url": null,
+        "prev_page_url": null,
+        "path": "/api/posts",
+        "from": 1,
+        "to": 2,
+        "in_page": 2
     }
-}
-```
-
-### Erreur
-
-`status: 401`
-
-```json
-{
-    "message": "Unauthenticated."
 }
 ```

@@ -100,7 +100,8 @@ class UserController extends Controller
                 return [
                     'id' => $organization->id,
                     'name' => $organization->name,
-                    'role' => $organization->pivot->role
+                    'role' => $organization->pivot->role,
+                    'logo_url' => $organization->getLogoPath()
                 ];
             }),
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
@@ -138,7 +139,8 @@ class UserController extends Controller
                 return [
                     'id' => $organization->id,
                     'name' => $organization->name,
-                    'role' => $organization->pivot->role
+                    'role' => $organization->pivot->role,
+                    'logo_url' => $organization->getLogoPath()
                 ];
             }),
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
