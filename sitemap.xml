@@ -51,7 +51,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://app.its-tps.fr/contents/catergory/</loc>
+         <loc>https://app.its-tps.fr/contents/category/</loc>
          <lastmod>2024-07-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -62,11 +62,6 @@
     </url>
     <url>
          <loc>https://app.its-tps.fr/contents/store/</loc>
-         <lastmod>2024-07-05</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://app.its-tps.fr/contents/Medias/store/</loc>
          <lastmod>2024-07-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -92,6 +87,11 @@
     </url>
     <url>
          <loc>https://app.its-tps.fr/contents/events/show/</loc>
+         <lastmod>2024-07-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://app.its-tps.fr/contents/medias/store/</loc>
          <lastmod>2024-07-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
