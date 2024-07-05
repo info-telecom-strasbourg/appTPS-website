@@ -4,9 +4,9 @@ Affiche tous les types de réactions disponibles.
 
 ## Requête
 
-| protocole | methode | url                | token |
-| --------- | ------- |--------------------| ----- |
-| https     | GET     | /api/reactiontype  | oui   |
+| protocole | methode | url                         | token |
+| --------- | ------- |-----------------------------| ----- |
+| https     | GET     | /api/post/{id}/reactiontype | oui   |
 
 ## Réponses
 
@@ -19,15 +19,18 @@ Affiche tous les types de réactions disponibles.
     "data": [
         {
             "id": 1,
-            "name": "like"
+            "name": "like",
+            "icon": "👍"
         },
         {
             "id": 2,
-            "name": "dislike"
+            "name": "dislike",
+            "icon": "👎"
         },
         {
             "id": 3,
-            "name": "love"
+            "name": "love",
+            "icon": "❤️"
         }
     ]
 }

@@ -31,7 +31,21 @@ id de l'utilisateur dans l'url exemple : /api/user/1
         "updated_at": "2023-08-06T15:35:05.000000Z",
         "sector": "AUTRE",
         "birth_date": "2023-08-06T15:35:05.000000Z"
-    }
+    },
+    "organizations": [
+        {
+            "id": 1,
+            "name": "Lagardesss",
+            "role": "président",
+            "logo_url": "https://app-pprd.its-tps.fr/storage/images/organizations/default.png"
+        },
+        {
+            "id": 4,
+            "name": "Blot S.A.R.L.",
+            "role": "secrétaire",
+            "logo_url": "https://app-pprd.its-tps.fr/storage/images/organizations/default.png"
+        }
+    ]
 }
 ```
 

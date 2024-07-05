@@ -1,70 +1,35 @@
-# Créer une réaction
+# Créer un média
 
-Permet la création d'une réaction.
+Permet la création d'un média.
 
 ## Requête
 
-| protocole | methode | url                      | token |
-| --------- | ------- |--------------------------| ----- |
-| https     | POST    | /api/post/{id}/reaction  | oui   |
+| protocole | méthode | url                  | token |
+|-----------|---------|----------------------|-------|
+| https     | POST    | /api/post/{id}/media | oui   |
 
 ## Paramètres
 
-| nom              | type    | contraintes             | description              | obligatoire |
-|------------------|---------|-------------------------|--------------------------|-------------|
-| reaction_type_id | integer | exists:reaction_types,id| ID du type de réaction   | oui         |
-| user_id          | integer | exists:users,id         | ID de l'utilisateur      | oui         |
-| post_id          | integer | exists:posts,id         | ID du post               | non         |
-| post_comment_id  | integer | exists:post_comments,id | ID du commentaire parent | non         |
+| nom     | type   | contraintes            | description                | obligatoire |
+|---------|--------|------------------------|----------------------------|-------------|
+| `media` | file   | max:5000               | Fichier du média           | oui         |
+
+Formats acceptés : image/jpeg,image/png,video/mp4,video/x-msvideo,video/quicktime
+
 ## Réponses
 
-### succès
+### Succès
 
 `status: 201`
 
 ```json
 {
-    "message": "Réaction créée avec succès !",
-    "data": {
-        "reaction_type_id": 1,
-        "user_id": 1,
-        "post_comment_id": 1
-    }
+    "message": "Image/video uploaded successfully !",
+
 }
 ```
 
-ou :
-
-```json
-{
-    "message": "Réaction créée avec succès !",
-    "data": {
-        "reaction_type_id": 1,
-        "user_id": 1,
-        "post_id": 1
-    }
-}
-```
-
-`status: 200`
-
-```json
-{
-    "message": "Réaction suprimée avec succès !",
-}
-
-```json
-{
-    "message": "Réaction modifiée avec succès !",
-    "data": {
-        "reaction_type_id": 1,
-        "user_id": 1,
-        "post_id": 1
-    }
-}
-```
-
-### erreur
+### Erreur
 
 `status: 422`
 
@@ -72,17 +37,9 @@ ou :
 {
     "message": "The given data was invalid.",
     "errors": {
-        "reaction_type_id": [
-            "The reaction type id field is required."
-        ],
-        "user_id": [
-            "The user id field is required."
-        ],
-        "post_id": [
-            "The post id field is required."
+        "media": [
+            "The media field is required."
         ]
     }
 }
 ```
-
-

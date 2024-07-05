@@ -27,7 +27,14 @@ Affiche un post
         "uploaded_at": "2023-12-27T16:43:39.000000Z",
         "user_id": 2,
         "organization_id": 1,
-        "category": "Admis2023",
+        "category":[
+            {
+                "name": "Admis 2023"
+            },
+            {
+                "name": "Admis 2024"
+            }
+        ],
         "created_at": "2023-12-27T16:43:39.000000Z",
         "updated_at": "2023-12-27T16:43:39.000000Z",
         "reaction_count": 0,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use App\Models\Reaction;
 use App\Models\ReactionType;
 use App\Models\User;
@@ -18,24 +19,31 @@ class ReactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request) : \Illuminate\Http\JsonResponse {
+    public function store(Request $request,$id) : \Illuminate\Http\JsonResponse {
 
         $validation = Validator::make($request->all(), [
-            'post_id' => 'nullable|exists:posts,id',
             'post_comment_id' => 'nullable|exists:post_comments,id',
             'reaction_type_id' => 'required|exists:reaction_types,id',
         ]);
 
-        if ($validation->fails() || ($request->post_id == null && $request->post_comment_id == null) || ($request->post_id != null && $request->post_comment_id != null)) {
+        if ($validation->fails() || ($id == null && $request->post_comment_id == null) || ($id != null && $request->post_comment_id != null)) {
             return response()->json([
                 'message' =>  'The given data was invalid.',
                 'errors' => $validation->errors()
             ], 422);
         }
 
+        $post = Post::where('id', $id)->first();
+
+        if (!$post) {
+            return response()->json([
+                'message' => 'Post not found.'
+            ], 404);
+        }
+
         // Vérifier si l'utilisateur a déjà réagi au post avec le même type de réaction
         $existingReaction = Reaction::where('user_id', $request->user()->id)
-            ->where('post_id', $request->post_id)
+            ->where('post_id', $id)
             ->Where('post_comment_id', $request->post_comment_id)
             ->where('reaction_type_id', $request->reaction_type_id)
             ->first();
@@ -46,11 +54,15 @@ class ReactionController extends Controller
 
             return response()->json([
                 'message' => 'Réaction suprimée avec succès !' ,
+                'data' => [
+                    'has_reacted' => $post->userReactionsType(),
+                    'reaction_count' => $post->reaction->count()
+                ]
             ], 205);
         } else {
             // Sinon, mettre à jour la réaction existante avec le nouveau type de réaction
             $existingReaction = Reaction::where('user_id',  $request->user()->id)
-                ->where('post_id', $request->post_id)
+                ->where('post_id', $id)
                 ->Where('post_comment_id', $request->post_comment_id)
                 ->first();
 
@@ -61,13 +73,17 @@ class ReactionController extends Controller
                 return response()->json([
                     'message' => 'La réaction a été mise à jour.',
                     'reaction' => $existingReaction,
+                    'data' => [
+                        'has_reacted' => $post->userReactionsType(),
+                        'reaction_count' => $post->reaction->count()
+                    ]
                 ], 201);
             } else {
                 // Si aucune réaction existante ne correspond à l'ID de l'utilisateur et à l'ID du post, créer une nouvelle réaction
-                if ($request->post_id != null) {
+                if ($id != null) {
                     $reaction = Reaction::create([
                         'user_id' =>  $request->user()->id,
-                        'post_id' => $request->post_id,
+                        'post_id' => $id,
                         'reaction_type_id' => $request->reaction_type_id,
                     ]);
                 } else {
@@ -81,6 +97,10 @@ class ReactionController extends Controller
                 return response()->json([
                     'message' => 'Réaction créée avec succès !',
                     'reaction' => $reaction,
+                    'data' => [
+                        'has_reacted' => $post->userReactionsType(),
+                        'reaction_count' => $post->reaction->count()
+                    ]
                 ],201);
             }
         }
