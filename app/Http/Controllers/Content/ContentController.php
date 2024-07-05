@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\CategoryType;
 use App\Models\Event;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -65,7 +65,6 @@ class ContentController extends Controller
             ], 422);
         }
 
-
         // check if the user is in the organization
         if(!$request->user()->isInOrganization($request->organization_id) && $request->organization_id != null){
             return response()->json([
@@ -91,7 +90,6 @@ class ContentController extends Controller
                     ]
                 ], 422);
             }
-
 
             $post = Post::create([
                 'body' => $request->body,
@@ -186,27 +184,4 @@ class ContentController extends Controller
         ], 400);
     }
 
-    public function create(){
-        $user = request()->user();
-
-        return response()->json([
-            'data' => [
-                'organizations' => $user->organizations()->get()->map(function ($organization) {
-                    return [
-                        'id' => $organization->id,
-                        'name' => $organization->name,
-                        'role' => $organization->pivot->role
-                    ];
-                }),
-                'categories' => Category::all()->map(function ($category) {
-                    return [
-                        'id' => $category->id,
-                        'name' => $category->name
-                    ];
-                })
-            ]
-        ], 200);
-
-
-    }
 }

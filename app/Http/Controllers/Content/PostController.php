@@ -69,7 +69,11 @@ class PostController extends Controller
                     'uploaded_since' => $post->duration,
                     'uploaded_at' => $post->uploaded_at,
                     'color' => $post->color,
-                    'category' => $post->category->name,
+                    'categories' => $post->category->map(function ($category) {
+                        return [
+                            'name' => $category->categoryType->name,
+                        ];
+                    }),
                     'created_at' => $post->created_at->format('Y-m-d H:i:s'),
                     'updated_at' => $post->updated_at->format('Y-m-d H:i:s'),
                     'reaction_count' => $post->reaction->count(),
@@ -136,7 +140,11 @@ class PostController extends Controller
                 'uploaded_since' => $post->duration,
                 'uploaded_at' => $post->uploaded_at,
                 'color' => $post->color,
-                'category' => $post->category->name,
+                'categories' => $post->category->map(function ($category) {
+                    return [
+                        'name' => $category->categoryType->name,
+                    ];
+                }),
                 'created_at' => $post->created_at->format('Y-m-d H:i:s'),
                 'updated_at' => $post->updated_at->format('Y-m-d H:i:s'),
                 'reaction_count' => $post->reaction->count(),
