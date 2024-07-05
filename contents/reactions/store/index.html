@@ -258,35 +258,51 @@
 <p><code>status: 201</code></p>
 <pre><code class="language-json">{
     &quot;message&quot;: &quot;Réaction créée avec succès !&quot;,
-    &quot;data&quot;: {
+    &quot;reaction&quot;: {
         &quot;reaction_type_id&quot;: 1,
         &quot;user_id&quot;: 1,
-        &quot;post_comment_id&quot;: 1
+        &quot;post_id&quot;: 1
+    },
+    &quot;data&quot;: {
+        &quot;has_reacted&quot;: &quot;👎&quot;,
+        &quot;reaction_count&quot;: &quot;3&quot;
     }
 }
 </code></pre>
 <p>ou :</p>
 <pre><code class="language-json">{
     &quot;message&quot;: &quot;Réaction créée avec succès !&quot;,
-    &quot;data&quot;: {
+    &quot;reaction&quot;: {
         &quot;reaction_type_id&quot;: 1,
         &quot;user_id&quot;: 1,
         &quot;post_id&quot;: 1
+    },
+    &quot;data&quot;: {
+        &quot;has_reacted&quot;: &quot;👎&quot;,
+        &quot;reaction_count&quot;: &quot;3&quot;
     }
 }
 </code></pre>
 <p><code>status: 200</code></p>
 <pre><code class="language-json">{
     &quot;message&quot;: &quot;Réaction suprimée avec succès !&quot;,
+    &quot;data&quot;: {
+        &quot;has_reacted&quot;: &quot;👎&quot;,
+        &quot;reaction_count&quot;: &quot;3&quot;
+    }
 }
 
 </code></pre>
 <pre><code class="language-json">{
     &quot;message&quot;: &quot;Réaction modifiée avec succès !&quot;,
-    &quot;data&quot;: {
+    &quot;reaction&quot;: {
         &quot;reaction_type_id&quot;: 1,
         &quot;user_id&quot;: 1,
         &quot;post_id&quot;: 1
+    },
+    &quot;data&quot;: {
+        &quot;has_reacted&quot;: &quot;👎&quot;,
+        &quot;reaction_count&quot;: &quot;3&quot;
     }
 }
 </code></pre>
