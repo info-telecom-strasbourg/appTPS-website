@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Category;
+use App\Models\CategoryType;
 use App\Models\User;
 use App\Models\Bde\Organization;
 
@@ -38,7 +38,7 @@ class EventFactory extends Factory
             'color' => $this->faker->hexColor(),
             'location' => $this->faker->address(),
             'user_id' => User::inRandomOrder()->first()->id,
-            'category_id' => Category::inRandomOrder()->first()->id,
+            'category_id' => CategoryType::inRandomOrder()->first()->id,
             'organization_id' => $organization_id,
             'created_at' => $fake_date,
         ];

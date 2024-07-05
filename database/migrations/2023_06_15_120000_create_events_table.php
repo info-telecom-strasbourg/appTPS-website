@@ -25,9 +25,9 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->timestamps();
             $table ->softDeletes();
-            
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->nullOnDelete();
+            $table->foreign('category_id')->references('id')->on('category_types')->nullOnDelete();
         });
     }
 

@@ -25,7 +25,7 @@ return new class extends Migration
 
             $table->foreign('event_id')->references('id')->on('events')->nullOnDelete();
             $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
-            $table->foreign('category_id')->references('id')->on('categories')->nullOnDelete();
+            $table->foreign('category_id')->references('id')->on('category_types')->nullOnDelete();
         });
     }
 

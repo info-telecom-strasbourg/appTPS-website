@@ -26,6 +26,7 @@ class ReactionTypeController extends Controller
                     return [
                         'id' => $reaction_type->id,
                         'name' => $reaction_type->name,
+                        'icon' => $reaction_type->icon,
                     ];
                 })
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);

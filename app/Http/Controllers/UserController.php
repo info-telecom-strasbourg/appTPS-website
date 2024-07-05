@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryType;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -104,6 +105,12 @@ class UserController extends Controller
 
         $user = User::find($id);
 
+        if ($user == null) {
+            return response()->json([
+                'message' => 'User not found'
+            ], 404);
+        }
+
         $posts = $user->posts()->orderByDesc('created_at')->paginate($per_page);
 
         return response()->json([
@@ -125,20 +132,60 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::filter(request(['search']))->get();
+        $per_page = request()->query('per_page');
+
+        if($per_page == null){
+            $per_page = 10;
+        }
+
+        $users = User::filter(request(['search']))->paginate($per_page);
 
         $users_tab = $users->map(function ($user) {
             return [
                 'id' => $user->id,
-                'short_name' => $user->short_name,
+                'user_name' => $user->user_name,
                 'name' => $user->name,
-                'logo_url' => $user->getLogoPath()
+                'logo_url' => $user->avatar->path
             ];
         })->values();
 
         return response()->json(['data' => [
             'users' => $users_tab,
+            'meta' => [
+                'total' => $users->total(),
+                'per_page' => $users->perPage(),
+                'current_page' => $users->currentPage(),
+                'last_page' => $users->lastPage(),
+                'first_page_url' => $users->url(1)."&per_page=".$per_page,
+                'last_page_url' => $users->url($users->lastPage())."&per_page=".$per_page,
+                'next_page_url' => $users->nextPageUrl()."&per_page=".$per_page,
+                'prev_page_url' => $users->previousPageUrl()."&per_page=".$per_page,
+                'path' => $users->path(),
+                'from' => $users->firstItem(),
+                'to' => $users->lastItem()
+            ]
         ]])->setEncodingOptions(JSON_PRETTY_PRINT);
+    }
+    public function organizations(){
+        $user = request()->user();
+
+        return response()->json([
+            'data' => [
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'avatar_url' => $user->avatar->path,
+                ],
+                'organizations' => $user->organizations()->get()->map(function ($organization) {
+                    return [
+                        'id' => $organization->id,
+                        'name' => $organization->name,
+                        'role' => $organization->pivot->role
+                    ];
+                }),
+            ]
+        ], 200);
+
     }
 
     public function delete(Request $request){

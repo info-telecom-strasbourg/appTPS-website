@@ -45,9 +45,8 @@ class Post extends Model
     }
 
     public function category(){
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Category::class);
     }
-
 
     public function comments(){
         return $this->hasMany(PostComment::class);
@@ -63,7 +62,7 @@ class Post extends Model
         $reactionType = $this->reaction()
             ->join('reaction_types', 'reactions.reaction_type_id', '=', 'reaction_types.id')
             ->where('reactions.user_id', auth()->id())
-            ->value('reaction_types.name'); // Utilise `value` au lieu de `pluck` pour obtenir une seule valeur
+            ->value('reaction_types.icon'); // Utilise `value` au lieu de `pluck` pour obtenir une seule valeur
 
         return $reactionType ?: null; // Retourne le type de réaction ou `null` si aucun n'est trouvé
     }

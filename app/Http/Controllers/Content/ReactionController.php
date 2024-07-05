@@ -100,6 +100,7 @@ class ReactionController extends Controller
             return [
                 'reaction_type_id' => $reactionTypeId,
                 'reaction_type' => $reactions->first()->reactionType->name,
+                'icon' => $reactions->first()->reactionType->icon,
                 'total' => $reactions->count(),
                 'users' => $reactions->map(function ($reaction) {
                     return [

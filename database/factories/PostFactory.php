@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 use App\Models\Bde\Organization;
 use App\Models\Event;
-use App\Models\Category;
+use App\Models\CategoryType;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
@@ -41,7 +41,7 @@ class PostFactory extends Factory
             'organization_id' => $organization_id,
             'uploaded_at' => $fake_date,
             'event_id' => $event_id,
-            'category_id' => Category::inRandomOrder()->first()->id,
+            'category_id' => CategoryType::inRandomOrder()->first()->id,
             'color' => $this->faker->hexColor(),
             'created_at' => $fake_date,
         ];
