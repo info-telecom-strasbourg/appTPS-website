@@ -96,6 +96,13 @@ class UserController extends Controller
                 'sector' => $user->sector ? $user->sector->short_name : null,
                 'birth_date' => $user->birth_date,
             ],
+            'organizations' => $user->organizations()->get()->map(function ($organization) {
+                return [
+                    'id' => $organization->id,
+                    'name' => $organization->name,
+                    'role' => $organization->pivot->role
+                ];
+            }),
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 
@@ -127,6 +134,13 @@ class UserController extends Controller
                 'sector' => $user->sector ? $user->sector->short_name : null,
                 'birth_date' => $user->birth_date,
             ],
+            'organizations' => $user->organizations()->get()->map(function ($organization) {
+                return [
+                    'id' => $organization->id,
+                    'name' => $organization->name,
+                    'role' => $organization->pivot->role
+                ];
+            }),
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 
@@ -165,27 +179,6 @@ class UserController extends Controller
                 'to' => $users->lastItem()
             ]
         ]])->setEncodingOptions(JSON_PRETTY_PRINT);
-    }
-    public function organizations(){
-        $user = request()->user();
-
-        return response()->json([
-            'data' => [
-                'user' => [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'avatar_url' => $user->avatar->path,
-                ],
-                'organizations' => $user->organizations()->get()->map(function ($organization) {
-                    return [
-                        'id' => $organization->id,
-                        'name' => $organization->name,
-                        'role' => $organization->pivot->role
-                    ];
-                }),
-            ]
-        ], 200);
-
     }
 
     public function delete(Request $request){

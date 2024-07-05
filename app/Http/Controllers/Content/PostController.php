@@ -136,6 +136,7 @@ class PostController extends Controller
 
         return response()->json([
             'data' => [
+                'id' => $post->id,
                 'body' => $post->body,
                 'uploaded_since' => $post->duration,
                 'uploaded_at' => $post->uploaded_at,
