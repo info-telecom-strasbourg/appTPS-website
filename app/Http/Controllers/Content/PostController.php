@@ -212,6 +212,9 @@ class PostController extends Controller
 
         $post->delete();
 
+        if ($post->comments->isNotEmpty())
+            $post->comments()->delete();
+
         return response()->json([
             'message' => 'Post deleted successfully'
         ], 200);
