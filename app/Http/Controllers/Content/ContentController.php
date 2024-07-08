@@ -72,7 +72,7 @@ class ContentController extends Controller
             ], 403);
         }
 
-        if ($request->uploaded_at == null) {
+        if ($request->uploaded_at == null || $request->uploaded_at <= now()) {
             $uploaded_at = now();
         }
         else{

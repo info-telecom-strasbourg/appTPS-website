@@ -55,20 +55,21 @@ class Post extends Model
         return $this->hasMany(PostComment::class);
     }
 
-    public function reaction()
-    {
+    public function reaction(){
         return $this->hasMany(Reaction::class);
     }
 
     public function userReactionsType()
     {
-        $reactionType = $this->reaction()
+        $reaction = $this->reaction()
             ->join('reaction_types', 'reactions.reaction_type_id', '=', 'reaction_types.id')
             ->where('reactions.user_id', auth()->id())
-            ->value('reaction_types.icon'); // Utilise `value` au lieu de `pluck` pour obtenir une seule valeur
+            ->select('reaction_types.id', 'reaction_types.icon')
+            ->first();
 
-        return $reactionType ?: null; // Retourne le type de réaction ou `null` si aucun n'est trouvé
+        return $reaction ? ['id' => $reaction->id, 'icon' => $reaction->icon] : null;
     }
+
     public function getDurationAttribute() {
 
         $date1 = new Carbon($this->uploaded_at); // Date d'upload du post

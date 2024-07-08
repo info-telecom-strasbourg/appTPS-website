@@ -22,7 +22,7 @@ class PostCommentController extends Controller
             'post_id' => 'required|exists:posts,id',
             'body' => 'required|string|min:3, max:4000000000',
             'parent_comment_id' => 'nullable|exists:post_comments,id',
-            'organization_id' => 'nullable|exists:bde_bdd'.env("BDE_DB_DATABASE").'organizations,id',
+            'organization_id' => 'nullable|exists:bde_bdd.'.env("BDE_DB_DATABASE").'.organizations,id',
         ]);
 
         if ($validation->fails()) {
