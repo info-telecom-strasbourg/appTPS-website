@@ -182,4 +182,41 @@ class PostController extends Controller
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 
+    public function delete(Request $request,$id) : \Illuminate\Http\JsonResponse {
+        $user = $request->user();
+
+        $post = Post::where('id', $id)->first();
+
+        $asso = $post->organization->id ?? null;
+
+        if ($post == null) {
+            return response()->json([
+                'message' => 'Post not found'
+            ], 404);
+        }
+
+        if ($asso) {
+            if ($user->isInOrganization($asso) == false){
+                return response()->json([
+                    'message' => 'You are not authorized to delete this post'
+                ], 403);
+            }
+        }
+        else {
+            if ($user->id != $post->user_id) {
+                return response()->json([
+                    'message' => 'You are not authorized to delete this post'
+                ], 403);
+            }
+        }
+
+        $post->delete();
+
+        return response()->json([
+            'message' => 'Post deleted successfully'
+        ], 200);
+    }
+
+
+
 }
