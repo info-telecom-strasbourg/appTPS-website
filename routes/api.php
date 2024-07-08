@@ -177,6 +177,9 @@ Route::get('crous', [CrousController::class, 'index'])
             Route::get('{id}', [PostController::class, 'show'])
             ->name('post.show');
 
+            Route::get('{id}/delete', [PostController::class, 'delete'])
+                ->name('post.delete');
+
             /** =============== Commentaires =============== */
 
             Route::get('{id}/comment', [PostCommentController::class, 'index'])
