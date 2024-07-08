@@ -55,8 +55,7 @@ class ReactionController extends Controller
             return response()->json([
                 'message' => 'Réaction suprimée avec succès !' ,
                 'data' => [
-                    'id'=> null,
-                    'has_reacted' => $post->userReactionsType(),
+                    'reaction' => $post->userReactionsType(),
                     'reaction_count' => $post->reaction->count()
                 ]
             ], 205);
@@ -75,8 +74,7 @@ class ReactionController extends Controller
                     'message' => 'La réaction a été mise à jour.',
                     'reaction' => $existingReaction,
                     'data' => [
-                        'id' => $request->reaction_type_id,
-                        'has_reacted' => $post->userReactionsType(),
+                        'reaction' => $post->userReactionsType(),
                         'reaction_count' => $post->reaction->count()
                     ]
                 ], 201);
@@ -100,8 +98,7 @@ class ReactionController extends Controller
                     'message' => 'Réaction créée avec succès !',
                     'reaction' => $reaction,
                     'data' => [
-                        'id' => $request->reaction_type_id,
-                        'has_reacted' => $post->userReactionsType(),
+                        'reaction' => $post->userReactionsType(),
                         'reaction_count' => $post->reaction->count()
                     ]
                 ],201);
