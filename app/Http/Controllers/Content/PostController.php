@@ -60,10 +60,6 @@ class PostController extends Controller
             $query->filter($search);
         }
 
-        if($search) {
-            $query->filter($search);
-        }
-
         $posts = $query->orderBy('uploaded_at', 'desc')->paginate($per_page);
 
         return response()->json([
@@ -82,7 +78,7 @@ class PostController extends Controller
                     'created_at' => $post->created_at->format('Y-m-d H:i:s'),
                     'updated_at' => $post->updated_at->format('Y-m-d H:i:s'),
                     'reaction_count' => $post->reaction->count(),
-                    'has_reacted' => $post->userReactionsType(),
+                    'reaction' => $post->userReactionsType(),
                     'comment_count' => $post->comments->count(),
                     'medias' => $post->media->map(function ($media) {
                         return [
@@ -154,7 +150,7 @@ class PostController extends Controller
                 'created_at' => $post->created_at->format('Y-m-d H:i:s'),
                 'updated_at' => $post->updated_at->format('Y-m-d H:i:s'),
                 'reaction_count' => $post->reaction->count(),
-                'has_reacted' => $post->userReactionsType(),
+                'reaction' => $post->userReactionsType(),
                 'comment_count' => $post->comments->count(),
                 'medias' => $post->media->map(function ($media) {
                     return [
