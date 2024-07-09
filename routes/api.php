@@ -147,11 +147,14 @@ Route::get('crous', [CrousController::class, 'index'])
             Route::get('/', [EventController::class, 'index'])
             ->name('event.index');
 
+            Route::post('/', [EventController::class, 'store'])
+                ->name('event.store');
+
             Route::get('/{id}', [EventController::class, 'show'])
             ->name('event.show');
 
-            Route::post('/', [EventController::class, 'store'])
-            ->name('event.store');
+            Route::get('{id}/delete', [EventController::class, 'delete'])
+                ->name('event.delete');
         });
 
         /** =============== Organisations =============== */

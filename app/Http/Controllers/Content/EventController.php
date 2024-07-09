@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bde\Organization;
 use App\Models\Event;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,20 +19,19 @@ class EventController extends Controller
      * @param Request $request
      */
     public function index(Request $request){
-
         $per_page = $request->query('per_page');
+        $start_at = $request->query('start_at');
+        $organization_id = $request->query('organization_id');
 
         if ($per_page == null) {
             $per_page = 10;
         }
 
-
-        if(isset($request->start_at)){
-            $events = Event::orderBy('start_at',"asc")->Where('start_at', '>=', $request->start_at)->paginate($per_page);
+        if(isset($request->start_at) && $organization_id != null ){
+            $events = Event::orderBy('start_at',"asc")->Where('start_at', '>=', $start_at)->Where('organization_id',$organization_id)->paginate($per_page);
         } else {
-            $events = Event::orderBy('start_at',"asc")->paginate($per_page);
+            $events = Event::orderBy('start_at',"asc")->Where('organization_id',$organization_id)->paginate($per_page);
         }
-
 
         return response()->json([
             'data' => $events->map(function ($event) {
@@ -48,14 +50,16 @@ class EventController extends Controller
                         'id' => $event->organization->id,
                         'name' => $event->organization->name,
                         'short_name' => $event->organization->short_name,
+                        'user_name' => $event->organization->user_name,
                         'logo_url' => $event->organization->getLogoPath()
                     ] : [
                         'is_organization' => false,
                         'id' => $event->user->id,
                         'name' => $event->user->getFullName(),
                         'short_name' => null,
+                        'user_name' => $event->user->user_name,
                         'logo_url' => $event->user->avatar->path
-                    ]
+                    ],
                 ];
             }),
             'meta' => [
@@ -103,15 +107,48 @@ class EventController extends Controller
                     'id' => $event->organization->id,
                     'name' => $event->organization->name,
                     'short_name' => $event->organization->short_name,
+                    'user_name' => $event->organization->user_name,
                     'logo_url' => $event->organization->getLogoPath()
                 ] : [
                     'is_organization' => false,
                     'id' => $event->user->id,
                     'name' => $event->user->getFullName(),
                     'short_name' => null,
+                    'user_name' => $event->user->user_name,
                     'logo_url' => $event->user->avatar->path
-                ]
+                ],
             ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+    }
+
+    public function delete(Request $request,$id) : \Illuminate\Http\JsonResponse {
+        $user = $request->user();
+
+        $event = Event::where('id', $id)->first();
+
+        if ($event == null) {
+            return response()->json([
+                'message' => 'Post not found'
+            ], 404);
+        }
+
+        $asso = $event->organization->id ?? null;
+
+        if ($asso) {
+            if ($user->isInOrganization($asso) == false || $user->id != $event->user_id){
+                return response()->json([
+                    'message' => 'You are not authorized to delete this post'
+                ], 403);
+            }
+        }
+
+        $event->delete();
+
+        if ($event->comments->isNotEmpty())
+            $event->comments()->delete();
+
+        return response()->json([
+            'message' => 'Post deleted successfully'
+        ], 200);
     }
 }

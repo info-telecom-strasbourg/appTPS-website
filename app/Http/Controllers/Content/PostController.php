@@ -32,8 +32,6 @@ class PostController extends Controller
 
         $user = User::where('user_name', $user_name)->first();
         $organization = Organization::where('user_name', $user_name)->first();
-
-
         $query = Post::where('uploaded_at', '<=', now());
 
         if ($user) {
@@ -53,7 +51,7 @@ class PostController extends Controller
         }
 
         if ($category_id && $category_id != 1) {
-            $query->orwhere('category_id', $category_id);
+            $query->Where('category_id', $category_id);
         }
 
         if($search) {
@@ -129,7 +127,7 @@ class PostController extends Controller
     public function show($id) : \Illuminate\Http\JsonResponse {
         $post = Post::where('id','=', $id)->first();
 
-        if ($post == null) {
+        if ($post == null && $post->uploaded_at <= now()) {
             return response()->json([
                 'message' => 'Post not found'
             ], 404);
