@@ -97,9 +97,7 @@ class Post extends Model
             // Si aucun post ne contient la chaîne de recherche complète, recherchez par mots individuels
             $searchWords = explode(' ', $search);
 
-
             // Supprime les déterminants de la recherche
-
             $searchWords = array_diff($searchWords, $determinant_table);
 
             if (!empty($searchWords)) {

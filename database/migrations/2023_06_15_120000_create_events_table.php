@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('post_id')->nullable();
             $table->dateTime('start_at')->nullable();
             $table->dateTime('end_at')->nullable();
+            $table->dateTime('uploaded_at')->nullable();
             $table->string('title');
             $table->longText('body')->nullable();
             $table->string('color');
