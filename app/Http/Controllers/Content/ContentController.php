@@ -151,7 +151,6 @@ class ContentController extends Controller
                 'start_at' => $request->start_at,
                 'end_at' => $request->end_at,
                 'location' => $request->location,
-                'post_id' => $request->post_id,
             ]);
 
             $post = Post::create([
@@ -163,6 +162,9 @@ class ContentController extends Controller
                 'event_id' => $event->id,
                 'category_id' => $request->category_id,
             ]);
+
+            $event->post_id = $post->id;
+            $event->save();
 
             return response()->json([
                 'message' => 'Event and post created',
