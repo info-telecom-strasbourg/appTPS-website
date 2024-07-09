@@ -27,11 +27,16 @@ class EventController extends Controller
             $per_page = 10;
         }
 
-        if(isset($request->start_at) && $organization_id != null ){
-            $events = Event::orderBy('start_at',"asc")->Where('start_at', '>=', $start_at)->Where('organization_id',$organization_id)->paginate($per_page);
-        } else {
-            $events = Event::orderBy('start_at',"asc")->Where('organization_id',$organization_id)->paginate($per_page);
+        $events = $events = Event::orderBy('start_at',"asc");
+
+        if(isset($request->start_at) ){
+            $events->Where('start_at', '>=', $start_at);
         }
+        if($organization_id){
+            $events->Where('organization_id',$organization_id);
+        }
+
+        $events = $events->paginate($per_page);
 
         return response()->json([
             'data' => $events->map(function ($event) {
