@@ -42,6 +42,7 @@ class EventController extends Controller
             'data' => $events->map(function ($event) {
                 return [
                     'id' => $event->id,
+                    'post_id' => $event->post_id,
                     'title' => $event->title,
                     'description' => $event->description,
                     'start_at' => $event->start_at,
