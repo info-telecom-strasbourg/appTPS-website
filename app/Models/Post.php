@@ -111,5 +111,6 @@ class Post extends Model
             return $query->get();
         }
     }
+
 }
 

@@ -28,10 +28,17 @@ class PostCommentFactory extends Factory
             $parentCommentId = $existingComments->random()->id;
         }
 
+        if (random_int(0, 1) === 1) {
+            $organization_id = Organization::inRandomOrder()->first()->id;
+        }
+        else{
+            $organization_id = null;
+        }
+
         return [
             'body' => $this->faker->text(),
             'post_id' => $post->id,
-            'organization_id' => Organization::inRandomOrder()->first()->id,
+            'organization_id' => $organization_id,
             'user_id' => User::inRandomOrder()->first()->id,
             'parent_comment_id' => $parentCommentId,
         ];

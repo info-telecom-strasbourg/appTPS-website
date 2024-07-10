@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('category_types', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50)->unique();
-            $table->boolean('is_shown')->nullable();
+            $table->string('color', 7);
+            $table->boolean('is_shown');
+            $table->boolean('is_for_event');
         });
     }
 
