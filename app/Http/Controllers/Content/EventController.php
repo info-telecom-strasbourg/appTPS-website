@@ -26,12 +26,12 @@ class EventController extends Controller
         if ($per_page == null) {
             $per_page = 10;
         }
-
-        $events = $events = Event::orderBy('start_at',"asc");
-
-        if(isset($request->start_at) ){
-            $events->Where('start_at', '>=', $start_at);
+        if($start_at == null){
+            $start_at = now();
         }
+
+        $events = Event::orderBy('start_at',"asc")->where('uploaded_at', '<=', now())->where('start_at', '>=', $start_at);
+
         if($organization_id){
             $events->Where('organization_id',$organization_id);
         }
@@ -45,6 +45,7 @@ class EventController extends Controller
                     'post_id' => $event->post_id,
                     'title' => $event->title,
                     'description' => $event->description,
+                    'date_format' => $event->getEventTiming(),
                     'start_at' => $event->start_at,
                     'end_at' => $event->end_at,
                     'location' => $event->location,
@@ -104,6 +105,7 @@ class EventController extends Controller
                 'id' => $event->id,
                 'title' => $event->title,
                 'description' => $event->description,
+                'date_format' => $event->getEventTiming(),
                 'start_at' => $event->start_at,
                 'end_at' => $event->end_at,
                 'location' => $event->location,
@@ -140,12 +142,10 @@ class EventController extends Controller
 
         $asso = $event->organization->id ?? null;
 
-        if ($asso) {
-            if ($user->isInOrganization($asso) == false || $user->id != $event->user_id){
-                return response()->json([
-                    'message' => 'You are not authorized to delete this post'
-                ], 403);
-            }
+        if ($user->isInOrganization($asso) == false || $user->id != $event->user_id){
+            return response()->json([
+                'message' => 'You are not authorized to delete this post'
+            ], 403);
         }
 
         $event->delete();

@@ -123,6 +123,7 @@ class ContentController extends Controller
                 'user_id' => $request->user()->id,
                 'start_at' => $request->start_at,
                 'end_at' => $request->end_at,
+                'uploaded_at' => $uploaded_at,
                 'location' => $request->location,
             ]);
 
@@ -150,6 +151,7 @@ class ContentController extends Controller
                 'user_id' => $request->user()->id,
                 'start_at' => $request->start_at,
                 'end_at' => $request->end_at,
+                'uploaded_at' => $uploaded_at,
                 'location' => $request->location,
             ]);
 

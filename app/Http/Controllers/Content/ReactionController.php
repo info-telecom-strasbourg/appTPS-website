@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\PostComment;
 use App\Models\Reaction;
 use App\Models\ReactionType;
 use App\Models\User;
@@ -35,6 +36,13 @@ class ReactionController extends Controller
 
         $post = Post::where('id', $id)->first();
 
+        if ($request->post_comment_id) {
+            $comment = PostComment::where('id', $request->post_comment_id)->first();
+        }
+        else {
+            $comment = null;
+        }
+
         if (!$post) {
             return response()->json([
                 'message' => 'Post not found.'
@@ -54,7 +62,12 @@ class ReactionController extends Controller
 
             return response()->json([
                 'message' => 'Réaction suprimée avec succès !' ,
-                'data' => [
+                'data' => $comment ? [
+                    'is_comment' => true,
+                    'reaction' => $comment->userReactionsType(),
+                    'reaction_count' => $comment->reaction->count()
+                ] : [
+                    'is_comment' => false,
                     'reaction' => $post->userReactionsType(),
                     'reaction_count' => $post->reaction->count()
                 ]
@@ -73,14 +86,19 @@ class ReactionController extends Controller
                 return response()->json([
                     'message' => 'La réaction a été mise à jour.',
                     'reaction' => $existingReaction,
-                    'data' => [
+                    'data' => $comment ? [
+                        'is_comment' => true,
+                        'reaction' => $comment->userReactionsType(),
+                        'reaction_count' => $comment->reaction->count()
+                    ] : [
+                        'is_comment' => false,
                         'reaction' => $post->userReactionsType(),
                         'reaction_count' => $post->reaction->count()
                     ]
                 ], 201);
             } else {
                 // Si aucune réaction existante ne correspond à l'ID de l'utilisateur et à l'ID du post, créer une nouvelle réaction
-                if ($id != null) {
+                if ($comment == null) {
                     $reaction = Reaction::create([
                         'user_id' =>  $request->user()->id,
                         'post_id' => $id,
@@ -97,7 +115,12 @@ class ReactionController extends Controller
                 return response()->json([
                     'message' => 'Réaction créée avec succès !',
                     'reaction' => $reaction,
-                    'data' => [
+                    'data' => $comment ? [
+                        'is_comment' => true,
+                        'reaction' => $comment->userReactionsType(),
+                        'reaction_count' => $comment->reaction->count()
+                    ] : [
+                        'is_comment' => false,
                         'reaction' => $post->userReactionsType(),
                         'reaction_count' => $post->reaction->count()
                     ]
