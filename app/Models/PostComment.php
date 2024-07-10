@@ -44,13 +44,15 @@ class PostComment extends Model
 
     public function userReactionsType()
     {
-        $reactionType = $this->reaction()
+        $reaction = $this->reaction()
             ->join('reaction_types', 'reactions.reaction_type_id', '=', 'reaction_types.id')
             ->where('reactions.user_id', auth()->id())
-            ->value('reaction_types.name'); // Utilise `value` au lieu de `pluck` pour obtenir une seule valeur
+            ->select('reaction_types.id', 'reaction_types.icon')
+            ->first();
 
-        return $reactionType ?: null; // Retourne le type de réaction ou `null` si aucun n'est trouvé
+        return $reaction ? ['id' => $reaction->id, 'icon' => $reaction->icon] : null;
     }
+
 
 
     public function getDurationAttribute() {
@@ -61,6 +63,10 @@ class PostComment extends Model
 
         return $duration; // Objet DateInterval
 
+    }
+
+    public function childrenscount(){
+        return PostComment::where('parent_comment_id',$this->id)->count();
     }
 
 }

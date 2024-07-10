@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
 
         Order::factory(200)->create();
 
-        Event::factory(20)->create();
+        Event::factory(30)->create();
 
         Post::factory(100)->create();
 

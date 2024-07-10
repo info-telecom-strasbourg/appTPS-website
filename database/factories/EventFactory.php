@@ -20,7 +20,7 @@ class EventFactory extends Factory
     public function definition(): array
     {
 
-        $start_date = $this->faker->dateTimeBetween('-1 day', '+5 day');
+        $start_date = $this->faker->dateTimeBetween('-1 day', '+14 day');
 
         $fake_date = $this->faker->dateTimeBetween('-30 day', '+0 day');
 
@@ -28,10 +28,10 @@ class EventFactory extends Factory
             'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraph(),
             'start_at' => $start_date,
-            'end_at' => $this->faker->dateTimeBetween($start_date, $start_date->format('Y-m-d H:i:s').' +1 day'),
+            'end_at' => $this->faker->dateTimeBetween($start_date, $start_date->format('Y-m-d H:i:s').' +2 day'),
             'color' => $this->faker->hexColor(),
             'location' => $this->faker->address(),
-            'uploaded_at' => $start_date,
+            'uploaded_at' => $fake_date,
             'user_id' => User::inRandomOrder()->first()->id,
             'category_id' => CategoryType::inRandomOrder()->first()->id,
             'organization_id' => Organization::inRandomOrder()->first()->id,
