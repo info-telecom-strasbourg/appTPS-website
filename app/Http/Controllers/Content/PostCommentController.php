@@ -72,7 +72,7 @@ class PostCommentController extends Controller
                     'created_since' => $comment->duration,
                     'parent_comment_id' => $comment->parent_comment_id,
                     'body' => $comment->body,
-                    'childrens_count'=> $comment->childrenscount(),
+                    'children_count'=> $comment->childrenscount(),
                     'created_at' => $comment->created_at->format('Y-m-d H:i:s'),
                     'updated_at' => $comment->updated_at->format('Y-m-d H:i:s'),
                     'reaction_count' => $comment->reaction->count(),
