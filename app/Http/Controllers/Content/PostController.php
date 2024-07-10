@@ -64,10 +64,11 @@ class PostController extends Controller
             'data' => $posts->map(function ($post) {
                 return [
                     'id' => $post->id,
+                    'event_id' => $post->event_id,
                     'body' => $post->body,
                     'uploaded_since' => $post->duration,
                     'uploaded_at' => $post->uploaded_at,
-                    'color' => $post->color,
+                    'color' => $post->getColor(),
                     'categories' => $post->category->map(function ($category) {
                         return [
                             'name' => $category->categoryType->name,
@@ -136,10 +137,11 @@ class PostController extends Controller
         return response()->json([
             'data' => [
                 'id' => $post->id,
+                'event_id' => $post->event_id,
                 'body' => $post->body,
                 'uploaded_since' => $post->duration,
                 'uploaded_at' => $post->uploaded_at,
-                'color' => $post->color,
+                'color' => $post->getColor(),
                 'categories' => $post->category->map(function ($category) {
                     return [
                         'name' => $category->categoryType->name,
