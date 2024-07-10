@@ -22,7 +22,7 @@ class PostCommentController extends Controller
             'post_id' => 'required|exists:posts,id',
             'body' => 'required|string|min:3, max:4000000000',
             'parent_comment_id' => 'nullable|exists:post_comments,id',
-            'organization_id' => 'nullable|exists:bde_bdd'.env("BDE_DB_DATABASE").'organizations,id',
+            'organization_id' => 'nullable|exists:bde_bdd.'.env("BDE_DB_DATABASE").'.organizations,id',
         ]);
 
         if ($validation->fails()) {
@@ -62,13 +62,6 @@ class PostCommentController extends Controller
 
         $comments = PostComment::orderByDesc('created_at')->where('post_id',$id)->where('parent_comment_id',$parent_id)->paginate($per_page);
 
-        if ($comments->isEmpty()) {
-            return response()->json([
-                'data' => [],
-                'message' => 'Pas de commentaires'
-            ], 404);
-        }
-
         return response()->json([
             'data' => $comments
             ->map(function ($comment) {
@@ -79,8 +72,11 @@ class PostCommentController extends Controller
                     'created_since' => $comment->duration,
                     'parent_comment_id' => $comment->parent_comment_id,
                     'body' => $comment->body,
+                    'children_count'=> $comment->childrenscount(),
                     'created_at' => $comment->created_at->format('Y-m-d H:i:s'),
                     'updated_at' => $comment->updated_at->format('Y-m-d H:i:s'),
+                    'reaction_count' => $comment->reaction->count(),
+                    'reaction' => $comment->userReactionsType(),
                     'author' => $comment->organization ? [
                         'is_organization' => true,
                         'id' => $comment->organization->id,

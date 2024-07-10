@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\CategoryType;
 use App\Models\Event;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -65,7 +65,6 @@ class ContentController extends Controller
             ], 422);
         }
 
-
         // check if the user is in the organization
         if(!$request->user()->isInOrganization($request->organization_id) && $request->organization_id != null){
             return response()->json([
@@ -73,7 +72,7 @@ class ContentController extends Controller
             ], 403);
         }
 
-        if ($request->uploaded_at == null) {
+        if ($request->uploaded_at == null || $request->uploaded_at <= now()) {
             $uploaded_at = now();
         }
         else{
@@ -91,7 +90,6 @@ class ContentController extends Controller
                     ]
                 ], 422);
             }
-
 
             $post = Post::create([
                 'body' => $request->body,
@@ -125,6 +123,7 @@ class ContentController extends Controller
                 'user_id' => $request->user()->id,
                 'start_at' => $request->start_at,
                 'end_at' => $request->end_at,
+                'uploaded_at' => $uploaded_at,
                 'location' => $request->location,
             ]);
 
@@ -152,8 +151,8 @@ class ContentController extends Controller
                 'user_id' => $request->user()->id,
                 'start_at' => $request->start_at,
                 'end_at' => $request->end_at,
+                'uploaded_at' => $uploaded_at,
                 'location' => $request->location,
-                'post_id' => $request->post_id,
             ]);
 
             $post = Post::create([
@@ -165,6 +164,9 @@ class ContentController extends Controller
                 'event_id' => $event->id,
                 'category_id' => $request->category_id,
             ]);
+
+            $event->post_id = $post->id;
+            $event->save();
 
             return response()->json([
                 'message' => 'Event and post created',
@@ -186,27 +188,4 @@ class ContentController extends Controller
         ], 400);
     }
 
-    public function create(){
-        $user = request()->user();
-
-        return response()->json([
-            'data' => [
-                'organizations' => $user->organizations()->get()->map(function ($organization) {
-                    return [
-                        'id' => $organization->id,
-                        'name' => $organization->name,
-                        'role' => $organization->pivot->role
-                    ];
-                }),
-                'categories' => Category::all()->map(function ($category) {
-                    return [
-                        'id' => $category->id,
-                        'name' => $category->name
-                    ];
-                })
-            ]
-        ], 200);
-
-
-    }
 }

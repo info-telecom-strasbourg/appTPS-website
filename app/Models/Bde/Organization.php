@@ -52,7 +52,8 @@ class Organization extends Model
     public function scopeFilter($query, $filters){
         $query->when($filters['search'] ?? null, function($query, $search){
             $query->where('name', 'like', '%' . $search . '%')
-                ->orWhere('short_name', 'like', '%' . $search . '%');
+                ->orWhere('short_name', 'like', '%' . $search . '%')
+                ->orWhere('user_name', 'like', '%' . $search . '%');
         });
     }
     public function logo(){

@@ -13,6 +13,7 @@ nav:
   - Users:
       - Get user: users/get.md
       - User show : users/show.md
+      - Index user: users/index.md
       - Update user: users/update.md
       - Delete user: users/delete.md
       - Avatar: users/avatar.md
@@ -21,7 +22,6 @@ nav:
       - fouaille: fouaille/fouaille.md
   - Contents:
       - Store : contents/store.md
-      - Create: contents/create.md
       - Events:
           - Index events: contents/events/index.md
           - Show event: contents/events/show.md
@@ -30,13 +30,15 @@ nav:
           - Show post: contents/posts/show.md
       - Comments:
           - Index comments: contents/comments/index.md
-          - Show comment: contents/comments/store.md
+          - Store comment: contents/comments/store.md
       - Reactions:
           - Index reactions: contents/reactions/index.md
-          - Show reaction: contents/reactions/store.md
-          - Index reactions_type: contents/reactions_type/index.md
+          - Store reaction: contents/reactions/store.md
+          - Index reactions_type: contents/reactionType/index.md
       - Catégories:
           - categories: contents/category.md
+      - Medias :
+          - Store Medias: contents/medias/store.md
   - Organizations:
       - Index organizations: organizations/index.md
       - Show organization: organizations/show.md

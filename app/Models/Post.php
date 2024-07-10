@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Bde\Organization;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 class Post extends Model
 {
     use HasFactory;
+
+    use SoftDeletes;
 
     protected $connection = 'mysql';
 
@@ -45,25 +48,26 @@ class Post extends Model
     }
 
     public function category(){
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Category::class);
     }
-
 
     public function comments(){
         return $this->hasMany(PostComment::class);
     }
 
-    public function reaction()
-    {
+    public function reaction(){
         return $this->hasMany(Reaction::class);
     }
 
-    public function userReactionsTypes()
+    public function userReactionsType()
     {
-        return $this->reaction()
+        $reaction = $this->reaction()
             ->join('reaction_types', 'reactions.reaction_type_id', '=', 'reaction_types.id')
             ->where('reactions.user_id', auth()->id())
-            ->pluck('reaction_types.name');
+            ->select('reaction_types.id', 'reaction_types.icon')
+            ->first();
+
+        return $reaction ? ['id' => $reaction->id, 'icon' => $reaction->icon] : null;
     }
 
     public function getDurationAttribute() {
@@ -78,10 +82,12 @@ class Post extends Model
 
     public function scopeFilter($query,$search)
     {
-        // Vérifiez d'abord si la chaîne de recherche complète existe dans le corps du post
         $determinant_table = array("l'","un", "de", "d'", "le", "la", "les", "des", "du", "ce", "cet", "cette", "ces", "mon", "ma", "mes", "ton", "ta", "tes", "son", "sa", "ses", "notre", "nos", "votre", "vos", "leur", "leurs");
         $fullStringQuery = clone $query;
         $postsWithFullString = $fullStringQuery->where('body', 'LIKE', '%' . $search . '%')->get();
+
+
+        // Vérifiez d'abord si la chaîne de recherche complète existe dans le corps du post
 
         if ($postsWithFullString->isNotEmpty()) {
             return $query->where('body', 'LIKE', '%' . $search . '%')->get();
@@ -91,7 +97,7 @@ class Post extends Model
             // Si aucun post ne contient la chaîne de recherche complète, recherchez par mots individuels
             $searchWords = explode(' ', $search);
 
-            // Supprimer les déterminants de la recherche
+            // Supprime les déterminants de la recherche
             $searchWords = array_diff($searchWords, $determinant_table);
 
             if (!empty($searchWords)) {
@@ -105,5 +111,6 @@ class Post extends Model
             return $query->get();
         }
     }
+
 }
 

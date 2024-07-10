@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryType;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class UserController extends Controller
                 'min:3',
                 'max:255',
                 'unique:users,user_name',
-                'unique:bde_bdd.'.env(BDE_DB_DATABASE).'.organizations,user_name'
+                'unique:bde_bdd.'.env("BDE_DB_DATABASE").'.organizations,user_name'
             ],
             'phone' => [
                 'string',
@@ -95,6 +96,14 @@ class UserController extends Controller
                 'sector' => $user->sector ? $user->sector->short_name : null,
                 'birth_date' => $user->birth_date,
             ],
+            'organizations' => $user->organizations()->get()->map(function ($organization) {
+                return [
+                    'id' => $organization->id,
+                    'name' => $organization->name,
+                    'role' => $organization->pivot->role,
+                    'logo_url' => $organization->getLogoPath()
+                ];
+            }),
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 
@@ -103,6 +112,12 @@ class UserController extends Controller
         $per_page = request()->query('per_page');
 
         $user = User::find($id);
+
+        if ($user == null) {
+            return response()->json([
+                'message' => 'User not found'
+            ], 404);
+        }
 
         $posts = $user->posts()->orderByDesc('created_at')->paginate($per_page);
 
@@ -120,7 +135,52 @@ class UserController extends Controller
                 'sector' => $user->sector ? $user->sector->short_name : null,
                 'birth_date' => $user->birth_date,
             ],
+            'organizations' => $user->organizations()->get()->map(function ($organization) {
+                return [
+                    'id' => $organization->id,
+                    'name' => $organization->name,
+                    'role' => $organization->pivot->role,
+                    'logo_url' => $organization->getLogoPath()
+                ];
+            }),
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+    }
+
+    public function index()
+    {
+        $per_page = request()->query('per_page');
+
+        if($per_page == null){
+            $per_page = 10;
+        }
+
+        $users = User::filter(request(['search']))->paginate($per_page);
+
+        $users_tab = $users->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'user_name' => $user->user_name,
+                'name' => $user->name,
+                'logo_url' => $user->avatar->path
+            ];
+        })->values();
+
+        return response()->json(['data' => [
+            'users' => $users_tab,
+            'meta' => [
+                'total' => $users->total(),
+                'per_page' => $users->perPage(),
+                'current_page' => $users->currentPage(),
+                'last_page' => $users->lastPage(),
+                'first_page_url' => $users->url(1)."&per_page=".$per_page,
+                'last_page_url' => $users->url($users->lastPage())."&per_page=".$per_page,
+                'next_page_url' => $users->nextPageUrl()."&per_page=".$per_page,
+                'prev_page_url' => $users->previousPageUrl()."&per_page=".$per_page,
+                'path' => $users->path(),
+                'from' => $users->firstItem(),
+                'to' => $users->lastItem()
+            ]
+        ]])->setEncodingOptions(JSON_PRETTY_PRINT);
     }
 
     public function delete(Request $request){

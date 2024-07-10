@@ -32,6 +32,8 @@ Sous la forme https://app-pprd.its-tps.fr/api/post/1/comment?per_page=3&page=1&p
             "body": "Ceci est un commentaire.",
             "created_at": "2023-12-27T16:44:27.000000Z",
             "updated_at": "2023-12-27T16:44:27.000000Z",
+            "reaction_count": 0,
+            "has_reacted": "👍",
             "author": {
                 "is_organization": false,
                 "id": 2,

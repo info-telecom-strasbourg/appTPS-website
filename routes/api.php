@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CGUController;
+use App\Http\Controllers\Content\MediaController;
 use App\Http\Controllers\Content\ReactionController;
 use App\Http\Controllers\Content\ReactionTypeController;
 use App\Http\Controllers\CrousController;
@@ -105,6 +106,9 @@ Route::get('crous', [CrousController::class, 'index'])
 
         Route::prefix('user')->group(function () {
 
+            Route::get('/', [UserController::class, 'index'])
+            ->name('user.index');
+
             Route::get('/me', [UserController::class, 'getMe'])
             ->name('user.me');
 
@@ -143,11 +147,14 @@ Route::get('crous', [CrousController::class, 'index'])
             Route::get('/', [EventController::class, 'index'])
             ->name('event.index');
 
+            Route::post('/', [EventController::class, 'store'])
+                ->name('event.store');
+
             Route::get('/{id}', [EventController::class, 'show'])
             ->name('event.show');
 
-            Route::post('/', [EventController::class, 'store'])
-            ->name('event.store');
+            Route::get('{id}/delete', [EventController::class, 'delete'])
+                ->name('event.delete');
         });
 
         /** =============== Organisations =============== */
@@ -173,6 +180,9 @@ Route::get('crous', [CrousController::class, 'index'])
             Route::get('{id}', [PostController::class, 'show'])
             ->name('post.show');
 
+            Route::get('{id}/delete', [PostController::class, 'delete'])
+                ->name('post.delete');
+
             /** =============== Commentaires =============== */
 
             Route::get('{id}/comment', [PostCommentController::class, 'index'])
@@ -191,12 +201,13 @@ Route::get('crous', [CrousController::class, 'index'])
 
             Route::get('{id}/reactiontype', [ReactionTypeController::class, 'index'])
                 ->name('reactiontype.index');
+
+            /** =============== Medias =============== */
+            Route::post('{id}/media', [MediaController::class, 'store'])
+                ->name('media.store');
         });
 
         /** =============== Contenus =============== */
-
-        Route::get('contents/create', [ContentController::class, 'create'])
-            ->name('contents.create');
 
         Route::post('contents', [ContentController::class, 'store'])
             ->name('contents.store');

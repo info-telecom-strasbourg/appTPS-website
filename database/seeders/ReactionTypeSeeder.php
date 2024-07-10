@@ -15,28 +15,33 @@ class ReactionTypeSeeder extends Seeder
     public function run(): void
     {
         ReactionType::create([
+            'name' => 'love',
+            'icon' => '❤️',
+        ]);
+
+        ReactionType::create([
             'name' => 'like',
-            'icon' => 'ThumbsUp',
+            'icon' => '👍',
         ]);
 
         ReactionType::create([
             'name' => 'dislike',
-            'icon' => 'ThumbsDown',
-        ]);
-
-        ReactionType::create([
-            'name' => 'love',
-            'icon' => 'Heart',
+            'icon' => '👎',
         ]);
 
         ReactionType::create([
             'name' => 'laugh',
-            'icon' => 'Laugh',
+            'icon' => '😂',
         ]);
 
         ReactionType::create([
             'name' => 'cry',
-            'icon' => 'Frown',
+            'icon' => '😢',
+        ]);
+
+        ReactionType::create([
+            'name' => 'angry',
+            'icon' => '😡',
         ]);
     }
 }

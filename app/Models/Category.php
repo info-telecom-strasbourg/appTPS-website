@@ -9,5 +9,11 @@ class Category extends Model
 {
     use HasFactory;
 
-    public $timestamps = false; 
+    protected $table = 'post_categories';
+
+    public $timestamps = false;
+
+    public function categoryType(){
+        return $this->belongsTo(CategoryType::class);
+    }
 }

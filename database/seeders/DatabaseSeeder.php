@@ -7,6 +7,7 @@ use App\Models\Bde\Member;
 use App\Models\Bde\Order;
 use App\Models\Bde\Organization;
 use App\Models\Bde\OrganizationMember;
+use App\Models\Category;
 use App\Models\GroupUser;
 use Database\Seeders\Bde\ProductSeeder;
 use Database\Seeders\Bde\ProductTypeSeeder;
@@ -44,7 +45,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SectorSeeder::class,
             UserSeeder::class,
-            CategorySeeder::class,
+            CategoryTypeSeeder::class,
             MediaTypeSeeder::class,
             ReactionTypeSeeder::class,
             GroupSeeder::class
@@ -52,11 +53,13 @@ class DatabaseSeeder extends Seeder
 
         Order::factory(200)->create();
 
-        Event::factory(20)->create();
+        Event::factory(30)->create();
 
         Post::factory(100)->create();
 
         Media::factory(10)->create();
+
+        Category::factory(Post::count()+100)->create();
 
         PostComment::factory(200)->create();
 

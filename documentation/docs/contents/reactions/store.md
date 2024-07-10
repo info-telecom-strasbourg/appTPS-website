@@ -25,10 +25,14 @@ Permet la création d'une réaction.
 ```json
 {
     "message": "Réaction créée avec succès !",
-    "data": {
+    "reaction": {
         "reaction_type_id": 1,
         "user_id": 1,
-        "post_comment_id": 1
+        "post_id": 1
+    },
+    "data": {
+        "has_reacted": "👎",
+        "reaction_count": "3"
     }
 }
 ```
@@ -38,10 +42,14 @@ ou :
 ```json
 {
     "message": "Réaction créée avec succès !",
-    "data": {
+    "reaction": {
         "reaction_type_id": 1,
         "user_id": 1,
         "post_id": 1
+    },
+    "data": {
+        "has_reacted": "👎",
+        "reaction_count": "3"
     }
 }
 ```
@@ -51,15 +59,25 @@ ou :
 ```json
 {
     "message": "Réaction suprimée avec succès !",
+    "data": {
+        "has_reacted": "👎",
+        "reaction_count": "3"
+    }
 }
+
+```
 
 ```json
 {
     "message": "Réaction modifiée avec succès !",
-    "data": {
+    "reaction": {
         "reaction_type_id": 1,
         "user_id": 1,
         "post_id": 1
+    },
+    "data": {
+        "has_reacted": "👎",
+        "reaction_count": "3"
     }
 }
 ```

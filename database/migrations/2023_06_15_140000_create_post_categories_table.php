@@ -11,18 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('post_categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('organization_id')->nullable();
+            $table->unsignedBigInteger('post_id')->nullable();
             $table->unsignedBigInteger('event_id')->nullable();
-            $table->longText('body');
-            $table->timestamp('uploaded_at');
-            $table->timestamps();
-            $table->softDeletes();
+            $table->unsignedBigInteger('category_type_id')->nullable();
 
+            $table->foreign('post_id')->references('id')->on('posts')->nullOnDelete();
             $table->foreign('event_id')->references('id')->on('events')->nullOnDelete();
-            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('category_type_id')->references('id')->on('category_types')->nullOnDelete();
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('post_categories');
     }
 };

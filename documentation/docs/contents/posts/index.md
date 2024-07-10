@@ -23,7 +23,7 @@ Id de l'utilisateur
 ### user_name :
 Nom de l'utilisateur ou de l'association
 ### search :
-Recherche par mot clé
+Recherche par mot clé ou phrase
 
 #### exemple :
 Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1?category_id=1
@@ -41,9 +41,19 @@ Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1?category_id
             "uploaded_at": "2023-12-27T16:43:39.000000Z",
             "user_id": 2,
             "organization_id": 1,
-            "category": "Admis2023",
+            "category": [],
             "created_at": "2023-12-27T16:43:39.000000Z",
             "updated_at": "2023-12-27T16:43:39.000000Z",
+            "reaction_count": 0,
+            "has_reacted": "👍",
+            "comment_count": 0,
+            "medias": [
+                {
+                    "id": 1,
+                    "url": "/chemin/vers/image.jpg",
+                    "type": "image"
+                }
+            ],
             "author": {
                 "is_organization": true,
                 "id": 2,
@@ -58,9 +68,19 @@ Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1?category_id
             "body": "Ceci est le contenu du deuxième post",
             "user_id": 3,
             "organization_id": 1,
-            "category": "Neurchi",
+            "category":[
+                {
+                    "name": "Admis 2023"
+                },
+                {
+                    "name": "Admis 2024"
+                }
+            ],
             "created_at": "2023-12-27T16:44:27.000000Z",
             "updated_at": "2023-12-27T16:44:27.000000Z",
+            "reaction_count": 0,
+            "has_reacted": "👍",
+            "comment_count": 0,
             "author": {
                 "is_organization": true,
                 "id": 3,

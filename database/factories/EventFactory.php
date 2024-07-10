@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Category;
+use App\Models\CategoryType;
 use App\Models\User;
 use App\Models\Bde\Organization;
 
@@ -20,26 +20,19 @@ class EventFactory extends Factory
     public function definition(): array
     {
 
-        $start_date = $this->faker->dateTimeBetween('-1 day', '+1 day');
+        $start_date = $this->faker->dateTimeBetween('-1 day', '+14 day');
 
         $fake_date = $this->faker->dateTimeBetween('-30 day', '+0 day');
-
-        if (random_int(0, 1) == 1) {
-            $organization_id = Organization::inRandomOrder()->first()->id;
-        }else{
-            $organization_id = null;
-        }
 
         return [
             'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraph(),
             'start_at' => $start_date,
-            'end_at' => $this->faker->dateTimeBetween($start_date, $start_date->format('Y-m-d H:i:s').' +1 day'),
-            'color' => $this->faker->hexColor(),
+            'end_at' => $this->faker->dateTimeBetween($start_date, $start_date->format('Y-m-d H:i:s').' +2 day'),
             'location' => $this->faker->address(),
+            'uploaded_at' => $fake_date,
             'user_id' => User::inRandomOrder()->first()->id,
-            'category_id' => Category::inRandomOrder()->first()->id,
-            'organization_id' => $organization_id,
+            'organization_id' => Organization::inRandomOrder()->first()->id,
             'created_at' => $fake_date,
         ];
     }

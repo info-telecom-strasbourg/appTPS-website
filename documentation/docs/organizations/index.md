@@ -36,19 +36,20 @@ Chaque objet d'organisation contient les propriétés suivantes :
             {
                 "id": 1,
                 "short_name": "asso1",
+                "user_name": "Association-1",
                 "name": "Association 1",
                 "logo_url": "http://example.com/logo1.png"
-            },
-            ...
+            }
         ],
         "clubs": [
             {
                 "id": 2,
                 "short_name": "club1",
+                "user_name": "Association-1",
                 "name": "Club 1",
                 "logo_url": "http://example.com/logo2.png"
-            },
-            ...
+            }
         ]
     }
 }
+```

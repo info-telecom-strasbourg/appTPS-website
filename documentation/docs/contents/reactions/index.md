@@ -26,6 +26,7 @@ Permet de récupérer toutes les réactions d'un post spécifique.
         {
             "reaction_type_id": 1,
             "reaction_type": "like",
+            "icon": "👍", 
             "total": 10,
             "users": [
                 {
