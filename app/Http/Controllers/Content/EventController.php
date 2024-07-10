@@ -44,12 +44,17 @@ class EventController extends Controller
                     'id' => $event->id,
                     'post_id' => $event->post_id,
                     'title' => $event->title,
-                    'description' => $event->description,
+                    'description' => $event->body,
                     'date_format' => $event->getEventTiming(),
                     'start_at' => $event->start_at,
                     'end_at' => $event->end_at,
                     'location' => $event->location,
-                    'color' => $event->color,
+                    'color' => $event->getColor(),
+                    'categories' => $event->category->map(function ($category) {
+                        return [
+                            'name' => $category->categoryType->name,
+                        ];
+                    }),
                     'created_at' => $event->created_at,
                     'updated_at' => $event->updated_at,
                     'author' => $event->organization ? [
@@ -104,12 +109,12 @@ class EventController extends Controller
             'data' => [
                 'id' => $event->id,
                 'title' => $event->title,
-                'description' => $event->description,
+                'description' => $event->body,
                 'date_format' => $event->getEventTiming(),
                 'start_at' => $event->start_at,
                 'end_at' => $event->end_at,
                 'location' => $event->location,
-                'color' => $event->color,
+                'color' => $event->getColor(),
                 'author' => $event->organization ? [
                     'is_organization' => true,
                     'id' => $event->organization->id,

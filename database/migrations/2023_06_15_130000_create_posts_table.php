@@ -16,8 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('organization_id')->nullable();
             $table->unsignedBigInteger('event_id')->nullable();
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->string('color');
             $table->longText('body');
             $table->timestamp('uploaded_at');
             $table->timestamps();
@@ -25,7 +23,6 @@ return new class extends Migration
 
             $table->foreign('event_id')->references('id')->on('events')->nullOnDelete();
             $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
-            $table->foreign('category_id')->references('id')->on('category_types')->nullOnDelete();
         });
     }
 

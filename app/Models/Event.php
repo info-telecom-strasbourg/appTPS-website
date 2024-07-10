@@ -42,6 +42,10 @@ class Event extends Model
         return $this->hasMany(Post::class);
     }
 
+    public function category(){
+        return $this->hasMany(Category::class);
+    }
+
     public function getEventTiming()
     {
         $startAt = Carbon::parse($this->start_at);
@@ -79,5 +83,32 @@ class Event extends Model
         }
 
         return $timing;
+    }
+
+    public function getColor(){
+
+        // Attempt to find a category that is for an event and get its color
+        $eventCategoryColor = $this->category()
+            ->join('category_types', 'categories.category_type_id', '=', 'category_types.id')
+            ->where('category_types.is_for_event', true)
+            ->orderBy('category_types.is_for_event', 'desc')
+            ->first();
+
+        // If an event category exists, return its color
+        if ($eventCategoryColor) {
+            return $eventCategoryColor->categoryType->color;
+        }
+
+        // If no event category, try to get the first category's color
+        $anyCategoryColor = $this->category()
+            ->join('category_types', 'categories.category_type_id', '=', 'category_types.id')
+            ->first();
+
+        if ($anyCategoryColor) {
+            return $anyCategoryColor->categoryType->color;
+        }
+
+        // Return a default color or null if no categories are found
+        return "#0865D2";
     }
 }

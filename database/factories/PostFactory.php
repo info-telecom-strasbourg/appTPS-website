@@ -41,8 +41,6 @@ class PostFactory extends Factory
             'organization_id' => $organization_id,
             'uploaded_at' => $fake_date,
             'event_id' => $event_id,
-            'category_id' => CategoryType::inRandomOrder()->first()->id,
-            'color' => $this->faker->hexColor(),
             'created_at' => $fake_date,
         ];
     }
