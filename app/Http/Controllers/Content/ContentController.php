@@ -25,16 +25,9 @@ class ContentController extends Controller
                 'max:4000000',
                 'min:3'
             ],
-            'color' => [
-                'required',
-                'string'
-            ],
             'organization_id' => [
                 'integer',
                 'exists:bde_bdd.'.env("BDE_DB_DATABASE").'.organizations,id'
-            ],
-            'category_id' => [
-                'integer'
             ],
             'start_at' => [
                 'date'
@@ -93,11 +86,9 @@ class ContentController extends Controller
 
             $post = Post::create([
                 'body' => $request->body,
-                'color' => $request->color,
                 'organization_id' => $request->organization_id,
                 'uploaded_at' => $uploaded_at,
                 'user_id' => $request->user()->id,
-                'category_id' => $request->category_id,
             ]);
 
             return response()->json([
@@ -118,7 +109,6 @@ class ContentController extends Controller
 
             $event = Event::create([
                 'body' => $request->body,
-                'color' => $request->color,
                 'organization_id' => $request->organization_id,
                 'user_id' => $request->user()->id,
                 'start_at' => $request->start_at,
@@ -146,7 +136,6 @@ class ContentController extends Controller
             $event = Event::create([
                 'title' => $request->title,
                 'body' => $request->body,
-                'color' => $request->color,
                 'organization_id' => $request->organization_id,
                 'user_id' => $request->user()->id,
                 'start_at' => $request->start_at,
@@ -157,12 +146,10 @@ class ContentController extends Controller
 
             $post = Post::create([
                 'body' => $request->body,
-                'color' => $request->color,
                 'organization_id' => $request->organization_id,
                 'uploaded_at' => $uploaded_at,
                 'user_id' => $request->user()->id,
                 'event_id' => $event->id,
-                'category_id' => $request->category_id,
             ]);
 
             $event->post_id = $post->id;

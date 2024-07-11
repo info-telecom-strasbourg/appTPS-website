@@ -51,7 +51,9 @@ class PostController extends Controller
         }
 
         if ($category_id && $category_id != 1) {
-            $query->Where('category_id', $category_id);
+            $query->whereHas('category', function($query) use ($category_id) {
+                $query->where('id', $category_id);
+            });
         }
 
         if($search) {

@@ -56,7 +56,7 @@ class Event extends Model
         $timing = [
             'start_at_simplified' => $startAt->translatedFormat('H\hi'),
             'end_at_simplified' => $endAt->translatedFormat('H\hi'),
-            'date' => $startAt->translatedFormat('d F'),
+            'date' => $startAt->diffForHumans(),
             'days_diff' => $startAt->diffInDays($endAt)
         ];
 
@@ -67,18 +67,13 @@ class Event extends Model
         // if the event is more than 24 hours and less than 14 days, then print days and hours
         if ($differenceInHours > 24) {
 
-            if ($differenceInDays < 7) {
-                $timing['date'] = $startAt->translatedFormat('l') . ' - ' . $endAt->translatedFormat('l');
-            }else {
-                $timing['date'] = $startAt->translatedFormat('d F') . ' - ' . $endAt->translatedFormat('d F');
-            }
-            if ($differenceInDays < 7){
-                $timing['start_at_simplified'] = $startAt->translatedFormat('d F H\hi');
-                $timing['end_at_simplified'] = $endAt->translatedFormat('d F H\hi');
+            if ($differenceInDays < 14){
+                $timing['start_at_simplified'] = $startAt->translatedFormat('d/m H\hi');
+                $timing['end_at_simplified'] = $endAt->translatedFormat('d/m H\hi');
             }
             else {
-                $timing['start_at_simplified'] = $startAt->translatedFormat('d F');
-                $timing['end_at_simplified'] = $endAt->translatedFormat('d F');
+                $timing['start_at_simplified'] = $startAt->translatedFormat('d/m');
+                $timing['end_at_simplified'] = $endAt->translatedFormat('d/m');
             }
         }
 
