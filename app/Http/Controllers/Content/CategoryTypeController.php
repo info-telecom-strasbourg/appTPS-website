@@ -38,6 +38,7 @@ class CategoryTypeController extends Controller
                         'id' => $category->id,
                         'name' => $category->name,
                         'color' => $category->color,
+                        'emoji' => $category->emoji,
                     ];
                 })
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 50)->unique();
             $table->string('color', 7);
+            $table->string('emoji', 50);
             $table->boolean('is_shown');
             $table->boolean('is_for_event');
         });
