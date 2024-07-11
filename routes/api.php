@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CGUController;
+use App\Http\Controllers\Content\CategoryTypeController;
 use App\Http\Controllers\Content\MediaController;
 use App\Http\Controllers\Content\ReactionController;
 use App\Http\Controllers\Content\ReactionTypeController;
@@ -138,8 +139,11 @@ Route::get('crous', [CrousController::class, 'index'])
 
         /** =============== Catégories =============== */
 
-        Route::get('/categories', [CategoryController::class, 'index'])
+        Route::get('/categories', [CategoryTypeController::class, 'index'])
             ->name('categories.index');
+
+        Route::post('/categories', [CategoryController::class, 'store'])
+            ->name('categories.store');
 
         /** =============== Event =============== */
 
