@@ -3,41 +3,59 @@
 namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
-use App\Models\CategoryType;
+use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Store the categories for a given post.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request) : \Illuminate\Http\JsonResponse {
+    public function store(Request $request) : \Illuminate\Http\JsonResponse {
+        // Validation des données reçues
+        $validation = Validator::make($request->all(),[
+            'post_id' => 'nullable|exists:posts,id',
+            'event_id' => 'nullable|exists:events,id',
+            'category_ids' => 'required|array',
+            'category_ids.*' => 'exists:categories,id'
+        ]);
 
-        $is_shown = $request->query('is_shown');
-
-        if($is_shown != null){
-            $category = CategoryType::filter(request(['search']))->where('is_shown', $is_shown)->orderBy('id')->get();
-        } else {
-            $category = CategoryType::filter(request(['search']))->where('id','!=',1)->orderBy('id')->get();
-        }
-
-        if ($category->isEmpty()) {
+        if ($validation->fails()) {
             return response()->json([
-                'message' => 'Pas de catégoriees trouvées.'
-            ], 404);
+                'message' => 'Validation failed',
+                'errors' => $validation->errors()
+            ], 422);
         }
+
+        if ($request->post_id == null && $request->event_id == null) {
+            return response()->json([
+                'message' => 'Veuillez fournir un post_id ou un event_id.'
+            ], 422);
+        }
+
+        $post_id = $request->post_id;
+        $event_id = $request->event_id;
+
+        $categories = array_map(
+            function ($category) use ($post_id,$event_id) {
+                return
+                    Category::create([
+                        'post_id' => $post_id,
+                        'event_id' => $event_id,
+                        'category_type_id' => $category
+                    ]);
+            },
+            $request->category_ids,
+        );
 
         return response()->json([
-            'data' => $category
-                ->map(function ($category) {
-                    return [
-                        'id' => $category->id,
-                        'name' => $category->name,
-                    ];
-                })
-        ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+            'message' => 'Catégories associées avec succès au post.',
+            'data' => $categories
+        ], 201);
     }
 }

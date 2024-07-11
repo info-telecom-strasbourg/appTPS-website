@@ -13,8 +13,18 @@ class Category extends Model
 
     public $timestamps = false;
 
+    public $fillable = [
+        'category_type_id',
+        'post_id',
+        'event_id'
+    ];
+
     public function categoryType(){
         return $this->belongsTo(CategoryType::class);
+    }
+
+    public function post(){
+        return $this->belongsTo(Post::class);
     }
 
 }
