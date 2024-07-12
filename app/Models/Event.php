@@ -48,32 +48,39 @@ class Event extends Model
 
     public function getEventTiming()
     {
-        $startAt = Carbon::parse($this->start_at);
-        $endAt = Carbon::parse($this->end_at);
-        $differenceInHours = $endAt->diffInHours($startAt);
-        $differenceInDays = now()->diffInDays($startAt);
+        $start_at = Carbon::parse($this->start_at);
+        $end_at = Carbon::parse($this->end_at);
 
         $timing = [
-            'start_at_simplified' => $startAt->translatedFormat('H\hi'),
-            'end_at_simplified' => $endAt->translatedFormat('H\hi'),
-            'date' => $startAt->diffForHumans(),
-            'days_diff' => $startAt->diffInDays($endAt)
+            'start_at_simplified' => $start_at->translatedFormat('H\hi'),
+            'end_at_simplified' => $end_at->translatedFormat('H\hi'),
+            'date' => $start_at->diffForHumans(),
+            'days_diff' => $start_at->diffInDays($end_at)
         ];
 
-        if ($differenceInDays < 7) {
-            $timing['date'] = $startAt->translatedFormat('l');
+        // if the event is today, tomorrow or in a week, then print the day of the week
+        if ($start_at < now()->addWeek()) {
+            if (now()->between($start_at, $end_at)){
+                $timing['date'] = "En cours";
+            } elseif ($start_at->isToday()) {
+                $timing['date'] = "Aujourd'hui";
+            } else if ($start_at->isTomorrow()) {
+                $timing['date'] = "Demain";
+            } else {
+                $timing['date'] = $start_at->translatedFormat('l');
+            }
         }
 
         // if the event is more than 24 hours and less than 14 days, then print days and hours
-        if ($differenceInHours > 24) {
+        if (!$start_at->isSameDay($end_at)) {
 
-            if ($differenceInDays < 14){
-                $timing['start_at_simplified'] = $startAt->translatedFormat('d/m H\hi');
-                $timing['end_at_simplified'] = $endAt->translatedFormat('d/m H\hi');
+            if ($start_at < now()->addWeeks(2)) {
+                $timing['start_at_simplified'] = $start_at->translatedFormat('d/m H\hi');
+                $timing['end_at_simplified'] = $end_at->translatedFormat('d/m H\hi');
             }
             else {
-                $timing['start_at_simplified'] = $startAt->translatedFormat('d/m');
-                $timing['end_at_simplified'] = $endAt->translatedFormat('d/m');
+                $timing['start_at_simplified'] = $start_at->translatedFormat('d/m');
+                $timing['end_at_simplified'] = $end_at->translatedFormat('d/m');
             }
         }
 
@@ -105,5 +112,12 @@ class Event extends Model
 
         // Return a default color or null if no categories are found
         return "#0865D2";
+    }
+
+    public function getShowDate($actual_date){
+        $start_at = Carbon::parse($this->start_at);
+        $date = Carbon::parse($actual_date);
+
+        return !$start_at->isSameDay($actual_date);
     }
 }

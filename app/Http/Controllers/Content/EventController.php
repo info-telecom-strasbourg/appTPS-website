@@ -19,6 +19,7 @@ class EventController extends Controller
      * @param Request $request
      */
     public function index(Request $request){
+
         $per_page = $request->query('per_page');
         $start_at = $request->query('start_at');
         $organization_id = $request->query('organization_id');
@@ -30,21 +31,32 @@ class EventController extends Controller
             $start_at = now();
         }
 
-        $events = Event::orderBy('start_at',"asc")->where('uploaded_at', '<=', now())->where('start_at', '>=', $start_at);
+        $events = Event::orderBy('start_at',"asc")->where('uploaded_at', '<=', now())->where('start_at', '>=', $start_at)->orWhere(function ($query) {
+            $query->where('start_at', '<=',  now()) // OU événements actuellement en cours
+            ->where('end_at', '>=', now());
+        });;
 
         if($organization_id){
             $events->Where('organization_id',$organization_id);
         }
 
+        global $previous_date;
+
+        $previous_date = $start_at;
+
         $events = $events->paginate($per_page);
 
         return response()->json([
-            'data' => $events->map(function ($event) {
+            'data' => $events->map(function ($event){
+                global $previous_date;
+
+                $actual_date = $previous_date;
+                $previous_date = $event->start_at;
                 return [
                     'id' => $event->id,
                     'post_id' => $event->post_id,
                     'title' => $event->title,
-                    'description' => $event->body,
+                    'show_date' => $event->getShowDate($actual_date),
                     'date_format' => $event->getEventTiming(),
                     'start_at' => $event->start_at,
                     'end_at' => $event->end_at,
@@ -109,7 +121,6 @@ class EventController extends Controller
             'data' => [
                 'id' => $event->id,
                 'title' => $event->title,
-                'description' => $event->body,
                 'date_format' => $event->getEventTiming(),
                 'start_at' => $event->start_at,
                 'end_at' => $event->end_at,
