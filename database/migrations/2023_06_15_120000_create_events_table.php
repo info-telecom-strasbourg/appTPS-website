@@ -20,7 +20,6 @@ return new class extends Migration
             $table->dateTime('end_at')->nullable();
             $table->dateTime('uploaded_at')->nullable();
             $table->string('title');
-            $table->longText('body')->nullable();
             $table->string('location')->nullable();
             $table->timestamps();
             $table ->softDeletes();

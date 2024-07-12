@@ -20,7 +20,7 @@ class PostController extends Controller
     */
     public function index(Request $request) : \Illuminate\Http\JsonResponse {
         $per_page = $request->query('per_page');
-        $category_id = $request->query('category_id');
+        $categoryIds = $request->input('category_id', []);
         $user_name = $request->query('user_name');
         $user_id = $request->query('user_id');
         $asso_id = $request->query('asso_id');
@@ -50,10 +50,8 @@ class PostController extends Controller
             $query->Where('organization_id', $asso_id);
         }
 
-        if ($category_id && $category_id != 1) {
-            $query->whereHas('category', function($query) use ($category_id) {
-                $query->where('id', $category_id);
-            });
+        if ($categoryIds && !in_array(1,$categoryIds) && !in_array(null,$categoryIds)){
+            $query->find($categoryIds);
         }
 
         if($search) {

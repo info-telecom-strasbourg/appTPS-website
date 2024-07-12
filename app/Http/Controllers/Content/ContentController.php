@@ -21,13 +21,11 @@ class ContentController extends Controller
             ],
             'body' => [
                 'required',
-                'string',
-                'max:4000000',
-                'min:3'
             ],
             'organization_id' => [
                 'integer',
-                'exists:bde_bdd.'.env("BDE_DB_DATABASE").'.organizations,id'
+                'exists:bde_bdd.'.env("BDE_DB_DATABASE").'.organizations,id',
+                'nullable'
             ],
             'start_at' => [
                 'date'
@@ -36,7 +34,8 @@ class ContentController extends Controller
                 'date'
             ],
             'uploaded_at' => [
-                'date'
+                'date',
+                'nullable'
             ],
             'location' => [
                 'string',
@@ -108,6 +107,7 @@ class ContentController extends Controller
             }
 
             $event = Event::create([
+                'title' => $request->title,
                 'body' => $request->body,
                 'organization_id' => $request->organization_id,
                 'user_id' => $request->user()->id,

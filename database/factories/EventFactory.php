@@ -26,7 +26,6 @@ class EventFactory extends Factory
 
         return [
             'title' => $this->faker->sentence(),
-            'body' => $this->faker->paragraph(),
             'start_at' => $start_date,
             'end_at' => $this->faker->dateTimeBetween($start_date, $start_date->format('Y-m-d H:i:s').' +2 day'),
             'location' => $this->faker->address(),

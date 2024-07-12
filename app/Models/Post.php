@@ -23,10 +23,8 @@ class Post extends Model
         'event_id',
         'organization_id',
         'media_id',
-        'category_id',
         'description',
         'body',
-        'color',
         'created_at',
         'uploaded_at',
     ];
@@ -48,7 +46,7 @@ class Post extends Model
     }
 
     public function category(){
-        return $this->hasMany(Category::class);
+        return $this->HasMany(Category::class, 'post_id', 'id');
     }
 
     public function comments(){
@@ -134,10 +132,18 @@ class Post extends Model
             return $anyCategoryColor->categoryType->color;
         }
 
-        // Return a default color or null if no categories are found
+        // Return a default color if no categories are found
         return "#0865D2";
     }
 
+    public function scopeFind($query, $categoryIds)
+    {
+        $query->whereHas('category', function ($query) use ($categoryIds) {
+            $query->whereIn('category_type_id', $categoryIds);
+        });
+
+        return $query;
+    }
 
 }
 
