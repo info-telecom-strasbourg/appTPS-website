@@ -51,7 +51,7 @@ class PostController extends Controller
         }
 
         if ($categoryIds && !in_array(1,$categoryIds) && !in_array(null,$categoryIds)){
-            $query->find($categoryIds);
+            $query->category($categoryIds);
         }
 
         if($search) {
@@ -61,6 +61,7 @@ class PostController extends Controller
         $posts = $query->orderBy('uploaded_at', 'desc')->paginate($per_page);
 
         return response()->json([
+            'tab_category' => $categoryIds,
             'data' => $posts->map(function ($post) {
                 return [
                     'id' => $post->id,

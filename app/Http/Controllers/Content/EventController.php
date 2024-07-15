@@ -8,7 +8,9 @@ use App\Models\Event;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
+use function Symfony\Component\Translation\t;
 
 class EventController extends Controller
 {
@@ -40,12 +42,11 @@ class EventController extends Controller
         $events = Event::orderBy('start_at',"asc")->where('uploaded_at', '<=', now())->where('start_at', '>=', $start_at)->orWhere(function ($query) {
             $query->where('start_at', '<=',  now()) // OU événements actuellement en cours
             ->where('end_at', '>=', now());
-        });;
+        });
 
         if($organization_id){
             $events->Where('organization_id',$organization_id);
         }
-
         $events = $events->paginate($per_page);
 
         return response()->json([
@@ -145,6 +146,7 @@ class EventController extends Controller
                 ],
             ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+
     }
 
     public function delete(Request $request,$id) : \Illuminate\Http\JsonResponse {

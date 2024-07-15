@@ -59,9 +59,11 @@ class Event extends Model
         ];
 
         // if the event is today, tomorrow or in a week, then print the day of the week
-        if ($start_at < now()->addWeek() && $start_at > now()->subDays($start_at->diffInDays($end_at))) {
+        if ($start_at < now()->addWeek() ){
             if (now()->between($start_at, $end_at)){
                 $timing['date'] = "En cours";
+            }elseif($start_at < now()) {
+                $timing['date'] = $start_at->diffForHumans();
             } elseif ($start_at->isToday()) {
                 $timing['date'] = "Aujourd'hui";
             } else if ($start_at->isTomorrow()) {

@@ -28,4 +28,12 @@ class Order extends Model
     public function member(){
         return $this->belongsTo(Member::class);
     }
+
+    public function getActualBalance($balance){
+        if ($this->product != null){
+            return $balance + $this->price;
+        } else {
+            return $balance - $this->price;
+        }
+    }
 }

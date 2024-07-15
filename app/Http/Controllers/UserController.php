@@ -38,7 +38,7 @@ class UserController extends Controller
                 'integer',
                 'exists:sectors,id'
             ],
-            'promotion_year' => [
+            'admission_year' => [
                 'integer',
                 'min:2000',
                 'max:3000'
@@ -89,7 +89,7 @@ class UserController extends Controller
                 'phone' => $user->phone,
                 'bde_id' => $user->bde_id,
                 'avatar_url' => $user->avatar->path,
-                'promotion_year' => $user->promotion_year,
+                'admission_year' => $user->admission_year,
                 'created_at' => $user->created_at->format('Y-m-d H:i:s'),
                 'updated_at' => $user->updated_at->format('Y-m-d H:i:s'),
                 'email_verified_at' => $user->email_verified_at,
@@ -129,7 +129,7 @@ class UserController extends Controller
                 'user_name' => $user->user_name,
                 'description' => $user->description,
                 'avatar_url' => $user->avatar->path,
-                'promotion_year' => $user->promotion_year,
+                'admission_year' => $user->admission_year,
                 'created_at' => $user->created_at->format('Y-m-d H:i:s'),
                 'updated_at' => $user->updated_at->format('Y-m-d H:i:s'),
                 'sector' => $user->sector ? $user->sector->short_name : null,

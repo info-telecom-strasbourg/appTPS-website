@@ -12,9 +12,9 @@ class AuthUserController extends Controller
 
     /**
      * Login a user
-     * 
+     *
      * @param LoginRequest $request
-     * 
+     *
      */
     public function login(LoginRequest $request) {
         try {
@@ -32,6 +32,7 @@ class AuthUserController extends Controller
 
             return response()->json([
                 'user' => $request->user(),
+                'logo' => $request->user()->avatar->path,
                 'token' => $token
             ], 200);
 
@@ -45,7 +46,7 @@ class AuthUserController extends Controller
 
     /**
      * Logout a user
-     * 
+     *
      */
     public function logout() {
         auth()->user()->tokens()->delete();
