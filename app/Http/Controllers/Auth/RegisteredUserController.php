@@ -61,7 +61,7 @@ class RegisteredUserController extends Controller
                 'max:10',
                 'unique:users,phone'
             ],
-            'promotion_year' => [
+            'admission_year' => [
                 'integer',
                 'min:2000',
                 'max:3000'
@@ -91,7 +91,7 @@ class RegisteredUserController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'contributor' => 0,
-                'class' => $request->promotion_year,
+                'class' => $request->admission_year,
                 'sector' => Sector::find($request->sector)->short_name,
             ]);
 
@@ -111,7 +111,7 @@ class RegisteredUserController extends Controller
                 'user_name' => $request->user_name,
                 'email' => $request->email,
                 'phone' => $request->phone,
-                'promotion_year' => $request->promotion_year,
+                'admission_year' => $request->admission_year,
                 'password' => Hash::make($request->password),
                 'birth_date' => $request->birth_date,
             ]);

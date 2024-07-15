@@ -37,7 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'description',
         'bde_id',
         'avatar',
-        'promotion_year',
+        'admission_year',
         'sector_id',
         'birth_date'
     ];
