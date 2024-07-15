@@ -32,7 +32,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => Hash::make('Azertyuiop1#'),
             'sector_id' => Sector::inRandomOrder()->first()->id,
-            'promotion_year' => random_int(2022, 2026),
+            'admission_year' => random_int(2021, 2024),
             'bde_id' => $bde_id,
             'birth_date' => $this->faker->dateTimeBetween('-30 years', '-18 years')->format('Y-m-d'),
         ];

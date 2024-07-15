@@ -136,13 +136,11 @@ class Post extends Model
         return "#0865D2";
     }
 
-    public function scopeFind($query, $categoryIds)
+    public function scopeCategory($query, $categoryIds)
     {
-        $query->whereHas('category', function ($query) use ($categoryIds) {
+        return $query->whereHas('category', function ($query) use ($categoryIds) {
             $query->whereIn('category_type_id', $categoryIds);
-        });
-
-        return $query;
+        }, '>=', count($categoryIds));
     }
 
 }

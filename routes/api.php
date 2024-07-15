@@ -8,6 +8,7 @@ use App\Http\Controllers\Content\ReactionTypeController;
 use App\Http\Controllers\CrousController;
 use App\Http\Controllers\CTSController;
 use App\Http\Controllers\LinkCasController;
+use App\Http\Controllers\MPSController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\UserAvatarController;
 use Illuminate\Support\Facades\Route;
@@ -155,7 +156,7 @@ Route::get('crous', [CrousController::class, 'index'])
                 ->name('event.store');
 
             Route::get('/{id}', [EventController::class, 'show'])
-            ->name('event.show');
+                ->name('event.show');
 
             Route::get('{id}/delete', [EventController::class, 'delete'])
                 ->name('event.delete');
@@ -221,6 +222,10 @@ Route::get('crous', [CrousController::class, 'index'])
         Route::get('cts', [CTSController::class, 'index'])
             ->name('cts.index');
         });
+
+        /** =============== MPS =============== */
+        Route::get('mps', [MPSController::class, 'index'])
+            ->name('mps.index');
 });
 
 Route::get('cgu', [CGUController::class, 'index'])
