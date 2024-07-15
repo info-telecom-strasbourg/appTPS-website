@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
             'phone' => '0606060606',
             'password' => Hash::make(hash('sha256', 'test'.'email@email.com')),
             'bde_id' => $test_member->id,
-            'promotion_year' => 2024,
+            'admission_year' => 2024,
             'sector_id' => 2,
             'birth_date' => '2000-01-01',
             'email_verified_at' => now()
