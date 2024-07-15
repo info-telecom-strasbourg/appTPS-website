@@ -21,6 +21,8 @@ class ContentController extends Controller
             ],
             'body' => [
                 'required',
+                'string',
+                'min:3'
             ],
             'organization_id' => [
                 'integer',
@@ -108,7 +110,6 @@ class ContentController extends Controller
 
             $event = Event::create([
                 'title' => $request->title,
-                'body' => $request->body,
                 'organization_id' => $request->organization_id,
                 'user_id' => $request->user()->id,
                 'start_at' => $request->start_at,
@@ -135,7 +136,6 @@ class ContentController extends Controller
 
             $event = Event::create([
                 'title' => $request->title,
-                'body' => $request->body,
                 'organization_id' => $request->organization_id,
                 'user_id' => $request->user()->id,
                 'start_at' => $request->start_at,

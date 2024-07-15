@@ -42,7 +42,7 @@ class EventController extends Controller
 
         global $previous_date;
 
-        $previous_date = $start_at;
+        $previous_date = now()->subDays(10);
 
         $events = $events->paginate($per_page);
 
