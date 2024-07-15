@@ -59,7 +59,7 @@ class Event extends Model
         ];
 
         // if the event is today, tomorrow or in a week, then print the day of the week
-        if ($start_at < now()->addWeek()) {
+        if ($start_at < now()->addWeek() && $start_at > now()->subDays($start_at->diffInDays($end_at))) {
             if (now()->between($start_at, $end_at)){
                 $timing['date'] = "En cours";
             } elseif ($start_at->isToday()) {
@@ -118,6 +118,11 @@ class Event extends Model
         $start_at = Carbon::parse($this->start_at);
         $date = Carbon::parse($actual_date);
 
-        return !$start_at->isSameDay($actual_date);
+        if (!$start_at->isSameDay($actual_date)) {
+            return $start_at->translatedFormat('l d F');
+        }
+        else {
+            return null;
+        }
     }
 }
