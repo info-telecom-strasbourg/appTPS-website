@@ -20,15 +20,21 @@ class EventController extends Controller
      */
     public function index(Request $request){
 
+        global $previous_date;
+
         $per_page = $request->query('per_page');
         $start_at = $request->query('start_at');
         $organization_id = $request->query('organization_id');
+        $previous_date = $request->query('previous_date');
 
         if ($per_page == null) {
             $per_page = 10;
         }
         if($start_at == null){
             $start_at = now();
+        }
+        if ($previous_date == null){
+            $previous_date = now()->subDays(10);
         }
 
         $events = Event::orderBy('start_at',"asc")->where('uploaded_at', '<=', now())->where('start_at', '>=', $start_at)->orWhere(function ($query) {
@@ -39,10 +45,6 @@ class EventController extends Controller
         if($organization_id){
             $events->Where('organization_id',$organization_id);
         }
-
-        global $previous_date;
-
-        $previous_date = now()->subDays(10);
 
         $events = $events->paginate($per_page);
 
