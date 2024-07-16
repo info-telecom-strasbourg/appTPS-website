@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
     {
         $test_member = Member::create([
             'id' => 1001,
-            'first_name' => 'first_name',
-            'last_name' => 'last_name',
+            'first_name' => 'Fabien',
+            'last_name' => 'prégaldini',
             'card_number' => '12345678',
             'email' => 'email@email.com',
             'phone' => '0606060606',
@@ -33,9 +33,10 @@ class UserSeeder extends Seeder
         ]);
 
         $test_user = User::create([
-            'first_name' => 'first_name',
-            'last_name' => 'last_name',
-            'user_name' => 'user_name',
+            'first_name' => 'Fabien',
+            'last_name' => 'prégaldini',
+            'user_name' => 'fab.preg',
+            'description' => 'Je suis fabien et je suis le goat, ceci est ma description, je suis le directeur de TP. Il faut pas lui dire mais j\'ai pour objectif de ne pas donner le diplome d\'ingénieur à l\'élève Romain Bourdin',
             'email' => 'email@email.com',
             'phone' => '0606060606',
             'password' => Hash::make('test'),

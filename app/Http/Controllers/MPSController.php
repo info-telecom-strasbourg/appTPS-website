@@ -6,7 +6,7 @@ class MPSController extends Controller
 {
     public function index() {
         return response()->json([
-            'lien' => env("MPS_URL"),
+            'link' => "https://nextcloud.its-tps.fr/s/zfFkwR6y5wxt5gW",
         ], 200);
     }
 }
