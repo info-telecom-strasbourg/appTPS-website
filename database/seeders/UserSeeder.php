@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
             'user_name' => 'user_name',
             'email' => 'email@email.com',
             'phone' => '0606060606',
-            'password' => Hash::make(hash('sha256', 'test'.'email@email.com')),
+            'password' => Hash::make('test'),
             'bde_id' => $test_member->id,
             'admission_year' => 2024,
             'sector_id' => 2,

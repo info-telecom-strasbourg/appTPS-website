@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
             'name' => 'cocktail12',
             'title' => 'cocktail12',
             'price' => 1.2,
-            'product_type_id' => ProductType::where('type', 'Soirée')->first()->id,
+            'product_type_id' => ProductType::where('type', 'soiree')->first()->id,
             'color' => fake()->hexColor()
         ]);
 
@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
             'name' => 'cocktail16',
             'title' => 'cocktail16',
             'price' => 1.6,
-            'product_type_id' => ProductType::where('type', 'Soirée')->first()->id,
+            'product_type_id' => ProductType::where('type', 'soiree')->first()->id,
             'color' => fake()->hexColor()
         ]);
 
@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
             'name' => 'meteor',
             'title' => 'meteor',
             'price' => 1.2,
-            'product_type_id' => ProductType::where('type', 'Soirée')->first()->id,
+            'product_type_id' => ProductType::where('type', 'soiree')->first()->id,
             'color' => fake()->hexColor()
         ]);
 
@@ -42,7 +42,7 @@ class ProductSeeder extends Seeder
             'name' => 'pizza',
             'title' => 'pizza',
             'price' => 2.6,
-            'product_type_id' => ProductType::where('type', 'Midi')->first()->id,
+            'product_type_id' => ProductType::where('type', 'afterwork')->first()->id,
             'color' => fake()->hexColor()
         ]);
 
@@ -51,7 +51,7 @@ class ProductSeeder extends Seeder
             'name' => 'sandwich',
             'title' => 'sandwich',
             'price' => 2,
-            'product_type_id' => ProductType::where('type', 'Midi')->first()->id,
+            'product_type_id' => ProductType::where('type', 'afterwork')->first()->id,
             'color' => fake()->hexColor()
         ]);
 
@@ -59,7 +59,7 @@ class ProductSeeder extends Seeder
             'name' => 'charcuterie',
             'title' => 'charcuterie',
             'price' => 4.4,
-            'product_type_id' => ProductType::where('type', 'CharcutFromage')->first()->id,
+            'product_type_id' => ProductType::where('type', 'repas')->first()->id,
             'color' => fake()->hexColor()
         ]);
 
@@ -67,7 +67,7 @@ class ProductSeeder extends Seeder
             'name' => 'fromage',
             'title' => 'fromage',
             'price' => 3,
-            'product_type_id' => ProductType::where('type', 'CharcutFromage')->first()->id,
+            'product_type_id' => ProductType::where('type', 'repas')->first()->id,
             'color' => fake()->hexColor()
         ]);
 
@@ -75,7 +75,7 @@ class ProductSeeder extends Seeder
             'name' => 'bordeaux',
             'title' => 'bordeaux',
             'price' => 1.6,
-            'product_type_id' => ProductType::where('type', 'Oeno')->first()->id,
+            'product_type_id' => ProductType::where('type', 'oeno')->first()->id,
             'color' => fake()->hexColor()
         ]);
 
@@ -83,7 +83,7 @@ class ProductSeeder extends Seeder
             'name' => 'cookies',
             'title' => 'cookies',
             'price' => 2.2,
-            'product_type_id' => ProductType::where('type', 'Goûter')->first()->id,
+            'product_type_id' => ProductType::where('type', 'gouter')->first()->id,
             'color' => fake()->hexColor()
         ]);
 
@@ -91,7 +91,7 @@ class ProductSeeder extends Seeder
             'name' => 'metre',
             'title' => 'metre',
             'price' => 1.2,
-            'product_type_id' => ProductType::where('type', 'Shots')->first()->id,
+            'product_type_id' => ProductType::where('type', 'shot')->first()->id,
             'color' => fake()->hexColor()
         ]);
     }
