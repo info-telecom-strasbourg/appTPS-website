@@ -26,7 +26,7 @@ id de l'utilisateur dans l'url exemple : /api/user/1
         "first_name": "enzo",
         "user_name": "zozoLeZozo",
         "avatar_url": "https://app-pprd.its-tps.fr/storage/images/avatars/default.png",
-        "promotion_year": "2024",
+        "admission_year": "2024",
         "created_at": "2023-08-06T15:35:05.000000Z",
         "updated_at": "2023-08-06T15:35:05.000000Z",
         "sector": "AUTRE",

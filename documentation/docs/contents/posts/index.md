@@ -14,8 +14,8 @@ Affiche tout les posts en fonction des paramètres de filtrage donnés
 Nombre de posts par page
 #### page :
 Numéro de la page
-### category_id :
-Id de la catégorie
+### category_id[] :
+tableau des id de categories
 ### organization_id :
 Id de l'organisation
 ### user_id :
@@ -26,7 +26,7 @@ Nom de l'utilisateur ou de l'association
 Recherche par mot clé ou phrase
 
 #### exemple :
-Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1?category_id=1
+Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1&category_id[]=1&category_id[]=2
 
 
 ## Réponses
@@ -36,11 +36,11 @@ Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1?category_id
     "data": [
         {
             "id": 1,
+            "event_id": 1,
             "body": "Ceci est le contenu du premier post",
             "uploaded_since": "Il y a 2 jours",
             "uploaded_at": "2023-12-27T16:43:39.000000Z",
-            "user_id": 2,
-            "organization_id": 1,
+            "color": "#FF0000",
             "category": [],
             "created_at": "2023-12-27T16:43:39.000000Z",
             "updated_at": "2023-12-27T16:43:39.000000Z",
@@ -64,10 +64,12 @@ Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&page=1?category_id
             }
         },
         {
-            "id": 2,
-            "body": "Ceci est le contenu du deuxième post",
-            "user_id": 3,
-            "organization_id": 1,
+            "id": 1,
+            "event_id": 1,
+            "body": "Ceci est le contenu du premier post",
+            "uploaded_since": "Il y a 2 jours",
+            "uploaded_at": "2023-12-27T16:43:39.000000Z",
+            "color": "#FF0000",
             "category":[
                 {
                     "name": "Admis 2023"

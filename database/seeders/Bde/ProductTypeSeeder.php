@@ -14,31 +14,27 @@ class ProductTypeSeeder extends Seeder
     public function run(): void
     {
         ProductType::factory()->create([
-            'type' => 'Midi',
+            'type' => 'afterwork',
         ]);
 
         ProductType::factory()->create([
-            'type' => 'Soirée',
+            'type' => 'gouter',
         ]);
 
         ProductType::factory()->create([
-            'type' => 'CharcutFromage',
+            'type' => 'oeno',
         ]);
 
         ProductType::factory()->create([
-            'type' => 'Oeno',
+            'type' => 'repas',
         ]);
 
         ProductType::factory()->create([
-            'type' => 'Shots',
+            'type' => 'shot',
         ]);
 
         ProductType::factory()->create([
-            'type' => 'Goûter',
-        ]);
-
-        ProductType::factory()->create([
-            'type' => 'Repas',
+            'type' => 'soiree',
         ]);
     }
 }

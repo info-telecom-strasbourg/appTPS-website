@@ -35,6 +35,7 @@ Connecte un utilisateur à l'application et renvoie un token d'authentification.
         "created_at": "2020-12-12T00:00:00.000000Z",
         "updated_at": "2020-12-12T00:00:00.000000Z"
     },
+    "logo": "http://localhost:8000/storage/users/1/logo.png",
     "token": "token"
 }
 ```

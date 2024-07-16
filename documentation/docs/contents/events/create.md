@@ -31,7 +31,6 @@ Creation d'un nouvel événement
     "message": "Event created",
     "data": {
         "title": "Event 1",
-        "description": "Description event 1",
         "start_at": "2021-03-01 00:00:00",
         "end_at": "2021-03-01 00:00:00",
         "location": "Location event 1",

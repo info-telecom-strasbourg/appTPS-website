@@ -22,7 +22,6 @@ Affiche un événement en fonction de son ID
 {
     "data": {
         "title": "Consequatur dolor molestias rerum non et repellat nisi.",
-        "description": "Consequatur laudantium ipsa et aliquam vitae vitae tempore. Animi dolore eum ut atque quo consectetur. Dolore corporis qui at facere. Minus accusamus rerum qui vero et.",
         "start_at": "2023-08-06 11:33:19",
         "end_at": "2023-08-06 11:36:42",
         "location": "5413 Brown Village Apt. 865\nNew Mariamstad, FL 16176-6230",

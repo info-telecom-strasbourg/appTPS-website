@@ -41,6 +41,7 @@ class FouailleController extends Controller
             $actual_balance = $order->getActualBalance($actual_balance);
             return [
                 'date' => $order->date,
+                'date_format' => $order->getDate(),
                 'actual_balance' => $actual_balance,
                 'total_price' => $order->price,
                 'amount' => $order->amount,
@@ -83,6 +84,6 @@ class FouailleController extends Controller
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
                 'user_name' => $user->user_name,
-                ],]);
+            ],]);
     }
 }

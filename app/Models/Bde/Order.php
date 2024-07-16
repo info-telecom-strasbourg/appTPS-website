@@ -4,6 +4,7 @@ namespace App\Models\Bde;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Order extends Model
 {
@@ -29,11 +30,26 @@ class Order extends Model
         return $this->belongsTo(Member::class);
     }
 
-    public function getActualBalance($balance){
-        if ($this->product != null){
-            return $balance + $this->price;
-        } else {
-            return $balance - $this->price;
+    public function getFormerBalance($balance){
+        return ($balance - $this->price);
+    }
+
+    public function getDate()
+    {
+        $date = Carbon::parse($this->date);
+
+        $date_format = $date->diffForHumans();
+
+        if ($date < now()) {
+            if ($date->isToday()) {
+                $date_format = "Aujourd'hui";
+            } else if ($date->isYesterday()) {
+                $date_format = "Hier";
+            } else {
+                $date_format = $date->translatedFormat('l');
+            }
         }
+
+        return $date_format;
     }
 }
