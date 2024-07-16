@@ -38,7 +38,7 @@ class FouailleController extends Controller
 
         $datas = $orders->map(function ($order) use ($actual_balance){
             global $actual_balance;
-            $actual_balance = $order->getActualBalance($actual_balance);
+            $actual_balance = $order->getFormerBalance($actual_balance);
             return [
                 'date' => $order->date,
                 'date_format' => $order->getDate(),

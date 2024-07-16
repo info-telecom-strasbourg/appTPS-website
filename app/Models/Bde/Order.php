@@ -45,8 +45,6 @@ class Order extends Model
                 $date_format = "Aujourd'hui";
             } else if ($date->isYesterday()) {
                 $date_format = "Hier";
-            } else {
-                $date_format = $date->translatedFormat('l');
             }
         }
 
