@@ -15,8 +15,6 @@ Permet la creation d'un contenu post ou event ou alors les deux en même temps. 
 | title           | string  | min:3, max:50           | Titre de l'event     | non                | event         |
 | body            | string  | min:3, max:4000000000   | Contenu du post      | oui (pour un post) | post et event |
 | organization_id | integer | exists:organizations,id | ID de l'organisation | non                | post et event |
-| category_id     | integer | exists:cotegories,id    | ID de la category    | oui                | post et event |
-| color           | string  | string                  | Couleur du post      | oui                | post et event |
 | start_at        | date    | date                    | Date de début        | non                | event         |
 | end_at          | date    | date                    | Date de fin          | non                | event         |
 | location        | string  | string                  | Lieu de l'event      | non                | event         |
@@ -39,7 +37,6 @@ Permet la creation d'un contenu post ou event ou alors les deux en même temps. 
     "message": "Post created",
     "data": {
         "body": "C'est une description",
-        "color": "#ffffff",
         "organization_id": "1",
         "user_id": 1,
         "updated_at": "2023-12-27T16:43:39.000000Z",
@@ -54,8 +51,6 @@ Permet la creation d'un contenu post ou event ou alors les deux en même temps. 
 	"message": "Event created",
 	"data": {
 		"title": "titre 1",
-		"body": "C'est une description",
-		"color": "#ffffff",
 		"organization_id": "1",
 		"user_id": 1,
 		"start_at": "2023-12-22",
@@ -74,8 +69,6 @@ Permet la creation d'un contenu post ou event ou alors les deux en même temps. 
 	"data": {
 		"event": {
 			"title": "titre 1",
-			"body": "C'est une description",
-			"color": "#ffffff",
 			"organization_id": "1",
 			"user_id": 1,
 			"start_at": "2023-12-22",
@@ -87,7 +80,6 @@ Permet la creation d'un contenu post ou event ou alors les deux en même temps. 
 		},
 		"post": {
 			"body": "C'est une description",
-			"color": "#ffffff",
 			"organization_id": "1",
 			"user_id": 1,
 			"event_id": 12,

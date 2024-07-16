@@ -38,7 +38,7 @@ Créer un nouvel utilisateur dans la base de données de l'application et dans l
         "sector": 1,
         "email": "email",
         "phone": "phone",
-        "promotion_year": 2020,
+        "admission_year": 2020,
         "created_at": "2020-12-12T00:00:00.000000Z",
         "updated_at": "2020-12-12T00:00:00.000000Z"
     },

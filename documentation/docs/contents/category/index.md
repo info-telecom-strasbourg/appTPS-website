@@ -1,6 +1,6 @@
 ## Méthode Index - CategoryController
 
-La méthode `index` dans `CategoryController` est utilisée pour récupérer et renvoyer une liste de catégories.
+La méthode `index` dans `CategoryTypeController` est utilisée pour récupérer et renvoyer une liste de catégories.
 
 ### Description
 
@@ -24,7 +24,9 @@ Chaque objet de catégorie contient les propriétés suivantes :
 
 - `id` : L'ID de la catégorie.
 - `name` : Le nom de la catégorie.
-- `description` : La description de la catégorie.
+- `color` : La description de la catégorie.
+- `is_shown` : La description de la catégorie.
+- `is_for_event` : La description de la catégorie.
 
 ### Exemple de réponse
 
@@ -34,7 +36,10 @@ Chaque objet de catégorie contient les propriétés suivantes :
         {
             "id": 1,
             "name": "Category 1",
-            "description": "This is a description of the category."
+            "color": "#000000",
+            "emoji": "🎉",
+            "is_shown": true,
+            "is_for_event": true
         },
         ...
     ]

@@ -29,7 +29,7 @@ search : Recherche par nom, prénom ou nom d'utilisateur (optionnel)
             "first_name": "Prénom",
             "user_name": "NomUtilisateur",
             "avatar_url": "url_avatar",
-            "promotion_year": "année_promotion",
+            "admission_year": "année_promotion",
             "created_at": "date_creation",
             "updated_at": "date_mise_à_jour",
             "sector": "secteur",

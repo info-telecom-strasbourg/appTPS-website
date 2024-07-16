@@ -22,11 +22,11 @@ Affiche un post
 {
     "data": {
         "id": 1,
+        "event_id": 1,
         "body": "Ceci est le contenu du premier post",
-        "created_since": "Il y a 2 jours",
+        "uploaded_since": "Il y a 2 jours",
         "uploaded_at": "2023-12-27T16:43:39.000000Z",
-        "user_id": 2,
-        "organization_id": 1,
+        "color": "#FF0000",
         "category":[
             {
                 "name": "Admis 2023"

@@ -19,7 +19,8 @@ nav:
       - Avatar: users/avatar.md
       - New Password: users/new-password.md
   - Fouaille:
-      - fouaille: fouaille/fouaille.md
+      - balance: fouaille/balance.md
+      - Orders: fouaille/orders.md
   - Contents:
       - Store : contents/store.md
       - Events:
@@ -36,14 +37,16 @@ nav:
           - Store reaction: contents/reactions/store.md
           - Index reactions_type: contents/reactionType/index.md
       - Catégories:
-          - categories: contents/category.md
+          - Store catégories: contents/store.md
+          - Index categoriesType: contents/categories/index.md
       - Medias :
           - Store Medias: contents/medias/store.md
   - Organizations:
       - Index organizations: organizations/index.md
       - Show organization: organizations/show.md
   - Other:
-      - sectors: others/sectors.md
-      - cgu: others/cgu.md
+      - Sectors: others/sectors.md
+      - Cgu: others/cgu.md
+      - Mps: others/mps.md
 
 theme: readthedocs
