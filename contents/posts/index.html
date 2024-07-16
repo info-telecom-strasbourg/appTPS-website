@@ -79,7 +79,9 @@
               </ul>
               <p class="caption"><span class="caption-text">Fouaille</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../fouaille/fouaille/">fouaille</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../fouaille/balance/">balance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../fouaille/orders/">Orders</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Contents</span></p>
@@ -106,7 +108,7 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#page">page :</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#category_id">category_id :</a>
+    <li class="toctree-l4"><a class="reference internal" href="#category_id">category_id[] :</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#organization_id">organization_id :</a>
     </li>
@@ -150,7 +152,9 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Catégories</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../category/">categories</a>
+                <li class="toctree-l2"><a class="reference internal" href="../store/">Store</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../categories/index.md">Index categoriesType</a>
                 </li>
     </ul>
                   </li>
@@ -170,9 +174,11 @@
               </ul>
               <p class="caption"><span class="caption-text">Other</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../others/sectors/">sectors</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/sectors/">Sectors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../others/cgu/">cgu</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/cgu/">Cgu</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/mps/">Mps</a>
                   </li>
               </ul>
       </div>
@@ -226,8 +232,8 @@
 <p>Nombre de posts par page</p>
 <h4 id="page">page :</h4>
 <p>Numéro de la page</p>
-<h3 id="category_id">category_id :</h3>
-<p>Id de la catégorie</p>
+<h3 id="category_id">category_id[] :</h3>
+<p>tableau des id de categories</p>
 <h3 id="organization_id">organization_id :</h3>
 <p>Id de l'organisation</p>
 <h3 id="user_id">user_id :</h3>
@@ -237,17 +243,17 @@
 <h3 id="search">search :</h3>
 <p>Recherche par mot clé ou phrase</p>
 <h4 id="exemple">exemple :</h4>
-<p>Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&amp;page=1?category_id=1</p>
+<p>Sous la forme https://app-pprd.its-tps.fr/api/post?per_page=3&amp;page=1&amp;category_id[]=1&amp;category_id[]=2</p>
 <h2 id="reponses">Réponses</h2>
 <pre><code class="language-json">{
     &quot;data&quot;: [
         {
             &quot;id&quot;: 1,
+            &quot;event_id&quot;: 1,
             &quot;body&quot;: &quot;Ceci est le contenu du premier post&quot;,
             &quot;uploaded_since&quot;: &quot;Il y a 2 jours&quot;,
             &quot;uploaded_at&quot;: &quot;2023-12-27T16:43:39.000000Z&quot;,
-            &quot;user_id&quot;: 2,
-            &quot;organization_id&quot;: 1,
+            &quot;color&quot;: &quot;#FF0000&quot;,
             &quot;category&quot;: [],
             &quot;created_at&quot;: &quot;2023-12-27T16:43:39.000000Z&quot;,
             &quot;updated_at&quot;: &quot;2023-12-27T16:43:39.000000Z&quot;,
@@ -271,10 +277,12 @@
             }
         },
         {
-            &quot;id&quot;: 2,
-            &quot;body&quot;: &quot;Ceci est le contenu du deuxième post&quot;,
-            &quot;user_id&quot;: 3,
-            &quot;organization_id&quot;: 1,
+            &quot;id&quot;: 1,
+            &quot;event_id&quot;: 1,
+            &quot;body&quot;: &quot;Ceci est le contenu du premier post&quot;,
+            &quot;uploaded_since&quot;: &quot;Il y a 2 jours&quot;,
+            &quot;uploaded_at&quot;: &quot;2023-12-27T16:43:39.000000Z&quot;,
+            &quot;color&quot;: &quot;#FF0000&quot;,
             &quot;category&quot;:[
                 {
                     &quot;name&quot;: &quot;Admis 2023&quot;

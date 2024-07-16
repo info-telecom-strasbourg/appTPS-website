@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/contents/reactions/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://app.its-tps.fr/fouaille/orders/" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Index reactions - InsidePSBS API</title>
+    <title>Orders - InsidePSBS API</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Index reactions";
-        var mkdocs_page_input_path = "contents\\reactions\\index.md";
-        var mkdocs_page_url = "/contents/reactions/";
+        var mkdocs_page_name = "Orders";
+        var mkdocs_page_input_path = "fouaille\\orders.md";
+        var mkdocs_page_url = "/fouaille/orders/";
       </script>
     
     <!--[if lt IE 9]>
@@ -78,73 +78,71 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Fouaille</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../fouaille/balance/">balance</a>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../balance/">balance</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../fouaille/orders/">Orders</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Orders</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#objectif">Objectif</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#requete">Requête</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#parametres-de-la-requete">Paramètres de la requête</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reponse-en-cas-de-succes">Réponse en cas de succès</a>
+    </li>
+    </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Contents</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../store/">Store</a>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../contents/store/">Store</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Events</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../events/">Index events</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../contents/events/">Index events</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../events/show/">Show event</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../contents/events/show/">Show event</a>
                 </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Posts</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../posts/">Index posts</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../contents/posts/">Index posts</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../posts/show/">Show post</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../contents/posts/show/">Show post</a>
                 </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Comments</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../comments/">Index comments</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../contents/comments/">Index comments</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../comments/store/">Store comment</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../contents/comments/store/">Store comment</a>
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" >Reactions</a>
-    <ul class="current">
-                <li class="toctree-l2 current"><a class="reference internal current" href="#">Index reactions</a>
-    <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#requete">Requête</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#parametres">Paramètres</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#reponses">Réponses</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#succes">succès</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" >Reactions</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../contents/reactions/">Index reactions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="store/">Store reaction</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../contents/reactions/store/">Store reaction</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../reactionType/">Index reactions_type</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../contents/reactionType/">Index reactions_type</a>
                 </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Catégories</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../store/">Store</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../contents/store/">Store</a>
                 </li>
-                <li class="toctree-l2"><a class="" href="../categories/index.md">Index categoriesType</a>
+                <li class="toctree-l2"><a class="" href="../../contents/categories/index.md">Index categoriesType</a>
                 </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Medias</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../medias/store/">Store Medias</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../contents/medias/store/">Store Medias</a>
                 </li>
     </ul>
                   </li>
@@ -179,9 +177,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Contents</li>
-          <li class="breadcrumb-item">Reactions</li>
-      <li class="breadcrumb-item active">Index reactions</li>
+          <li class="breadcrumb-item">Fouaille</li>
+      <li class="breadcrumb-item active">Orders</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -190,97 +187,82 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="recuperer-les-reactions-dun-post">Récupérer les réactions d'un post</h1>
-<p>Permet de récupérer toutes les réactions d'un post spécifique.</p>
+                <h1 id="documentation-de-la-fonction-show-fouaillecontroller">Documentation de la fonction <code>show</code> - FouailleController</h1>
+<h2 id="objectif">Objectif</h2>
+<p>Cette fonction est conçue pour afficher les commandes fouaille d'un utilisateur spécifique, en incluant des informations détaillées sur chaque commande ainsi que le solde actuel de l'utilisateur. Elle supporte la pagination pour gérer efficacement l'affichage des données.</p>
 <h2 id="requete">Requête</h2>
 <table>
 <thead>
 <tr>
-<th>protocole</th>
-<th>methode</th>
-<th>url</th>
-<th>token</th>
+<th>Protocole</th>
+<th>Méthode</th>
+<th>URL</th>
+<th>Token</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>https</td>
+<td>HTTPS</td>
 <td>GET</td>
-<td>/api/post/{id}/reaction</td>
-<td>oui</td>
+<td>/api/fouaille</td>
+<td>Oui</td>
 </tr>
 </tbody>
 </table>
-<h2 id="parametres">Paramètres</h2>
-<table>
-<thead>
-<tr>
-<th>nom</th>
-<th>type</th>
-<th>contraintes</th>
-<th>description</th>
-<th>obligatoire</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>integer</td>
-<td>exists:posts,id</td>
-<td>ID du post</td>
-<td>oui</td>
-</tr>
-</tbody>
-</table>
-<h2 id="reponses">Réponses</h2>
-<h3 id="succes">succès</h3>
-<p><code>status: 200</code></p>
+<h2 id="parametres-de-la-requete">Paramètres de la requête</h2>
+<p>Les paramètres suivants peuvent être passés dans l'URL pour la pagination :</p>
+<ul>
+<li><code>per_page</code> (optionnel) : Le nombre de commandes à afficher par page. La valeur par défaut est 10.</li>
+<li><code>page</code> (optionnel) : Le numéro de la page à afficher.</li>
+</ul>
+<h2 id="reponse-en-cas-de-succes">Réponse en cas de succès</h2>
+<p><code>Status: 200 OK</code></p>
 <pre><code class="language-json">{
-    &quot;data&quot;: [
-        {
-            &quot;reaction_type_id&quot;: 1,
-            &quot;reaction_type&quot;: &quot;like&quot;,
-            &quot;icon&quot;: &quot;👍&quot;, 
-            &quot;total&quot;: 10,
-            &quot;users&quot;: [
-                {
-                    &quot;id&quot;: 1,
-                    &quot;name&quot;: &quot;John Doe&quot;,
-                    &quot;avatar&quot;: &quot;/path/to/avatar.jpg&quot;
-                },
-                {
-                    &quot;id&quot;: 2,
-                    &quot;name&quot;: &quot;Jane Doe&quot;,
-                    &quot;avatar&quot;: &quot;/path/to/avatar.jpg&quot;
+    &quot;data&quot;: {
+        &quot;orders&quot;: [
+            {
+                &quot;date&quot;: &quot;2023-06-21 09:56:09&quot;,
+                &quot;date_format&quot;: &quot;21/06/2023&quot;,
+                &quot;actual_balance&quot;: &quot;12.71&quot;,
+                &quot;total_price&quot;: &quot;5.00&quot;,
+                &quot;amount&quot;: 1,
+                &quot;product&quot;: null
+            },
+            {
+                &quot;date&quot;: &quot;2023-06-20 16:46:15&quot;,
+                &quot;date_format&quot;: &quot;20/06/2023&quot;,
+                &quot;actual_balance&quot;: &quot;7.71&quot;,
+                &quot;total_price&quot;: &quot;-6.00&quot;,
+                &quot;amount&quot;: 2,
+                &quot;product&quot;: {
+                    &quot;name&quot;: &quot;fromage&quot;,
+                    &quot;type&quot;: &quot;soiree&quot;,
+                    &quot;unit_price&quot;: &quot;-3.00&quot;
                 }
-            ]
-        },
-        {
-            &quot;reaction_type_id&quot;: 2,
-            &quot;reaction_type&quot;: &quot;dislike&quot;,
-            &quot;total&quot;: 5,
-            &quot;users&quot;: [
-                {
-                    &quot;id&quot;: 3,
-                    &quot;name&quot;: &quot;John Doe&quot;,
-                    &quot;avatar&quot;: &quot;/path/to/avatar.jpg&quot;
-                },
-                {
-                    &quot;id&quot;: 4,
-                    &quot;name&quot;: &quot;Jane Doe&quot;,
-                    &quot;avatar&quot;: &quot;/path/to/avatar.jpg&quot;
-                }
-            ]
-        }
-    ]
+            }
+        ]
+    },
+    &quot;meta&quot;: {
+        &quot;total&quot;: 10,
+        &quot;per_page&quot;: 10,
+        &quot;current_page&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;first_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/fouaille?page=1&amp;per_page=10&quot;,
+        &quot;last_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/fouaille?page=1&amp;per_page=10&quot;,
+        &quot;next_page_url&quot;: null,
+        &quot;prev_page_url&quot;: null,
+        &quot;path&quot;: &quot;https://app-pprd.its-tps.fr/api/fouaille&quot;,
+        &quot;from&quot;: 1,
+        &quot;to&quot;: 10
+    }
 }
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../comments/store/" class="btn btn-neutral float-left" title="Store comment"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="store/" class="btn btn-neutral float-right" title="Store reaction">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../balance/" class="btn btn-neutral float-left" title="balance"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../contents/store/" class="btn btn-neutral float-right" title="Store">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -303,10 +285,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../comments/store/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../balance/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="store/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../../contents/store/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

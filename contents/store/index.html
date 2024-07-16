@@ -79,7 +79,9 @@
               </ul>
               <p class="caption"><span class="caption-text">Fouaille</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../fouaille/fouaille/">fouaille</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../fouaille/balance/">balance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../fouaille/orders/">Orders</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Contents</span></p>
@@ -134,9 +136,25 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" >Catégories</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../category/">categories</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Catégories</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Store</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#requete">Requête</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parametres">Paramètres</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reponses">Réponses</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#succes">succès</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#erreur">erreur</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="" href="../categories/index.md">Index categoriesType</a>
                 </li>
     </ul>
                   </li>
@@ -156,9 +174,11 @@
               </ul>
               <p class="caption"><span class="caption-text">Other</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../others/sectors/">sectors</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/sectors/">Sectors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../others/cgu/">cgu</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/cgu/">Cgu</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/mps/">Mps</a>
                   </li>
               </ul>
       </div>
@@ -176,6 +196,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Contents</li>
+          <li class="breadcrumb-item">Catégories</li>
       <li class="breadcrumb-item active">Store</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -244,22 +265,6 @@
 <td>post et event</td>
 </tr>
 <tr>
-<td>category_id</td>
-<td>integer</td>
-<td>exists:cotegories,id</td>
-<td>ID de la category</td>
-<td>oui</td>
-<td>post et event</td>
-</tr>
-<tr>
-<td>color</td>
-<td>string</td>
-<td>string</td>
-<td>Couleur du post</td>
-<td>oui</td>
-<td>post et event</td>
-</tr>
-<tr>
 <td>start_at</td>
 <td>date</td>
 <td>date</td>
@@ -314,7 +319,6 @@
     &quot;message&quot;: &quot;Post created&quot;,
     &quot;data&quot;: {
         &quot;body&quot;: &quot;C'est une description&quot;,
-        &quot;color&quot;: &quot;#ffffff&quot;,
         &quot;organization_id&quot;: &quot;1&quot;,
         &quot;user_id&quot;: 1,
         &quot;updated_at&quot;: &quot;2023-12-27T16:43:39.000000Z&quot;,
@@ -327,8 +331,6 @@
     &quot;message&quot;: &quot;Event created&quot;,
     &quot;data&quot;: {
         &quot;title&quot;: &quot;titre 1&quot;,
-        &quot;body&quot;: &quot;C'est une description&quot;,
-        &quot;color&quot;: &quot;#ffffff&quot;,
         &quot;organization_id&quot;: &quot;1&quot;,
         &quot;user_id&quot;: 1,
         &quot;start_at&quot;: &quot;2023-12-22&quot;,
@@ -345,8 +347,6 @@
     &quot;data&quot;: {
         &quot;event&quot;: {
             &quot;title&quot;: &quot;titre 1&quot;,
-            &quot;body&quot;: &quot;C'est une description&quot;,
-            &quot;color&quot;: &quot;#ffffff&quot;,
             &quot;organization_id&quot;: &quot;1&quot;,
             &quot;user_id&quot;: 1,
             &quot;start_at&quot;: &quot;2023-12-22&quot;,
@@ -358,7 +358,6 @@
         },
         &quot;post&quot;: {
             &quot;body&quot;: &quot;C'est une description&quot;,
-            &quot;color&quot;: &quot;#ffffff&quot;,
             &quot;organization_id&quot;: &quot;1&quot;,
             &quot;user_id&quot;: 1,
             &quot;event_id&quot;: 12,
@@ -405,8 +404,8 @@
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../fouaille/fouaille/" class="btn btn-neutral float-left" title="fouaille"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../events/" class="btn btn-neutral float-right" title="Index events">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../reactionType/" class="btn btn-neutral float-left" title="Index reactions_type"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../medias/store/" class="btn btn-neutral float-right" title="Store Medias">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -429,10 +428,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../../fouaille/fouaille/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../reactionType/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../events/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../medias/store/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

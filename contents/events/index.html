@@ -79,7 +79,9 @@
               </ul>
               <p class="caption"><span class="caption-text">Fouaille</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../fouaille/fouaille/">fouaille</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../fouaille/balance/">balance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../fouaille/orders/">Orders</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Contents</span></p>
@@ -90,15 +92,13 @@
     <ul class="current">
                 <li class="toctree-l2 current"><a class="reference internal current" href="#">Index events</a>
     <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#objectif">Objectif</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#requete">Requête</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#parametres">Paramètres</a>
+    <li class="toctree-l3"><a class="reference internal" href="#parametres-de-la-requete">Paramètres de la requête</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#reponses">Réponses</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#succes">Succès</a>
-    </li>
-        </ul>
+    <li class="toctree-l3"><a class="reference internal" href="#reponse-en-cas-de-succes">Réponse en cas de succès</a>
     </li>
     </ul>
                 </li>
@@ -134,7 +134,9 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Catégories</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../category/">categories</a>
+                <li class="toctree-l2"><a class="reference internal" href="../store/">Store</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../categories/index.md">Index categoriesType</a>
                 </li>
     </ul>
                   </li>
@@ -154,9 +156,11 @@
               </ul>
               <p class="caption"><span class="caption-text">Other</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../others/sectors/">sectors</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/sectors/">Sectors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../others/cgu/">cgu</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/cgu/">Cgu</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/mps/">Mps</a>
                   </li>
               </ul>
       </div>
@@ -184,106 +188,80 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="liste-les-evenements">Liste les événements</h1>
-<p>Liste des événements paginés</p>
+                <h1 id="documentation-de-la-fonction-index-eventcontroller">Documentation de la fonction <code>index</code> - EventController</h1>
+<h2 id="objectif">Objectif</h2>
+<p>Cette fonction est conçue pour récupérer tous les événements du calendrier, en tenant compte de la pagination, de la date de début et de l'identification de l'organisation. Elle permet de filtrer les événements par date et par organisation, et supporte la pagination pour une gestion efficace de l'affichage des données.</p>
 <h2 id="requete">Requête</h2>
 <table>
 <thead>
 <tr>
-<th>protocole</th>
-<th>methode</th>
-<th>url</th>
-<th>token</th>
+<th>Protocole</th>
+<th>Méthode</th>
+<th>URL</th>
+<th>Token</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>https</td>
+<td>HTTPS</td>
 <td>GET</td>
-<td>/api/event</td>
-<td>oui</td>
+<td>/api/events</td>
+<td>Oui</td>
 </tr>
 </tbody>
 </table>
-<h2 id="parametres">Paramètres</h2>
+<h2 id="parametres-de-la-requete">Paramètres de la requête</h2>
+<p>Les paramètres suivants peuvent être passés dans l'URL :</p>
 <ul>
-<li>
-<p><strong>page</strong> et <strong>per_page</strong> paramètres de pagination a passer dans l'url exemple : /api/event?per_page=10&amp;page=1</p>
-</li>
-<li>
-<p><strong>start_at</strong> et <strong>end_at</strong> paramètres de filtre de date a passer dans l'url exemple : /api/event?start_at=2021-03-01&amp;end_at=2021-03-02</p>
-</li>
+<li><code>per_page</code> (optionnel) : Le nombre d'événements à afficher par page. La valeur par défaut est 10.</li>
+<li><code>start_at</code> (optionnel) : La date de début pour filtrer les événements. La valeur par défaut est la date actuelle.</li>
+<li><code>organization_id</code> (optionnel) : L'ID de l'organisation pour filtrer les événements par organisation.</li>
+<li><code>previous_date</code> (optionnel) : Utilisé pour déterminer la date à partir de laquelle filtrer les événements. La valeur par défaut est 10 jours avant la date actuelle.</li>
 </ul>
-<h2 id="reponses">Réponses</h2>
-<h3 id="succes">Succès</h3>
-<p><code>status: 200</code></p>
+<h2 id="reponse-en-cas-de-succes">Réponse en cas de succès</h2>
+<p><code>Status: 200 OK</code></p>
 <pre><code class="language-json">{
     &quot;data&quot;: [
         {
-            &quot;title&quot;: &quot;Facere reprehenderit ullam modi.&quot;,
-            &quot;description&quot;: &quot;Et aliquam et officiis facere cupiditate in. Error vero explicabo ea amet. Et qui quam ea doloremque error tempora. Blanditiis et consectetur a consequuntur. Voluptatem sit beatae officia voluptatem adipisci.&quot;,
-            &quot;start_at&quot;: &quot;2023-08-07 16:39:00&quot;,
-            &quot;end_at&quot;: &quot;2023-08-08 07:09:45&quot;,
-            &quot;location&quot;: &quot;67028 Christian Divide\nSchroederview, DC 73702&quot;,
+            &quot;id&quot;: 1,
+            &quot;post_id&quot;: 1,
+            &quot;title&quot;: &quot;Titre de l'événement&quot;,
+            &quot;show_date&quot;: &quot;Affichage de la date&quot;,
+            &quot;date_format&quot;: &quot;Format de la date&quot;,
+            &quot;start_at&quot;: &quot;2023-06-21 09:56:09&quot;,
+            &quot;end_at&quot;: &quot;2023-06-21 11:56:09&quot;,
+            &quot;location&quot;: &quot;Lieu de l'événement&quot;,
             &quot;color&quot;: &quot;#4b6c87&quot;,
-            &quot;author&quot;: {
-                &quot;is_organization&quot;: false,
-                &quot;id&quot;: 8,
-                &quot;name&quot;: &quot;Karianne Sauer&quot;,
-                &quot;short_name&quot;: null,
-                &quot;logo_url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/avatars/default.png&quot;
-            }
-        },
-        {
-            &quot;title&quot;: &quot;Unde accusantium occaecati velit eius maiores non fugiat optio.&quot;,
-            &quot;description&quot;: &quot;Aliquid sapiente ipsam id adipisci consequatur qui maiores. Maxime repellat molestias et quo ut et aperiam ut. Dolore vero facilis et ipsum enim.&quot;,
-            &quot;start_at&quot;: &quot;2023-08-07 10:28:00&quot;,
-            &quot;end_at&quot;: &quot;2023-08-07 11:22:30&quot;,
-            &quot;location&quot;: &quot;9528 Nicolas Branch Apt. 332\nHuelsbury, NV 41670&quot;,
-            &quot;color&quot;: &quot;#6b3fe7&quot;,
+            &quot;categories&quot;: [
+                {
+                    &quot;name&quot;: &quot;Nom de la catégorie&quot;
+                }
+            ],
+            &quot;created_at&quot;: &quot;2023-06-20 09:56:09&quot;,
+            &quot;updated_at&quot;: &quot;2023-06-20 10:56:09&quot;,
             &quot;author&quot;: {
                 &quot;is_organization&quot;: true,
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Mathieu&quot;,
-                &quot;short_name&quot;: &quot;occaecati&quot;,
-                &quot;logo_url&quot;: &quot;https://fouaille.its-tps.fr/storage/organizations//tmp/183997ba4f51116a762bd6e68fe18818.png&quot;
-            }
-        },
-        {
-            &quot;title&quot;: &quot;Temporibus modi eligendi numquam veniam maxime aut accusantium inventore.&quot;,
-            &quot;description&quot;: &quot;Error autem doloremque quidem sunt est placeat harum. Quis quia aliquam nihil doloribus voluptas voluptatem. Quisquam qui repellendus exercitationem quia tempore id ipsum. Perspiciatis corporis tenetur natus cumque.&quot;,
-            &quot;start_at&quot;: &quot;2023-08-06 18:03:01&quot;,
-            &quot;end_at&quot;: &quot;2023-08-07 02:06:24&quot;,
-            &quot;location&quot;: &quot;3392 Ritchie Island Apt. 070\nLegroschester, ME 60627-7890&quot;,
-            &quot;color&quot;: &quot;#1431a2&quot;,
-            &quot;author&quot;: {
-                &quot;is_organization&quot;: false,
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Alvis Hammes&quot;,
-                &quot;short_name&quot;: null,
-                &quot;logo_url&quot;: &quot;https://app-pprd.its-tps.fr/storage/images/avatars/default.png&quot;
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Nom de l'organisation&quot;,
+                &quot;short_name&quot;: &quot;Nom court&quot;,
+                &quot;user_name&quot;: &quot;Nom d'utilisateur&quot;,
+                &quot;logo_url&quot;: &quot;URL du logo&quot;
             }
         }
     ],
     &quot;meta&quot;: {
-        &quot;total&quot;: 10,
-        &quot;per_page&quot;: 3,
+        &quot;total&quot;: 100,
+        &quot;per_page&quot;: 10,
         &quot;current_page&quot;: 1,
-        &quot;last_page&quot;: 4,
-        &quot;first_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/event?page=1&amp;per_page=3&quot;,
-        &quot;last_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/event?page=4&amp;per_page=3&quot;,
-        &quot;next_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/event?page=2&amp;per_page=3&quot;,
-        &quot;prev_page_url&quot;: &quot;&amp;per_page=3&quot;,
-        &quot;path&quot;: &quot;https://app-pprd.its-tps.fr/api/event&quot;,
+        &quot;last_page&quot;: 10,
+        &quot;first_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/events?page=1&amp;per_page=10&quot;,
+        &quot;last_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/events?page=10&amp;per_page=10&quot;,
+        &quot;next_page_url&quot;: &quot;https://app-pprd.its-tps.fr/api/events?page=2&amp;per_page=10&quot;,
+        &quot;prev_page_url&quot;: null,
+        &quot;path&quot;: &quot;https://app-pprd.its-tps.fr/api/events&quot;,
         &quot;from&quot;: 1,
-        &quot;to&quot;: 3
+        &quot;to&quot;: 10
     }
-}
-</code></pre>
-<h5 id="erreur">Erreur</h5>
-<p><code>status: 401</code></p>
-<pre><code class="language-json">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }
 </code></pre>
               
