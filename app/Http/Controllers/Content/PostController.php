@@ -61,7 +61,6 @@ class PostController extends Controller
         $posts = $query->orderBy('uploaded_at', 'desc')->paginate($per_page);
 
         return response()->json([
-            'tab_category' => $categoryIds,
             'data' => $posts->map(function ($post) {
                 return [
                     'id' => $post->id,
