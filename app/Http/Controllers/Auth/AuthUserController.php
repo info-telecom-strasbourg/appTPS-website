@@ -40,7 +40,6 @@ class AuthUserController extends Controller
                 $e->errors()
             ], $e->status);
         }
-
     }
 
     /**

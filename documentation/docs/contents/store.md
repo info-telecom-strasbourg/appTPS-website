@@ -10,16 +10,42 @@ Permet la creation d'un contenu post ou event ou alors les deux en même temps. 
 
 ## Paramètres
 
+### Tableau pour créer un post et un event 
+
 | nom             | type    | contraintes             | description          | obligatoire        | quel contenu  |
 |-----------------| ------- |-------------------------|----------------------|--------------------|---------------|
-| title           | string  | min:3, max:50           | Titre de l'event     | non                | event         |
+| title           | string  | min:3, max:50           | Titre de l'event     | oui                | event         |
+| body            | string  | min:3, max:4000000000   | Contenu du post      | oui (pour un post) | post et event |
+| organization_id | integer | exists:organizations,id | ID de l'organisation | oui                | post et event |
+| start_at        | date    | date                    | Date de début        | oui                | event         |
+| end_at          | date    | date                    | Date de fin          | oui                | event         |
+| location        | string  | string                  | Lieu de l'event      | oui                | event         |
+| create_event    | boolean | boolean (1 ou 0)        | Créer un event       | oui                | event         |
+| create_post     | boolean | boolean (1 ou 0)        | Créer un post        | oui                | post          |
+|uploaded_at      | date    | date                    | Date de publication  | non                | post et event |
+
+### Tableau pour créer un post
+
+| nom             | type    | contraintes             | description          | obligatoire        | quel contenu  |
+|-----------------| ------- |-------------------------|----------------------|--------------------|---------------|
 | body            | string  | min:3, max:4000000000   | Contenu du post      | oui (pour un post) | post et event |
 | organization_id | integer | exists:organizations,id | ID de l'organisation | non                | post et event |
-| start_at        | date    | date                    | Date de début        | non                | event         |
-| end_at          | date    | date                    | Date de fin          | non                | event         |
-| location        | string  | string                  | Lieu de l'event      | non                | event         |
 | create_event    | boolean | boolean (1 ou 0)        | Créer un event       | non                | event         |
-| create_post     | boolean | boolean (1 ou 0)        | Créer un post        | non                | post          |
+| create_post     | boolean | boolean (1 ou 0)        | Créer un post        | oui                | post          |
+|uploaded_at      | date    | date                    | Date de publication  | non                | post et event |
+
+### Tableau pour créer un event
+
+| nom             | type    | contraintes             | description          | obligatoire | quel contenu  |
+|-----------------| ------- |-------------------------|----------------------|-------------|---------------|
+| title           | string  | min:3, max:50           | Titre de l'event     | oui         | event         |
+| organization_id | integer | exists:organizations,id | ID de l'organisation | oui         | post et event |
+| start_at        | date    | date                    | Date de début        | oui         | event         |
+| end_at          | date    | date                    | Date de fin          | oui         | event         |
+| location        | string  | string                  | Lieu de l'event      | oui         | event         |
+| create_event    | boolean | boolean (1 ou 0)        | Créer un event       | oui         | event         |
+| create_post     | boolean | boolean (1 ou 0)        | Créer un post        | non         | post          |
+|uploaded_at      | date    | date                    | Date de publication  | non         | post et event |
 
 -  `create_event` et `create_post` ne peuvent pas être tous les deux à `0`
 - si `create_event` est à `1` alors `start_at`, `end_at` et `location` sont obligatoires et on obtient la creation d'un event

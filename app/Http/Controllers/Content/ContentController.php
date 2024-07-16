@@ -108,6 +108,13 @@ class ContentController extends Controller
                 ], 422);
             }
 
+            if ($request->title == null) {
+                return response()->json([
+                    'message' => 'Validation failed',
+                    'error' => 'vous devez spécifier un titre pour l\'événement'
+                ], 422);
+            }
+
             $event = Event::create([
                 'title' => $request->title,
                 'organization_id' => $request->organization_id,
