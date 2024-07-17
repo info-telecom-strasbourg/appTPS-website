@@ -216,6 +216,39 @@ class PostController extends Controller
         ], 200);
     }
 
+    public function update(Request $request, $id) : \Illuminate\Http\JsonResponse {
+        $validated = $request->validate([
+            'body' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+        ]);
 
+        $post = Post::find($id);
+
+        if (!$post) {
+            return response()->json([
+                'message' => 'Post not found'
+            ], 404);
+        }
+
+        $user = $request->user();
+        $asso = $post->organization_id ?? null;
+
+        if ($asso && !$user->isInOrganization($asso)) {
+            return response()->json([
+                'message' => 'You are not authorized to update this post'
+            ], 403);
+        } elseif (!$asso && $user->id != $post->user_id) {
+            return response()->json([
+                'message' => 'You are not authorized to update this post'
+            ], 403);
+        }
+
+        $post->update($validated);
+
+        return response()->json([
+            'message' => 'Post updated successfully',
+            'data' => $post
+        ], 200);
+    }
 
 }

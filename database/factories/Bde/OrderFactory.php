@@ -32,7 +32,7 @@ class OrderFactory extends Factory
 
         return [
             'product_id' => $product_id,
-            'member_id' => Member::InRandomOrder()->first()->id,
+            'member_id' => 1001,
             'price' => $price * $amount,
             'amount' => $amount,
             'date' => fake()->dateTimeBetween('-10 day', 'now'),

@@ -12,13 +12,10 @@ use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {
-    public function store(Request $request,$id){
+    public function store(Request $request, $id){
         $validation = Validator::make($request->all(), [
-            'media' => [
-                'required',
-                'file',
-                'mimetypes:image/jpeg,image/png,video/mp4,video/x-msvideo,video/quicktime',
-            ],
+            'medias' => 'required|array',
+            'medias.*' => 'file|mimetypes:image/jpeg,image/png,video/mp4,video/x-msvideo,video/quicktime|max:1000000000',
         ]);
 
         if ($validation->fails()) {
@@ -28,33 +25,86 @@ class MediaController extends Controller
             ], 422);
         }
 
-        $type = explode('/', $request->media->getMimeType())[0];
-
-        $type_id = MediaType::where('type', $type)->first()->id;
-
         $post = Post::where('id', $id)->first();
 
-        if($post->organization_id){
-            $author_name = $post->organization->user_name;
+        if (!$post) {
+            return response()->json([
+                'message' => 'Post not found'
+            ], 404);
         }
-        else {
-            $author_name = $post->user->user_name;
+
+        $user = $request->user();
+        $asso = $post->organization_id ?? null;
+
+        // Vérifie si l'utilisateur fait partie de l'organisation OU si l'utilisateur est le créateur du post
+        if (($asso && $user->isInOrganization($asso)) || (!$asso && $user->id == $post->user_id)) {
+            // Logique pour uploader les fichiers
+            $tab_media = [];
+            foreach($request->medias as $media){
+                $type = explode('/', $media->getMimeType())[0];
+                $type_id = MediaType::where('type', $type)->first()->id;
+                $name = uniqid($post->id . '_' . time() . '_') . '.' . $media->getClientOriginalExtension();
+                $stored_path = $media->storeAs('public/medias/'. $type . '/' . $name);
+                $stored_media = Media::create([
+                    'post_id' => $post->id,
+                    'media_type_id' => $type_id,
+                    'media_url' => asset('storage/medias/'. $type . '/' . $name),
+                ]);
+                $tab_media[] = $stored_media;
+            }
+
+            return response()->json([
+                'message' => 'Files uploaded successfully',
+                'medias' => $tab_media
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'You are not authorized to upload files in this post'
+            ], 403);
+        }
+    }
+
+    public function destroy(Request $request, $id){
+        $medias_id = $request->query('medias_id',[]);
+
+        $post = Post::find($id);
+
+        if (!$post) {
+            return response()->json([
+                'message' => 'Post not found'
+            ], 404);
         }
 
-        $media = $request->file('media');
+        $user = $request->user();
+        $asso = $post->organization_id ?? null;
 
-        $name = uniqid($post->id . '_' . time() . '_' . $author_name . '_') . '.' . $media->getClientOriginalExtension();
+        $medias_number = Media::whereIn('id', $medias_id)->count();
 
-        $stored_path = $media->storeAs('public/medias/'. $type . '/' . $name);
+        // Vérifie si tous les medias on été trouuvés ou non
+        if ($medias_number < count($medias_id)) {
+            return response()->json([
+                'message' => (count($medias_id) - $medias_number) . ' Medias not found'
+            ], 404);
+        }
 
-        Media::create([
-            'post_id' => $post->id,
-            'media_type_id' =>$type_id,
-            'media_url' => asset('storage/medias/'. $type . '/' . $name),
-        ]);
+        // Vérifie si l'utilisateur fait partie de l'organisation OU si l'utilisateur est le créateur du post
+        if (($asso && $user->isInOrganization($asso)) || (!$asso && $user->id == $post->user_id)) {
+            foreach ($medias_id as $media_id){
+                $media = Media::find($media_id);
+
+                $deleted_medias[] = $media;
+
+                $media->delete();
+            }
+        } else {
+            return response()->json([
+                'message' => 'You are not authorized to destroy files in this post'
+            ], 403);
+        }
 
         return response()->json([
-            'message' => $type . ' uploaded successfully',
+            'message' => 'Media deleted successfully',
+            'medias' => $deleted_medias
         ], 200);
     }
 }
