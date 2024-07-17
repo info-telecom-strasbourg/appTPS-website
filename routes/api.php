@@ -188,6 +188,9 @@ Route::get('crous', [CrousController::class, 'index'])
             Route::get('{id}/delete', [PostController::class, 'delete'])
                 ->name('post.delete');
 
+            Route::post('{id}/update', [PostController::class, 'update'])
+                ->name('post.update');
+
             /** =============== Commentaires =============== */
 
             Route::get('{id}/comment', [PostCommentController::class, 'index'])
@@ -210,6 +213,9 @@ Route::get('crous', [CrousController::class, 'index'])
             /** =============== Medias =============== */
             Route::post('{id}/media', [MediaController::class, 'store'])
                 ->name('media.store');
+
+            Route::post('{id}/media/destroy', [MediaController::class, 'destroy'])
+                ->name('media.destroy');
         });
 
         /** =============== Contenus =============== */

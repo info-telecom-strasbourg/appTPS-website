@@ -36,7 +36,7 @@ class PostFactory extends Factory
         }
 
         return [
-            'body' => $this->faker->text(),
+            'body' => "{\"type\":\"doc\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Ceci\"},{\"type\":\"text\",\"text\":\" est un test de la \"},{\"type\":\"text\",\"marks\":[{\"type\":\"underline\"}],\"text\":\"mise en forme\"},{\"type\":\"text\",\"text\":\" des \"},{\"type\":\"text\",\"marks\":[{\"type\":\"italic\"}],\"text\":\"posts\"},{\"type\":\"text\",\"text\":\".\"}]}]}",
             'user_id' => User::inRandomOrder()->first()->id,
             'organization_id' => $organization_id,
             'uploaded_at' => $fake_date,
