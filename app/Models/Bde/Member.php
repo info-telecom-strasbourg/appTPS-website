@@ -39,8 +39,13 @@ class Member extends Model
         return $this->hasMany(OrganizationMember::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->hasOne(User::class, 'bde_id', 'id');
+    }
+
+    public function getRole($organization_id){
+        return $this->organizationMembers()->where('organization_id', $organization_id)->first()->role;
     }
 
 }
