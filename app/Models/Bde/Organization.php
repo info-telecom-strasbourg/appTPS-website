@@ -20,7 +20,8 @@ class Organization extends Model
 
     protected $fillable = [
         'name',
-        'acronym',
+        'short_name',
+        'user_name',
         'description',
         'website_link',
         'facebook_link',

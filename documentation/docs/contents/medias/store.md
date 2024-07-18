@@ -10,11 +10,22 @@ Permet la création d'un média.
 
 ## Paramètres
 
-| nom     | type   | contraintes            | description                | obligatoire |
-|---------|--------|------------------------|----------------------------|-------------|
-| `media` | file   | max:5000               | Fichier du média           | oui         |
+| nom      | type     | contraintes            | description                | obligatoire |
+|----------|----------|------------------------|----------------------------|-------------|
+| `medias` | file_tab | max:5000               | Fichier du média           | oui         |
 
 Formats acceptés : image/jpeg,image/png,video/mp4,video/x-msvideo,video/quicktime
+
+exemple : 
+
+```json
+{
+    "medias": [
+        "image": "image.jpg",
+        "video": "video.mp4"
+    ]
+}
+```
 
 ## Réponses
 

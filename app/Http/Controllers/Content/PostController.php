@@ -219,7 +219,8 @@ class PostController extends Controller
     public function update(Request $request, $id) : \Illuminate\Http\JsonResponse {
         $validated = $request->validate([
             'body' => 'required|string',
-            'category_id' => 'required|exists:categories,id',
+            'category_ids' => 'required|array',
+            'category_ids.*' => 'exists:categories,id'
         ]);
 
         $post = Post::find($id);

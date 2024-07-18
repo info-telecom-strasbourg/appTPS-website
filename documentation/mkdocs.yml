@@ -37,8 +37,8 @@ nav:
           - Store reaction: contents/reactions/store.md
           - Index reactions_type: contents/reactionType/index.md
       - Catégories:
-          - Store catégories: contents/store.md
-          - Index categoriesType: contents/categories/index.md
+          - Store catégories: contents/category/store.md
+          - Index categoriesType: contents/category/index.md
       - Medias :
           - Store Medias: contents/medias/store.md
   - Organizations:
