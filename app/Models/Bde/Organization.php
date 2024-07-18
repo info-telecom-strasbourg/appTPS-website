@@ -58,12 +58,7 @@ class Organization extends Model
         });
     }
     public function logo(){
-        return $this->hasOne(OrganizationLogo::class)->withDefault([
-            'name' => 'default.png',
-            'path' => env('FOUAILLE_URL').'/storage/images/organization_logo/default.png',
-            'size' => 0,
-            'organization_id' => $this->id
-        ]);
+        return $this->hasOne(OrganizationLogo::class);
     }
 
     public function getLogoPath(){
