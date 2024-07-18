@@ -111,6 +111,9 @@ Route::get('crous', [CrousController::class, 'index'])
             Route::get('/', [UserController::class, 'index'])
             ->name('user.index');
 
+            Route::get('/default', [UserAvatarController::class, 'default'])
+                ->name('user.default');
+
             Route::get('/me', [UserController::class, 'getMe'])
             ->name('user.me');
 

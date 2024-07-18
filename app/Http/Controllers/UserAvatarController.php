@@ -54,4 +54,20 @@ class UserAvatarController extends Controller
             'message' => 'Avatar uploaded successfully',
         ], 200);
     }
+
+    public function default(Request $request)
+    {
+        return response()->json([
+            "default1" => asset('storage/images/avatars/default1.png'),
+            "default2" => asset('storage/images/avatars/default2.png'),
+            "default3" => asset('storage/images/avatars/default3.png'),
+            "default4" => asset('storage/images/avatars/default4.png'),
+            "default5" => asset('storage/images/avatars/default5.png'),
+            "default6" => asset('storage/images/avatars/default6.png'),
+            "default7" => asset('storage/images/avatars/default7.png'),
+            "default8" => asset('storage/images/avatars/default8.png'),
+            "default9" => asset('storage/images/avatars/default9.png'),
+            "default10" => asset('storage/images/avatars/default10.png'),
+            ], 200);
+    }
 }
