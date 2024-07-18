@@ -91,6 +91,14 @@
     <li class="toctree-l2"><a class="reference internal" href="#requete">Requête</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#parametres">Paramètres</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#tableau-pour-creer-un-post-et-un-event">Tableau pour créer un post et un event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tableau-pour-creer-un-post">Tableau pour créer un post</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tableau-pour-creer-un-event">Tableau pour créer un event</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#reponses">Réponses</a>
         <ul>
@@ -143,6 +151,14 @@
     <li class="toctree-l3"><a class="reference internal" href="#requete">Requête</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#parametres">Paramètres</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#tableau-pour-creer-un-post-et-un-event">Tableau pour créer un post et un event</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tableau-pour-creer-un-post">Tableau pour créer un post</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tableau-pour-creer-un-event">Tableau pour créer un event</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#reponses">Réponses</a>
         <ul>
@@ -228,6 +244,7 @@
 </tbody>
 </table>
 <h2 id="parametres">Paramètres</h2>
+<h3 id="tableau-pour-creer-un-post-et-un-event">Tableau pour créer un post et un event</h3>
 <table>
 <thead>
 <tr>
@@ -245,9 +262,88 @@
 <td>string</td>
 <td>min:3, max:50</td>
 <td>Titre de l'event</td>
-<td>non</td>
+<td>oui</td>
 <td>event</td>
 </tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>min:3, max:4000000000</td>
+<td>Contenu du post</td>
+<td>oui (pour un post)</td>
+<td>post et event</td>
+</tr>
+<tr>
+<td>organization_id</td>
+<td>integer</td>
+<td>exists:organizations,id</td>
+<td>ID de l'organisation</td>
+<td>oui</td>
+<td>post et event</td>
+</tr>
+<tr>
+<td>start_at</td>
+<td>date</td>
+<td>date</td>
+<td>Date de début</td>
+<td>oui</td>
+<td>event</td>
+</tr>
+<tr>
+<td>end_at</td>
+<td>date</td>
+<td>date</td>
+<td>Date de fin</td>
+<td>oui</td>
+<td>event</td>
+</tr>
+<tr>
+<td>location</td>
+<td>string</td>
+<td>string</td>
+<td>Lieu de l'event</td>
+<td>oui</td>
+<td>event</td>
+</tr>
+<tr>
+<td>create_event</td>
+<td>boolean</td>
+<td>boolean (1 ou 0)</td>
+<td>Créer un event</td>
+<td>oui</td>
+<td>event</td>
+</tr>
+<tr>
+<td>create_post</td>
+<td>boolean</td>
+<td>boolean (1 ou 0)</td>
+<td>Créer un post</td>
+<td>oui</td>
+<td>post</td>
+</tr>
+<tr>
+<td>uploaded_at</td>
+<td>date</td>
+<td>date</td>
+<td>Date de publication</td>
+<td>non</td>
+<td>post et event</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tableau-pour-creer-un-post">Tableau pour créer un post</h3>
+<table>
+<thead>
+<tr>
+<th>nom</th>
+<th>type</th>
+<th>contraintes</th>
+<th>description</th>
+<th>obligatoire</th>
+<th>quel contenu</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>body</td>
 <td>string</td>
@@ -265,30 +361,6 @@
 <td>post et event</td>
 </tr>
 <tr>
-<td>start_at</td>
-<td>date</td>
-<td>date</td>
-<td>Date de début</td>
-<td>non</td>
-<td>event</td>
-</tr>
-<tr>
-<td>end_at</td>
-<td>date</td>
-<td>date</td>
-<td>Date de fin</td>
-<td>non</td>
-<td>event</td>
-</tr>
-<tr>
-<td>location</td>
-<td>string</td>
-<td>string</td>
-<td>Lieu de l'event</td>
-<td>non</td>
-<td>event</td>
-</tr>
-<tr>
 <td>create_event</td>
 <td>boolean</td>
 <td>boolean (1 ou 0)</td>
@@ -301,8 +373,95 @@
 <td>boolean</td>
 <td>boolean (1 ou 0)</td>
 <td>Créer un post</td>
+<td>oui</td>
+<td>post</td>
+</tr>
+<tr>
+<td>uploaded_at</td>
+<td>date</td>
+<td>date</td>
+<td>Date de publication</td>
+<td>non</td>
+<td>post et event</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tableau-pour-creer-un-event">Tableau pour créer un event</h3>
+<table>
+<thead>
+<tr>
+<th>nom</th>
+<th>type</th>
+<th>contraintes</th>
+<th>description</th>
+<th>obligatoire</th>
+<th>quel contenu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>min:3, max:50</td>
+<td>Titre de l'event</td>
+<td>oui</td>
+<td>event</td>
+</tr>
+<tr>
+<td>organization_id</td>
+<td>integer</td>
+<td>exists:organizations,id</td>
+<td>ID de l'organisation</td>
+<td>oui</td>
+<td>post et event</td>
+</tr>
+<tr>
+<td>start_at</td>
+<td>date</td>
+<td>date</td>
+<td>Date de début</td>
+<td>oui</td>
+<td>event</td>
+</tr>
+<tr>
+<td>end_at</td>
+<td>date</td>
+<td>date</td>
+<td>Date de fin</td>
+<td>oui</td>
+<td>event</td>
+</tr>
+<tr>
+<td>location</td>
+<td>string</td>
+<td>string</td>
+<td>Lieu de l'event</td>
+<td>oui</td>
+<td>event</td>
+</tr>
+<tr>
+<td>create_event</td>
+<td>boolean</td>
+<td>boolean (1 ou 0)</td>
+<td>Créer un event</td>
+<td>oui</td>
+<td>event</td>
+</tr>
+<tr>
+<td>create_post</td>
+<td>boolean</td>
+<td>boolean (1 ou 0)</td>
+<td>Créer un post</td>
 <td>non</td>
 <td>post</td>
+</tr>
+<tr>
+<td>uploaded_at</td>
+<td>date</td>
+<td>date</td>
+<td>Date de publication</td>
+<td>non</td>
+<td>post et event</td>
 </tr>
 </tbody>
 </table>
