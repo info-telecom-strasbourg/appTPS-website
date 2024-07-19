@@ -78,14 +78,14 @@ class EventController extends Controller
                         'name' => $event->organization->name,
                         'short_name' => $event->organization->short_name,
                         'user_name' => $event->organization->user_name,
-                        'logo_url' => $event->organization->getLogoPath()
+                        'logo_url' => $event->organization->getLogoPath() ? $event->organization->getLogoPath() : null
                     ] : [
                         'is_organization' => false,
                         'id' => $event->user->id,
                         'name' => $event->user->getFullName(),
                         'short_name' => null,
                         'user_name' => $event->user->user_name,
-                        'logo_url' => $event->user->avatar->path
+                        'logo_url' => $event->user->avatar ? $event->user->avatar->path : null
                     ],
                 ];
             }),
@@ -135,14 +135,14 @@ class EventController extends Controller
                     'name' => $event->organization->name,
                     'short_name' => $event->organization->short_name,
                     'user_name' => $event->organization->user_name,
-                    'logo_url' => $event->organization->getLogoPath()
+                    'logo_url' => $event->organization->getLogoPath() ? $event->organization->getLogoPath() : null
                 ] : [
                     'is_organization' => false,
                     'id' => $event->user->id,
                     'name' => $event->user->getFullName(),
                     'short_name' => null,
                     'user_name' => $event->user->user_name,
-                    'logo_url' => $event->user->avatar->path
+                    'logo_url' => $event->user->avatar ? $event->user->avatar->path : null
                 ],
             ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
