@@ -32,7 +32,7 @@ class AuthUserController extends Controller
 
             return response()->json([
                 'user' => $request->user(),
-                'avatar' => $request->user()->avatar,
+                'avatar' => $request->user()->getAvatarPath(),
                 'token' => $token
             ], 200);
 

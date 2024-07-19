@@ -101,7 +101,7 @@ class UserController extends Controller
                     'id' => $organization->id,
                     'name' => $organization->name,
                     'role' => $organization->pivot->role,
-                    'logo_url' => $organization->getLogoPath() ? $organization->getLogoPath() : null
+                    'logo_url' => $organization->getLogoPath()
                 ];
             }),
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
@@ -140,7 +140,7 @@ class UserController extends Controller
                     'id' => $organization->id,
                     'name' => $organization->name,
                     'role' => $organization->pivot->role,
-                    'logo_url' => $organization->getLogoPath() ? $organization->getLogoPath() : null
+                    'logo_url' => $organization->getLogoPath()
                 ];
             }),
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
@@ -161,7 +161,7 @@ class UserController extends Controller
                 'id' => $user->id,
                 'user_name' => $user->user_name,
                 'name' => $user->name,
-                'logo_url' => $user->avatar ? $user->avatar->path : null,
+                'logo_url' => $user->getAvatarPath()
             ];
         })->values();
 
