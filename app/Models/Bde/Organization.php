@@ -62,7 +62,7 @@ class Organization extends Model
     }
 
     public function getLogoPath(){
-        return $this->logo->path;
+        return $this->logo ? $this->logo->path : null;
     }
 
 }

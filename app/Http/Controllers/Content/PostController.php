@@ -92,14 +92,14 @@ class PostController extends Controller
                         'name' => $post->organization->name,
                         'user_name' => $post->organization->user_name,
                         'short_name' => $post->organization->short_name,
-                        'logo_url' => $post->organization->getLogoPath()
+                        'logo_url' => $post->organization->getLogoPath() ? $post->organization->getLogoPath() : null
                     ] : [
                         'is_organization' => false,
                         'id' => $post->user->id,
                         'name' => $post->user->getFullName(),
                         'user_name' => $post->user->user_name,
                         'short_name' => null,
-                        'logo_url' => $post->user->avatar->path
+                        'logo_url' => $post->user->avatar ? $post->user->avatar->path : null
                     ],
                 ];
             }),
@@ -165,14 +165,14 @@ class PostController extends Controller
                     'name' => $post->organization->name,
                     'short_name' => $post->organization->short_name,
                     'user_name' => $post->organization->user_name,
-                    'logo_url' => $post->organization->getLogoPath()
+                    'logo_url' => $post->organization->getLogoPath() ? $post->organization->getLogoPath() : null
                 ] : [
                     'is_organization' => false,
                     'id' => $post->user->id,
                     'name' => $post->user->getFullName(),
                     'short_name' => null,
                     'user_name' => $post->user->user_name,
-                    'logo_url' => $post->user->avatar->path
+                    'logo_url' => $post->user->avatar ? $post->user->avatar->path : null
                 ],
             ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
