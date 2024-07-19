@@ -96,6 +96,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(UserAvatar::class);
     }
 
+    public function getAvatarPath(){
+        return $this->avatar ? $this->avatar->path : null;
+    }
+
     public function getFullName(){
         return $this->first_name . ' ' . $this->last_name;
     }

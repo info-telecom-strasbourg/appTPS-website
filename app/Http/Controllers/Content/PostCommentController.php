@@ -83,14 +83,14 @@ class PostCommentController extends Controller
                         'name' => $comment->organization->name,
                         'user_name' => $comment->organization->user_name,
                         'short_name' => $comment->organization->short_name,
-                        'logo_url' => $comment->organization->getLogoPath() ? $comment->organization->getLogoPath() : null
+                        'logo_url' => $comment->organization->getLogoPath()
                     ] : [
                         'is_organization' => false,
                         'id' => $comment->user->id,
                         'name' => $comment->user->getFullName(),
                         'user_name' => $comment->user->user_name,
                         'short_name' => null,
-                        'logo_url' => $comment->user->avatar ? $comment->user->avatar->path : null
+                        'logo_url' => $comment->user->getAvatarPath()
                     ],
                 ];
             }),
