@@ -18,7 +18,7 @@ class OrganizationFactory extends Factory
     {
         return [
             'short_name' => $this->faker->unique()->word,
-            'name' => $this->faker->unique()->company,
+            'name' => $this->faker->unique()->firstName(),
             'user_name' => $this->faker->unique()->userName,
             'description' => $this->faker->text,
             'website_link' => $this->faker->url,
