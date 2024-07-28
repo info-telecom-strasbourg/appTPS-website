@@ -79,7 +79,7 @@ class OrganizationController extends Controller
                 'role' => $member->getRole($id),
                 'first_name' => $member->user->first_name,
                 'last_name' => $member->user->last_name,
-                'avatar_url' => $member->user->avatar->path,
+                'avatar_url' => $member->user->getAvatarPath(),
             ];
         })->values();
 
