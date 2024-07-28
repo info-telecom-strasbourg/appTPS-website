@@ -33,7 +33,7 @@ class UserAvatarController extends Controller
 
         $user = $request->user();
 
-        if ($user->avatar->name != 'default.png') {
+        if ($user->avatar != null) {
             Storage::delete('public/images/avatars/' . $user->avatar->name);
             $user->avatar->delete();
         }
