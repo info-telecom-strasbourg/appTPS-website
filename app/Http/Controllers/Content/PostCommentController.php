@@ -52,7 +52,7 @@ class PostCommentController extends Controller
 
         $per_page = $request->query('per_page');
 
-        $parent_id = $request->query('parent_id');
+        $parent_comment_id = $request->query('parent_comment_id');
 
         if ($per_page == null) {
             $per_page = 3;
@@ -60,7 +60,7 @@ class PostCommentController extends Controller
 
         $totalcomments = PostComment::where('post_id',$id)->count();
 
-        $comments = PostComment::orderByDesc('created_at')->where('post_id',$id)->where('parent_comment_id',$parent_id)->paginate($per_page);
+        $comments = PostComment::orderByDesc('created_at')->where('post_id',$id)->where('parent_comment_id',$parent_comment_id)->paginate($per_page);
 
         return response()->json([
             'data' => $comments
