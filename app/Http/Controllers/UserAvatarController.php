@@ -68,6 +68,16 @@ class UserAvatarController extends Controller
             "default8" => asset('storage/images/avatars/default8.png'),
             "default9" => asset('storage/images/avatars/default9.png'),
             "default10" => asset('storage/images/avatars/default10.png'),
+            "default11" => asset('storage/images/avatars/default11.png'),
+            "default12" => asset('storage/images/avatars/default12.png'),
+            "default13" => asset('storage/images/avatars/default13.png'),
+            "default14" => asset('storage/images/avatars/default14.png'),
+            "default15" => asset('storage/images/avatars/default15.png'),
+            "default16" => asset('storage/images/avatars/default16.png'),
+            "default17" => asset('storage/images/avatars/default17.png'),
+            "default18" => asset('storage/images/avatars/default18.png'),
+            "default19" => asset('storage/images/avatars/default19.png'),
+            "default20" => asset('storage/images/avatars/default20.png'),
             ], 200);
     }
 }

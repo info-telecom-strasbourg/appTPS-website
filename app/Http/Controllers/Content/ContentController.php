@@ -20,7 +20,6 @@ class ContentController extends Controller
                 'min:3'
             ],
             'body' => [
-                'required',
                 'string',
                 'min:3'
             ],
