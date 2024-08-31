@@ -28,6 +28,7 @@ class EventController extends Controller
         $start_at = $request->query('start_at');
         $organization_id = $request->query('organization_id');
         $previous_date = $request->query('previous_date');
+        $user = $request->user();
 
         if ($per_page == null) {
             $per_page = 10;
@@ -50,7 +51,7 @@ class EventController extends Controller
         $events = $events->paginate($per_page);
 
         return response()->json([
-            'data' => $events->map(function ($event){
+            'data' => $events->map(function ($event) use($user){
                 global $previous_date;
 
                 $actual_date = $previous_date;
@@ -73,6 +74,7 @@ class EventController extends Controller
                     'created_at' => $event->created_at,
                     'updated_at' => $event->updated_at,
                     'author' => $event->organization ? [
+                        'user_is_author' => $user->isInOrganization($event->organization->id),
                         'is_organization' => true,
                         'id' => $event->organization->id,
                         'name' => $event->organization->name,
@@ -80,6 +82,7 @@ class EventController extends Controller
                         'user_name' => $event->organization->user_name,
                         'logo_url' => $event->organization->getLogoPath()
                     ] : [
+                        'user_is_author' => $event->user_id == $user->id,
                         'is_organization' => false,
                         'id' => $event->user->id,
                         'name' => $event->user->getFullName(),
@@ -113,6 +116,7 @@ class EventController extends Controller
      */
     public function show(Request $request, $id){
         $event = Event::find($id);
+        $user = $request->user();
 
         if ($event == null) {
             return response()->json([
@@ -130,6 +134,7 @@ class EventController extends Controller
                 'location' => $event->location,
                 'color' => $event->getColor(),
                 'author' => $event->organization ? [
+                    'user_is_author' => $user->isInOrganization($event->organization->id),
                     'is_organization' => true,
                     'id' => $event->organization->id,
                     'name' => $event->organization->name,
@@ -137,6 +142,7 @@ class EventController extends Controller
                     'user_name' => $event->organization->user_name,
                     'logo_url' => $event->organization->getLogoPath()
                 ] : [
+                    'user_is_author' => $event->user_id == $user->id,
                     'is_organization' => false,
                     'id' => $event->user->id,
                     'name' => $event->user->getFullName(),

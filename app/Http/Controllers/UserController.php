@@ -94,6 +94,7 @@ class UserController extends Controller
                 'updated_at' => $user->updated_at->format('Y-m-d H:i:s'),
                 'email_verified_at' => $user->email_verified_at,
                 'sector' => $user->sector ? $user->sector->short_name : null,
+                'sector_id' => $user->sector_id,
                 'birth_date' => $user->birth_date,
             ],
             'organizations' => $user->organizations()->get()->map(function ($organization) {
