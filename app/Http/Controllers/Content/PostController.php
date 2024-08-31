@@ -25,6 +25,7 @@ class PostController extends Controller
         $user_id = $request->query('user_id');
         $asso_id = $request->query('asso_id');
         $search = $request->query('search');
+        $user = $request->user();
 
         if ($per_page == null) {
             $per_page = 10;
@@ -61,7 +62,7 @@ class PostController extends Controller
         $posts = $query->orderBy('uploaded_at', 'desc')->paginate($per_page);
 
         return response()->json([
-            'data' => $posts->map(function ($post) {
+            'data' => $posts->map(function ($post) use ($user){
                 return [
                     'id' => $post->id,
                     'event_id' => $post->event_id,
@@ -87,6 +88,7 @@ class PostController extends Controller
                         ];
                     }),
                     'author' => $post->organization ? [
+                        'user_is_author' => $user->isInOrganization($post->organization->id),
                         'is_organization' => true,
                         'id' => $post->organization->id,
                         'name' => $post->organization->name,
@@ -94,6 +96,7 @@ class PostController extends Controller
                         'short_name' => $post->organization->short_name,
                         'logo_url' => $post->organization->getLogoPath()
                     ] : [
+                        'user_is_author' => $post->user_id == $user->id,
                         'is_organization' => false,
                         'id' => $post->user->id,
                         'name' => $post->user->getFullName(),
@@ -125,8 +128,9 @@ class PostController extends Controller
     * @param Request $request
     * @return \Illuminate\Http\JsonResponse
     */
-    public function show($id) : \Illuminate\Http\JsonResponse {
+    public function show(Request $request, $id) : \Illuminate\Http\JsonResponse {
         $post = Post::where('id','=', $id)->first();
+        $user = $request->user();
 
         if ($post == null && $post->uploaded_at <= now()) {
             return response()->json([
@@ -160,6 +164,7 @@ class PostController extends Controller
                     ];
                 }),
                 'author' => $post->organization ? [
+                    'user_is_author' => $user->isInOrganization($post->organization->id),
                     'is_organization' => true,
                     'id' => $post->organization->id,
                     'name' => $post->organization->name,
@@ -167,6 +172,7 @@ class PostController extends Controller
                     'user_name' => $post->organization->user_name,
                     'logo_url' => $post->organization->getLogoPath()
                 ] : [
+                    'user_is_author' => $post->user_id == $user->id,
                     'is_organization' => false,
                     'id' => $post->user->id,
                     'name' => $post->user->getFullName(),
