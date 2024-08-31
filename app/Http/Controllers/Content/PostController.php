@@ -25,7 +25,6 @@ class PostController extends Controller
         $user_id = $request->query('user_id');
         $asso_id = $request->query('asso_id');
         $search = $request->query('search');
-        $user = $request->user();
 
         if ($per_page == null) {
             $per_page = 10;
@@ -61,8 +60,10 @@ class PostController extends Controller
 
         $posts = $query->orderBy('uploaded_at', 'desc')->paginate($per_page);
 
+        $user = $request->user();
+
         return response()->json([
-            'data' => $posts->map(function ($post) use ($user){
+            'data' => $posts->map(function ($post) use ($user) {
                 return [
                     'id' => $post->id,
                     'event_id' => $post->event_id,
