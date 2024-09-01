@@ -18,7 +18,7 @@ class UserAvatarController extends Controller
             'avatar' => [
                 'required',
                 'image',
-                'mimes:jpeg,png,jpg',
+                'mimes:jpeg,png,jpg,heic',
                 'max:2048'
             ]
         ]);
@@ -33,7 +33,7 @@ class UserAvatarController extends Controller
 
         $user = $request->user();
 
-        if ($user->avatar != null) {
+        if ($user->avatar != null &&  !str_contains($user->name, 'default')) {
             Storage::delete('public/images/avatars/' . $user->avatar->name);
             $user->avatar->delete();
         }
@@ -48,6 +48,48 @@ class UserAvatarController extends Controller
             'name' => $name,
             'path' => asset('storage/images/avatars/' . $name),
             'size' => $avatar->getSize()
+        ]);
+
+        return response()->json([
+            'message' => 'Avatar uploaded successfully',
+        ], 200);
+    }
+
+    public function storedefault(Request $request){
+        $validation = Validator::make($request->all(), [
+            'default_link' => [
+                'required',
+                'string',
+                'max:255'
+            ],
+            'default_name' => [
+                'required',
+                'string',
+                'max:255'
+            ]
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validation->errors()
+            ], 422);
+        }
+
+        $user = $request->user();
+
+        if ($user->avatar != null && !str_contains($user->name, 'default')) {
+            Storage::delete('public/images/avatars/' . $user->avatar->name);
+            $user->avatar->delete();
+        }
+
+        $default_link = $request->default_link;
+        $default_name = $request->default_name;
+
+        $user->avatar()->create([
+            'name' => $default_name,
+            'path' => $default_link,
+            'size' => null
         ]);
 
         return response()->json([
