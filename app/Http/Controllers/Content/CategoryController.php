@@ -22,7 +22,7 @@ class CategoryController extends Controller
             'post_id' => 'nullable|exists:posts,id',
             'event_id' => 'nullable|exists:events,id',
             'category_ids' => 'required|array',
-            'category_ids.*' => 'exists:categories,id'
+            'category_ids.*' => 'exists:category_types,id'
         ]);
 
         if ($validation->fails()) {
