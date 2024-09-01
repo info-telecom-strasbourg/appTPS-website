@@ -60,11 +60,13 @@ class PostCommentController extends Controller
 
         $totalcomments = PostComment::where('post_id',$id)->count();
 
+        $user = $request->user();
+
         $comments = PostComment::orderByDesc('created_at')->where('post_id',$id)->where('parent_comment_id',$parent_comment_id)->paginate($per_page);
 
         return response()->json([
             'data' => $comments
-            ->map(function ($comment) {
+            ->map(function ($comment) use ($user){
                 return [
                     'id' => $comment->id,
                     'post_id' => $comment->post_id,
@@ -78,6 +80,7 @@ class PostCommentController extends Controller
                     'reaction_count' => $comment->reaction->count(),
                     'reaction' => $comment->userReactionsType(),
                     'author' => $comment->organization ? [
+                        'user_is_author' => $user->isInOrganization($comment->organization->id),
                         'is_organization' => true,
                         'id' => $comment->organization->id,
                         'name' => $comment->organization->name,
@@ -85,6 +88,7 @@ class PostCommentController extends Controller
                         'short_name' => $comment->organization->short_name,
                         'logo_url' => $comment->organization->getLogoPath()
                     ] : [
+                        'user_is_author' => $comment->user_id == $user->id,
                         'is_organization' => false,
                         'id' => $comment->user->id,
                         'name' => $comment->user->getFullName(),
