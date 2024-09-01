@@ -126,7 +126,7 @@ Route::get('crous', [CrousController::class, 'index'])
             Route::post('/avatar', [UserAvatarController::class, 'store'])
             ->name('user.avatar.store');
 
-            Route::post('avatar/default', [UserAvatarController::class, 'storedefault'])
+            Route::post('/avatar/default', [UserAvatarController::class, 'storedefault'])
                 ->name('user.avatar.default');
 
             Route::delete('/', [UserController::class, 'delete'])
