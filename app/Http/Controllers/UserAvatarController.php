@@ -99,27 +99,31 @@ class UserAvatarController extends Controller
 
     public function default(Request $request)
     {
+        $default_tab = [
+            ["name" => "default1", "path" => asset('storage/images/avatars/default1.png')],
+            ["name" => "default2", "path" => asset('storage/images/avatars/default2.png')],
+            ["name" => "default3", "path" => asset('storage/images/avatars/default3.png')],
+            ["name" => "default4", "path" => asset('storage/images/avatars/default4.png')],
+            ["name" => "default5", "path" => asset('storage/images/avatars/default5.png')],
+            ["name" => "default6", "path" => asset('storage/images/avatars/default6.png')],
+            ["name" => "default7", "path" => asset('storage/images/avatars/default7.png')],
+            ["name" => "default8", "path" => asset('storage/images/avatars/default8.png')],
+            ["name" => "default9", "path" => asset('storage/images/avatars/default9.png')],
+            ["name" => "default10", "path" => asset('storage/images/avatars/default10.png')],
+            ["name" => "default11", "path" => asset('storage/images/avatars/default11.png')],
+            ["name" => "default12", "path" => asset('storage/images/avatars/default12.png')],
+            ["name" => "default13", "path" => asset('storage/images/avatars/default13.png')],
+            ["name" => "default14", "path" => asset('storage/images/avatars/default14.png')],
+            ["name" => "default15", "path" => asset('storage/images/avatars/default15.png')],
+            ["name" => "default16", "path" => asset('storage/images/avatars/default16.png')],
+            ["name" => "default17", "path" => asset('storage/images/avatars/default17.png')],
+            ["name" => "default18", "path" => asset('storage/images/avatars/default18.png')],
+            ["name" => "default19", "path" => asset('storage/images/avatars/default19.png')],
+            ["name" => "default20", "path" => asset('storage/images/avatars/default20.png')],
+        ];
+
         return response()->json([
-            "default1" => asset('storage/images/avatars/default1.png'),
-            "default2" => asset('storage/images/avatars/default2.png'),
-            "default3" => asset('storage/images/avatars/default3.png'),
-            "default4" => asset('storage/images/avatars/default4.png'),
-            "default5" => asset('storage/images/avatars/default5.png'),
-            "default6" => asset('storage/images/avatars/default6.png'),
-            "default7" => asset('storage/images/avatars/default7.png'),
-            "default8" => asset('storage/images/avatars/default8.png'),
-            "default9" => asset('storage/images/avatars/default9.png'),
-            "default10" => asset('storage/images/avatars/default10.png'),
-            "default11" => asset('storage/images/avatars/default11.png'),
-            "default12" => asset('storage/images/avatars/default12.png'),
-            "default13" => asset('storage/images/avatars/default13.png'),
-            "default14" => asset('storage/images/avatars/default14.png'),
-            "default15" => asset('storage/images/avatars/default15.png'),
-            "default16" => asset('storage/images/avatars/default16.png'),
-            "default17" => asset('storage/images/avatars/default17.png'),
-            "default18" => asset('storage/images/avatars/default18.png'),
-            "default19" => asset('storage/images/avatars/default19.png'),
-            "default20" => asset('storage/images/avatars/default20.png'),
-            ], 200);
+            "data" => $default_tab
+        ], 200);
     }
 }
