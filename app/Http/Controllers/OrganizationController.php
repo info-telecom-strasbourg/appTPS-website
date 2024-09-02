@@ -73,15 +73,17 @@ class OrganizationController extends Controller
             'logo_url' => $organization->getLogoPath(),
         ];
 
-        $members_tab = $organization->members->map(function ($member) use ($id) {
-            return [
-                'id' => $member->user->id,
-                'role' => $member->getRole($id),
-                'first_name' => $member->user->first_name,
-                'last_name' => $member->user->last_name,
-                'avatar_url' => $member->user->getAvatarPath(),
-            ];
-        })->values();
+        $members_tab = $organization->members ? $organization->members->map(function ($member) use ($id) {
+            if ($member->user == null) return null;
+            else {
+                return [
+                    'id' => $member->user->id,
+                    'role' => $member->getRole($id),
+                    'first_name' => $member->user->first_name,
+                    'last_name' => $member->user->last_name,
+                    'avatar_url' => $member->user->getAvatarPath(),
+                ];}
+        })->values() : null;
 
         return response()->json(
             [
