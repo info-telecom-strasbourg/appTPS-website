@@ -12,14 +12,15 @@ Créer un nouvel utilisateur dans la base de données de l'application et dans l
 
 | nom                   | type    | contraintes                | obligatoire | description                                   |
 | --------------------- | ------- | -------------------------- | ----------- | --------------------------------------------- |
-| user_name             | string  | min:3, max:30, unique      | non         | Nom de l'utilisateur                          |
+| user_name             | string  | min:3, max:30, unique      | oui         | Nom de l'utilisateur                          |
 | last_name             | string  | min:3, max:255             | oui         | Nom de famille de l'utilisateur               |
 | first_name            | string  | min:3, max:255             | oui         | Prénom de l'utilisateur                       |
 | sector                | integer | exists                     | oui         | Filiére de l'utilisateur                      |
 | email                 | string  | email, max:255, unique     | oui         | Email de l'utilisateur                        |
 | phone                 | string  | min:3, max:10, unique      | non         | Numéro de téléphone de l'utilisateur          |
-| promotion_year        | integer | min:2000, max:3000         | non         | Année de promotion de l'utilisateur           |
+| admission_year        | integer | min:2000, max:3000         | non         | Année de promotion de l'utilisateur           |
 | password              | string  | Vérification dans le front | oui         | Mot de passe de l'utilisateur                 |
+| birth_date            | date    | Before:Today               | non         | Date de naissance de l'utilisateur            |
 | password_confirmation | string  | Vérification dans le front | oui         | Confirmation du mot de passe de l'utilisateur |
 
 ## Réponses

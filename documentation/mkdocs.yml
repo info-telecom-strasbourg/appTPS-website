@@ -12,8 +12,7 @@ nav:
       - Availability: authentification/availability.md
   - Users:
       - Get user: users/get.md
-      - User show : users/show.md
-      - Index user: users/index.md
+      - User show: users/show.md
       - Update user: users/update.md
       - Delete user: users/delete.md
       - Avatar: users/avatar.md
@@ -22,7 +21,7 @@ nav:
       - balance: fouaille/balance.md
       - Orders: fouaille/orders.md
   - Contents:
-      - Store : contents/store.md
+      - Store: contents/store.md
       - Events:
           - Index events: contents/events/index.md
           - Show event: contents/events/show.md
@@ -39,7 +38,7 @@ nav:
       - Catégories:
           - Store catégories: contents/category/store.md
           - Index categoriesType: contents/category/index.md
-      - Medias :
+      - Medias:
           - Store Medias: contents/medias/store.md
   - Organizations:
       - Index organizations: organizations/index.md

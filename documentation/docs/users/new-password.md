@@ -12,7 +12,7 @@ Met à jour le mot de passe de l'utilisateur connecté (grace au token).
 
 | nom                   | type   | contraintes        | obligatoire | description                           |
 | --------------------- | ------ | ------------------ | ----------- | ------------------------------------- |
-| formerPassword        | string | Gérer par le front | oui         | Ancien mot de passe de l'utilisateur  |
+| former_password       | string | Gérer par le front | oui         | Ancien mot de passe de l'utilisateur  |
 | password              | string | Gérer par le front | oui         | Nouveau mot de passe de l'utilisateur |
 | password_confirmation | string | Gérer par le front | oui         | Confirmation du nouveau mot de passe  |
 
