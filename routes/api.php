@@ -12,11 +12,9 @@ use App\Http\Controllers\MPSController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\UserAvatarController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\FouailleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrganizationController;
-
 use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -43,7 +41,7 @@ use App\Http\Controllers\Content\CategoryController;
 
 /** =============== Authentification =============== */
 
-Route::prefix('register')->group(function (){
+Route::prefix('register')->group(function () {
     Route::post('/', [RegisteredUserController::class, 'store'])
         ->name('register');
 
@@ -75,11 +73,11 @@ Route::get('crous', [CrousController::class, 'index'])
     ->name('crous.index');
 
 
-    /** =============== Route protected by sanctum =============== */
+/** =============== Route protected by sanctum =============== */
 
-    Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
-        /** =============== Authentification =============== */
+    /** =============== Authentification =============== */
 
     Route::post('/logout', [AuthUserController::class, 'logout'])
     ->name('logout');
@@ -233,11 +231,11 @@ Route::get('crous', [CrousController::class, 'index'])
 
         Route::get('cts', [CTSController::class, 'index'])
             ->name('cts.index');
-        });
+    });
 
-        /** =============== MPS =============== */
-        Route::get('mps', [MPSController::class, 'index'])
-            ->name('mps.index');
+    /** =============== MPS =============== */
+    Route::get('mps', [MPSController::class, 'index'])
+        ->name('mps.index');
 });
 
 Route::get('cgu', [CGUController::class, 'index'])

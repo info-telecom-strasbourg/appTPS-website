@@ -21,7 +21,8 @@ class RegisteredUserController extends Controller
     /**
      * Handle an incoming registration request.
      */
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'user_name' => [
                 'required',
@@ -83,7 +84,7 @@ class RegisteredUserController extends Controller
         }
 
 
-        try{
+        try {
 
             Member::create([
                 'last_name' => $request->last_name,
@@ -95,14 +96,14 @@ class RegisteredUserController extends Controller
                 'sector' => Sector::find($request->sector)->short_name,
             ]);
 
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return response()->json([
                 'message' => 'An error occurred while creating the member (Bde)',
                 'error' => $e->getMessage()
             ], 409);
         }
 
-        try{
+        try {
             $user = User::create([
                 'bde_id' => DB::connection('bde_bdd')->table('members')->where('email', '=', $request->email)->first()->id,
                 'last_name' => $request->last_name,
@@ -115,7 +116,7 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->password),
                 'birth_date' => $request->birth_date,
             ]);
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             return response()->json([
                 'message' => 'An error occurred while creating the user (app)',
                 'error' => $e->getMessage()
@@ -141,18 +142,19 @@ class RegisteredUserController extends Controller
      *
      * @param Request $request
      */
-    public function availability(Request $request){
+    public function availability(Request $request)
+    {
         $query = User::query();
 
-        foreach ($request->all() as $key => $value){
+        foreach ($request->all() as $key => $value) {
             $query->orWhere($key, $value);
         }
 
-        if($query->first()){
+        if ($query->first()) {
             return response()->json([
                 'message' => 'An other user already exist with this value'
             ], 409);
-        }else{
+        } else {
             return response()->json([
                 'message' => 'This value is available'
             ], 200);

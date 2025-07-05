@@ -15,3 +15,9 @@ yarn-error.log
 /.vscode
 phpmyadmin/
 documentation/site
+.DS_Store
+.php-cs-fixer.cache
+.phpactor.json
+compose.yml
+docker/init.sql
+
