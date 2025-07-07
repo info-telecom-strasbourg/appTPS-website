@@ -6,9 +6,9 @@ Cette fonction est conçue pour récupérer tous les événements du calendrier,
 
 ## Requête
 
-| Protocole | Méthode | URL                  | Token |
-|-----------|---------|----------------------|-------|
-| HTTPS     | GET     | /api/events          | Oui   |
+| Protocole | Méthode | URL        | Token |
+| --------- | ------- | ---------- | ----- |
+| HTTPS     | GET     | /api/event | Oui   |
 
 ## Paramètres de la requête
 

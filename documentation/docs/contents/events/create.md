@@ -1,5 +1,6 @@
 # Créer un événement
 
+/ Documentation obsolète \
 Creation d'un nouvel événement
 
 ## Requête

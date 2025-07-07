@@ -154,7 +154,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::prefix('event')->group(function () {
             Route::get('/', [EventController::class, 'index'])
-            ->name('event.index');
+                ->name('event.index');
 
             Route::post('/', [EventController::class, 'store'])
                 ->name('event.store');
@@ -170,10 +170,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::prefix('organization')->group(function () {
             Route::get('/', [OrganizationController::class, 'index'])
-            ->name('organization.index');
+                ->name('organization.index');
 
             Route::get('/{id}', [OrganizationController::class, 'show'])
-            ->name('organization.show');
+                ->name('organization.show');
         });
 
 
@@ -181,13 +181,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::prefix('post')->group(function () {
             Route::post('/', [PostController::class, 'store'])
-            ->name('post.store');
+                ->name('post.store');
 
             Route::get('/', [PostController::class, 'index'])
-            ->name('post.index');
+                ->name('post.index');
 
             Route::get('{id}', [PostController::class, 'show'])
-            ->name('post.show');
+                ->name('post.show');
 
             Route::get('{id}/delete', [PostController::class, 'delete'])
                 ->name('post.delete');
@@ -198,7 +198,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             /** =============== Commentaires =============== */
 
             Route::get('{id}/comment', [PostCommentController::class, 'index'])
-            ->name('comment.index');
+                ->name('comment.index');
 
             Route::post('{id}/comment', [PostCommentController::class, 'store'])
                 ->name('comment.store');
