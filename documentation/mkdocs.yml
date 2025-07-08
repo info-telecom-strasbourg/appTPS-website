@@ -25,9 +25,11 @@ nav:
       - Events:
           - Index events: contents/events/index.md
           - Show event: contents/events/show.md
+          - Delete event: contents/event/delete.md
       - Posts:
           - Index posts: contents/posts/index.md
           - Show post: contents/posts/show.md
+          - Delete post: contents/posts/delete.md
       - Comments:
           - Index comments: contents/comments/index.md
           - Store comment: contents/comments/store.md

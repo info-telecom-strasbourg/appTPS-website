@@ -159,10 +159,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::post('/', [EventController::class, 'store'])
                 ->name('event.store');
 
-            Route::get('/{id}', [EventController::class, 'show'])
+            Route::get('{id}', [EventController::class, 'show'])
                 ->name('event.show');
 
-            Route::get('{id}/delete', [EventController::class, 'delete'])
+            Route::delete('{id}', [EventController::class, 'delete'])
                 ->name('event.delete');
         });
 
@@ -189,7 +189,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::get('{id}', [PostController::class, 'show'])
                 ->name('post.show');
 
-            Route::get('{id}/delete', [PostController::class, 'delete'])
+            Route::delete('{id}', [PostController::class, 'delete'])
                 ->name('post.delete');
 
             Route::post('{id}/update', [PostController::class, 'update'])

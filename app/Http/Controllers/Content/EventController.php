@@ -10,17 +10,18 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
+
 use function Symfony\Component\Translation\t;
 
 class EventController extends Controller
 {
-
     /**
      * Get all events in the calendar
      *
      * @param Request $request
      */
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
         global $previous_date;
 
@@ -33,25 +34,25 @@ class EventController extends Controller
         if ($per_page == null) {
             $per_page = 10;
         }
-        if($start_at == null){
+        if ($start_at == null) {
             $start_at = now();
         }
-        if ($previous_date == null){
+        if ($previous_date == null) {
             $previous_date = now()->subDays(10);
         }
 
-        $events = Event::orderBy('start_at',"asc")->where('uploaded_at', '<=', now())->where('start_at', '>=', $start_at)->orWhere(function ($query) {
-            $query->where('start_at', '<=',  now()) // OU événements actuellement en cours
+        $events = Event::orderBy('start_at', "asc")->where('uploaded_at', '<=', now())->where('start_at', '>=', $start_at)->orWhere(function ($query) {
+            $query->where('start_at', '<=', now()) // OU événements actuellement en cours
             ->where('end_at', '>=', now());
         });
 
-        if($organization_id){
-            $events->Where('organization_id',$organization_id);
+        if ($organization_id) {
+            $events->Where('organization_id', $organization_id);
         }
         $events = $events->paginate($per_page);
 
         return response()->json([
-            'data' => $events->map(function ($event) use($user){
+            'data' => $events->map(function ($event) use ($user) {
                 global $previous_date;
 
                 $actual_date = $previous_date;
@@ -105,7 +106,7 @@ class EventController extends Controller
                 'from' => $events->firstItem(),
                 'to' => $events->lastItem()
             ]
-        ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+        ], 200)->setEncodingOptions(JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     }
 
     /**
@@ -114,7 +115,8 @@ class EventController extends Controller
      * @param Request $request
      * @param int $id
      */
-    public function show(Request $request, $id){
+    public function show(Request $request, $id)
+    {
         $event = Event::find($id);
         $user = $request->user();
 
@@ -151,36 +153,34 @@ class EventController extends Controller
                     'logo_url' => $event->user->getAvatarPath()
                 ],
             ]
-        ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+        ], 200)->setEncodingOptions(JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
     }
 
-    public function delete(Request $request,$id) : \Illuminate\Http\JsonResponse {
+    public function delete(Request $request, $id): \Illuminate\Http\JsonResponse
+    {
         $user = $request->user();
 
         $event = Event::where('id', $id)->first();
 
         if ($event == null) {
             return response()->json([
-                'message' => 'Post not found'
+                'message' => 'Event not found'
             ], 404);
         }
 
         $asso = $event->organization->id ?? null;
 
-        if ($user->isInOrganization($asso) == false || $user->id != $event->user_id){
+        if ($user->isInOrganization($asso) == false || $user->id != $event->user_id) {
             return response()->json([
-                'message' => 'You are not authorized to delete this post'
+                'message' => 'You are not authorized to delete this event'
             ], 403);
         }
 
         $event->delete();
 
-        if ($event->comments->isNotEmpty())
-            $event->comments()->delete();
-
         return response()->json([
-            'message' => 'Post deleted successfully'
+            'message' => 'Event deleted successfully'
         ], 200);
     }
 }
