@@ -66,8 +66,6 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../users/show/">User show</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../users/">Index user</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../users/update/">Update user</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../users/delete/">Delete user</a>
@@ -94,6 +92,8 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../contents/events/show/">Show event</a>
                 </li>
+                <li class="toctree-l2"><a class="" href="../contents/event/delete.md">Delete event</a>
+                </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Posts</a>
@@ -101,6 +101,8 @@
                 <li class="toctree-l2"><a class="reference internal" href="../contents/posts/">Index posts</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../contents/posts/show/">Show post</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../contents/posts/delete/">Delete post</a>
                 </li>
     </ul>
                   </li>
@@ -213,7 +215,7 @@
 <td>user_name</td>
 <td>string</td>
 <td>min:3, max:30, unique</td>
-<td>non</td>
+<td>oui</td>
 <td>Nom de l'utilisateur</td>
 </tr>
 <tr>
@@ -252,7 +254,7 @@
 <td>Numéro de téléphone de l'utilisateur</td>
 </tr>
 <tr>
-<td>promotion_year</td>
+<td>admission_year</td>
 <td>integer</td>
 <td>min:2000, max:3000</td>
 <td>non</td>
@@ -264,6 +266,13 @@
 <td>Vérification dans le front</td>
 <td>oui</td>
 <td>Mot de passe de l'utilisateur</td>
+</tr>
+<tr>
+<td>birth_date</td>
+<td>date</td>
+<td>Before:Today</td>
+<td>non</td>
+<td>Date de naissance de l'utilisateur</td>
 </tr>
 <tr>
 <td>password_confirmation</td>

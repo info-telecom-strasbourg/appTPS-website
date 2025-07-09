@@ -13,7 +13,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Store Medias";
-        var mkdocs_page_input_path = "contents\\medias\\store.md";
+        var mkdocs_page_input_path = "contents/medias/store.md";
         var mkdocs_page_url = "/contents/medias/store/";
       </script>
     
@@ -66,8 +66,6 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../users/show/">User show</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../../users/">Index user</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../users/update/">Update user</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../users/delete/">Delete user</a>
@@ -94,6 +92,8 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../events/show/">Show event</a>
                 </li>
+                <li class="toctree-l2"><a class="" href="../../event/delete.md">Delete event</a>
+                </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Posts</a>
@@ -101,6 +101,8 @@
                 <li class="toctree-l2"><a class="reference internal" href="../../posts/">Index posts</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../posts/show/">Show post</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../posts/delete/">Delete post</a>
                 </li>
     </ul>
                   </li>
@@ -226,8 +228,8 @@
 </thead>
 <tbody>
 <tr>
-<td><code>media</code></td>
-<td>file</td>
+<td><code>medias</code></td>
+<td>file_tab</td>
 <td>max:5000</td>
 <td>Fichier du média</td>
 <td>oui</td>
@@ -235,6 +237,14 @@
 </tbody>
 </table>
 <p>Formats acceptés : image/jpeg,image/png,video/mp4,video/x-msvideo,video/quicktime</p>
+<p>exemple : </p>
+<pre><code class="language-json">{
+    &quot;medias&quot;: [
+        &quot;image&quot;: &quot;image.jpg&quot;,
+        &quot;video&quot;: &quot;video.mp4&quot;
+    ]
+}
+</code></pre>
 <h2 id="reponses">Réponses</h2>
 <h3 id="succes">Succès</h3>
 <p><code>status: 201</code></p>
