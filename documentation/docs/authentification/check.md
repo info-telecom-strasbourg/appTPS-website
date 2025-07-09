@@ -1,6 +1,6 @@
 # Check utilisateur
 
-Vérifie si l'utilisateur est connecté et à valider son email.
+Vérifie si l'utilisateur est connecté et a validé son email.
 
 ## Requête
 

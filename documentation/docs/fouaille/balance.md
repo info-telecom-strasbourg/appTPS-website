@@ -7,7 +7,7 @@ Cette fonction est conçue pour récupérer le solde actuel d'un utilisateur sp�
 ## Requête
 
 | Protocole | Méthode | URL                   | Token |
-|-----------|---------|-----------------------|-------|
+| --------- | ------- | --------------------- | ----- |
 | HTTPS     | GET     | /api/fouaille/balance | Oui   |
 
 ## Paramètres de la requête
@@ -20,11 +20,11 @@ Aucun paramètre n'est requis pour cette requête. L'identification de l'utilisa
 
 ```json
 {
-  "data": {
-    "balance": "100",
-    "first_name": "Thibaut",
-    "last_name": "$DESLANDES",
-    "user_name": "$tb_des"
-  }
+    "data": {
+        "balance": "100.00",
+        "first_name": "Thibaut",
+        "last_name": "$DESLANDES",
+        "user_name": "$tb_des"
+    }
 }
 ```

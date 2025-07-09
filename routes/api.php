@@ -12,11 +12,9 @@ use App\Http\Controllers\MPSController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\UserAvatarController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\FouailleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrganizationController;
-
 use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -43,7 +41,7 @@ use App\Http\Controllers\Content\CategoryController;
 
 /** =============== Authentification =============== */
 
-Route::prefix('register')->group(function (){
+Route::prefix('register')->group(function () {
     Route::post('/', [RegisteredUserController::class, 'store'])
         ->name('register');
 
@@ -75,11 +73,11 @@ Route::get('crous', [CrousController::class, 'index'])
     ->name('crous.index');
 
 
-    /** =============== Route protected by sanctum =============== */
+/** =============== Route protected by sanctum =============== */
 
-    Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
-        /** =============== Authentification =============== */
+    /** =============== Authentification =============== */
 
     Route::post('/logout', [AuthUserController::class, 'logout'])
     ->name('logout');
@@ -156,15 +154,15 @@ Route::get('crous', [CrousController::class, 'index'])
 
         Route::prefix('event')->group(function () {
             Route::get('/', [EventController::class, 'index'])
-            ->name('event.index');
+                ->name('event.index');
 
             Route::post('/', [EventController::class, 'store'])
                 ->name('event.store');
 
-            Route::get('/{id}', [EventController::class, 'show'])
+            Route::get('{id}', [EventController::class, 'show'])
                 ->name('event.show');
 
-            Route::get('{id}/delete', [EventController::class, 'delete'])
+            Route::delete('{id}', [EventController::class, 'delete'])
                 ->name('event.delete');
         });
 
@@ -172,10 +170,10 @@ Route::get('crous', [CrousController::class, 'index'])
 
         Route::prefix('organization')->group(function () {
             Route::get('/', [OrganizationController::class, 'index'])
-            ->name('organization.index');
+                ->name('organization.index');
 
             Route::get('/{id}', [OrganizationController::class, 'show'])
-            ->name('organization.show');
+                ->name('organization.show');
         });
 
 
@@ -183,15 +181,15 @@ Route::get('crous', [CrousController::class, 'index'])
 
         Route::prefix('post')->group(function () {
             Route::post('/', [PostController::class, 'store'])
-            ->name('post.store');
+                ->name('post.store');
 
             Route::get('/', [PostController::class, 'index'])
-            ->name('post.index');
+                ->name('post.index');
 
             Route::get('{id}', [PostController::class, 'show'])
-            ->name('post.show');
+                ->name('post.show');
 
-            Route::get('{id}/delete', [PostController::class, 'delete'])
+            Route::delete('{id}', [PostController::class, 'delete'])
                 ->name('post.delete');
 
             Route::post('{id}/update', [PostController::class, 'update'])
@@ -200,7 +198,7 @@ Route::get('crous', [CrousController::class, 'index'])
             /** =============== Commentaires =============== */
 
             Route::get('{id}/comment', [PostCommentController::class, 'index'])
-            ->name('comment.index');
+                ->name('comment.index');
 
             Route::post('{id}/comment', [PostCommentController::class, 'store'])
                 ->name('comment.store');
@@ -233,11 +231,11 @@ Route::get('crous', [CrousController::class, 'index'])
 
         Route::get('cts', [CTSController::class, 'index'])
             ->name('cts.index');
-        });
+    });
 
-        /** =============== MPS =============== */
-        Route::get('mps', [MPSController::class, 'index'])
-            ->name('mps.index');
+    /** =============== MPS =============== */
+    Route::get('mps', [MPSController::class, 'index'])
+        ->name('mps.index');
 });
 
 Route::get('cgu', [CGUController::class, 'index'])

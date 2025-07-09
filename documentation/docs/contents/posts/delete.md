@@ -4,9 +4,9 @@ permet de supprimer un post spécifique par son identifiant.
 
 ## Requête
 
-| Protocole | Méthode | URL                    | Token |
-|-----------|---------|------------------------|-------|
-| HTTPS     | GET     | /api/posts/{id}/delete | Oui   |
+| Protocole | Méthode | URL            | Token |
+| --------- | ------- | -------------- | ----- |
+| HTTPS     | DELETE  | /api/post/{id} | Oui   |
 
 ## Paramètres
 
@@ -41,4 +41,3 @@ Aucun paramètre requis dans le corps de la requête. L'identifiant du post à s
     "message": "You are not authorized to delete this post."
 }
 ```
-

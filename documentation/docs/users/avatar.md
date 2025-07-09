@@ -6,7 +6,7 @@ Met à jour l'avater de l'utilisateur connecté (grace au token).
 
 | protocole | methode | url              | token |
 | --------- | ------- | ---------------- | ----- |
-| https     | PUT     | /api/user/avatar | oui   |
+| https     | POST    | /api/user/avatar | oui   |
 
 ## Paramètres
 

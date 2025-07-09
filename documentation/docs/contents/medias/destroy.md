@@ -1,11 +1,12 @@
 # Supprimer un média
 
+Obsolète
 Permet de supprimer un média spécifique.
 
 ## Requête
 
 | protocole | méthode | url                     | token |
-|-----------|---------|-------------------------|-------|
+| --------- | ------- | ----------------------- | ----- |
 | https     | GET     | /api/media/{id}/destroy | oui   |
 
 ## Paramètres

@@ -4,9 +4,9 @@ Permet de supprimer un événement spécifique par son identifiant.
 
 ## Requête
 
-| Protocole | Méthode | URL                     | Token |
-|-----------|---------|-------------------------|-------|
-| HTTPS     | GET     | /api/events/{id}/delete | Oui   |
+| Protocole | Méthode | URL             | Token |
+| --------- | ------- | --------------- | ----- |
+| HTTPS     | DELETE  | /api/event/{id} | Oui   |
 
 ## Paramètres
 

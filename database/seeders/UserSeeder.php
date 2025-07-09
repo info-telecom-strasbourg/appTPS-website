@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
             'token' => hash('sha256', 'test')
         ]);
 
-        User::factory(Member::count()-1)->create();
+        User::factory(Member::count() - 1)->create();
 
         User::all()->each(function ($user) {
             $user->tokens()->create([
