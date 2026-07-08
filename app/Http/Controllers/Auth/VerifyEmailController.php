@@ -9,11 +9,17 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+/**
+ * @group Authentification
+ * @subgroup E-Mail Verification
+ */
 class VerifyEmailController extends Controller
 {
     /**
-     * Mark the authenticated user's email address as verified.
+     * Verify Email
      * 
+     * Mark the authenticated user's email address as verified.
+     * @unauthenticated
      * @param \Illuminate\Http\Request $request
      */
     public function __invoke(Request $request)

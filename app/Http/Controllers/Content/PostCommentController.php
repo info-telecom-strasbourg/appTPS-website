@@ -7,10 +7,16 @@ use App\Models\PostComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * @group Post
+ * @subgroup Comments
+ */
 class PostCommentController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * New Comment
+     * 
+     * Create a new Comment for the specified Post.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
@@ -48,6 +54,11 @@ class PostCommentController extends Controller
         ]);
     }
 
+    /**
+     * Comment Index
+     * 
+     * Fetch a paginated Comment's list for the specified Post
+     */
     public function index(Request $request,$id) : \Illuminate\Http\JsonResponse {
 
         $per_page = $request->query('per_page');

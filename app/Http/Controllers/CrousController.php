@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Goutte\Client;
 
+/**
+ * @group Other
+ * @subgroup Crous
+ */
 class CrousController extends Controller
 {
     public function index(){

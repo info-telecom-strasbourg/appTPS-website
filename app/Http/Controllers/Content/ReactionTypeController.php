@@ -7,10 +7,16 @@ use App\Models\ReactionType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * @group Post
+ * @subgroup Reaction
+ */
 class ReactionTypeController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Reaction Type Index
+     * 
+     * Fetch a list of all existing Reaction Type
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse

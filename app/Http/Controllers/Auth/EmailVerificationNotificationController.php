@@ -8,10 +8,16 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
+/**
+ * @group Authentification
+ * @subgroup E-Mail Verification
+ */
 class EmailVerificationNotificationController extends Controller
 {
     /**
-     * Send a new email verification notification.
+     * Send Verification E-mail
+     * 
+     * Send an email verification notification to the current user's mail address, if it's not already verified.
      * @param Request $request
      *
      */

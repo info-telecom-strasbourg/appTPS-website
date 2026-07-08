@@ -5,8 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Bde\Organization;
 use Illuminate\Http\Request;
 
+/**
+ * @group Organization
+ */
 class OrganizationController extends Controller
 {
+    /**
+     * Organization index
+     * 
+     * Fetch a list of the differents organizations. Filter by name available
+     */
     public function index(){
 
         $organization = Organization::filter(request(['search']))->get();
@@ -49,6 +57,11 @@ class OrganizationController extends Controller
         ]])->setEncodingOptions(JSON_PRETTY_PRINT);
     }
 
+    /**
+     * Organization Infos
+     * 
+     * Fetch public data of the specified organization
+     */
     public function show($id){
         $per_page = request()->query('per_page');
 

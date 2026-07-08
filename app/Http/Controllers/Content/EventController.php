@@ -13,10 +13,15 @@ use Illuminate\Support\Facades\Validator;
 
 use function Symfony\Component\Translation\t;
 
+/**
+ * @group Event
+ */
 class EventController extends Controller
 {
     /**
-     * Get all events in the calendar
+     * Event Index
+     * 
+     * Fetch a paginated list of events (with details)
      *
      * @param Request $request
      */
@@ -110,8 +115,10 @@ class EventController extends Controller
     }
 
     /**
-     * Get a specific event
+     * Event infos
      *
+     * Fetch data of the specified Event
+     * 
      * @param Request $request
      * @param int $id
      */
@@ -157,6 +164,12 @@ class EventController extends Controller
 
     }
 
+    /**
+     * Delete Event
+     * 
+     * Remove the corresponding entry from the database, if the request is issued 
+     * by either the original author or a member of the event's organization
+     */
     public function delete(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         $user = $request->user();

@@ -7,10 +7,16 @@ use App\Models\Category;
 use App\Models\CategoryType;
 use Illuminate\Http\Request;
 
+/**
+ * @group Event/Post Common
+ * @subgroup Category
+ */
 class CategoryTypeController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Category Index
+     * 
+     * Fetch a list of all categories
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse

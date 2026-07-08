@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Sector;
 use Illuminate\Http\Request;
 
+/**
+ * @group Other
+ * @subgroup Sector
+ */
 class SectorController extends Controller
 {
     /**
-     * Get all sectors available
+     * Sector Index
+     * 
+     * Fetch all sectors
+     * @unauthenticated
      */
     public function index(){
         return response()->json([

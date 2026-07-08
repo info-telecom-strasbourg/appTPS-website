@@ -9,9 +9,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
-
+/**
+ * @group User
+ * @subgroup Avatar
+ */
 class UserAvatarController extends Controller
 {
+    /**
+     * Change Avatar
+     * 
+     * Upload an image and replace the current user's avatar with it.
+     */
     function store(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -55,6 +63,13 @@ class UserAvatarController extends Controller
         ], 200);
     }
 
+    /**
+     * Change Avatar (no upload)
+     * 
+     * Take an image URL and replace the current user's avatar with it.
+     * 
+     * <aside class="warning"> Should only be used with images from <b>Default Avatar</b> !</aside>
+     */
     public function storedefault(Request $request){
         $validation = Validator::make($request->all(), [
             'default_link' => [
@@ -97,6 +112,11 @@ class UserAvatarController extends Controller
         ], 200);
     }
 
+    /**
+     * Default Avatar
+     * 
+     * Fetch a hardcoded list of default avatars.
+     */
     public function default(Request $request)
     {
         $default_tab = [

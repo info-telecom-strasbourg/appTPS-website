@@ -16,10 +16,18 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
 use App\Models\Sector;
 
+/**
+ *  @group Authentification
+ *  
+ */
 class RegisteredUserController extends Controller
 {
     /**
-     * Handle an incoming registration request.
+     * Register
+     * 
+     * Create a new User in the app's database and the BDE's database and send a confirmation e-mail
+     * 
+     * @unauthenticated
      */
     public function store(Request $request)
     {
@@ -138,8 +146,11 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Check if the user take unique values that are already taken by an other user
-     *
+     * Availability 
+     * 
+     *  Check the availability of an authentication information
+     * 
+     * @unauthenticated
      * @param Request $request
      */
     public function availability(Request $request)

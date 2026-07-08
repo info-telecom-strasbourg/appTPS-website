@@ -91,7 +91,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     /** =============== Route allowed for verified users (email verification) =============== */
 
     Route::group(['middleware' => ['verified']], function () {
-
+        /**
+         * Status
+         * 
+         * Check if the client is connected and have a verified email.
+         * 
+         * @group Authentification
+         * @unauthenticated
+         */
         Route::get('/check', function () {
             return response()->json([
                 'message' => 'You are connected and verified'

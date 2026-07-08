@@ -14,6 +14,9 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * @group Authentification
+ */
 class NewPasswordController extends Controller
 {
     /**
@@ -69,6 +72,8 @@ class NewPasswordController extends Controller
 
 
     /**
+     * Change Password
+     * 
      * Handle an incoming new password request.
      *
      */

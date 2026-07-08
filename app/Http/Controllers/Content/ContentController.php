@@ -9,8 +9,16 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * @group Event/Post Common
+ */
 class ContentController extends Controller
 {
+    /**
+     * New Event/Post
+     * 
+     * Create a Post, an Event or both, and associate them together
+     */
     public function store(Request $request){
 
         $validation = Validator::make($request->all(), [
