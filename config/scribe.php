@@ -35,6 +35,10 @@ return [
             // Exclude these routes even if they matched the rules above.
             'exclude' => [
                 // 'GET /health', 'admin.*'
+                // Following routes doesn't belong in api, hence documentation, as they return a non-json response
+                'crous.index',
+                'cas.index',
+                'verification.verify',
             ],
         ],
     ],
