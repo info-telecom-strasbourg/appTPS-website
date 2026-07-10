@@ -22,6 +22,14 @@ class PostController extends Controller
     *
     * @param Request $request
     * @return \Illuminate\Http\JsonResponse
+     *
+     * @queryParam per_page int Number of elements per page. Example: 10
+     * @queryParam category_id int[] The id of an existing record in the category type table. Example: [2]
+     * @queryParam user_name string The username of an organization No-example
+     * @queryParam user_id int The id of an existing record in the user table No-example
+     * @queryParam asso_id int The id of an existing record in the organization table No-example
+     * @queryParam search string Text to look for in Post's body No-example
+     * @queryParam page int Page number. Example: 1
     */
     public function index(Request $request) : \Illuminate\Http\JsonResponse {
         $per_page = $request->query('per_page');
@@ -239,6 +247,9 @@ class PostController extends Controller
      * Update Post
      * 
      * Update the specified post's text and categories
+     * 
+     * @bodyParam body string required Example: The updated text of the post
+     * @bodyParam category_ids int[] required
      */
     public function update(Request $request, $id) : \Illuminate\Http\JsonResponse {
         $validated = $request->validate([

@@ -165,7 +165,10 @@ class UserController extends Controller
      * Users Index
      * 
      * Fetch a paginated list of users
-     * 
+     *
+     * @queryParam per_page int Number of elements per page. Example: 10
+     * @queryParam search string Text to search in Users's last_name/first_name/user_name No-example
+     * @queryParam page int Page number. Example: 1
      */
     public function index()
     {

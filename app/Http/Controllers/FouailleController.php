@@ -20,7 +20,8 @@ class FouailleController extends Controller
      * Orders
      * 
      * Fetch a paginated list of fouaille' orders of the current user
-     *
+     * @queryParam per_page int Number of elements per page. Example: 10
+     * @queryParam page int Page number. Example: 1
      * @param Request $request
      */
     public function show(Request $request)

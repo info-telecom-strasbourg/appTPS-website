@@ -25,9 +25,11 @@ class CategoryController extends Controller
     public function store(Request $request) : \Illuminate\Http\JsonResponse {
         // Validation des données reçues
         $validation = Validator::make($request->all(),[
+            // Example: 1
             'post_id' => 'nullable|exists:posts,id',
             'event_id' => 'nullable|exists:events,id',
             'category_ids' => 'required|array',
+            // Example: 1
             'category_ids.*' => 'exists:category_types,id'
         ]);
 

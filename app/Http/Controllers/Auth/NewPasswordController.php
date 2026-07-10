@@ -76,12 +76,15 @@ class NewPasswordController extends Controller
      * 
      * Handle an incoming new password request.
      *
+     * @bodyParam password_confirmation string Example: test
      */
     public function update(Request $request){
         $validator = Validator::make($request->all(), [
+            //Example: test
             'former_password' => [
                 'required',
             ],
+            //Example: test
             'password' => [
                 'required',
                 'confirmed',

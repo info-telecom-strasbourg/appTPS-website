@@ -18,42 +18,53 @@ class ContentController extends Controller
      * New Event/Post
      * 
      * Create a Post, an Event or both, and associate them together
+     * 
+     * At least one of 'create_event' or 'create_post' should be set to '1'
      */
     public function store(Request $request){
 
         $validation = Validator::make($request->all(), [
+            // Required for Event Example: my Event !
             'title' => [
                 'string',
                 'max:255',
                 'min:3'
             ],
+            // Required for Post Example: Hello this is my Post linked to an Event!
             'body' => [
                 'string',
                 'min:3'
             ],
+            // Optional for Post/Event Example: 3
             'organization_id' => [
                 'integer',
                 'exists:bde_bdd.'.env("BDE_DB_DATABASE").'.organizations,id',
                 'nullable'
             ],
+            // Optional for Event Example: 2026-07-08T18:24:53
             'start_at' => [
                 'date'
             ],
+            // Optional for Event Example: 2026-07-08T19:24:53
             'end_at' => [
                 'date'
             ],
+            // Optional for Post/Event
             'uploaded_at' => [
                 'date',
                 'nullable'
             ],
+            // Optional for Event Example: 7 golden street, Eldorado
             'location' => [
                 'string',
                 'max:255',
                 'min:3'
             ],
+            // Example: 1
             'create_event' => [
                 'in:0,1'
             ],
+            // Example: 1
             'create_post' => [
                 'in:0,1'
             ],

@@ -246,7 +246,7 @@ INTRO
             [
                 Strategies\Responses\ResponseCalls::class,
                 [
-                    'only' => ['GET *'],
+                    'only' => ['*'],
                     // Disable debug mode when generating response calls to avoid error stack traces in responses
                     'config' => [
                         'app.debug' => false,

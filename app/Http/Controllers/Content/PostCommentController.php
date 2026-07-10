@@ -25,9 +25,13 @@ class PostCommentController extends Controller
     {
 
         $validation = Validator::make($request->all(), [
+            // Example: 1
             'post_id' => 'required|exists:posts,id',
+            // The content of the comment Example: This is a comment 
             'body' => 'required|string|min:3, max:4000000000',
+            // No-example
             'parent_comment_id' => 'nullable|exists:post_comments,id',
+            // No-example
             'organization_id' => 'nullable|exists:bde_bdd.'.env("BDE_DB_DATABASE").'.organizations,id',
         ]);
 
@@ -58,6 +62,10 @@ class PostCommentController extends Controller
      * Comment Index
      * 
      * Fetch a paginated Comment's list for the specified Post
+     * 
+     * @queryParam per_page int Number of elements per page. Example: 3
+     * @queryParam parent_comment_id int The ID of the parent comment No-example
+     * @queryParam page int Page number. Example: 2
      */
     public function index(Request $request,$id) : \Illuminate\Http\JsonResponse {
 

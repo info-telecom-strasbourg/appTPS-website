@@ -28,10 +28,12 @@ class RegisteredUserController extends Controller
      * Create a new User in the app's database and the BDE's database and send a confirmation e-mail
      * 
      * @unauthenticated
+     * @bodyParam password_confirmation string Example: d"5'f4gs98d4f1"'(tg87
      */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            // Example: viction
             'user_name' => [
                 'required',
                 'string',
@@ -40,23 +42,27 @@ class RegisteredUserController extends Controller
                 'unique:users,user_name',
                 'unique:bde_bdd.'.env("BDE_DB_DATABASE").'.organizations,user_name'
             ],
+            // Example: Doe
             'last_name' => [
                 'required',
                 'string',
                 'min:3',
                 'max:255'
             ],
+            // Example: Jhon
             'first_name' => [
                 'required',
                 'string',
                 'min:3',
                 'max:255'
             ],
+            //See Sector for more details. Example: 2
             'sector' => [
                 'required',
                 'integer',
                 'exists:sectors,id'
             ],
+            // Example: viction852@glups.com
             'email' => [
                 'required',
                 'string',
@@ -64,21 +70,25 @@ class RegisteredUserController extends Controller
                 'max:255',
                 'unique:users,email'
             ],
+            // Example: 0601020304
             'phone' => [
                 'string',
                 'min:3',
                 'max:10',
                 'unique:users,phone'
             ],
+            // Example: 2024
             'admission_year' => [
                 'integer',
                 'min:2000',
                 'max:3000'
             ],
+            // Example: d"5'f4gs98d4f1"'(tg87
             'password' => [
                 'required',
                 'confirmed'
             ],
+            // Example: 2012-12-12
             'birth_date' => [
                 'date',
                 'before:today'
@@ -152,6 +162,10 @@ class RegisteredUserController extends Controller
      * 
      * @unauthenticated
      * @param Request $request
+     * 
+     * @queryParam email string Example: email@email.com
+     * @queryParam user_name string Example: SuperUs3r
+     * @queryParam phone string Example: 0601020304
      */
     public function availability(Request $request)
     {

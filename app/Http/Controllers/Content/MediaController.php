@@ -77,6 +77,8 @@ class MediaController extends Controller
      * Delete Media
      * 
      * Remove the specified Media from the Server
+     * 
+     * @queryParam medias_id int[] required The ID of the media to delete
      */
     public function destroy(Request $request, $id){
         $medias_id = $request->query('medias_id',[]);

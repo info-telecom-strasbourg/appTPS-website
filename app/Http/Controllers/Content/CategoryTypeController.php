@@ -20,6 +20,9 @@ class CategoryTypeController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
+     * 
+     * @queryParam is_shown boolean Example: 1
+     * @queryParam search string Example: admi
      */
     public function index(Request $request) : \Illuminate\Http\JsonResponse {
 

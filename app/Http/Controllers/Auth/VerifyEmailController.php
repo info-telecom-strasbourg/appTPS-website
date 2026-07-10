@@ -19,6 +19,8 @@ class VerifyEmailController extends Controller
      * Verify Email
      * 
      * Mark the authenticated user's email address as verified.
+     * 
+     * <aside class="warning">This route should not be a part of the API as it returns a non json response.</aside>
      * @unauthenticated
      * @param \Illuminate\Http\Request $request
      */

@@ -24,6 +24,11 @@ class EventController extends Controller
      * Fetch a paginated list of events (with details)
      *
      * @param Request $request
+     * @queryParam per_page int Number of elements per page. Example: 10
+     * @queryParam start_at string Treshold for start date. start_at attribute of all returned Events will be after this one Example: 2020-07-08T18:24:53
+     * @queryParam organization_id int
+     * @queryParam previous_date string
+     * @queryParam page int Page number. Example: 1
      */
     public function index(Request $request)
     {

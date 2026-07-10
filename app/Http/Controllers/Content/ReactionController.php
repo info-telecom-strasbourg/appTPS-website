@@ -28,6 +28,9 @@ class ReactionController extends Controller
      * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
+     * 
+     * @bodyParam post_comment_id int No-example
+     * @bodyParam reaction_type_id int Example: 2
      */
     public function store(Request $request,$id) : \Illuminate\Http\JsonResponse {
 
