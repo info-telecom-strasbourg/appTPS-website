@@ -1,0 +1,3710 @@
+openapi: 3.0.3
+info:
+  title: InsidePSBS
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/register:
+    post:
+      summary: Register
+      operationId: register
+      description: "Create a new User in the app's database and the BDE's database and send a confirmation e-mail"
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  user:
+                    bde_id: 1002
+                    last_name: Doe
+                    first_name: Jhon
+                    sector_id: 2
+                    user_name: viction
+                    email: viction852@glups.com
+                    phone: '0601020304'
+                    admission_year: 2024
+                    birth_date: '2012-12-12'
+                    updated_at: '2026-07-17T14:25:21.000000Z'
+                    created_at: '2026-07-17T14:25:21.000000Z'
+                    id: 102
+                    expo_token: null
+                  token: 104|scdrNOJtULYejtUQQwuLfuX8U9pgOlV9PzCX1qR3e855f022
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      bde_id:
+                        type: integer
+                        example: 1002
+                      last_name:
+                        type: string
+                        example: Doe
+                      first_name:
+                        type: string
+                        example: Jhon
+                      sector_id:
+                        type: integer
+                        example: 2
+                      user_name:
+                        type: string
+                        example: viction
+                      email:
+                        type: string
+                        example: viction852@glups.com
+                      phone:
+                        type: string
+                        example: '0601020304'
+                      admission_year:
+                        type: integer
+                        example: 2024
+                      birth_date:
+                        type: string
+                        example: '2012-12-12'
+                      updated_at:
+                        type: string
+                        example: '2026-07-17T14:25:21.000000Z'
+                      created_at:
+                        type: string
+                        example: '2026-07-17T14:25:21.000000Z'
+                      id:
+                        type: integer
+                        example: 102
+                      expo_token:
+                        type: string
+                        example: null
+                  token:
+                    type: string
+                    example: 104|scdrNOJtULYejtUQQwuLfuX8U9pgOlV9PzCX1qR3e855f022
+      tags:
+        - Authentification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 30 characters.'
+                  example: viction
+                  nullable: false
+                last_name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: Doe
+                  nullable: false
+                first_name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: Jhon
+                  nullable: false
+                sector:
+                  type: integer
+                  description: 'See Sector for more details. The <code>id</code> of an existing record in the sectors table.'
+                  example: 2
+                  nullable: false
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: viction852@glups.com
+                  nullable: false
+                phone:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 10 characters.'
+                  example: '0601020304'
+                  nullable: false
+                admission_year:
+                  type: integer
+                  description: 'Must be at least 2000. Must not be greater than 3000.'
+                  example: 2024
+                  nullable: false
+                password:
+                  type: string
+                  description: ''
+                  example: 'd"5''f4gs98d4f1"''(tg87'
+                  nullable: false
+                birth_date:
+                  type: string
+                  description: 'Must be a valid date. Must be a date before <code>today</code>.'
+                  example: '2012-12-12'
+                  nullable: false
+                password_confirmation:
+                  type: string
+                  description: ''
+                  example: 'd"5''f4gs98d4f1"''(tg87'
+                  nullable: false
+              required:
+                - user_name
+                - last_name
+                - first_name
+                - sector
+                - email
+                - password
+      security: []
+  /api/register/availability:
+    get:
+      summary: Availability
+      operationId: availability
+      description: 'Check the availability of an authentication information'
+      parameters:
+        -
+          in: query
+          name: email
+          description: ''
+          example: email@email.com
+          required: false
+          schema:
+            type: string
+            description: ''
+            example: email@email.com
+            nullable: false
+        -
+          in: query
+          name: user_name
+          description: ''
+          example: SuperUs3r
+          required: false
+          schema:
+            type: string
+            description: ''
+            example: SuperUs3r
+            nullable: false
+        -
+          in: query
+          name: phone
+          description: ''
+          example: '0601020304'
+          required: false
+          schema:
+            type: string
+            description: ''
+            example: '0601020304'
+            nullable: false
+      responses:
+        409:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'An other user already exist with this value'
+                properties:
+                  message:
+                    type: string
+                    example: 'An other user already exist with this value'
+      tags:
+        - Authentification
+      security: []
+  /api/login:
+    post:
+      summary: Login
+      operationId: login
+      description: 'Check credentials and return an authentification Token'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    message:
+                      - 'mauvais identifiants'
+      tags:
+        - Authentification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: ktorphy@example.net
+                  nullable: false
+                password:
+                  type: string
+                  description: ''
+                  example: "Rp2UNe%ES'(Dp"
+                  nullable: false
+              required:
+                - email
+                - password
+      security: []
+  /api/forgot-password:
+    post:
+      summary: 'Reset Password'
+      operationId: resetPassword
+      description: 'Send a mail with a reset password link.'
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Email not send'
+                properties:
+                  message:
+                    type: string
+                    example: 'Email not send'
+      tags:
+        - Authentification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: else33@example.net
+                  nullable: false
+              required:
+                - email
+      security: []
+  /api/logout:
+    post:
+      summary: Logout
+      operationId: logout
+      description: 'Revoke access of the attached Bearer Token'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Successfully logged out'
+                properties:
+                  message:
+                    type: string
+                    example: 'Successfully logged out'
+      tags:
+        - Authentification
+  /api/email/verification-notification:
+    post:
+      summary: 'Send Verification E-mail'
+      operationId: sendVerificationEMail
+      description: "Send an email verification notification to the current user's mail address, if it's not already verified."
+      parameters: []
+      responses:
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Email is already verified'
+                properties:
+                  message:
+                    type: string
+                    example: 'Email is already verified'
+      tags:
+        - Authentification
+  /api/check:
+    get:
+      summary: Status
+      operationId: status
+      description: 'Check if the client is connected and have a verified email.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'You are connected and verified'
+                properties:
+                  message:
+                    type: string
+                    example: 'You are connected and verified'
+      tags:
+        - Authentification
+      security: []
+  /api/password:
+    put:
+      summary: 'Change Password'
+      operationId: changePassword
+      description: 'Handle an incoming new password request.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Password updated successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'Password updated successfully'
+      tags:
+        - Authentification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                former_password:
+                  type: string
+                  description: ''
+                  example: test
+                  nullable: false
+                password:
+                  type: string
+                  description: ''
+                  example: test
+                  nullable: false
+                password_confirmation:
+                  type: string
+                  description: ''
+                  example: test
+                  nullable: false
+              required:
+                - former_password
+                - password
+  /api/event:
+    get:
+      summary: 'Event Index'
+      operationId: eventIndex
+      description: 'Fetch a paginated list of events (with details)'
+      parameters:
+        -
+          in: query
+          name: per_page
+          description: 'Number of elements per page.'
+          example: 10
+          required: false
+          schema:
+            type: integer
+            description: 'Number of elements per page.'
+            example: 10
+            nullable: false
+        -
+          in: query
+          name: start_at
+          description: 'Treshold for start date. start_at attribute of all returned Events will be after this one'
+          example: '2020-07-08T18:24:53'
+          required: false
+          schema:
+            type: string
+            description: 'Treshold for start date. start_at attribute of all returned Events will be after this one'
+            example: '2020-07-08T18:24:53'
+            nullable: false
+        -
+          in: query
+          name: organization_id
+          description: ''
+          example: 7
+          required: false
+          schema:
+            type: integer
+            description: ''
+            example: 7
+            nullable: false
+        -
+          in: query
+          name: previous_date
+          description: ''
+          example: sit
+          required: false
+          schema:
+            type: string
+            description: ''
+            example: sit
+            nullable: false
+        -
+          in: query
+          name: page
+          description: 'Page number.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page number.'
+            example: 1
+            nullable: false
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Server Error'
+                properties:
+                  message:
+                    type: string
+                    example: 'Server Error'
+      tags:
+        - Event
+  '/api/event/{id}':
+    get:
+      summary: 'Event infos'
+      operationId: eventInfos
+      description: 'Fetch data of the specified Event'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    title: 'Tempore unde dicta deserunt labore totam.'
+                    date_format:
+                      start_at_simplified: 08h28
+                      end_at_simplified: 23h48
+                      date: 'dans 1 semaine'
+                      days_diff: 0
+                    start_at: '2026-07-29 08:28:53'
+                    end_at: '2026-07-29 23:48:01'
+                    location: "80677 Nora Locks Suite 200\nIlamouth, NC 77114-1794"
+                    color: '#0865D2'
+                    author:
+                      user_is_author: false
+                      is_organization: true
+                      id: 12
+                      name: Taya
+                      short_name: animi
+                      user_name: dpouros
+                      logo_url: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      title:
+                        type: string
+                        example: 'Tempore unde dicta deserunt labore totam.'
+                      date_format:
+                        type: object
+                        properties:
+                          start_at_simplified:
+                            type: string
+                            example: 08h28
+                          end_at_simplified:
+                            type: string
+                            example: 23h48
+                          date:
+                            type: string
+                            example: 'dans 1 semaine'
+                          days_diff:
+                            type: integer
+                            example: 0
+                      start_at:
+                        type: string
+                        example: '2026-07-29 08:28:53'
+                      end_at:
+                        type: string
+                        example: '2026-07-29 23:48:01'
+                      location:
+                        type: string
+                        example: "80677 Nora Locks Suite 200\nIlamouth, NC 77114-1794"
+                      color:
+                        type: string
+                        example: '#0865D2'
+                      author:
+                        type: object
+                        properties:
+                          user_is_author:
+                            type: boolean
+                            example: false
+                          is_organization:
+                            type: boolean
+                            example: true
+                          id:
+                            type: integer
+                            example: 12
+                          name:
+                            type: string
+                            example: Taya
+                          short_name:
+                            type: string
+                            example: animi
+                          user_name:
+                            type: string
+                            example: dpouros
+                          logo_url:
+                            type: string
+                            example: null
+      tags:
+        - Event
+    delete:
+      summary: 'Delete Event'
+      operationId: deleteEvent
+      description: "Remove the corresponding entry from the database, if the request is issued\nby either the original author or a member of the event's organization"
+      parameters: []
+      responses:
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'You are not authorized to delete this event'
+                properties:
+                  message:
+                    type: string
+                    example: 'You are not authorized to delete this event'
+      tags:
+        - Event
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the event.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/categories:
+    get:
+      summary: 'Category Index'
+      operationId: categoryIndex
+      description: 'Fetch a list of all categories'
+      parameters:
+        -
+          in: query
+          name: is_shown
+          description: ''
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: ''
+            example: true
+            nullable: false
+        -
+          in: query
+          name: search
+          description: ''
+          example: admi
+          required: false
+          schema:
+            type: string
+            description: ''
+            example: admi
+            nullable: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 2
+                      name: 'Admis 2023'
+                      color: '#0865D2'
+                      emoji: 📘
+                    -
+                      id: 3
+                      name: 'Admis 2024'
+                      color: '#0865D2'
+                      emoji: 📕
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 2
+                        name: 'Admis 2023'
+                        color: '#0865D2'
+                        emoji: 📘
+                      -
+                        id: 3
+                        name: 'Admis 2024'
+                        color: '#0865D2'
+                        emoji: 📕
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 2
+                        name:
+                          type: string
+                          example: 'Admis 2023'
+                        color:
+                          type: string
+                          example: '#0865D2'
+                        emoji:
+                          type: string
+                          example: 📘
+      tags:
+        - 'Event/Post Common'
+    post:
+      summary: "Define Post/Event's Categories."
+      operationId: definePostEventsCategories
+      description: 'Create an association between categories and an Event/Post'
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Catégories associées avec succès au post.'
+                  data:
+                    -
+                      post_id: '1'
+                      event_id: null
+                      category_type_id: '1'
+                      id: 201
+                properties:
+                  message:
+                    type: string
+                    example: 'Catégories associées avec succès au post.'
+                  data:
+                    type: array
+                    example:
+                      -
+                        post_id: '1'
+                        event_id: null
+                        category_type_id: '1'
+                        id: 201
+                    items:
+                      type: object
+                      properties:
+                        post_id:
+                          type: string
+                          example: '1'
+                        event_id:
+                          type: string
+                          example: null
+                        category_type_id:
+                          type: string
+                          example: '1'
+                        id:
+                          type: integer
+                          example: 201
+      tags:
+        - 'Event/Post Common'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                post_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the posts table.'
+                  example: '1'
+                  nullable: true
+                event_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the events table.'
+                  example: null
+                  nullable: true
+                category_ids:
+                  type: array
+                  description: 'The <code>id</code> of an existing record in the category_types table.'
+                  example:
+                    - '1'
+                  items:
+                    type: string
+  /api/contents:
+    post:
+      summary: 'New Event/Post'
+      operationId: newEventPost
+      description: "Create a Post, an Event or both, and associate them together\n\nAt least one of 'create_event' or 'create_post' should be set to '1'"
+      parameters: []
+      responses:
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'You are not in the organization'
+                properties:
+                  message:
+                    type: string
+                    example: 'You are not in the organization'
+      tags:
+        - 'Event/Post Common'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Required for Event. Must not be greater than 255 characters. Must be at least 3 characters.'
+                  example: 'my Event !'
+                  nullable: false
+                body:
+                  type: string
+                  description: 'Required for Post. Must be at least 3 characters.'
+                  example: 'Hello this is my Post linked to an Event!'
+                  nullable: false
+                organization_id:
+                  type: integer
+                  description: 'Optional for Post/Event.'
+                  example: 3
+                  nullable: true
+                start_at:
+                  type: string
+                  description: 'Optional for Event. Must be a valid date.'
+                  example: '2026-07-08T18:24:53'
+                  nullable: false
+                end_at:
+                  type: string
+                  description: 'Optional for Event. Must be a valid date.'
+                  example: '2026-07-08T19:24:53'
+                  nullable: false
+                uploaded_at:
+                  type: string
+                  description: 'Optional for Post/Event. Must be a valid date.'
+                  example: '2026-07-17T16:25:23'
+                  nullable: true
+                location:
+                  type: string
+                  description: 'Optional for Event. Must not be greater than 255 characters. Must be at least 3 characters.'
+                  example: '7 golden street, Eldorado'
+                  nullable: false
+                create_event:
+                  type: string
+                  description: ''
+                  example: '1'
+                  nullable: false
+                  enum:
+                    - '0'
+                    - '1'
+                create_post:
+                  type: string
+                  description: ''
+                  example: '1'
+                  nullable: false
+                  enum:
+                    - '0'
+                    - '1'
+  /api/fouaille:
+    get:
+      summary: Orders
+      operationId: orders
+      description: "Fetch a paginated list of fouaille' orders of the current user"
+      parameters:
+        -
+          in: query
+          name: per_page
+          description: 'Number of elements per page.'
+          example: 10
+          required: false
+          schema:
+            type: integer
+            description: 'Number of elements per page.'
+            example: 10
+            nullable: false
+        -
+          in: query
+          name: page
+          description: 'Page number.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page number.'
+            example: 1
+            nullable: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    orders:
+                      -
+                        date: '2026-07-17 15:12:04'
+                        date_format: "Aujourd'hui"
+                        actual_balance: 87.5
+                        total_price: '20.00'
+                        amount: 1
+                        product: null
+                      -
+                        date: '2026-07-17 12:38:07'
+                        date_format: "Aujourd'hui"
+                        actual_balance: 92.3
+                        total_price: '-4.80'
+                        amount: 4
+                        product:
+                          name: cocktail12
+                          type: soiree
+                          unit_price: '-1.2'
+                      -
+                        date: '2026-07-17 12:18:27'
+                        date_format: "Aujourd'hui"
+                        actual_balance: 94.7
+                        total_price: '-2.40'
+                        amount: 2
+                        product:
+                          name: metre
+                          type: shot
+                          unit_price: '-1.2'
+                      -
+                        date: '2026-07-17 10:19:12'
+                        date_format: "Aujourd'hui"
+                        actual_balance: 100.7
+                        total_price: '-6.00'
+                        amount: 5
+                        product:
+                          name: meteor
+                          type: soiree
+                          unit_price: '-1.2'
+                      -
+                        date: '2026-07-17 10:09:30'
+                        date_format: "Aujourd'hui"
+                        actual_balance: 105.9
+                        total_price: '-5.20'
+                        amount: 2
+                        product:
+                          name: pizza
+                          type: afterwork
+                          unit_price: '-2.6'
+                      -
+                        date: '2026-07-17 10:03:13'
+                        date_format: "Aujourd'hui"
+                        actual_balance: 55.9
+                        total_price: '50.00'
+                        amount: 1
+                        product: null
+                      -
+                        date: '2026-07-17 09:16:13'
+                        date_format: "Aujourd'hui"
+                        actual_balance: 50.9
+                        total_price: '5.00'
+                        amount: 1
+                        product: null
+                      -
+                        date: '2026-07-17 08:06:19'
+                        date_format: "Aujourd'hui"
+                        actual_balance: 54.5
+                        total_price: '-3.60'
+                        amount: 3
+                        product:
+                          name: meteor
+                          type: soiree
+                          unit_price: '-1.2'
+                      -
+                        date: '2026-07-17 06:55:49'
+                        date_format: "Aujourd'hui"
+                        actual_balance: 59.3
+                        total_price: '-4.80'
+                        amount: 4
+                        product:
+                          name: metre
+                          type: shot
+                          unit_price: '-1.2'
+                      -
+                        date: '2026-07-17 06:51:17'
+                        date_format: "Aujourd'hui"
+                        actual_balance: 65.9
+                        total_price: '-6.60'
+                        amount: 3
+                        product:
+                          name: cookies
+                          type: gouter
+                          unit_price: '-2.2'
+                  meta:
+                    total: 200
+                    per_page: 10
+                    current_page: 1
+                    last_page: 20
+                    first_page_url: 'http://localhost/api/fouaille?page=1&per_page=10'
+                    last_page_url: 'http://localhost/api/fouaille?page=20&per_page=10'
+                    next_page_url: 'http://localhost/api/fouaille?page=2&per_page=10'
+                    prev_page_url: '&per_page=10'
+                    path: 'http://localhost/api/fouaille'
+                    from: 1
+                    to: 10
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      orders:
+                        type: array
+                        example:
+                          -
+                            date: '2026-07-17 15:12:04'
+                            date_format: "Aujourd'hui"
+                            actual_balance: 87.5
+                            total_price: '20.00'
+                            amount: 1
+                            product: null
+                          -
+                            date: '2026-07-17 12:38:07'
+                            date_format: "Aujourd'hui"
+                            actual_balance: 92.3
+                            total_price: '-4.80'
+                            amount: 4
+                            product:
+                              name: cocktail12
+                              type: soiree
+                              unit_price: '-1.2'
+                          -
+                            date: '2026-07-17 12:18:27'
+                            date_format: "Aujourd'hui"
+                            actual_balance: 94.7
+                            total_price: '-2.40'
+                            amount: 2
+                            product:
+                              name: metre
+                              type: shot
+                              unit_price: '-1.2'
+                          -
+                            date: '2026-07-17 10:19:12'
+                            date_format: "Aujourd'hui"
+                            actual_balance: 100.7
+                            total_price: '-6.00'
+                            amount: 5
+                            product:
+                              name: meteor
+                              type: soiree
+                              unit_price: '-1.2'
+                          -
+                            date: '2026-07-17 10:09:30'
+                            date_format: "Aujourd'hui"
+                            actual_balance: 105.9
+                            total_price: '-5.20'
+                            amount: 2
+                            product:
+                              name: pizza
+                              type: afterwork
+                              unit_price: '-2.6'
+                          -
+                            date: '2026-07-17 10:03:13'
+                            date_format: "Aujourd'hui"
+                            actual_balance: 55.9
+                            total_price: '50.00'
+                            amount: 1
+                            product: null
+                          -
+                            date: '2026-07-17 09:16:13'
+                            date_format: "Aujourd'hui"
+                            actual_balance: 50.9
+                            total_price: '5.00'
+                            amount: 1
+                            product: null
+                          -
+                            date: '2026-07-17 08:06:19'
+                            date_format: "Aujourd'hui"
+                            actual_balance: 54.5
+                            total_price: '-3.60'
+                            amount: 3
+                            product:
+                              name: meteor
+                              type: soiree
+                              unit_price: '-1.2'
+                          -
+                            date: '2026-07-17 06:55:49'
+                            date_format: "Aujourd'hui"
+                            actual_balance: 59.3
+                            total_price: '-4.80'
+                            amount: 4
+                            product:
+                              name: metre
+                              type: shot
+                              unit_price: '-1.2'
+                          -
+                            date: '2026-07-17 06:51:17'
+                            date_format: "Aujourd'hui"
+                            actual_balance: 65.9
+                            total_price: '-6.60'
+                            amount: 3
+                            product:
+                              name: cookies
+                              type: gouter
+                              unit_price: '-2.2'
+                        items:
+                          type: object
+                          properties:
+                            date:
+                              type: string
+                              example: '2026-07-17 15:12:04'
+                            date_format:
+                              type: string
+                              example: "Aujourd'hui"
+                            actual_balance:
+                              type: number
+                              example: 87.5
+                            total_price:
+                              type: string
+                              example: '20.00'
+                            amount:
+                              type: integer
+                              example: 1
+                            product:
+                              type: string
+                              example: null
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 200
+                      per_page:
+                        type: integer
+                        example: 10
+                      current_page:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 20
+                      first_page_url:
+                        type: string
+                        example: 'http://localhost/api/fouaille?page=1&per_page=10'
+                      last_page_url:
+                        type: string
+                        example: 'http://localhost/api/fouaille?page=20&per_page=10'
+                      next_page_url:
+                        type: string
+                        example: 'http://localhost/api/fouaille?page=2&per_page=10'
+                      prev_page_url:
+                        type: string
+                        example: '&per_page=10'
+                      path:
+                        type: string
+                        example: 'http://localhost/api/fouaille'
+                      from:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 10
+      tags:
+        - Fouaille
+  /api/fouaille/balance:
+    get:
+      summary: Balance
+      operationId: balance
+      description: 'Fetch the current balance of the user'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    balance: '107.50'
+                    first_name: Fabien
+                    last_name: prégaldini
+                    user_name: fab.preg
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      balance:
+                        type: string
+                        example: '107.50'
+                      first_name:
+                        type: string
+                        example: Fabien
+                      last_name:
+                        type: string
+                        example: prégaldini
+                      user_name:
+                        type: string
+                        example: fab.preg
+      tags:
+        - Fouaille
+  /api/organization:
+    get:
+      summary: 'Organization index'
+      operationId: organizationIndex
+      description: 'Fetch a list of the differents organizations. Filter by name available'
+      parameters:
+        -
+          in: query
+          name: search
+          description: "Text used for partial match with the organization's name/short_name/user_name"
+          example: ci
+          required: false
+          schema:
+            type: string
+            description: "Text used for partial match with the organization's name/short_name/user_name"
+            example: ci
+            nullable: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    associations: []
+                    clubs: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      associations:
+                        type: array
+                        example: []
+                      clubs:
+                        type: array
+                        example: []
+      tags:
+        - Organization
+  '/api/organization/{id}':
+    get:
+      summary: 'Organization Infos'
+      operationId: organizationInfos
+      description: 'Fetch public data of the specified organization'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  organization:
+                    id: 2
+                    short_name: ipsam
+                    name: Adrianna
+                    user_name: ppfeffer
+                    description: 'Perspiciatis doloribus fugit rerum aut non aliquid dolor. Dolore et asperiores labore deleniti sit dolor.'
+                    website_link: 'http://www.balistreri.com/culpa-nostrum-qui-nesciunt-accusamus-qui-quas-laudantium'
+                    facebook_link: 'https://www.bergstrom.com/tenetur-dolore-dicta-nobis-dicta-voluptatibus'
+                    twitter_link: 'https://www.terry.com/repellendus-repellat-provident-accusantium-et-aspernatur-iusto-corporis'
+                    instagram_link: 'http://www.osinski.com/aut-et-et-soluta-officia.html'
+                    discord_link: 'https://effertz.com/facilis-sequi-omnis-repudiandae-animi-quae-distinctio-quo.html'
+                    email: mlockman@example.com
+                    logo_url: null
+                  members:
+                    -
+                      id: 63
+                      role: spons
+                      first_name: Nickolas
+                      last_name: Abbott
+                      avatar_url: null
+                    -
+                      id: 101
+                      role: president
+                      first_name: Liliane
+                      last_name: Vandervort
+                      avatar_url: null
+                    -
+                      id: 70
+                      role: reseaux
+                      first_name: Gabriel
+                      last_name: Haley
+                      avatar_url: null
+                properties:
+                  organization:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 2
+                      short_name:
+                        type: string
+                        example: ipsam
+                      name:
+                        type: string
+                        example: Adrianna
+                      user_name:
+                        type: string
+                        example: ppfeffer
+                      description:
+                        type: string
+                        example: 'Perspiciatis doloribus fugit rerum aut non aliquid dolor. Dolore et asperiores labore deleniti sit dolor.'
+                      website_link:
+                        type: string
+                        example: 'http://www.balistreri.com/culpa-nostrum-qui-nesciunt-accusamus-qui-quas-laudantium'
+                      facebook_link:
+                        type: string
+                        example: 'https://www.bergstrom.com/tenetur-dolore-dicta-nobis-dicta-voluptatibus'
+                      twitter_link:
+                        type: string
+                        example: 'https://www.terry.com/repellendus-repellat-provident-accusantium-et-aspernatur-iusto-corporis'
+                      instagram_link:
+                        type: string
+                        example: 'http://www.osinski.com/aut-et-et-soluta-officia.html'
+                      discord_link:
+                        type: string
+                        example: 'https://effertz.com/facilis-sequi-omnis-repudiandae-animi-quae-distinctio-quo.html'
+                      email:
+                        type: string
+                        example: mlockman@example.com
+                      logo_url:
+                        type: string
+                        example: null
+                  members:
+                    type: array
+                    example:
+                      -
+                        id: 63
+                        role: spons
+                        first_name: Nickolas
+                        last_name: Abbott
+                        avatar_url: null
+                      -
+                        id: 101
+                        role: president
+                        first_name: Liliane
+                        last_name: Vandervort
+                        avatar_url: null
+                      -
+                        id: 70
+                        role: reseaux
+                        first_name: Gabriel
+                        last_name: Haley
+                        avatar_url: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 63
+                        role:
+                          type: string
+                          example: spons
+                        first_name:
+                          type: string
+                          example: Nickolas
+                        last_name:
+                          type: string
+                          example: Abbott
+                        avatar_url:
+                          type: string
+                          example: null
+      tags:
+        - Organization
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the Organization'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  /api/sector:
+    get:
+      summary: 'Sector Index'
+      operationId: sectorIndex
+      description: 'Fetch all sectors'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      name: 'Non def'
+                      short_name: AUTRE
+                    -
+                      id: 2
+                      name: 'Informatique et Réseaux'
+                      short_name: IR
+                    -
+                      id: 3
+                      name: 'Sciences et Technologies pour la Santé'
+                      short_name: TI
+                    -
+                      id: 4
+                      name: Généraliste
+                      short_name: Géné
+                    -
+                      id: 5
+                      name: Alternance
+                      short_name: FIP
+                    -
+                      id: 6
+                      name: ESBS
+                      short_name: BS
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'Non def'
+                        short_name: AUTRE
+                      -
+                        id: 2
+                        name: 'Informatique et Réseaux'
+                        short_name: IR
+                      -
+                        id: 3
+                        name: 'Sciences et Technologies pour la Santé'
+                        short_name: TI
+                      -
+                        id: 4
+                        name: Généraliste
+                        short_name: Géné
+                      -
+                        id: 5
+                        name: Alternance
+                        short_name: FIP
+                      -
+                        id: 6
+                        name: ESBS
+                        short_name: BS
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: 'Non def'
+                        short_name:
+                          type: string
+                          example: AUTRE
+      tags:
+        - Other
+      security: []
+  /api/cts:
+    get:
+      summary: ''
+      operationId: getApiCts
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Server Error'
+                properties:
+                  message:
+                    type: string
+                    example: 'Server Error'
+      tags:
+        - Other
+  /api/mps:
+    get:
+      summary: Link
+      operationId: link
+      description: "Fetch a hadcoded link to the MPS's Nextcloud"
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  link: 'https://nextcloud.its-tps.fr/s/zfFkwR6y5wxt5gW'
+                properties:
+                  link:
+                    type: string
+                    example: 'https://nextcloud.its-tps.fr/s/zfFkwR6y5wxt5gW'
+      tags:
+        - Other
+  /api/cgu:
+    get:
+      summary: CGU
+      operationId: cGU
+      description: 'Fetch the hardcoded CGU'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  title: "CGU pour l'application InsidePSBS:"
+                  sections:
+                    -
+                      title: "Politique de confidentialité pour l'application InsidePSBS:"
+                      content: "Lorsque vous utilisez l'application InsidePSBS, nous collectons certaines informations vous concernant, notamment votre nom, prénom, identifiants relatifs à votre école (id, e-mail), vos photos de profil, vos appartenances à un club ou une association de l'école, ainsi que les informations nécessaires au fonctionnement de l'application (identifiants de notification). Ces informations sont nécessaires pour assurer le bon fonctionnement de l'application et pour faciliter la communication entre les utilisateurs. Elles ne seront jamais vendues à des tiers. Nous prenons la sécurité et la confidentialité de vos données très au sérieux. Nous avons mis en place des mesures de sécurité appropriées pour protéger vos données contre tout accès non autorisé, toute utilisation abusive, toute altération ou toute perte de données. Toutes les données sensibles sont chiffrées pour empêcher tout accès non autorisé. Les données sont stockées sur des serveurs sécurisés, qui sont régulièrement mis à jour et surveillés pour détecter toute violation de sécurité."
+                    -
+                      title: 'Sécurité et confidentialité:'
+                      content: 'Nous prenons la sécurité et la confidentialité de vos données très au sérieux. Nous avons mis en place des mesures de sécurité appropriées pour protéger vos données contre tout accès non autorisé, toute utilisation abusive, toute altération ou toute perte de données. Toutes les données sensibles sont chiffrées pour empêcher tout accès non autorisé. Les données sont stockées sur des serveurs sécurisés, qui sont régulièrement mis à jour et surveillés pour détecter toute violation de sécurité.'
+                    -
+                      title: 'Vos droits:'
+                      content: "Vous avez le droit de consulter les données que nous avons collectées vous concernant et de les supprimer si vous le souhaitez. Pour exercer ces droits, veuillez contacter un administrateur de l'application."
+                    -
+                      title: 'Modifications de la politique de confidentialité:'
+                      content: "Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment, en publiant une version mise à jour sur notre site web ou sur l'application. Il est de votre responsabilité de consulter régulièrement cette politique de confidentialité pour prendre connaissance des éventuelles modifications."
+                properties:
+                  title:
+                    type: string
+                    example: "CGU pour l'application InsidePSBS:"
+                  sections:
+                    type: array
+                    example:
+                      -
+                        title: "Politique de confidentialité pour l'application InsidePSBS:"
+                        content: "Lorsque vous utilisez l'application InsidePSBS, nous collectons certaines informations vous concernant, notamment votre nom, prénom, identifiants relatifs à votre école (id, e-mail), vos photos de profil, vos appartenances à un club ou une association de l'école, ainsi que les informations nécessaires au fonctionnement de l'application (identifiants de notification). Ces informations sont nécessaires pour assurer le bon fonctionnement de l'application et pour faciliter la communication entre les utilisateurs. Elles ne seront jamais vendues à des tiers. Nous prenons la sécurité et la confidentialité de vos données très au sérieux. Nous avons mis en place des mesures de sécurité appropriées pour protéger vos données contre tout accès non autorisé, toute utilisation abusive, toute altération ou toute perte de données. Toutes les données sensibles sont chiffrées pour empêcher tout accès non autorisé. Les données sont stockées sur des serveurs sécurisés, qui sont régulièrement mis à jour et surveillés pour détecter toute violation de sécurité."
+                      -
+                        title: 'Sécurité et confidentialité:'
+                        content: 'Nous prenons la sécurité et la confidentialité de vos données très au sérieux. Nous avons mis en place des mesures de sécurité appropriées pour protéger vos données contre tout accès non autorisé, toute utilisation abusive, toute altération ou toute perte de données. Toutes les données sensibles sont chiffrées pour empêcher tout accès non autorisé. Les données sont stockées sur des serveurs sécurisés, qui sont régulièrement mis à jour et surveillés pour détecter toute violation de sécurité.'
+                      -
+                        title: 'Vos droits:'
+                        content: "Vous avez le droit de consulter les données que nous avons collectées vous concernant et de les supprimer si vous le souhaitez. Pour exercer ces droits, veuillez contacter un administrateur de l'application."
+                      -
+                        title: 'Modifications de la politique de confidentialité:'
+                        content: "Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment, en publiant une version mise à jour sur notre site web ou sur l'application. Il est de votre responsabilité de consulter régulièrement cette politique de confidentialité pour prendre connaissance des éventuelles modifications."
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: "Politique de confidentialité pour l'application InsidePSBS:"
+                        content:
+                          type: string
+                          example: "Lorsque vous utilisez l'application InsidePSBS, nous collectons certaines informations vous concernant, notamment votre nom, prénom, identifiants relatifs à votre école (id, e-mail), vos photos de profil, vos appartenances à un club ou une association de l'école, ainsi que les informations nécessaires au fonctionnement de l'application (identifiants de notification). Ces informations sont nécessaires pour assurer le bon fonctionnement de l'application et pour faciliter la communication entre les utilisateurs. Elles ne seront jamais vendues à des tiers. Nous prenons la sécurité et la confidentialité de vos données très au sérieux. Nous avons mis en place des mesures de sécurité appropriées pour protéger vos données contre tout accès non autorisé, toute utilisation abusive, toute altération ou toute perte de données. Toutes les données sensibles sont chiffrées pour empêcher tout accès non autorisé. Les données sont stockées sur des serveurs sécurisés, qui sont régulièrement mis à jour et surveillés pour détecter toute violation de sécurité."
+      tags:
+        - Other
+      security: []
+  /api/post:
+    get:
+      summary: 'Post Index'
+      operationId: postIndex
+      description: 'Show all posts in the database. Filters can be applied.'
+      parameters:
+        -
+          in: query
+          name: per_page
+          description: 'Number of elements per page.'
+          example: 10
+          required: false
+          schema:
+            type: integer
+            description: 'Number of elements per page.'
+            example: 10
+            nullable: false
+        -
+          in: query
+          name: category_id
+          description: 'The id of an existing record in the category type table.'
+          example:
+            - 2
+          required: false
+          schema:
+            type: array
+            description: 'The id of an existing record in the category type table.'
+            example:
+              - 2
+            items:
+              type: integer
+        -
+          in: query
+          name: user_name
+          description: 'The username of an organization'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'The username of an organization'
+            example: null
+            nullable: false
+        -
+          in: query
+          name: user_id
+          description: 'The id of an existing record in the user table'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'The id of an existing record in the user table'
+            example: null
+            nullable: false
+        -
+          in: query
+          name: asso_id
+          description: 'The id of an existing record in the organization table'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'The id of an existing record in the organization table'
+            example: null
+            nullable: false
+        -
+          in: query
+          name: search
+          description: "Text to look for in Post's body"
+          example: null
+          required: false
+          schema:
+            type: string
+            description: "Text to look for in Post's body"
+            example: null
+            nullable: false
+        -
+          in: query
+          name: page
+          description: 'Page number.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page number.'
+            example: 1
+            nullable: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 62
+                      event_id: 10
+                      body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                      uploaded_since: 'il y a 16 heures'
+                      uploaded_at: '2026-07-17 00:15:39'
+                      color: '#046b70'
+                      categories:
+                        -
+                          name: Activités
+                        -
+                          name: 'Admis 2023'
+                      created_at: '2026-07-17 00:15:39'
+                      updated_at: '2026-07-17 16:25:18'
+                      reaction_count: 0
+                      reaction: null
+                      comment_count: 1
+                      medias: []
+                      author:
+                        user_is_author: false
+                        is_organization: true
+                        id: 14
+                        name: Brett
+                        user_name: neffertz
+                        short_name: corrupti
+                        logo_url: null
+                    -
+                      id: 63
+                      event_id: 17
+                      body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                      uploaded_since: 'il y a 23 heures'
+                      uploaded_at: '2026-07-16 16:53:36'
+                      color: '#0865D2'
+                      categories:
+                        -
+                          name: 'Admis 2023'
+                        -
+                          name: 'Boite Tactique'
+                      created_at: '2026-07-16 16:53:36'
+                      updated_at: '2026-07-17 16:25:18'
+                      reaction_count: 1
+                      reaction: null
+                      comment_count: 2
+                      medias: []
+                      author:
+                        user_is_author: false
+                        is_organization: true
+                        id: 9
+                        name: Caleigh
+                        user_name: wmckenzie
+                        short_name: non
+                        logo_url: null
+                    -
+                      id: 35
+                      event_id: null
+                      body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                      uploaded_since: 'il y a 3 jours'
+                      uploaded_at: '2026-07-14 04:16:04'
+                      color: '#046b70'
+                      categories:
+                        -
+                          name: Activités
+                        -
+                          name: 'Objets Perdus'
+                        -
+                          name: 'Admis 2023'
+                      created_at: '2026-07-14 04:16:04'
+                      updated_at: '2026-07-17 16:25:18'
+                      reaction_count: 0
+                      reaction: null
+                      comment_count: 1
+                      medias: []
+                      author:
+                        user_is_author: false
+                        is_organization: true
+                        id: 1
+                        name: Annabel
+                        user_name: beier.bradley
+                        short_name: aliquid
+                        logo_url: null
+                    -
+                      id: 50
+                      event_id: 1
+                      body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                      uploaded_since: 'il y a 3 jours'
+                      uploaded_at: '2026-07-14 01:34:04'
+                      color: '#0865D2'
+                      categories:
+                        -
+                          name: 'Admis 2023'
+                      created_at: '2026-07-14 01:34:04'
+                      updated_at: '2026-07-17 16:25:18'
+                      reaction_count: 1
+                      reaction: null
+                      comment_count: 2
+                      medias: []
+                      author:
+                        user_is_author: false
+                        is_organization: true
+                        id: 15
+                        name: Madyson
+                        user_name: herbert83
+                        short_name: labore
+                        logo_url: null
+                    -
+                      id: 40
+                      event_id: null
+                      body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                      uploaded_since: 'il y a 3 jours'
+                      uploaded_at: '2026-07-14 01:01:52'
+                      color: '#D20808'
+                      categories:
+                        -
+                          name: 'Admis 2023'
+                        -
+                          name: Fouailles
+                      created_at: '2026-07-14 01:01:52'
+                      updated_at: '2026-07-17 16:25:18'
+                      reaction_count: 0
+                      reaction: null
+                      comment_count: 4
+                      medias: []
+                      author:
+                        user_is_author: false
+                        is_organization: true
+                        id: 5
+                        name: Jeffrey
+                        user_name: robert.nader
+                        short_name: nobis
+                        logo_url: null
+                    -
+                      id: 59
+                      event_id: 3
+                      body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                      uploaded_since: 'il y a 5 jours'
+                      uploaded_at: '2026-07-12 05:21:59'
+                      color: '#0865D2'
+                      categories:
+                        -
+                          name: 'Admis 2023'
+                      created_at: '2026-07-12 05:21:59'
+                      updated_at: '2026-07-17 16:25:18'
+                      reaction_count: 1
+                      reaction: null
+                      comment_count: 3
+                      medias: []
+                      author:
+                        user_is_author: false
+                        is_organization: true
+                        id: 9
+                        name: Caleigh
+                        user_name: wmckenzie
+                        short_name: non
+                        logo_url: null
+                    -
+                      id: 85
+                      event_id: 30
+                      body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                      uploaded_since: 'il y a 6 jours'
+                      uploaded_at: '2026-07-11 15:30:40'
+                      color: '#0865D2'
+                      categories:
+                        -
+                          name: 'Admis 2023'
+                      created_at: '2026-07-11 15:30:40'
+                      updated_at: '2026-07-17 16:25:19'
+                      reaction_count: 0
+                      reaction: null
+                      comment_count: 1
+                      medias: []
+                      author:
+                        user_is_author: false
+                        is_organization: false
+                        id: 71
+                        name: 'Lucienne Nolan'
+                        user_name: king.anderson
+                        short_name: null
+                        logo_url: null
+                    -
+                      id: 16
+                      event_id: 29
+                      body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                      uploaded_since: 'il y a 1 semaine'
+                      uploaded_at: '2026-07-08 16:22:15'
+                      color: '#D27508'
+                      categories:
+                        -
+                          name: Neurchi
+                        -
+                          name: 'Admis 2023'
+                        -
+                          name: 'Admis 2023'
+                      created_at: '2026-07-08 16:22:15'
+                      updated_at: '2026-07-17 16:25:18'
+                      reaction_count: 1
+                      reaction: null
+                      comment_count: 2
+                      medias: []
+                      author:
+                        user_is_author: false
+                        is_organization: true
+                        id: 17
+                        name: Cristopher
+                        user_name: mbode
+                        short_name: minus
+                        logo_url: null
+                    -
+                      id: 73
+                      event_id: 1
+                      body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                      uploaded_since: 'il y a 1 semaine'
+                      uploaded_at: '2026-07-08 14:46:01'
+                      color: '#0865D2'
+                      categories:
+                        -
+                          name: 'Admis 2023'
+                        -
+                          name: Neurchi
+                        -
+                          name: 'Objets Perdus'
+                      created_at: '2026-07-08 14:46:01'
+                      updated_at: '2026-07-17 16:25:19'
+                      reaction_count: 0
+                      reaction: null
+                      comment_count: 2
+                      medias: []
+                      author:
+                        user_is_author: false
+                        is_organization: true
+                        id: 17
+                        name: Cristopher
+                        user_name: mbode
+                        short_name: minus
+                        logo_url: null
+                    -
+                      id: 20
+                      event_id: 7
+                      body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                      uploaded_since: 'il y a 1 semaine'
+                      uploaded_at: '2026-07-04 05:56:04'
+                      color: '#0865D2'
+                      categories:
+                        -
+                          name: 'Admis 2023'
+                        -
+                          name: 'Boite Tactique'
+                      created_at: '2026-07-04 05:56:04'
+                      updated_at: '2026-07-17 16:25:18'
+                      reaction_count: 0
+                      reaction: null
+                      comment_count: 1
+                      medias: []
+                      author:
+                        user_is_author: false
+                        is_organization: false
+                        id: 94
+                        name: 'Josefa Blick'
+                        user_name: qlittel
+                        short_name: null
+                        logo_url: null
+                  meta:
+                    total: 15
+                    per_page: 10
+                    current_page: 1
+                    last_page: 2
+                    first_page_url: 'http://localhost/api/post?page=1&per_page=10'
+                    last_page_url: 'http://localhost/api/post?page=2&per_page=10'
+                    next_page_url: 'http://localhost/api/post?page=2&per_page=10'
+                    prev_page_url: '&per_page=10'
+                    path: 'http://localhost/api/post'
+                    from: 1
+                    to: 10
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 62
+                        event_id: 10
+                        body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                        uploaded_since: 'il y a 16 heures'
+                        uploaded_at: '2026-07-17 00:15:39'
+                        color: '#046b70'
+                        categories:
+                          -
+                            name: Activités
+                          -
+                            name: 'Admis 2023'
+                        created_at: '2026-07-17 00:15:39'
+                        updated_at: '2026-07-17 16:25:18'
+                        reaction_count: 0
+                        reaction: null
+                        comment_count: 1
+                        medias: []
+                        author:
+                          user_is_author: false
+                          is_organization: true
+                          id: 14
+                          name: Brett
+                          user_name: neffertz
+                          short_name: corrupti
+                          logo_url: null
+                      -
+                        id: 63
+                        event_id: 17
+                        body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                        uploaded_since: 'il y a 23 heures'
+                        uploaded_at: '2026-07-16 16:53:36'
+                        color: '#0865D2'
+                        categories:
+                          -
+                            name: 'Admis 2023'
+                          -
+                            name: 'Boite Tactique'
+                        created_at: '2026-07-16 16:53:36'
+                        updated_at: '2026-07-17 16:25:18'
+                        reaction_count: 1
+                        reaction: null
+                        comment_count: 2
+                        medias: []
+                        author:
+                          user_is_author: false
+                          is_organization: true
+                          id: 9
+                          name: Caleigh
+                          user_name: wmckenzie
+                          short_name: non
+                          logo_url: null
+                      -
+                        id: 35
+                        event_id: null
+                        body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                        uploaded_since: 'il y a 3 jours'
+                        uploaded_at: '2026-07-14 04:16:04'
+                        color: '#046b70'
+                        categories:
+                          -
+                            name: Activités
+                          -
+                            name: 'Objets Perdus'
+                          -
+                            name: 'Admis 2023'
+                        created_at: '2026-07-14 04:16:04'
+                        updated_at: '2026-07-17 16:25:18'
+                        reaction_count: 0
+                        reaction: null
+                        comment_count: 1
+                        medias: []
+                        author:
+                          user_is_author: false
+                          is_organization: true
+                          id: 1
+                          name: Annabel
+                          user_name: beier.bradley
+                          short_name: aliquid
+                          logo_url: null
+                      -
+                        id: 50
+                        event_id: 1
+                        body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                        uploaded_since: 'il y a 3 jours'
+                        uploaded_at: '2026-07-14 01:34:04'
+                        color: '#0865D2'
+                        categories:
+                          -
+                            name: 'Admis 2023'
+                        created_at: '2026-07-14 01:34:04'
+                        updated_at: '2026-07-17 16:25:18'
+                        reaction_count: 1
+                        reaction: null
+                        comment_count: 2
+                        medias: []
+                        author:
+                          user_is_author: false
+                          is_organization: true
+                          id: 15
+                          name: Madyson
+                          user_name: herbert83
+                          short_name: labore
+                          logo_url: null
+                      -
+                        id: 40
+                        event_id: null
+                        body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                        uploaded_since: 'il y a 3 jours'
+                        uploaded_at: '2026-07-14 01:01:52'
+                        color: '#D20808'
+                        categories:
+                          -
+                            name: 'Admis 2023'
+                          -
+                            name: Fouailles
+                        created_at: '2026-07-14 01:01:52'
+                        updated_at: '2026-07-17 16:25:18'
+                        reaction_count: 0
+                        reaction: null
+                        comment_count: 4
+                        medias: []
+                        author:
+                          user_is_author: false
+                          is_organization: true
+                          id: 5
+                          name: Jeffrey
+                          user_name: robert.nader
+                          short_name: nobis
+                          logo_url: null
+                      -
+                        id: 59
+                        event_id: 3
+                        body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                        uploaded_since: 'il y a 5 jours'
+                        uploaded_at: '2026-07-12 05:21:59'
+                        color: '#0865D2'
+                        categories:
+                          -
+                            name: 'Admis 2023'
+                        created_at: '2026-07-12 05:21:59'
+                        updated_at: '2026-07-17 16:25:18'
+                        reaction_count: 1
+                        reaction: null
+                        comment_count: 3
+                        medias: []
+                        author:
+                          user_is_author: false
+                          is_organization: true
+                          id: 9
+                          name: Caleigh
+                          user_name: wmckenzie
+                          short_name: non
+                          logo_url: null
+                      -
+                        id: 85
+                        event_id: 30
+                        body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                        uploaded_since: 'il y a 6 jours'
+                        uploaded_at: '2026-07-11 15:30:40'
+                        color: '#0865D2'
+                        categories:
+                          -
+                            name: 'Admis 2023'
+                        created_at: '2026-07-11 15:30:40'
+                        updated_at: '2026-07-17 16:25:19'
+                        reaction_count: 0
+                        reaction: null
+                        comment_count: 1
+                        medias: []
+                        author:
+                          user_is_author: false
+                          is_organization: false
+                          id: 71
+                          name: 'Lucienne Nolan'
+                          user_name: king.anderson
+                          short_name: null
+                          logo_url: null
+                      -
+                        id: 16
+                        event_id: 29
+                        body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                        uploaded_since: 'il y a 1 semaine'
+                        uploaded_at: '2026-07-08 16:22:15'
+                        color: '#D27508'
+                        categories:
+                          -
+                            name: Neurchi
+                          -
+                            name: 'Admis 2023'
+                          -
+                            name: 'Admis 2023'
+                        created_at: '2026-07-08 16:22:15'
+                        updated_at: '2026-07-17 16:25:18'
+                        reaction_count: 1
+                        reaction: null
+                        comment_count: 2
+                        medias: []
+                        author:
+                          user_is_author: false
+                          is_organization: true
+                          id: 17
+                          name: Cristopher
+                          user_name: mbode
+                          short_name: minus
+                          logo_url: null
+                      -
+                        id: 73
+                        event_id: 1
+                        body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                        uploaded_since: 'il y a 1 semaine'
+                        uploaded_at: '2026-07-08 14:46:01'
+                        color: '#0865D2'
+                        categories:
+                          -
+                            name: 'Admis 2023'
+                          -
+                            name: Neurchi
+                          -
+                            name: 'Objets Perdus'
+                        created_at: '2026-07-08 14:46:01'
+                        updated_at: '2026-07-17 16:25:19'
+                        reaction_count: 0
+                        reaction: null
+                        comment_count: 2
+                        medias: []
+                        author:
+                          user_is_author: false
+                          is_organization: true
+                          id: 17
+                          name: Cristopher
+                          user_name: mbode
+                          short_name: minus
+                          logo_url: null
+                      -
+                        id: 20
+                        event_id: 7
+                        body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                        uploaded_since: 'il y a 1 semaine'
+                        uploaded_at: '2026-07-04 05:56:04'
+                        color: '#0865D2'
+                        categories:
+                          -
+                            name: 'Admis 2023'
+                          -
+                            name: 'Boite Tactique'
+                        created_at: '2026-07-04 05:56:04'
+                        updated_at: '2026-07-17 16:25:18'
+                        reaction_count: 0
+                        reaction: null
+                        comment_count: 1
+                        medias: []
+                        author:
+                          user_is_author: false
+                          is_organization: false
+                          id: 94
+                          name: 'Josefa Blick'
+                          user_name: qlittel
+                          short_name: null
+                          logo_url: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 62
+                        event_id:
+                          type: integer
+                          example: 10
+                        body:
+                          type: string
+                          example: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                        uploaded_since:
+                          type: string
+                          example: 'il y a 16 heures'
+                        uploaded_at:
+                          type: string
+                          example: '2026-07-17 00:15:39'
+                        color:
+                          type: string
+                          example: '#046b70'
+                        categories:
+                          type: array
+                          example:
+                            -
+                              name: Activités
+                            -
+                              name: 'Admis 2023'
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: Activités
+                        created_at:
+                          type: string
+                          example: '2026-07-17 00:15:39'
+                        updated_at:
+                          type: string
+                          example: '2026-07-17 16:25:18'
+                        reaction_count:
+                          type: integer
+                          example: 0
+                        reaction:
+                          type: string
+                          example: null
+                        comment_count:
+                          type: integer
+                          example: 1
+                        medias:
+                          type: array
+                          example: []
+                        author:
+                          type: object
+                          properties:
+                            user_is_author:
+                              type: boolean
+                              example: false
+                            is_organization:
+                              type: boolean
+                              example: true
+                            id:
+                              type: integer
+                              example: 14
+                            name:
+                              type: string
+                              example: Brett
+                            user_name:
+                              type: string
+                              example: neffertz
+                            short_name:
+                              type: string
+                              example: corrupti
+                            logo_url:
+                              type: string
+                              example: null
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 15
+                      per_page:
+                        type: integer
+                        example: 10
+                      current_page:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 2
+                      first_page_url:
+                        type: string
+                        example: 'http://localhost/api/post?page=1&per_page=10'
+                      last_page_url:
+                        type: string
+                        example: 'http://localhost/api/post?page=2&per_page=10'
+                      next_page_url:
+                        type: string
+                        example: 'http://localhost/api/post?page=2&per_page=10'
+                      prev_page_url:
+                        type: string
+                        example: '&per_page=10'
+                      path:
+                        type: string
+                        example: 'http://localhost/api/post'
+                      from:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 10
+      tags:
+        - Post
+  '/api/post/{id}':
+    get:
+      summary: 'Post Infos'
+      operationId: postInfos
+      description: 'Show a specific post and its data.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    event_id: 14
+                    body: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                    uploaded_since: 'il y a 1 semaine'
+                    uploaded_at: '2026-07-06 16:49:41'
+                    color: '#D2BE08'
+                    categories:
+                      -
+                        name: 'Clubs et Assos'
+                    created_at: '2026-07-06 16:49:41'
+                    updated_at: '2026-07-17 16:25:18'
+                    reaction_count: 0
+                    reaction: null
+                    comment_count: 5
+                    medias: []
+                    author:
+                      user_is_author: false
+                      is_organization: false
+                      id: 89
+                      name: 'Rosetta Ondricka'
+                      short_name: null
+                      user_name: zemlak.litzy
+                      logo_url: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      event_id:
+                        type: integer
+                        example: 14
+                      body:
+                        type: string
+                        example: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","marks":[{"type":"bold"}],"text":"Ceci"},{"type":"text","text":" est un test de la "},{"type":"text","marks":[{"type":"underline"}],"text":"mise en forme"},{"type":"text","text":" des "},{"type":"text","marks":[{"type":"italic"}],"text":"posts"},{"type":"text","text":"."}]}]}'
+                      uploaded_since:
+                        type: string
+                        example: 'il y a 1 semaine'
+                      uploaded_at:
+                        type: string
+                        example: '2026-07-06 16:49:41'
+                      color:
+                        type: string
+                        example: '#D2BE08'
+                      categories:
+                        type: array
+                        example:
+                          -
+                            name: 'Clubs et Assos'
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: 'Clubs et Assos'
+                      created_at:
+                        type: string
+                        example: '2026-07-06 16:49:41'
+                      updated_at:
+                        type: string
+                        example: '2026-07-17 16:25:18'
+                      reaction_count:
+                        type: integer
+                        example: 0
+                      reaction:
+                        type: string
+                        example: null
+                      comment_count:
+                        type: integer
+                        example: 5
+                      medias:
+                        type: array
+                        example: []
+                      author:
+                        type: object
+                        properties:
+                          user_is_author:
+                            type: boolean
+                            example: false
+                          is_organization:
+                            type: boolean
+                            example: false
+                          id:
+                            type: integer
+                            example: 89
+                          name:
+                            type: string
+                            example: 'Rosetta Ondricka'
+                          short_name:
+                            type: string
+                            example: null
+                          user_name:
+                            type: string
+                            example: zemlak.litzy
+                          logo_url:
+                            type: string
+                            example: null
+      tags:
+        - Post
+    delete:
+      summary: 'Delete Post'
+      operationId: deletePost
+      description: 'Remove the specified Post and its comments from the database.'
+      parameters: []
+      responses:
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'You are not authorized to delete this post'
+                properties:
+                  message:
+                    type: string
+                    example: 'You are not authorized to delete this post'
+      tags:
+        - Post
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the post.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/post/{id}/update':
+    post:
+      summary: 'Update Post'
+      operationId: updatePost
+      description: "Update the specified post's text and categories"
+      parameters: []
+      responses:
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'You are not authorized to update this post'
+                properties:
+                  message:
+                    type: string
+                    example: 'You are not authorized to update this post'
+      tags:
+        - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: string
+                  description: ''
+                  example: 'The updated text of the post'
+                  nullable: false
+                category_ids:
+                  type: array
+                  description: ''
+                  example:
+                    - 4
+                  items:
+                    type: integer
+              required:
+                - body
+                - category_ids
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the post.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/post/{id}/comment':
+    get:
+      summary: 'Comment Index'
+      operationId: commentIndex
+      description: "Fetch a paginated Comment's list for the specified Post"
+      parameters:
+        -
+          in: query
+          name: per_page
+          description: 'Number of elements per page.'
+          example: 3
+          required: false
+          schema:
+            type: integer
+            description: 'Number of elements per page.'
+            example: 3
+            nullable: false
+        -
+          in: query
+          name: parent_comment_id
+          description: 'The ID of the parent comment'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'The ID of the parent comment'
+            example: null
+            nullable: false
+        -
+          in: query
+          name: page
+          description: 'Page number.'
+          example: 2
+          required: false
+          schema:
+            type: integer
+            description: 'Page number.'
+            example: 2
+            nullable: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  meta:
+                    total: 5
+                    total_same_parent_id: 2
+                    per_page: 3
+                    current_page: 2
+                    last_page: 1
+                    first_page_url: 'http://localhost/api/post/1/comment?page=1&per_page=3'
+                    last_page_url: 'http://localhost/api/post/1/comment?page=1&per_page=3'
+                    next_page_url: '&per_page=3'
+                    prev_page_url: 'http://localhost/api/post/1/comment?page=1&per_page=3'
+                    path: 'http://localhost/api/post/1/comment'
+                    from: null
+                    to: null
+                    in_page: 0
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 5
+                      total_same_parent_id:
+                        type: integer
+                        example: 2
+                      per_page:
+                        type: integer
+                        example: 3
+                      current_page:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 1
+                      first_page_url:
+                        type: string
+                        example: 'http://localhost/api/post/1/comment?page=1&per_page=3'
+                      last_page_url:
+                        type: string
+                        example: 'http://localhost/api/post/1/comment?page=1&per_page=3'
+                      next_page_url:
+                        type: string
+                        example: '&per_page=3'
+                      prev_page_url:
+                        type: string
+                        example: 'http://localhost/api/post/1/comment?page=1&per_page=3'
+                      path:
+                        type: string
+                        example: 'http://localhost/api/post/1/comment'
+                      from:
+                        type: string
+                        example: null
+                      to:
+                        type: string
+                        example: null
+                      in_page:
+                        type: integer
+                        example: 0
+      tags:
+        - Post
+    post:
+      summary: 'New Comment'
+      operationId: newComment
+      description: 'Create a new Comment for the specified Post.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Commentaire créé avec succès ! '
+                  comment:
+                    post_id: '1'
+                    user_id: 1
+                    organization_id: null
+                    parent_comment_id: null
+                    body: 'This is a comment'
+                    updated_at: '2026-07-17T14:25:22.000000Z'
+                    created_at: '2026-07-17T14:25:22.000000Z'
+                    id: 205
+                properties:
+                  message:
+                    type: string
+                    example: 'Commentaire créé avec succès ! '
+                  comment:
+                    type: object
+                    properties:
+                      post_id:
+                        type: string
+                        example: '1'
+                      user_id:
+                        type: integer
+                        example: 1
+                      organization_id:
+                        type: string
+                        example: null
+                      parent_comment_id:
+                        type: string
+                        example: null
+                      body:
+                        type: string
+                        example: 'This is a comment'
+                      updated_at:
+                        type: string
+                        example: '2026-07-17T14:25:22.000000Z'
+                      created_at:
+                        type: string
+                        example: '2026-07-17T14:25:22.000000Z'
+                      id:
+                        type: integer
+                        example: 205
+      tags:
+        - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                post_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the posts table.'
+                  example: '1'
+                  nullable: false
+                body:
+                  type: string
+                  description: 'The content of the comment. Must be at least 3 characters.'
+                  example: 'This is a comment'
+                  nullable: false
+                parent_comment_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the post_comments table.'
+                  example: null
+                  nullable: true
+                organization_id:
+                  type: string
+                  description: ''
+                  example: null
+                  nullable: false
+              required:
+                - post_id
+                - body
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the post.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/post/{id}/reaction':
+    post:
+      summary: 'New Reaction'
+      operationId: newReaction
+      description: "Handle a new Reaction request for the specified Post.\nCan lead to either a creation, a modification or a deletion of a reaction.\n\n<aside class=\"warning\"> Reactions to comments are not working at the moment</aside>"
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Réaction créée avec succès !'
+                  reaction:
+                    user_id: 1
+                    post_id: '1'
+                    reaction_type_id: 2
+                    id: 101
+                  data:
+                    is_comment: false
+                    reaction:
+                      id: 2
+                      icon: 👍
+                    reaction_count: 1
+                properties:
+                  message:
+                    type: string
+                    example: 'Réaction créée avec succès !'
+                  reaction:
+                    type: object
+                    properties:
+                      user_id:
+                        type: integer
+                        example: 1
+                      post_id:
+                        type: string
+                        example: '1'
+                      reaction_type_id:
+                        type: integer
+                        example: 2
+                      id:
+                        type: integer
+                        example: 101
+                  data:
+                    type: object
+                    properties:
+                      is_comment:
+                        type: boolean
+                        example: false
+                      reaction:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 2
+                          icon:
+                            type: string
+                            example: 👍
+                      reaction_count:
+                        type: integer
+                        example: 1
+      tags:
+        - Post
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                post_comment_id:
+                  type: integer
+                  description: ''
+                  example: null
+                  nullable: true
+                reaction_type_id:
+                  type: integer
+                  description: ''
+                  example: 2
+                  nullable: false
+    get:
+      summary: 'Reaction Index'
+      operationId: reactionIndex
+      description: 'Fecth a summary list of all reactions to a Post'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                properties:
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Post
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the post.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/post/{id}/reactiontype':
+    get:
+      summary: 'Reaction Type Index'
+      operationId: reactionTypeIndex
+      description: 'Fetch a list of all existing Reaction Type'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      name: love
+                      icon: ❤️
+                    -
+                      id: 2
+                      name: like
+                      icon: 👍
+                    -
+                      id: 3
+                      name: dislike
+                      icon: 👎
+                    -
+                      id: 4
+                      name: laugh
+                      icon: 😂
+                    -
+                      id: 5
+                      name: cry
+                      icon: 😢
+                    -
+                      id: 6
+                      name: angry
+                      icon: 😡
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: love
+                        icon: ❤️
+                      -
+                        id: 2
+                        name: like
+                        icon: 👍
+                      -
+                        id: 3
+                        name: dislike
+                        icon: 👎
+                      -
+                        id: 4
+                        name: laugh
+                        icon: 😂
+                      -
+                        id: 5
+                        name: cry
+                        icon: 😢
+                      -
+                        id: 6
+                        name: angry
+                        icon: 😡
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: love
+                        icon:
+                          type: string
+                          example: ❤️
+      tags:
+        - Post
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the post.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/post/{id}/media':
+    post:
+      summary: 'Upload Media'
+      operationId: uploadMedia
+      description: 'Upload a Media and associate it to the specified Post'
+      parameters: []
+      responses:
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'You are not authorized to upload files in this post'
+                properties:
+                  message:
+                    type: string
+                    example: 'You are not authorized to upload files in this post'
+      tags:
+        - Post
+      requestBody:
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                medias:
+                  type: array
+                  description: 'Must be a file. Must not be greater than 1000000000 kilobytes.'
+                  items:
+                    type: string
+                    format: binary
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the post.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/post/{id}/media/destroy':
+    post:
+      summary: 'Delete Media'
+      operationId: deleteMedia
+      description: 'Remove the specified Media from the Server'
+      parameters:
+        -
+          in: query
+          name: medias_id
+          description: 'The ID of the media to delete'
+          example:
+            - 11
+          required: true
+          schema:
+            type: array
+            description: 'The ID of the media to delete'
+            example:
+              - 11
+            items:
+              type: integer
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '1 Medias not found'
+                properties:
+                  message:
+                    type: string
+                    example: '1 Medias not found'
+      tags:
+        - Post
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the post.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/user:
+    get:
+      summary: 'Users Index'
+      operationId: usersIndex
+      description: 'Fetch a paginated list of users'
+      parameters:
+        -
+          in: query
+          name: per_page
+          description: 'Number of elements per page.'
+          example: 10
+          required: false
+          schema:
+            type: integer
+            description: 'Number of elements per page.'
+            example: 10
+            nullable: false
+        -
+          in: query
+          name: search
+          description: "Text to search in Users's last_name/first_name/user_name"
+          example: null
+          required: false
+          schema:
+            type: string
+            description: "Text to search in Users's last_name/first_name/user_name"
+            example: null
+            nullable: false
+        -
+          in: query
+          name: page
+          description: 'Page number.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page number.'
+            example: 1
+            nullable: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    users:
+                      -
+                        id: 1
+                        user_name: fab.preg
+                        name: null
+                        logo_url: null
+                      -
+                        id: 2
+                        user_name: miguel05
+                        name: null
+                        logo_url: null
+                      -
+                        id: 3
+                        user_name: collier.tianna
+                        name: null
+                        logo_url: null
+                      -
+                        id: 4
+                        user_name: pearline.deckow
+                        name: null
+                        logo_url: null
+                      -
+                        id: 5
+                        user_name: upton.chaz
+                        name: null
+                        logo_url: null
+                      -
+                        id: 6
+                        user_name: herzog.pansy
+                        name: null
+                        logo_url: null
+                      -
+                        id: 7
+                        user_name: clifford78
+                        name: null
+                        logo_url: null
+                      -
+                        id: 8
+                        user_name: beulah36
+                        name: null
+                        logo_url: null
+                      -
+                        id: 9
+                        user_name: eva91
+                        name: null
+                        logo_url: null
+                      -
+                        id: 10
+                        user_name: raleigh.steuber
+                        name: null
+                        logo_url: null
+                    meta:
+                      total: 101
+                      per_page: 10
+                      current_page: 1
+                      last_page: 11
+                      first_page_url: 'http://localhost/api/user?page=1&per_page=10'
+                      last_page_url: 'http://localhost/api/user?page=11&per_page=10'
+                      next_page_url: 'http://localhost/api/user?page=2&per_page=10'
+                      prev_page_url: '&per_page=10'
+                      path: 'http://localhost/api/user'
+                      from: 1
+                      to: 10
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      users:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            user_name: fab.preg
+                            name: null
+                            logo_url: null
+                          -
+                            id: 2
+                            user_name: miguel05
+                            name: null
+                            logo_url: null
+                          -
+                            id: 3
+                            user_name: collier.tianna
+                            name: null
+                            logo_url: null
+                          -
+                            id: 4
+                            user_name: pearline.deckow
+                            name: null
+                            logo_url: null
+                          -
+                            id: 5
+                            user_name: upton.chaz
+                            name: null
+                            logo_url: null
+                          -
+                            id: 6
+                            user_name: herzog.pansy
+                            name: null
+                            logo_url: null
+                          -
+                            id: 7
+                            user_name: clifford78
+                            name: null
+                            logo_url: null
+                          -
+                            id: 8
+                            user_name: beulah36
+                            name: null
+                            logo_url: null
+                          -
+                            id: 9
+                            user_name: eva91
+                            name: null
+                            logo_url: null
+                          -
+                            id: 10
+                            user_name: raleigh.steuber
+                            name: null
+                            logo_url: null
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            user_name:
+                              type: string
+                              example: fab.preg
+                            name:
+                              type: string
+                              example: null
+                            logo_url:
+                              type: string
+                              example: null
+                      meta:
+                        type: object
+                        properties:
+                          total:
+                            type: integer
+                            example: 101
+                          per_page:
+                            type: integer
+                            example: 10
+                          current_page:
+                            type: integer
+                            example: 1
+                          last_page:
+                            type: integer
+                            example: 11
+                          first_page_url:
+                            type: string
+                            example: 'http://localhost/api/user?page=1&per_page=10'
+                          last_page_url:
+                            type: string
+                            example: 'http://localhost/api/user?page=11&per_page=10'
+                          next_page_url:
+                            type: string
+                            example: 'http://localhost/api/user?page=2&per_page=10'
+                          prev_page_url:
+                            type: string
+                            example: '&per_page=10'
+                          path:
+                            type: string
+                            example: 'http://localhost/api/user'
+                          from:
+                            type: integer
+                            example: 1
+                          to:
+                            type: integer
+                            example: 10
+      tags:
+        - User
+    put:
+      summary: 'Update Current User'
+      operationId: updateCurrentUser
+      description: "Update the user's different fields (except password)"
+      parameters: []
+      responses:
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Validation failed'
+                  errors:
+                    user_name:
+                      - 'The user name field must be at least 3 characters.'
+                    phone:
+                      - 'The phone field must be at least 3 characters.'
+                    sector:
+                      - 'The selected sector is invalid.'
+                    admission_year:
+                      - 'The admission year field must be at least 2000.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Validation failed'
+                  errors:
+                    type: object
+                    properties:
+                      user_name:
+                        type: array
+                        example:
+                          - 'The user name field must be at least 3 characters.'
+                        items:
+                          type: string
+                      phone:
+                        type: array
+                        example:
+                          - 'The phone field must be at least 3 characters.'
+                        items:
+                          type: string
+                      sector:
+                        type: array
+                        example:
+                          - 'The selected sector is invalid.'
+                        items:
+                          type: string
+                      admission_year:
+                        type: array
+                        example:
+                          - 'The admission year field must be at least 2000.'
+                        items:
+                          type: string
+      tags:
+        - User
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: x
+                  nullable: false
+                phone:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 10 characters.'
+                  example: by
+                  nullable: false
+                sector:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the sectors table.'
+                  example: 20
+                  nullable: false
+                admission_year:
+                  type: integer
+                  description: 'Must be at least 2000. Must not be greater than 3000.'
+                  example: 2
+                  nullable: false
+                description:
+                  type: string
+                  description: 'Must not be greater than 100 characters.'
+                  example: 'Ullam est quia neque.'
+                  nullable: false
+    delete:
+      summary: 'Delete Current User'
+      operationId: deleteCurrentUser
+      description: 'Remove the user from de main database'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The user has been deleted'
+                properties:
+                  message:
+                    type: string
+                    example: 'The user has been deleted'
+      tags:
+        - User
+  /api/user/default:
+    get:
+      summary: 'Default Avatar'
+      operationId: defaultAvatar
+      description: 'Fetch a hardcoded list of default avatars.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      name: default1
+                      path: 'http://localhost/storage/images/avatars/default1.png'
+                    -
+                      name: default2
+                      path: 'http://localhost/storage/images/avatars/default2.png'
+                    -
+                      name: default3
+                      path: 'http://localhost/storage/images/avatars/default3.png'
+                    -
+                      name: default4
+                      path: 'http://localhost/storage/images/avatars/default4.png'
+                    -
+                      name: default5
+                      path: 'http://localhost/storage/images/avatars/default5.png'
+                    -
+                      name: default6
+                      path: 'http://localhost/storage/images/avatars/default6.png'
+                    -
+                      name: default7
+                      path: 'http://localhost/storage/images/avatars/default7.png'
+                    -
+                      name: default8
+                      path: 'http://localhost/storage/images/avatars/default8.png'
+                    -
+                      name: default9
+                      path: 'http://localhost/storage/images/avatars/default9.png'
+                    -
+                      name: default10
+                      path: 'http://localhost/storage/images/avatars/default10.png'
+                    -
+                      name: default11
+                      path: 'http://localhost/storage/images/avatars/default11.png'
+                    -
+                      name: default12
+                      path: 'http://localhost/storage/images/avatars/default12.png'
+                    -
+                      name: default13
+                      path: 'http://localhost/storage/images/avatars/default13.png'
+                    -
+                      name: default14
+                      path: 'http://localhost/storage/images/avatars/default14.png'
+                    -
+                      name: default15
+                      path: 'http://localhost/storage/images/avatars/default15.png'
+                    -
+                      name: default16
+                      path: 'http://localhost/storage/images/avatars/default16.png'
+                    -
+                      name: default17
+                      path: 'http://localhost/storage/images/avatars/default17.png'
+                    -
+                      name: default18
+                      path: 'http://localhost/storage/images/avatars/default18.png'
+                    -
+                      name: default19
+                      path: 'http://localhost/storage/images/avatars/default19.png'
+                    -
+                      name: default20
+                      path: 'http://localhost/storage/images/avatars/default20.png'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        name: default1
+                        path: 'http://localhost/storage/images/avatars/default1.png'
+                      -
+                        name: default2
+                        path: 'http://localhost/storage/images/avatars/default2.png'
+                      -
+                        name: default3
+                        path: 'http://localhost/storage/images/avatars/default3.png'
+                      -
+                        name: default4
+                        path: 'http://localhost/storage/images/avatars/default4.png'
+                      -
+                        name: default5
+                        path: 'http://localhost/storage/images/avatars/default5.png'
+                      -
+                        name: default6
+                        path: 'http://localhost/storage/images/avatars/default6.png'
+                      -
+                        name: default7
+                        path: 'http://localhost/storage/images/avatars/default7.png'
+                      -
+                        name: default8
+                        path: 'http://localhost/storage/images/avatars/default8.png'
+                      -
+                        name: default9
+                        path: 'http://localhost/storage/images/avatars/default9.png'
+                      -
+                        name: default10
+                        path: 'http://localhost/storage/images/avatars/default10.png'
+                      -
+                        name: default11
+                        path: 'http://localhost/storage/images/avatars/default11.png'
+                      -
+                        name: default12
+                        path: 'http://localhost/storage/images/avatars/default12.png'
+                      -
+                        name: default13
+                        path: 'http://localhost/storage/images/avatars/default13.png'
+                      -
+                        name: default14
+                        path: 'http://localhost/storage/images/avatars/default14.png'
+                      -
+                        name: default15
+                        path: 'http://localhost/storage/images/avatars/default15.png'
+                      -
+                        name: default16
+                        path: 'http://localhost/storage/images/avatars/default16.png'
+                      -
+                        name: default17
+                        path: 'http://localhost/storage/images/avatars/default17.png'
+                      -
+                        name: default18
+                        path: 'http://localhost/storage/images/avatars/default18.png'
+                      -
+                        name: default19
+                        path: 'http://localhost/storage/images/avatars/default19.png'
+                      -
+                        name: default20
+                        path: 'http://localhost/storage/images/avatars/default20.png'
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: default1
+                        path:
+                          type: string
+                          example: 'http://localhost/storage/images/avatars/default1.png'
+      tags:
+        - User
+  /api/user/me:
+    get:
+      summary: 'Current User Infos'
+      operationId: currentUserInfos
+      description: "Fetch all of the current user's data"
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    last_name: prégaldini
+                    first_name: Fabien
+                    user_name: fab.preg
+                    description: "Je suis fabien et je suis le goat, ceci est ma description, je suis le directeur de TP. Il faut pas lui dire mais j'ai pour objectif de ne pas donner le diplome d'ingénieur à l'élève Romain Bourdin"
+                    email: email@email.com
+                    phone: '0606060606'
+                    bde_id: 1001
+                    avatar_url: null
+                    admission_year: '2024'
+                    created_at: '2026-07-17 16:25:10'
+                    updated_at: '2026-07-17 16:25:22'
+                    email_verified_at: '2026-07-17T14:25:10.000000Z'
+                    sector: IR
+                    sector_id: 2
+                    birth_date: '2000-01-01'
+                  organizations: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      last_name:
+                        type: string
+                        example: prégaldini
+                      first_name:
+                        type: string
+                        example: Fabien
+                      user_name:
+                        type: string
+                        example: fab.preg
+                      description:
+                        type: string
+                        example: "Je suis fabien et je suis le goat, ceci est ma description, je suis le directeur de TP. Il faut pas lui dire mais j'ai pour objectif de ne pas donner le diplome d'ingénieur à l'élève Romain Bourdin"
+                      email:
+                        type: string
+                        example: email@email.com
+                      phone:
+                        type: string
+                        example: '0606060606'
+                      bde_id:
+                        type: integer
+                        example: 1001
+                      avatar_url:
+                        type: string
+                        example: null
+                      admission_year:
+                        type: string
+                        example: '2024'
+                      created_at:
+                        type: string
+                        example: '2026-07-17 16:25:10'
+                      updated_at:
+                        type: string
+                        example: '2026-07-17 16:25:22'
+                      email_verified_at:
+                        type: string
+                        example: '2026-07-17T14:25:10.000000Z'
+                      sector:
+                        type: string
+                        example: IR
+                      sector_id:
+                        type: integer
+                        example: 2
+                      birth_date:
+                        type: string
+                        example: '2000-01-01'
+                  organizations:
+                    type: array
+                    example: []
+      tags:
+        - User
+  '/api/user/{id}':
+    get:
+      summary: 'User Infos'
+      operationId: userInfos
+      description: 'Fetch public data of specified user'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    last_name: prégaldini
+                    first_name: Fabien
+                    user_name: fab.preg
+                    description: "Je suis fabien et je suis le goat, ceci est ma description, je suis le directeur de TP. Il faut pas lui dire mais j'ai pour objectif de ne pas donner le diplome d'ingénieur à l'élève Romain Bourdin"
+                    avatar_url: null
+                    admission_year: '2024'
+                    created_at: '2026-07-17 16:25:10'
+                    updated_at: '2026-07-17 16:25:10'
+                    sector: IR
+                    birth_date: '2000-01-01'
+                  organizations: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      last_name:
+                        type: string
+                        example: prégaldini
+                      first_name:
+                        type: string
+                        example: Fabien
+                      user_name:
+                        type: string
+                        example: fab.preg
+                      description:
+                        type: string
+                        example: "Je suis fabien et je suis le goat, ceci est ma description, je suis le directeur de TP. Il faut pas lui dire mais j'ai pour objectif de ne pas donner le diplome d'ingénieur à l'élève Romain Bourdin"
+                      avatar_url:
+                        type: string
+                        example: null
+                      admission_year:
+                        type: string
+                        example: '2024'
+                      created_at:
+                        type: string
+                        example: '2026-07-17 16:25:10'
+                      updated_at:
+                        type: string
+                        example: '2026-07-17 16:25:10'
+                      sector:
+                        type: string
+                        example: IR
+                      birth_date:
+                        type: string
+                        example: '2000-01-01'
+                  organizations:
+                    type: array
+                    example: []
+      tags:
+        - User
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/user/avatar:
+    post:
+      summary: 'Change Avatar'
+      operationId: changeAvatar
+      description: "Upload an image and replace the current user's avatar with it."
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Avatar uploaded successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'Avatar uploaded successfully'
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                  nullable: false
+              required:
+                - avatar
+  /api/user/avatar/default:
+    post:
+      summary: 'Change Avatar (no upload)'
+      operationId: changeAvatarnoUpload
+      description: "Take an image URL and replace the current user's avatar with it.\n\n<aside class=\"warning\"> Should only be used with images from <b>Default Avatar</b> !</aside>"
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Avatar uploaded successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'Avatar uploaded successfully'
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                default_link:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: jhauhfdibtrxvhtbzbpneks
+                  nullable: false
+                default_name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: nrqupdpkqspeukeigz
+                  nullable: false
+              required:
+                - default_link
+                - default_name
+tags:
+  -
+    name: Authentification
+    description: ''
+  -
+    name: Event
+    description: ''
+  -
+    name: 'Event/Post Common'
+    description: ''
+  -
+    name: Fouaille
+    description: ''
+  -
+    name: Organization
+    description: ''
+  -
+    name: Other
+    description: ''
+  -
+    name: Post
+    description: ''
+  -
+    name: User
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: ''
+security:
+  -
+    default: []
