@@ -8,10 +8,16 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * @group Event/Post Common
+ * @subgroup Category
+ */
 class CategoryController extends Controller
 {
     /**
-     * Store the categories for a given post.
+     * Define Post/Event's Categories.
+     * 
+     * Create an association between categories and an Event/Post
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
@@ -19,9 +25,11 @@ class CategoryController extends Controller
     public function store(Request $request) : \Illuminate\Http\JsonResponse {
         // Validation des données reçues
         $validation = Validator::make($request->all(),[
+            // Example: 1
             'post_id' => 'nullable|exists:posts,id',
             'event_id' => 'nullable|exists:events,id',
             'category_ids' => 'required|array',
+            // Example: 1
             'category_ids.*' => 'exists:category_types,id'
         ]);
 

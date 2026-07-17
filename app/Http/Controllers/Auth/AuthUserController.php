@@ -7,13 +7,19 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+/**
+ * @group Authentification
+ */
 class AuthUserController extends Controller
 {
     /**
-     * Login a user
+     * Login 
+     * 
+     * Check credentials and return an authentification Token
      *
      * @param LoginRequest $request
      *
+     * @unauthenticated
      */
     public function login(LoginRequest $request)
     {
@@ -44,8 +50,10 @@ class AuthUserController extends Controller
     }
 
     /**
-     * Logout a user
+     * Logout
      *
+     * Revoke access of the attached Bearer Token
+     * 
      */
     public function logout()
     {

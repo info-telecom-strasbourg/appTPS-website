@@ -1,0 +1,79 @@
+name: Deploy Scribe Docs
+
+on:
+  push:
+    branches:
+      - dev
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    # Define two separate MySQL services
+    services:
+      mysql_primary:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: bdd
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        ports:
+          - 3306:3306
+      mysql_secondary:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: BdeData
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        ports:
+          - 3307:3306 # Maps to 3307 on localhost to avoid conflict
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: pdo, pdo_mysql
+
+      - name: Install Dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Generate Docs
+        env:
+          APP_NAME: InsidePSBS
+          APP_ENV: local
+          APP_TIMEZONE: Europe/Paris
+          APP_KEY: base64:dummykeymustbe32charslong=
+
+          MAIL_MAILER: log
+          MAIL_FROM_ADDRESS: "docstest@inside.com"
+          MAIL_FROM_NAME: "${APP_NAME}"
+
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: bdd
+          DB_USERNAME: root
+          DB_PASSWORD: ''
+          
+          BDE_DB_CONNECTION: mysql
+          BDE_DB_HOST: 127.0.0.1
+          BDE_DB_PORT: 3307
+          BDE_DB_DATABASE: BdeData
+          BDE_DB_USERNAME: root
+          BDE_DB_PASSWORD: ''
+        run: |
+          APP_KEY=$(php -r "echo 'base64:' . base64_encode(random_bytes(32));")
+          export APP_KEY
+          php artisan migrate:fresh --seed
+          php artisan scribe:generate
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs
+          branch: gh-pages

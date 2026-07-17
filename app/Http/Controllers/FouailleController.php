@@ -9,13 +9,19 @@ use App\Models\Bde\Member;
 use Illuminate\Http\Request;
 use function PHPUnit\Framework\isEmpty;
 
+/**
+ * @group Fouaille
+ */
 class FouailleController extends Controller
 {
 
 
     /**
-     * Get fouaille orders of the user
-     *
+     * Orders
+     * 
+     * Fetch a paginated list of fouaille' orders of the current user
+     * @queryParam per_page int Number of elements per page. Example: 10
+     * @queryParam page int Page number. Example: 1
      * @param Request $request
      */
     public function show(Request $request)
@@ -74,6 +80,11 @@ class FouailleController extends Controller
         ], 200);
     }
 
+    /**
+     * Balance
+     * 
+     * Fetch the current balance of the user
+     */
     public function balance(Request $request)
     {
         $user = $request->user();

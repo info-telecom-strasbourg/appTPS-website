@@ -10,8 +10,17 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
+/**
+ * @group Post
+ * @subgroup Media
+ */
 class MediaController extends Controller
 {
+    /**
+     * Upload Media
+     * 
+     * Upload a Media and associate it to the specified Post
+     */
     public function store(Request $request, $id){
         $validation = Validator::make($request->all(), [
             'medias' => 'required|array',
@@ -64,6 +73,13 @@ class MediaController extends Controller
         }
     }
 
+    /**
+     * Delete Media
+     * 
+     * Remove the specified Media from the Server
+     * 
+     * @queryParam medias_id int[] required The ID of the media to delete
+     */
     public function destroy(Request $request, $id){
         $medias_id = $request->query('medias_id',[]);
 

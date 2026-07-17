@@ -10,6 +10,7 @@
         "algolia/scout-extended": "^3.1",
         "fabpot/goutte": "^4.0",
         "guzzlehttp/guzzle": "^7.8",
+        "knuckleswtf/scribe": "4.40.0",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.10",

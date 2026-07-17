@@ -10,10 +10,15 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * @group User
+ */
 class UserController extends Controller
 {
 
-    /* *
+    /**
+     * Update Current User
+     * 
      * Update the user's different fields (except password)
      *
      * @param Request $request
@@ -67,8 +72,11 @@ class UserController extends Controller
     }
 
 
-    /* *
-     * Get the user's different fields
+    /**
+     * 
+     * Current User Infos
+     * 
+     * Fetch all of the current user's data
      *
      * @param Request $request
      */
@@ -108,6 +116,12 @@ class UserController extends Controller
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 
+    /**
+     * User Infos
+     * 
+     * Fetch public data of specified user
+     * 
+     */
     public function show($id)
     {
         $per_page = request()->query('per_page');
@@ -147,6 +161,15 @@ class UserController extends Controller
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 
+    /**
+     * Users Index
+     * 
+     * Fetch a paginated list of users
+     *
+     * @queryParam per_page int Number of elements per page. Example: 10
+     * @queryParam search string Text to search in Users's last_name/first_name/user_name No-example
+     * @queryParam page int Page number. Example: 1
+     */
     public function index()
     {
         $per_page = request()->query('per_page');
@@ -184,6 +207,11 @@ class UserController extends Controller
         ]])->setEncodingOptions(JSON_PRETTY_PRINT);
     }
 
+    /**
+     * Delete Current User
+     * 
+     * Remove the user from de main database
+     */
     public function delete(Request $request){
         $request->user()->delete();
 

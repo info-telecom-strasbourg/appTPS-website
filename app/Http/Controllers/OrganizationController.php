@@ -5,8 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Bde\Organization;
 use Illuminate\Http\Request;
 
+/**
+ * @group Organization
+ */
 class OrganizationController extends Controller
 {
+    /**
+     * Organization index
+     * 
+     * Fetch a list of the differents organizations. Filter by name available
+     * 
+     * @queryParam search string Text used for partial match with the organization's name/short_name/user_name Example: ci
+     */
     public function index(){
 
         $organization = Organization::filter(request(['search']))->get();
@@ -49,6 +59,13 @@ class OrganizationController extends Controller
         ]])->setEncodingOptions(JSON_PRETTY_PRINT);
     }
 
+    /**
+     * Organization Infos
+     * 
+     * Fetch public data of the specified organization
+     * 
+     * @urlParam id integer required The ID of the Organization Example: 2
+     */
     public function show($id){
         $per_page = request()->query('per_page');
 

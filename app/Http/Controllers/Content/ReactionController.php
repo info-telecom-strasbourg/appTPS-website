@@ -12,13 +12,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * @group Post
+ * @subgroup Reaction
+ */
 class ReactionController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * New Reaction
+     * 
+     * Handle a new Reaction request for the specified Post.
+     * Can lead to either a creation, a modification or a deletion of a reaction.
      *
+     * <aside class="warning"> Reactions to comments are not working at the moment</aside>
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
+     * 
+     * @bodyParam post_comment_id int No-example
+     * @bodyParam reaction_type_id int Example: 2
      */
     public function store(Request $request,$id) : \Illuminate\Http\JsonResponse {
 
@@ -128,6 +140,12 @@ class ReactionController extends Controller
             }
         }
     }
+
+    /**
+     * Reaction Index
+     * 
+     * Fecth a summary list of all reactions to a Post
+     */
     public function index($id) : \Illuminate\Http\JsonResponse {
 
         // Récupérer toutes les réactions avec leurs types et utilisateurs associés

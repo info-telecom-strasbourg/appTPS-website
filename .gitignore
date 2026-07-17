@@ -6,6 +6,7 @@
 .env
 .env.backup
 .phpunit.result.cache
+.scribe
 docker-compose.override.yml
 Homestead.json
 Homestead.yaml
@@ -20,4 +21,5 @@ documentation/site
 .phpactor.json
 compose.yml
 docker/init.sql
+/docs
 

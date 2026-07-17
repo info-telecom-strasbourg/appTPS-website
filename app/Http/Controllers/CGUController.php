@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+/**
+ * @group Other
+ * @subgroup CGU
+ */
 class CGUController extends Controller
 {
+    /**
+     * CGU
+     * 
+     * Fetch the hardcoded CGU
+     * @unauthenticated
+     */
     public function index()
     {
         return response()->json([

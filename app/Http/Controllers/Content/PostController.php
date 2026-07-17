@@ -9,14 +9,27 @@ use App\Models\Media;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+/**
+ * @group Post
+ */
 class PostController extends Controller
 {
 
-    /*
-    * Show all posts in the database
+    /**
+    * Post Index
+    *
+    * Show all posts in the database. Filters can be applied.
     *
     * @param Request $request
     * @return \Illuminate\Http\JsonResponse
+     *
+     * @queryParam per_page int Number of elements per page. Example: 10
+     * @queryParam category_id int[] The id of an existing record in the category type table. Example: [2]
+     * @queryParam user_name string The username of an organization No-example
+     * @queryParam user_id int The id of an existing record in the user table No-example
+     * @queryParam asso_id int The id of an existing record in the organization table No-example
+     * @queryParam search string Text to look for in Post's body No-example
+     * @queryParam page int Page number. Example: 1
     */
     public function index(Request $request) : \Illuminate\Http\JsonResponse {
         $per_page = $request->query('per_page');
@@ -123,8 +136,10 @@ class PostController extends Controller
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 
-    /*
-    * Show a specific post
+    /**
+     * Post Infos
+    *
+    * Show a specific post and its data.
     *
     * @param Request $request
     * @return \Illuminate\Http\JsonResponse
@@ -185,6 +200,11 @@ class PostController extends Controller
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 
+    /**
+     * Delete Post
+     * 
+     * Remove the specified Post and its comments from the database.
+     */
     public function delete(Request $request,$id) : \Illuminate\Http\JsonResponse {
         $user = $request->user();
 
@@ -223,6 +243,14 @@ class PostController extends Controller
         ], 200);
     }
 
+    /**
+     * Update Post
+     * 
+     * Update the specified post's text and categories
+     * 
+     * @bodyParam body string required Example: The updated text of the post
+     * @bodyParam category_ids int[] required
+     */
     public function update(Request $request, $id) : \Illuminate\Http\JsonResponse {
         $validated = $request->validate([
             'body' => 'required|string',

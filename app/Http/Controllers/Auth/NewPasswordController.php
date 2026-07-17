@@ -14,6 +14,9 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * @group Authentification
+ */
 class NewPasswordController extends Controller
 {
     /**
@@ -69,14 +72,19 @@ class NewPasswordController extends Controller
 
 
     /**
+     * Change Password
+     * 
      * Handle an incoming new password request.
      *
+     * @bodyParam password_confirmation string Example: test
      */
     public function update(Request $request){
         $validator = Validator::make($request->all(), [
+            //Example: test
             'former_password' => [
                 'required',
             ],
+            //Example: test
             'password' => [
                 'required',
                 'confirmed',

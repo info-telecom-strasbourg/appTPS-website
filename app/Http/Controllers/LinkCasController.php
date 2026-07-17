@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Subfission\Cas\Facades\Cas;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @group Other
+ */
 class LinkCasController extends Controller
 {    
     public function index(Request $request){

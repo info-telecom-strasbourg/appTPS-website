@@ -8,11 +8,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * @group Authentification
+ */
 class PasswordResetLinkController extends Controller
 {
     /**
-     * Handle an incoming password reset link request.
-     *
+     * Reset Password
+     * 
+     * Send a mail with a reset password link.
+     * @unauthenticated
      */
     public function store(Request $request) {
         $request->validate([
