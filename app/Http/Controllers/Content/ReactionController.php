@@ -139,14 +139,35 @@ class ReactionController extends Controller
     /**
      * Reaction Index
      * 
-     * Fecth a summary list of all reactions to a Post
+     * Fecth a summary list of all reactions to a Post or a Comment
+     * 
+     * @response status=200 {"data": [{"reaction_type_id": 2,"reaction_type": "like","icon": "\ud83d\udc4d","total": 1,"users": [{"id": 1,"name": "Fabien pr\u00e9galdini","avatar": null }]}]}
+     * @response status=422 {"message":"The given data was invalid.","errors":{"post_id":["The post id field prohibits post comment id from being present."],"post_comment_id":["The post comment id field prohibits post id from being present."]}}
      */
-    public function index($id) : \Illuminate\Http\JsonResponse {
+    public function index(Request $request) : \Illuminate\Http\JsonResponse {
+
+        $validation = Validator::make($request->all(), [
+            // Example: 1
+            'post_id' => ['nullable','integer','required_without:post_comment_id','prohibits:post_comment_id','exists:posts,id'],
+            // No-example
+            'post_comment_id' => ['nullable','integer','required_without:post_id','prohibits:post_id','exists:post_comments,id'],
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json([
+                'message' =>  'The given data was invalid.',
+                'errors' => $validation->errors()
+            ], 422);
+        }
 
         // Récupérer toutes les réactions avec leurs types et utilisateurs associés
-        $reactions = Reaction::with('reactionType','user')
-            ->where('post_id', $id)
-            ->get();
+        $query = Reaction::with('reactionType', 'user');
+        if ($request->post_id) {
+            $query->where('post_id', $request->post_id);
+        } else {
+            $query->where('post_comment_id', $request->post_comment_id);
+        }
+        $reactions = $query->get();
 
         // Regrouper les réactions par type de réaction
         $groupedReactions = $reactions->groupBy('reaction_type_id');
@@ -162,7 +183,7 @@ class ReactionController extends Controller
                     return [
                         'id' => $reaction->user->id,
                         'name' => $reaction->user->getFullName(),
-                        'avatar' => $reaction->user->avatar->path,
+                        'avatar' => $reaction->user->getAvatarPath(),
                     ];
                 })
             ];

@@ -212,9 +212,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
             /** =============== Réactions =============== */
 
-            Route::get('{id}/reaction', [ReactionController::class, 'index'])
-                ->name('reaction.index');
-
             Route::get('{id}/reactiontype', [ReactionTypeController::class, 'index'])
                 ->name('reactiontype.index');
 
@@ -225,6 +222,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::post('{id}/media/destroy', [MediaController::class, 'destroy'])
                 ->name('media.destroy');
         });
+
+        Route::get('reaction', [ReactionController::class, 'index'])
+            ->name('reaction.index');
 
         Route::post('reaction', [ReactionController::class, 'store'])
             ->name('reaction.store');
