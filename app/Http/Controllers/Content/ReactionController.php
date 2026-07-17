@@ -21,49 +21,44 @@ class ReactionController extends Controller
     /**
      * New Reaction
      * 
-     * Handle a new Reaction request for the specified Post.
+     * Handle a new Reaction request for the specified Post or Comment.
      * Can lead to either a creation, a modification or a deletion of a reaction.
      *
-     * <aside class="warning"> Reactions to comments are not working at the moment</aside>
-     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      * 
-     * @bodyParam post_comment_id int No-example
-     * @bodyParam reaction_type_id int Example: 2
+     * @response status=422 {"message":"The given data was invalid.","errors":{"post_id":["The post id field prohibits post comment id from being present."],"post_comment_id":["The post comment id field prohibits post id from being present."]}}
      */
-    public function store(Request $request,$id) : \Illuminate\Http\JsonResponse {
+    public function store(Request $request ) : \Illuminate\Http\JsonResponse {
 
         $validation = Validator::make($request->all(), [
-            'post_comment_id' => 'nullable|exists:post_comments,id',
-            'reaction_type_id' => 'required|exists:reaction_types,id',
+            // Example: 1
+            'post_id' => ['nullable','integer','required_without:post_comment_id','prohibits:post_comment_id','exists:posts,id'],
+            // No-example
+            'post_comment_id' => ['nullable','integer','required_without:post_id','prohibits:post_id','exists:post_comments,id'],
+            // Example: 2
+            'reaction_type_id' => ['required','integer','exists:reaction_types,id'],
         ]);
 
-        if ($validation->fails() || ($id == null && $request->post_comment_id == null) || ($id != null && $request->post_comment_id != null)) {
+        if ($validation->fails()) {
             return response()->json([
                 'message' =>  'The given data was invalid.',
                 'errors' => $validation->errors()
             ], 422);
         }
 
-        $post = Post::where('id', $id)->first();
-
         if ($request->post_comment_id) {
             $comment = PostComment::where('id', $request->post_comment_id)->first();
         }
         else {
             $comment = null;
+            $post = Post::where('id', $request->post_id)->first();
         }
 
-        if (!$post) {
-            return response()->json([
-                'message' => 'Post not found.'
-            ], 404);
-        }
 
         // Vérifier si l'utilisateur a déjà réagi au post avec le même type de réaction
         $existingReaction = Reaction::where('user_id', $request->user()->id)
-            ->where('post_id', $id)
+            ->where('post_id', $request->post_id)
             ->Where('post_comment_id', $request->post_comment_id)
             ->where('reaction_type_id', $request->reaction_type_id)
             ->first();
@@ -87,7 +82,7 @@ class ReactionController extends Controller
         } else {
             // Sinon, mettre à jour la réaction existante avec le nouveau type de réaction
             $existingReaction = Reaction::where('user_id',  $request->user()->id)
-                ->where('post_id', $id)
+                ->where('post_id', $request->post_id)
                 ->Where('post_comment_id', $request->post_comment_id)
                 ->first();
 
@@ -113,7 +108,7 @@ class ReactionController extends Controller
                 if ($comment == null) {
                     $reaction = Reaction::create([
                         'user_id' =>  $request->user()->id,
-                        'post_id' => $id,
+                        'post_id' => $request->post_id,
                         'reaction_type_id' => $request->reaction_type_id,
                     ]);
                 } else {
