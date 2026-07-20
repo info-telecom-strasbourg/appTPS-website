@@ -139,7 +139,7 @@ class ReactionController extends Controller
     /**
      * Reaction Index
      * 
-     * Fecth a summary list of all reactions to a Post or a Comment
+     * Fetch a summary list of all reactions to a Post or a Comment
      * 
      * @response status=200 {"data": [{"reaction_type_id": 2,"reaction_type": "like","icon": "\ud83d\udc4d","total": 1,"users": [{"id": 1,"name": "Fabien pr\u00e9galdini","avatar": null }]}]}
      * @response status=422 {"message":"The given data was invalid.","errors":{"post_id":["The post id field prohibits post comment id from being present."],"post_comment_id":["The post comment id field prohibits post id from being present."]}}
