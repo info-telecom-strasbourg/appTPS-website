@@ -218,6 +218,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
                 ->name('media.destroy');
         });
 
+        /** =============== Commentaires =============== */
+
+            Route::delete('comment/{id}', [PostCommentController::class, 'delete'])
+                ->name('comment.delete');
+
         /** =============== Réactions =============== */
 
         Route::get('reactiontype', [ReactionTypeController::class, 'index'])
