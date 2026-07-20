@@ -220,6 +220,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         /** =============== Commentaires =============== */
 
+            Route::patch('comment/{id}', [PostCommentController::class, 'update'])
+                ->name('comment.update');
+
             Route::delete('comment/{id}', [PostCommentController::class, 'delete'])
                 ->name('comment.delete');
 
