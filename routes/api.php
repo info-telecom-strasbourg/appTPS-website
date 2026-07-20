@@ -210,17 +210,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::post('{id}/comment', [PostCommentController::class, 'store'])
                 ->name('comment.store');
 
-            /** =============== Réactions =============== */
-
-            Route::post('{id}/reaction', [ReactionController::class, 'store'])
-                ->name('reaction.store');
-
-            Route::get('{id}/reaction', [ReactionController::class, 'index'])
-                ->name('reaction.index');
-
-            Route::get('{id}/reactiontype', [ReactionTypeController::class, 'index'])
-                ->name('reactiontype.index');
-
             /** =============== Medias =============== */
             Route::post('{id}/media', [MediaController::class, 'store'])
                 ->name('media.store');
@@ -228,6 +217,17 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::post('{id}/media/destroy', [MediaController::class, 'destroy'])
                 ->name('media.destroy');
         });
+
+        /** =============== Réactions =============== */
+
+        Route::get('reactiontype', [ReactionTypeController::class, 'index'])
+            ->name('reactiontype.index');
+
+        Route::get('reaction', [ReactionController::class, 'index'])
+            ->name('reaction.index');
+
+        Route::post('reaction', [ReactionController::class, 'store'])
+            ->name('reaction.store');
 
         /** =============== Contenus =============== */
 
