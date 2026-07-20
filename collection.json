@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "InsidePSBS",
-        "_postman_id": "15b3e5ef-1bab-44e2-bfca-7809fec821b6",
+        "_postman_id": "69a9951c-e245-4d87-bcfe-049169f5613c",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -77,7 +77,7 @@
                                 }
                             ],
                             "code": 201,
-                            "body": "{\"user\":{\"bde_id\":1002,\"last_name\":\"Doe\",\"first_name\":\"Jhon\",\"sector_id\":2,\"user_name\":\"viction\",\"email\":\"viction852@glups.com\",\"phone\":\"0601020304\",\"admission_year\":2024,\"birth_date\":\"2012-12-12\",\"updated_at\":\"2026-07-17T14:25:21.000000Z\",\"created_at\":\"2026-07-17T14:25:21.000000Z\",\"id\":102,\"expo_token\":null},\"token\":\"104|scdrNOJtULYejtUQQwuLfuX8U9pgOlV9PzCX1qR3e855f022\"}",
+                            "body": "{\"user\":{\"bde_id\":1002,\"last_name\":\"Doe\",\"first_name\":\"Jhon\",\"sector_id\":2,\"user_name\":\"viction\",\"email\":\"viction852@glups.com\",\"phone\":\"0601020304\",\"admission_year\":2024,\"birth_date\":\"2012-12-12\",\"updated_at\":\"2026-07-20T07:57:17.000000Z\",\"created_at\":\"2026-07-20T07:57:17.000000Z\",\"id\":102,\"expo_token\":null},\"token\":\"104|DICpSkJkFYGqc1LF1e6KRv0ZF3scS37KgIdPo1OJ2c382cc2\"}",
                             "name": ""
                         }
                     ]
@@ -183,7 +183,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"ktorphy@example.net\",\"password\":\"Rp2UNe%ES'(Dp\"}"
+                            "raw": "{\"email\":\"jhayes@example.org\",\"password\":\";`.@GZD*&4.u\"}"
                         },
                         "description": "Check credentials and return an authentification Token",
                         "auth": {
@@ -246,7 +246,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"else33@example.net\"}"
+                            "raw": "{\"email\":\"damore.anabelle@example.com\"}"
                         },
                         "description": "Send a mail with a reset password link.",
                         "auth": {
@@ -554,13 +554,13 @@
                                 },
                                 {
                                     "key": "organization_id",
-                                    "value": "7",
+                                    "value": "19",
                                     "description": "",
                                     "disabled": false
                                 },
                                 {
                                     "key": "previous_date",
-                                    "value": "sit",
+                                    "value": "laboriosam",
                                     "description": "",
                                     "disabled": false
                                 },
@@ -571,7 +571,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/event?per_page=10&start_at=2020-07-08T18%3A24%3A53&organization_id=7&previous_date=sit&page=1"
+                            "raw": "{{baseUrl}}\/api\/event?per_page=10&start_at=2020-07-08T18%3A24%3A53&organization_id=19&previous_date=laboriosam&page=1"
                         },
                         "method": "GET",
                         "header": [
@@ -681,7 +681,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Tempore unde dicta deserunt labore totam.\",\n        \"date_format\": {\n            \"start_at_simplified\": \"08h28\",\n            \"end_at_simplified\": \"23h48\",\n            \"date\": \"dans 1 semaine\",\n            \"days_diff\": 0\n        },\n        \"start_at\": \"2026-07-29 08:28:53\",\n        \"end_at\": \"2026-07-29 23:48:01\",\n        \"location\": \"80677 Nora Locks Suite 200\\nIlamouth, NC 77114-1794\",\n        \"color\": \"#0865D2\",\n        \"author\": {\n            \"user_is_author\": false,\n            \"is_organization\": true,\n            \"id\": 12,\n            \"name\": \"Taya\",\n            \"short_name\": \"animi\",\n            \"user_name\": \"dpouros\",\n            \"logo_url\": null\n        }\n    }\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Sit maxime aut eos architecto eveniet officia et.\",\n        \"date_format\": {\n            \"start_at_simplified\": \"08h08\",\n            \"end_at_simplified\": \"13h04\",\n            \"date\": \"dimanche\",\n            \"days_diff\": 0\n        },\n        \"start_at\": \"2026-07-26 08:08:10\",\n        \"end_at\": \"2026-07-26 13:04:00\",\n        \"location\": \"9698 Gutkowski Inlet Suite 461\\nBrionnastad, OK 70379-3160\",\n        \"color\": \"#046b70\",\n        \"author\": {\n            \"user_is_author\": false,\n            \"is_organization\": true,\n            \"id\": 4,\n            \"name\": \"Oren\",\n            \"short_name\": \"modi\",\n            \"user_name\": \"zprice\",\n            \"logo_url\": null\n        }\n    }\n}",
                             "name": ""
                         }
                     ]
@@ -915,7 +915,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"my Event !\",\"body\":\"Hello this is my Post linked to an Event!\",\"organization_id\":3,\"start_at\":\"2026-07-08T18:24:53\",\"end_at\":\"2026-07-08T19:24:53\",\"uploaded_at\":\"2026-07-17T16:25:23\",\"location\":\"7 golden street, Eldorado\",\"create_event\":\"1\",\"create_post\":\"1\"}"
+                            "raw": "{\"title\":\"my Event !\",\"body\":\"Hello this is my Post linked to an Event!\",\"organization_id\":3,\"start_at\":\"2026-07-08T18:24:53\",\"end_at\":\"2026-07-08T19:24:53\",\"uploaded_at\":\"2026-07-20T09:57:19\",\"location\":\"7 golden street, Eldorado\",\"create_event\":\"1\",\"create_post\":\"1\"}"
                         },
                         "description": "Create a Post, an Event or both, and associate them together\n\nAt least one of 'create_event' or 'create_post' should be set to '1'"
                     },
@@ -936,7 +936,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "27"
+                                    "value": "28"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -1024,7 +1024,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":{\"orders\":[{\"date\":\"2026-07-17 15:12:04\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":87.5,\"total_price\":\"20.00\",\"amount\":1,\"product\":null},{\"date\":\"2026-07-17 12:38:07\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":92.3,\"total_price\":\"-4.80\",\"amount\":4,\"product\":{\"name\":\"cocktail12\",\"type\":\"soiree\",\"unit_price\":\"-1.2\"}},{\"date\":\"2026-07-17 12:18:27\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":94.7,\"total_price\":\"-2.40\",\"amount\":2,\"product\":{\"name\":\"metre\",\"type\":\"shot\",\"unit_price\":\"-1.2\"}},{\"date\":\"2026-07-17 10:19:12\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":100.7,\"total_price\":\"-6.00\",\"amount\":5,\"product\":{\"name\":\"meteor\",\"type\":\"soiree\",\"unit_price\":\"-1.2\"}},{\"date\":\"2026-07-17 10:09:30\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":105.9,\"total_price\":\"-5.20\",\"amount\":2,\"product\":{\"name\":\"pizza\",\"type\":\"afterwork\",\"unit_price\":\"-2.6\"}},{\"date\":\"2026-07-17 10:03:13\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":55.900000000000006,\"total_price\":\"50.00\",\"amount\":1,\"product\":null},{\"date\":\"2026-07-17 09:16:13\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":50.900000000000006,\"total_price\":\"5.00\",\"amount\":1,\"product\":null},{\"date\":\"2026-07-17 08:06:19\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":54.50000000000001,\"total_price\":\"-3.60\",\"amount\":3,\"product\":{\"name\":\"meteor\",\"type\":\"soiree\",\"unit_price\":\"-1.2\"}},{\"date\":\"2026-07-17 06:55:49\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":59.300000000000004,\"total_price\":\"-4.80\",\"amount\":4,\"product\":{\"name\":\"metre\",\"type\":\"shot\",\"unit_price\":\"-1.2\"}},{\"date\":\"2026-07-17 06:51:17\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":65.9,\"total_price\":\"-6.60\",\"amount\":3,\"product\":{\"name\":\"cookies\",\"type\":\"gouter\",\"unit_price\":\"-2.2\"}}]},\"meta\":{\"total\":200,\"per_page\":10,\"current_page\":1,\"last_page\":20,\"first_page_url\":\"http:\\\/\\\/localhost\\\/api\\\/fouaille?page=1&per_page=10\",\"last_page_url\":\"http:\\\/\\\/localhost\\\/api\\\/fouaille?page=20&per_page=10\",\"next_page_url\":\"http:\\\/\\\/localhost\\\/api\\\/fouaille?page=2&per_page=10\",\"prev_page_url\":\"&per_page=10\",\"path\":\"http:\\\/\\\/localhost\\\/api\\\/fouaille\",\"from\":1,\"to\":10}}",
+                            "body": "{\"data\":{\"orders\":[{\"date\":\"2026-07-20 09:26:56\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":115.5,\"total_price\":\"-8.00\",\"amount\":4,\"product\":{\"name\":\"sandwich\",\"type\":\"afterwork\",\"unit_price\":\"-2\"}},{\"date\":\"2026-07-20 08:30:48\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":118.1,\"total_price\":\"-2.60\",\"amount\":1,\"product\":{\"name\":\"pizza\",\"type\":\"afterwork\",\"unit_price\":\"-2.6\"}},{\"date\":\"2026-07-20 07:27:50\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":120.1,\"total_price\":\"-2.00\",\"amount\":1,\"product\":{\"name\":\"sandwich\",\"type\":\"afterwork\",\"unit_price\":\"-2\"}},{\"date\":\"2026-07-20 02:36:11\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":126.1,\"total_price\":\"-6.00\",\"amount\":3,\"product\":{\"name\":\"sandwich\",\"type\":\"afterwork\",\"unit_price\":\"-2\"}},{\"date\":\"2026-07-20 02:20:27\",\"date_format\":\"Aujourd'hui\",\"actual_balance\":76.1,\"total_price\":\"50.00\",\"amount\":1,\"product\":null},{\"date\":\"2026-07-19 21:16:20\",\"date_format\":\"Hier\",\"actual_balance\":82.1,\"total_price\":\"-6.00\",\"amount\":3,\"product\":{\"name\":\"sandwich\",\"type\":\"afterwork\",\"unit_price\":\"-2\"}},{\"date\":\"2026-07-19 21:15:18\",\"date_format\":\"Hier\",\"actual_balance\":85.3,\"total_price\":\"-3.20\",\"amount\":2,\"product\":{\"name\":\"bordeaux\",\"type\":\"oeno\",\"unit_price\":\"-1.6\"}},{\"date\":\"2026-07-19 19:24:49\",\"date_format\":\"Hier\",\"actual_balance\":87.5,\"total_price\":\"-2.20\",\"amount\":1,\"product\":{\"name\":\"cookies\",\"type\":\"gouter\",\"unit_price\":\"-2.2\"}},{\"date\":\"2026-07-19 14:54:15\",\"date_format\":\"Hier\",\"actual_balance\":91.1,\"total_price\":\"-3.60\",\"amount\":3,\"product\":{\"name\":\"metre\",\"type\":\"shot\",\"unit_price\":\"-1.2\"}},{\"date\":\"2026-07-19 14:24:48\",\"date_format\":\"Hier\",\"actual_balance\":97.5,\"total_price\":\"-6.40\",\"amount\":4,\"product\":{\"name\":\"bordeaux\",\"type\":\"oeno\",\"unit_price\":\"-1.6\"}}]},\"meta\":{\"total\":200,\"per_page\":10,\"current_page\":1,\"last_page\":20,\"first_page_url\":\"http:\\\/\\\/localhost\\\/api\\\/fouaille?page=1&per_page=10\",\"last_page_url\":\"http:\\\/\\\/localhost\\\/api\\\/fouaille?page=20&per_page=10\",\"next_page_url\":\"http:\\\/\\\/localhost\\\/api\\\/fouaille?page=2&per_page=10\",\"prev_page_url\":\"&per_page=10\",\"path\":\"http:\\\/\\\/localhost\\\/api\\\/fouaille\",\"from\":1,\"to\":10}}",
                             "name": ""
                         }
                     ]
@@ -1216,7 +1216,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\n    \"organization\": {\n        \"id\": 2,\n        \"short_name\": \"ipsam\",\n        \"name\": \"Adrianna\",\n        \"user_name\": \"ppfeffer\",\n        \"description\": \"Perspiciatis doloribus fugit rerum aut non aliquid dolor. Dolore et asperiores labore deleniti sit dolor.\",\n        \"website_link\": \"http:\\\/\\\/www.balistreri.com\\\/culpa-nostrum-qui-nesciunt-accusamus-qui-quas-laudantium\",\n        \"facebook_link\": \"https:\\\/\\\/www.bergstrom.com\\\/tenetur-dolore-dicta-nobis-dicta-voluptatibus\",\n        \"twitter_link\": \"https:\\\/\\\/www.terry.com\\\/repellendus-repellat-provident-accusantium-et-aspernatur-iusto-corporis\",\n        \"instagram_link\": \"http:\\\/\\\/www.osinski.com\\\/aut-et-et-soluta-officia.html\",\n        \"discord_link\": \"https:\\\/\\\/effertz.com\\\/facilis-sequi-omnis-repudiandae-animi-quae-distinctio-quo.html\",\n        \"email\": \"mlockman@example.com\",\n        \"logo_url\": null\n    },\n    \"members\": [\n        {\n            \"id\": 63,\n            \"role\": \"spons\",\n            \"first_name\": \"Nickolas\",\n            \"last_name\": \"Abbott\",\n            \"avatar_url\": null\n        },\n        {\n            \"id\": 101,\n            \"role\": \"president\",\n            \"first_name\": \"Liliane\",\n            \"last_name\": \"Vandervort\",\n            \"avatar_url\": null\n        },\n        {\n            \"id\": 70,\n            \"role\": \"reseaux\",\n            \"first_name\": \"Gabriel\",\n            \"last_name\": \"Haley\",\n            \"avatar_url\": null\n        }\n    ]\n}",
+                            "body": "{\n    \"organization\": {\n        \"id\": 2,\n        \"short_name\": \"dolore\",\n        \"name\": \"Jordon\",\n        \"user_name\": \"beahan.floyd\",\n        \"description\": \"Tempora ut dicta aut sint odio. Cumque incidunt exercitationem quam minima iste. Ut ullam eos et optio ipsa.\",\n        \"website_link\": \"http:\\\/\\\/bayer.net\\\/iusto-dolores-non-ad-rem-veritatis\",\n        \"facebook_link\": \"http:\\\/\\\/berge.biz\\\/\",\n        \"twitter_link\": \"http:\\\/\\\/www.wolf.info\\\/sed-eligendi-sint-in-quibusdam.html\",\n        \"instagram_link\": \"http:\\\/\\\/mayer.com\\\/fugit-laborum-vel-explicabo-recusandae-eum-cupiditate\",\n        \"discord_link\": \"https:\\\/\\\/hamill.com\\\/animi-facere-recusandae-reiciendis-numquam-aut-cumque-rem-repellendus.html\",\n        \"email\": \"idaugherty@example.com\",\n        \"logo_url\": null\n    },\n    \"members\": [\n        {\n            \"id\": 75,\n            \"role\": \"tr\\u00e9sorier\",\n            \"first_name\": \"Athena\",\n            \"last_name\": \"Botsford\",\n            \"avatar_url\": null\n        },\n        {\n            \"id\": 32,\n            \"role\": \"spons\",\n            \"first_name\": \"Cierra\",\n            \"last_name\": \"Reichel\",\n            \"avatar_url\": null\n        }\n    ]\n}",
                             "name": ""
                         }
                     ]
@@ -1337,7 +1337,7 @@
                                         },
                                         {
                                             "key": "x-ratelimit-remaining",
-                                            "value": "26"
+                                            "value": "27"
                                         },
                                         {
                                             "key": "access-control-allow-origin",
@@ -1400,7 +1400,7 @@
                                         },
                                         {
                                             "key": "x-ratelimit-remaining",
-                                            "value": "25"
+                                            "value": "26"
                                         },
                                         {
                                             "key": "access-control-allow-origin",
@@ -1466,7 +1466,7 @@
                                         },
                                         {
                                             "key": "x-ratelimit-remaining",
-                                            "value": "24"
+                                            "value": "25"
                                         },
                                         {
                                             "key": "access-control-allow-origin",
@@ -1586,7 +1586,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\n    \"data\": [\n        {\n            \"id\": 62,\n            \"event_id\": 10,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 16 heures\",\n            \"uploaded_at\": \"2026-07-17 00:15:39\",\n            \"color\": \"#046b70\",\n            \"categories\": [\n                {\n                    \"name\": \"Activit\\u00e9s\"\n                },\n                {\n                    \"name\": \"Admis 2023\"\n                }\n            ],\n            \"created_at\": \"2026-07-17 00:15:39\",\n            \"updated_at\": \"2026-07-17 16:25:18\",\n            \"reaction_count\": 0,\n            \"reaction\": null,\n            \"comment_count\": 1,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 14,\n                \"name\": \"Brett\",\n                \"user_name\": \"neffertz\",\n                \"short_name\": \"corrupti\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 63,\n            \"event_id\": 17,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 23 heures\",\n            \"uploaded_at\": \"2026-07-16 16:53:36\",\n            \"color\": \"#0865D2\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                },\n                {\n                    \"name\": \"Boite Tactique\"\n                }\n            ],\n            \"created_at\": \"2026-07-16 16:53:36\",\n            \"updated_at\": \"2026-07-17 16:25:18\",\n            \"reaction_count\": 1,\n            \"reaction\": null,\n            \"comment_count\": 2,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 9,\n                \"name\": \"Caleigh\",\n                \"user_name\": \"wmckenzie\",\n                \"short_name\": \"non\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 35,\n            \"event_id\": null,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 3 jours\",\n            \"uploaded_at\": \"2026-07-14 04:16:04\",\n            \"color\": \"#046b70\",\n            \"categories\": [\n                {\n                    \"name\": \"Activit\\u00e9s\"\n                },\n                {\n                    \"name\": \"Objets Perdus\"\n                },\n                {\n                    \"name\": \"Admis 2023\"\n                }\n            ],\n            \"created_at\": \"2026-07-14 04:16:04\",\n            \"updated_at\": \"2026-07-17 16:25:18\",\n            \"reaction_count\": 0,\n            \"reaction\": null,\n            \"comment_count\": 1,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 1,\n                \"name\": \"Annabel\",\n                \"user_name\": \"beier.bradley\",\n                \"short_name\": \"aliquid\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 50,\n            \"event_id\": 1,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 3 jours\",\n            \"uploaded_at\": \"2026-07-14 01:34:04\",\n            \"color\": \"#0865D2\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                }\n            ],\n            \"created_at\": \"2026-07-14 01:34:04\",\n            \"updated_at\": \"2026-07-17 16:25:18\",\n            \"reaction_count\": 1,\n            \"reaction\": null,\n            \"comment_count\": 2,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 15,\n                \"name\": \"Madyson\",\n                \"user_name\": \"herbert83\",\n                \"short_name\": \"labore\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 40,\n            \"event_id\": null,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 3 jours\",\n            \"uploaded_at\": \"2026-07-14 01:01:52\",\n            \"color\": \"#D20808\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                },\n                {\n                    \"name\": \"Fouailles\"\n                }\n            ],\n            \"created_at\": \"2026-07-14 01:01:52\",\n            \"updated_at\": \"2026-07-17 16:25:18\",\n            \"reaction_count\": 0,\n            \"reaction\": null,\n            \"comment_count\": 4,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 5,\n                \"name\": \"Jeffrey\",\n                \"user_name\": \"robert.nader\",\n                \"short_name\": \"nobis\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 59,\n            \"event_id\": 3,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 5 jours\",\n            \"uploaded_at\": \"2026-07-12 05:21:59\",\n            \"color\": \"#0865D2\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                }\n            ],\n            \"created_at\": \"2026-07-12 05:21:59\",\n            \"updated_at\": \"2026-07-17 16:25:18\",\n            \"reaction_count\": 1,\n            \"reaction\": null,\n            \"comment_count\": 3,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 9,\n                \"name\": \"Caleigh\",\n                \"user_name\": \"wmckenzie\",\n                \"short_name\": \"non\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 85,\n            \"event_id\": 30,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 6 jours\",\n            \"uploaded_at\": \"2026-07-11 15:30:40\",\n            \"color\": \"#0865D2\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                }\n            ],\n            \"created_at\": \"2026-07-11 15:30:40\",\n            \"updated_at\": \"2026-07-17 16:25:19\",\n            \"reaction_count\": 0,\n            \"reaction\": null,\n            \"comment_count\": 1,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": false,\n                \"id\": 71,\n                \"name\": \"Lucienne Nolan\",\n                \"user_name\": \"king.anderson\",\n                \"short_name\": null,\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 16,\n            \"event_id\": 29,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 1 semaine\",\n            \"uploaded_at\": \"2026-07-08 16:22:15\",\n            \"color\": \"#D27508\",\n            \"categories\": [\n                {\n                    \"name\": \"Neurchi\"\n                },\n                {\n                    \"name\": \"Admis 2023\"\n                },\n                {\n                    \"name\": \"Admis 2023\"\n                }\n            ],\n            \"created_at\": \"2026-07-08 16:22:15\",\n            \"updated_at\": \"2026-07-17 16:25:18\",\n            \"reaction_count\": 1,\n            \"reaction\": null,\n            \"comment_count\": 2,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 17,\n                \"name\": \"Cristopher\",\n                \"user_name\": \"mbode\",\n                \"short_name\": \"minus\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 73,\n            \"event_id\": 1,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 1 semaine\",\n            \"uploaded_at\": \"2026-07-08 14:46:01\",\n            \"color\": \"#0865D2\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                },\n                {\n                    \"name\": \"Neurchi\"\n                },\n                {\n                    \"name\": \"Objets Perdus\"\n                }\n            ],\n            \"created_at\": \"2026-07-08 14:46:01\",\n            \"updated_at\": \"2026-07-17 16:25:19\",\n            \"reaction_count\": 0,\n            \"reaction\": null,\n            \"comment_count\": 2,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 17,\n                \"name\": \"Cristopher\",\n                \"user_name\": \"mbode\",\n                \"short_name\": \"minus\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 20,\n            \"event_id\": 7,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 1 semaine\",\n            \"uploaded_at\": \"2026-07-04 05:56:04\",\n            \"color\": \"#0865D2\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                },\n                {\n                    \"name\": \"Boite Tactique\"\n                }\n            ],\n            \"created_at\": \"2026-07-04 05:56:04\",\n            \"updated_at\": \"2026-07-17 16:25:18\",\n            \"reaction_count\": 0,\n            \"reaction\": null,\n            \"comment_count\": 1,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": false,\n                \"id\": 94,\n                \"name\": \"Josefa Blick\",\n                \"user_name\": \"qlittel\",\n                \"short_name\": null,\n                \"logo_url\": null\n            }\n        }\n    ],\n    \"meta\": {\n        \"total\": 15,\n        \"per_page\": 10,\n        \"current_page\": 1,\n        \"last_page\": 2,\n        \"first_page_url\": \"http:\/\/localhost\/api\/post?page=1&per_page=10\",\n        \"last_page_url\": \"http:\/\/localhost\/api\/post?page=2&per_page=10\",\n        \"next_page_url\": \"http:\/\/localhost\/api\/post?page=2&per_page=10\",\n        \"prev_page_url\": \"&per_page=10\",\n        \"path\": \"http:\/\/localhost\/api\/post\",\n        \"from\": 1,\n        \"to\": 10\n    }\n}",
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 62,\n            \"event_id\": 22,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 9 heures\",\n            \"uploaded_at\": \"2026-07-20 00:01:25\",\n            \"color\": \"#D2BE08\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                },\n                {\n                    \"name\": \"Clubs et Assos\"\n                }\n            ],\n            \"created_at\": \"2026-07-20 00:01:25\",\n            \"updated_at\": \"2026-07-20 09:57:14\",\n            \"reaction_count\": 0,\n            \"reaction\": null,\n            \"comment_count\": 3,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": false,\n                \"id\": 45,\n                \"name\": \"Carissa Zieme\",\n                \"user_name\": \"qyost\",\n                \"short_name\": null,\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 98,\n            \"event_id\": null,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 14 heures\",\n            \"uploaded_at\": \"2026-07-19 19:09:22\",\n            \"color\": \"#0865D2\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                },\n                {\n                    \"name\": \"Objets Perdus\"\n                }\n            ],\n            \"created_at\": \"2026-07-19 19:09:22\",\n            \"updated_at\": \"2026-07-20 09:57:14\",\n            \"reaction_count\": 1,\n            \"reaction\": null,\n            \"comment_count\": 2,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 10,\n                \"name\": \"Ervin\",\n                \"user_name\": \"mylene98\",\n                \"short_name\": \"eum\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 28,\n            \"event_id\": 10,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 1 jour\",\n            \"uploaded_at\": \"2026-07-19 05:47:16\",\n            \"color\": \"#D20808\",\n            \"categories\": [\n                {\n                    \"name\": \"Poly\"\n                },\n                {\n                    \"name\": \"Fouailles\"\n                },\n                {\n                    \"name\": \"Admis 2023\"\n                }\n            ],\n            \"created_at\": \"2026-07-19 05:47:16\",\n            \"updated_at\": \"2026-07-20 09:57:14\",\n            \"reaction_count\": 0,\n            \"reaction\": null,\n            \"comment_count\": 2,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 19,\n                \"name\": \"Moses\",\n                \"user_name\": \"iprosacco\",\n                \"short_name\": \"voluptatibus\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 94,\n            \"event_id\": null,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 1 jour\",\n            \"uploaded_at\": \"2026-07-18 20:15:50\",\n            \"color\": \"#0865D2\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                },\n                {\n                    \"name\": \"Admis 2024\"\n                }\n            ],\n            \"created_at\": \"2026-07-18 20:15:50\",\n            \"updated_at\": \"2026-07-20 09:57:14\",\n            \"reaction_count\": 1,\n            \"reaction\": null,\n            \"comment_count\": 2,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 20,\n                \"name\": \"Daija\",\n                \"user_name\": \"barney.quigley\",\n                \"short_name\": \"tempore\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 33,\n            \"event_id\": 22,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 2 jours\",\n            \"uploaded_at\": \"2026-07-17 15:49:34\",\n            \"color\": \"#D22C08\",\n            \"categories\": [\n                {\n                    \"name\": \"Boite Tactique\"\n                },\n                {\n                    \"name\": \"Admis 2023\"\n                },\n                {\n                    \"name\": \"Neurchi\"\n                }\n            ],\n            \"created_at\": \"2026-07-17 15:49:34\",\n            \"updated_at\": \"2026-07-20 09:57:14\",\n            \"reaction_count\": 2,\n            \"reaction\": null,\n            \"comment_count\": 0,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 12,\n                \"name\": \"Malika\",\n                \"user_name\": \"elenora00\",\n                \"short_name\": \"est\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 40,\n            \"event_id\": 21,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 3 jours\",\n            \"uploaded_at\": \"2026-07-17 09:30:27\",\n            \"color\": \"#0865D2\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                }\n            ],\n            \"created_at\": \"2026-07-17 09:30:27\",\n            \"updated_at\": \"2026-07-20 09:57:14\",\n            \"reaction_count\": 1,\n            \"reaction\": null,\n            \"comment_count\": 4,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 11,\n                \"name\": \"Tiana\",\n                \"user_name\": \"konopelski.dax\",\n                \"short_name\": \"dicta\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 63,\n            \"event_id\": 2,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 5 jours\",\n            \"uploaded_at\": \"2026-07-14 19:27:16\",\n            \"color\": \"#D20808\",\n            \"categories\": [\n                {\n                    \"name\": \"Fouailles\"\n                },\n                {\n                    \"name\": \"Admis 2023\"\n                },\n                {\n                    \"name\": \"Objets Perdus\"\n                }\n            ],\n            \"created_at\": \"2026-07-14 19:27:16\",\n            \"updated_at\": \"2026-07-20 09:57:14\",\n            \"reaction_count\": 0,\n            \"reaction\": null,\n            \"comment_count\": 3,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 17,\n                \"name\": \"Laron\",\n                \"user_name\": \"damon27\",\n                \"short_name\": \"rerum\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 13,\n            \"event_id\": 22,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 1 semaine\",\n            \"uploaded_at\": \"2026-07-11 19:34:36\",\n            \"color\": \"#0865D2\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                }\n            ],\n            \"created_at\": \"2026-07-11 19:34:36\",\n            \"updated_at\": \"2026-07-20 09:57:14\",\n            \"reaction_count\": 0,\n            \"reaction\": null,\n            \"comment_count\": 0,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": false,\n                \"id\": 57,\n                \"name\": \"Alia Zulauf\",\n                \"user_name\": \"lsmitham\",\n                \"short_name\": null,\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 29,\n            \"event_id\": null,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 1 semaine\",\n            \"uploaded_at\": \"2026-07-07 16:57:36\",\n            \"color\": \"#D2BE08\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                },\n                {\n                    \"name\": \"Clubs et Assos\"\n                }\n            ],\n            \"created_at\": \"2026-07-07 16:57:36\",\n            \"updated_at\": \"2026-07-20 09:57:14\",\n            \"reaction_count\": 0,\n            \"reaction\": null,\n            \"comment_count\": 0,\n            \"medias\": [],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 8,\n                \"name\": \"Rosie\",\n                \"user_name\": \"pfannerstill.janie\",\n                \"short_name\": \"saepe\",\n                \"logo_url\": null\n            }\n        },\n        {\n            \"id\": 16,\n            \"event_id\": null,\n            \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n            \"uploaded_since\": \"il y a 2 semaines\",\n            \"uploaded_at\": \"2026-07-05 11:28:18\",\n            \"color\": \"#0865D2\",\n            \"categories\": [\n                {\n                    \"name\": \"Admis 2023\"\n                }\n            ],\n            \"created_at\": \"2026-07-05 11:28:18\",\n            \"updated_at\": \"2026-07-20 09:57:14\",\n            \"reaction_count\": 3,\n            \"reaction\": null,\n            \"comment_count\": 1,\n            \"medias\": [\n                {\n                    \"id\": 4,\n                    \"url\": \"https:\/\/via.placeholder.com\/640x480.png\/00dd33?text=sed\",\n                    \"type\": \"image\"\n                }\n            ],\n            \"author\": {\n                \"user_is_author\": false,\n                \"is_organization\": true,\n                \"id\": 5,\n                \"name\": \"Gideon\",\n                \"user_name\": \"howe.kaylin\",\n                \"short_name\": \"nostrum\",\n                \"logo_url\": null\n            }\n        }\n    ],\n    \"meta\": {\n        \"total\": 14,\n        \"per_page\": 10,\n        \"current_page\": 1,\n        \"last_page\": 2,\n        \"first_page_url\": \"http:\/\/localhost\/api\/post?page=1&per_page=10\",\n        \"last_page_url\": \"http:\/\/localhost\/api\/post?page=2&per_page=10\",\n        \"next_page_url\": \"http:\/\/localhost\/api\/post?page=2&per_page=10\",\n        \"prev_page_url\": \"&per_page=10\",\n        \"path\": \"http:\/\/localhost\/api\/post\",\n        \"from\": 1,\n        \"to\": 10\n    }\n}",
                             "name": ""
                         }
                     ]
@@ -1651,7 +1651,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"event_id\": 14,\n        \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n        \"uploaded_since\": \"il y a 1 semaine\",\n        \"uploaded_at\": \"2026-07-06 16:49:41\",\n        \"color\": \"#D2BE08\",\n        \"categories\": [\n            {\n                \"name\": \"Clubs et Assos\"\n            }\n        ],\n        \"created_at\": \"2026-07-06 16:49:41\",\n        \"updated_at\": \"2026-07-17 16:25:18\",\n        \"reaction_count\": 0,\n        \"reaction\": null,\n        \"comment_count\": 5,\n        \"medias\": [],\n        \"author\": {\n            \"user_is_author\": false,\n            \"is_organization\": false,\n            \"id\": 89,\n            \"name\": \"Rosetta Ondricka\",\n            \"short_name\": null,\n            \"user_name\": \"zemlak.litzy\",\n            \"logo_url\": null\n        }\n    }\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"event_id\": 30,\n        \"body\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"bold\\\"}],\\\"text\\\":\\\"Ceci\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" est un test de la \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"underline\\\"}],\\\"text\\\":\\\"mise en forme\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" des \\\"},{\\\"type\\\":\\\"text\\\",\\\"marks\\\":[{\\\"type\\\":\\\"italic\\\"}],\\\"text\\\":\\\"posts\\\"},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\".\\\"}]}]}\",\n        \"uploaded_since\": \"il y a 3 semaines\",\n        \"uploaded_at\": \"2026-06-25 09:37:35\",\n        \"color\": \"#08D241\",\n        \"categories\": [\n            {\n                \"name\": \"Objets Perdus\"\n            }\n        ],\n        \"created_at\": \"2026-06-25 09:37:35\",\n        \"updated_at\": \"2026-07-20 09:57:14\",\n        \"reaction_count\": 0,\n        \"reaction\": null,\n        \"comment_count\": 6,\n        \"medias\": [],\n        \"author\": {\n            \"user_is_author\": false,\n            \"is_organization\": true,\n            \"id\": 20,\n            \"name\": \"Daija\",\n            \"short_name\": \"tempore\",\n            \"user_name\": \"barney.quigley\",\n            \"logo_url\": null\n        }\n    }\n}",
                             "name": ""
                         }
                     ]
@@ -1751,7 +1751,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"body\":\"The updated text of the post\",\"category_ids\":[4]}"
+                            "raw": "{\"body\":\"The updated text of the post\",\"category_ids\":[2]}"
                         },
                         "description": "Update the specified post's text and categories"
                     },
@@ -1872,7 +1872,7 @@
                                         }
                                     ],
                                     "code": 200,
-                                    "body": "{\n    \"data\": [],\n    \"meta\": {\n        \"total\": 5,\n        \"total_same_parent_id\": 2,\n        \"per_page\": 3,\n        \"current_page\": 2,\n        \"last_page\": 1,\n        \"first_page_url\": \"http:\/\/localhost\/api\/post\/1\/comment?page=1&per_page=3\",\n        \"last_page_url\": \"http:\/\/localhost\/api\/post\/1\/comment?page=1&per_page=3\",\n        \"next_page_url\": \"&per_page=3\",\n        \"prev_page_url\": \"http:\/\/localhost\/api\/post\/1\/comment?page=1&per_page=3\",\n        \"path\": \"http:\/\/localhost\/api\/post\/1\/comment\",\n        \"from\": null,\n        \"to\": null,\n        \"in_page\": 0\n    }\n}",
+                                    "body": "{\n    \"data\": [],\n    \"meta\": {\n        \"total\": 6,\n        \"total_same_parent_id\": 3,\n        \"per_page\": 3,\n        \"current_page\": 2,\n        \"last_page\": 1,\n        \"first_page_url\": \"http:\/\/localhost\/api\/post\/1\/comment?page=1&per_page=3\",\n        \"last_page_url\": \"http:\/\/localhost\/api\/post\/1\/comment?page=1&per_page=3\",\n        \"next_page_url\": \"&per_page=3\",\n        \"prev_page_url\": \"http:\/\/localhost\/api\/post\/1\/comment?page=1&per_page=3\",\n        \"path\": \"http:\/\/localhost\/api\/post\/1\/comment\",\n        \"from\": null,\n        \"to\": null,\n        \"in_page\": 0\n    }\n}",
                                     "name": ""
                                 }
                             ]
@@ -1940,211 +1940,7 @@
                                         }
                                     ],
                                     "code": 200,
-                                    "body": "{\"message\":\"Commentaire cr\\u00e9\\u00e9 avec succ\\u00e8s ! \",\"comment\":{\"post_id\":\"1\",\"user_id\":1,\"organization_id\":null,\"parent_comment_id\":null,\"body\":\"This is a comment\",\"updated_at\":\"2026-07-17T14:25:22.000000Z\",\"created_at\":\"2026-07-17T14:25:22.000000Z\",\"id\":205}}",
-                                    "name": ""
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "name": "Reaction",
-                    "description": "",
-                    "item": [
-                        {
-                            "name": "New Reaction",
-                            "request": {
-                                "url": {
-                                    "host": "{{baseUrl}}",
-                                    "path": "api\/post\/:id\/reaction",
-                                    "query": [],
-                                    "raw": "{{baseUrl}}\/api\/post\/:id\/reaction",
-                                    "variable": [
-                                        {
-                                            "id": "id",
-                                            "key": "id",
-                                            "value": "1",
-                                            "description": "The ID of the post."
-                                        }
-                                    ]
-                                },
-                                "method": "POST",
-                                "header": [
-                                    {
-                                        "key": "Content-Type",
-                                        "value": "application\/json"
-                                    },
-                                    {
-                                        "key": "Accept",
-                                        "value": "application\/json"
-                                    }
-                                ],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\"reaction_type_id\":2}"
-                                },
-                                "description": "Handle a new Reaction request for the specified Post.\nCan lead to either a creation, a modification or a deletion of a reaction.\n\n<aside class=\"warning\"> Reactions to comments are not working at the moment<\/aside>"
-                            },
-                            "response": [
-                                {
-                                    "header": [
-                                        {
-                                            "key": "cache-control",
-                                            "value": "no-cache, private"
-                                        },
-                                        {
-                                            "key": "content-type",
-                                            "value": "application\/json"
-                                        },
-                                        {
-                                            "key": "x-ratelimit-limit",
-                                            "value": "60"
-                                        },
-                                        {
-                                            "key": "x-ratelimit-remaining",
-                                            "value": "32"
-                                        },
-                                        {
-                                            "key": "access-control-allow-origin",
-                                            "value": "http:\/\/localhost:3000"
-                                        },
-                                        {
-                                            "key": "access-control-allow-credentials",
-                                            "value": "true"
-                                        }
-                                    ],
-                                    "code": 201,
-                                    "body": "{\"message\":\"R\\u00e9action cr\\u00e9\\u00e9e avec succ\\u00e8s !\",\"reaction\":{\"user_id\":1,\"post_id\":\"1\",\"reaction_type_id\":2,\"id\":101},\"data\":{\"is_comment\":false,\"reaction\":{\"id\":2,\"icon\":\"\\ud83d\\udc4d\"},\"reaction_count\":1}}",
-                                    "name": ""
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Reaction Index",
-                            "request": {
-                                "url": {
-                                    "host": "{{baseUrl}}",
-                                    "path": "api\/post\/:id\/reaction",
-                                    "query": [],
-                                    "raw": "{{baseUrl}}\/api\/post\/:id\/reaction",
-                                    "variable": [
-                                        {
-                                            "id": "id",
-                                            "key": "id",
-                                            "value": "1",
-                                            "description": "The ID of the post."
-                                        }
-                                    ]
-                                },
-                                "method": "GET",
-                                "header": [
-                                    {
-                                        "key": "Content-Type",
-                                        "value": "application\/json"
-                                    },
-                                    {
-                                        "key": "Accept",
-                                        "value": "application\/json"
-                                    }
-                                ],
-                                "body": null,
-                                "description": "Fecth a summary list of all reactions to a Post"
-                            },
-                            "response": [
-                                {
-                                    "header": [
-                                        {
-                                            "key": "cache-control",
-                                            "value": "no-cache, private"
-                                        },
-                                        {
-                                            "key": "content-type",
-                                            "value": "application\/json"
-                                        },
-                                        {
-                                            "key": "x-ratelimit-limit",
-                                            "value": "60"
-                                        },
-                                        {
-                                            "key": "x-ratelimit-remaining",
-                                            "value": "31"
-                                        },
-                                        {
-                                            "key": "access-control-allow-origin",
-                                            "value": "http:\/\/localhost:3000"
-                                        },
-                                        {
-                                            "key": "access-control-allow-credentials",
-                                            "value": "true"
-                                        }
-                                    ],
-                                    "code": 200,
-                                    "body": "{\n    \"data\": []\n}",
-                                    "name": ""
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Reaction Type Index",
-                            "request": {
-                                "url": {
-                                    "host": "{{baseUrl}}",
-                                    "path": "api\/post\/:id\/reactiontype",
-                                    "query": [],
-                                    "raw": "{{baseUrl}}\/api\/post\/:id\/reactiontype",
-                                    "variable": [
-                                        {
-                                            "id": "id",
-                                            "key": "id",
-                                            "value": "1",
-                                            "description": "The ID of the post."
-                                        }
-                                    ]
-                                },
-                                "method": "GET",
-                                "header": [
-                                    {
-                                        "key": "Content-Type",
-                                        "value": "application\/json"
-                                    },
-                                    {
-                                        "key": "Accept",
-                                        "value": "application\/json"
-                                    }
-                                ],
-                                "body": null,
-                                "description": "Fetch a list of all existing Reaction Type"
-                            },
-                            "response": [
-                                {
-                                    "header": [
-                                        {
-                                            "key": "cache-control",
-                                            "value": "no-cache, private"
-                                        },
-                                        {
-                                            "key": "content-type",
-                                            "value": "application\/json"
-                                        },
-                                        {
-                                            "key": "x-ratelimit-limit",
-                                            "value": "60"
-                                        },
-                                        {
-                                            "key": "x-ratelimit-remaining",
-                                            "value": "30"
-                                        },
-                                        {
-                                            "key": "access-control-allow-origin",
-                                            "value": "http:\/\/localhost:3000"
-                                        },
-                                        {
-                                            "key": "access-control-allow-credentials",
-                                            "value": "true"
-                                        }
-                                    ],
-                                    "code": 200,
-                                    "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"love\",\n            \"icon\": \"\\u2764\\ufe0f\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"like\",\n            \"icon\": \"\\ud83d\\udc4d\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"dislike\",\n            \"icon\": \"\\ud83d\\udc4e\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"laugh\",\n            \"icon\": \"\\ud83d\\ude02\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"cry\",\n            \"icon\": \"\\ud83d\\ude22\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"angry\",\n            \"icon\": \"\\ud83d\\ude21\"\n        }\n    ]\n}",
+                                    "body": "{\"message\":\"Commentaire cr\\u00e9\\u00e9 avec succ\\u00e8s ! \",\"comment\":{\"post_id\":\"1\",\"user_id\":1,\"organization_id\":null,\"parent_comment_id\":null,\"body\":\"This is a comment\",\"updated_at\":\"2026-07-20T07:57:19.000000Z\",\"created_at\":\"2026-07-20T07:57:19.000000Z\",\"id\":205}}",
                                     "name": ""
                                 }
                             ]
@@ -2212,7 +2008,7 @@
                                         },
                                         {
                                             "key": "x-ratelimit-remaining",
-                                            "value": "29"
+                                            "value": "32"
                                         },
                                         {
                                             "key": "access-control-allow-origin",
@@ -2284,7 +2080,7 @@
                                         },
                                         {
                                             "key": "x-ratelimit-remaining",
-                                            "value": "28"
+                                            "value": "31"
                                         },
                                         {
                                             "key": "access-control-allow-origin",
@@ -2297,6 +2093,176 @@
                                     ],
                                     "code": 404,
                                     "body": "{\"message\":\"1 Medias not found\"}",
+                                    "name": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Reaction",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "Reaction Type Index",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/reactiontype",
+                                    "query": [],
+                                    "raw": "{{baseUrl}}\/api\/reactiontype"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "Fetch a list of all existing Reaction Type"
+                            },
+                            "response": [
+                                {
+                                    "header": [
+                                        {
+                                            "key": "cache-control",
+                                            "value": "no-cache, private"
+                                        },
+                                        {
+                                            "key": "content-type",
+                                            "value": "application\/json"
+                                        },
+                                        {
+                                            "key": "x-ratelimit-limit",
+                                            "value": "60"
+                                        },
+                                        {
+                                            "key": "x-ratelimit-remaining",
+                                            "value": "30"
+                                        },
+                                        {
+                                            "key": "access-control-allow-origin",
+                                            "value": "http:\/\/localhost:3000"
+                                        },
+                                        {
+                                            "key": "access-control-allow-credentials",
+                                            "value": "true"
+                                        }
+                                    ],
+                                    "code": 200,
+                                    "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"love\",\n            \"icon\": \"\\u2764\\ufe0f\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"like\",\n            \"icon\": \"\\ud83d\\udc4d\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"dislike\",\n            \"icon\": \"\\ud83d\\udc4e\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"laugh\",\n            \"icon\": \"\\ud83d\\ude02\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"cry\",\n            \"icon\": \"\\ud83d\\ude22\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"angry\",\n            \"icon\": \"\\ud83d\\ude21\"\n        }\n    ]\n}",
+                                    "name": ""
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Reaction Index",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/reaction",
+                                    "query": [],
+                                    "raw": "{{baseUrl}}\/api\/reaction"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"post_id\":1}"
+                                },
+                                "description": "Fetch a summary list of all reactions to a Post or a Comment"
+                            },
+                            "response": [
+                                {
+                                    "header": [],
+                                    "code": 200,
+                                    "body": "{\"data\": [{\"reaction_type_id\": 2,\"reaction_type\": \"like\",\"icon\": \"\\ud83d\\udc4d\",\"total\": 1,\"users\": [{\"id\": 1,\"name\": \"Fabien pr\\u00e9galdini\",\"avatar\": null }]}]}",
+                                    "name": ""
+                                },
+                                {
+                                    "header": [],
+                                    "code": 422,
+                                    "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"post_id\":[\"The post id field prohibits post comment id from being present.\"],\"post_comment_id\":[\"The post comment id field prohibits post id from being present.\"]}}",
+                                    "name": ""
+                                }
+                            ]
+                        },
+                        {
+                            "name": "New Reaction",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/reaction",
+                                    "query": [],
+                                    "raw": "{{baseUrl}}\/api\/reaction"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"post_id\":1,\"reaction_type_id\":2}"
+                                },
+                                "description": "Handle a new Reaction request for the specified Post or Comment.\nCan lead to either a creation, a modification or a deletion of a reaction."
+                            },
+                            "response": [
+                                {
+                                    "header": [
+                                        {
+                                            "key": "cache-control",
+                                            "value": "no-cache, private"
+                                        },
+                                        {
+                                            "key": "content-type",
+                                            "value": "application\/json"
+                                        },
+                                        {
+                                            "key": "x-ratelimit-limit",
+                                            "value": "60"
+                                        },
+                                        {
+                                            "key": "x-ratelimit-remaining",
+                                            "value": "29"
+                                        },
+                                        {
+                                            "key": "access-control-allow-origin",
+                                            "value": "http:\/\/localhost:3000"
+                                        },
+                                        {
+                                            "key": "access-control-allow-credentials",
+                                            "value": "true"
+                                        }
+                                    ],
+                                    "code": 201,
+                                    "body": "{\"message\":\"R\\u00e9action cr\\u00e9\\u00e9e avec succ\\u00e8s !\",\"reaction\":{\"user_id\":1,\"post_id\":1,\"reaction_type_id\":2,\"id\":101},\"data\":{\"is_comment\":false,\"reaction\":{\"id\":2,\"icon\":\"\\ud83d\\udc4d\"},\"reaction_count\":1}}",
+                                    "name": ""
+                                },
+                                {
+                                    "header": [],
+                                    "code": 422,
+                                    "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"post_id\":[\"The post id field prohibits post comment id from being present.\"],\"post_comment_id\":[\"The post comment id field prohibits post id from being present.\"]}}",
                                     "name": ""
                                 }
                             ]
@@ -2380,7 +2346,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"users\": [\n            {\n                \"id\": 1,\n                \"user_name\": \"fab.preg\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 2,\n                \"user_name\": \"miguel05\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 3,\n                \"user_name\": \"collier.tianna\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 4,\n                \"user_name\": \"pearline.deckow\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 5,\n                \"user_name\": \"upton.chaz\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 6,\n                \"user_name\": \"herzog.pansy\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 7,\n                \"user_name\": \"clifford78\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 8,\n                \"user_name\": \"beulah36\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 9,\n                \"user_name\": \"eva91\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 10,\n                \"user_name\": \"raleigh.steuber\",\n                \"name\": null,\n                \"logo_url\": null\n            }\n        ],\n        \"meta\": {\n            \"total\": 101,\n            \"per_page\": 10,\n            \"current_page\": 1,\n            \"last_page\": 11,\n            \"first_page_url\": \"http:\\\/\\\/localhost\\\/api\\\/user?page=1&per_page=10\",\n            \"last_page_url\": \"http:\\\/\\\/localhost\\\/api\\\/user?page=11&per_page=10\",\n            \"next_page_url\": \"http:\\\/\\\/localhost\\\/api\\\/user?page=2&per_page=10\",\n            \"prev_page_url\": \"&per_page=10\",\n            \"path\": \"http:\\\/\\\/localhost\\\/api\\\/user\",\n            \"from\": 1,\n            \"to\": 10\n        }\n    }\n}",
+                            "body": "{\n    \"data\": {\n        \"users\": [\n            {\n                \"id\": 1,\n                \"user_name\": \"fab.preg\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 2,\n                \"user_name\": \"istroman\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 3,\n                \"user_name\": \"morar.dennis\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 4,\n                \"user_name\": \"kitty12\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 5,\n                \"user_name\": \"yjerde\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 6,\n                \"user_name\": \"rippin.elisabeth\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 7,\n                \"user_name\": \"dean44\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 8,\n                \"user_name\": \"albert24\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 9,\n                \"user_name\": \"batz.camden\",\n                \"name\": null,\n                \"logo_url\": null\n            },\n            {\n                \"id\": 10,\n                \"user_name\": \"dsporer\",\n                \"name\": null,\n                \"logo_url\": null\n            }\n        ],\n        \"meta\": {\n            \"total\": 101,\n            \"per_page\": 10,\n            \"current_page\": 1,\n            \"last_page\": 11,\n            \"first_page_url\": \"http:\\\/\\\/localhost\\\/api\\\/user?page=1&per_page=10\",\n            \"last_page_url\": \"http:\\\/\\\/localhost\\\/api\\\/user?page=11&per_page=10\",\n            \"next_page_url\": \"http:\\\/\\\/localhost\\\/api\\\/user?page=2&per_page=10\",\n            \"prev_page_url\": \"&per_page=10\",\n            \"path\": \"http:\\\/\\\/localhost\\\/api\\\/user\",\n            \"from\": 1,\n            \"to\": 10\n        }\n    }\n}",
                             "name": ""
                         }
                     ]
@@ -2534,7 +2500,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"default_link\":\"jhauhfdibtrxvhtbzbpneks\",\"default_name\":\"nrqupdpkqspeukeigz\"}"
+                                    "raw": "{\"default_link\":\"philadpddespvfkbmish\",\"default_name\":\"wsqoeoedfbcgdmwpeqduobt\"}"
                                 },
                                 "description": "Take an image URL and replace the current user's avatar with it.\n\n<aside class=\"warning\"> Should only be used with images from <b>Default Avatar<\/b> !<\/aside>"
                             },
@@ -2626,7 +2592,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"last_name\": \"pr\\u00e9galdini\",\n        \"first_name\": \"Fabien\",\n        \"user_name\": \"fab.preg\",\n        \"description\": \"Je suis fabien et je suis le goat, ceci est ma description, je suis le directeur de TP. Il faut pas lui dire mais j'ai pour objectif de ne pas donner le diplome d'ing\\u00e9nieur \\u00e0 l'\\u00e9l\\u00e8ve Romain Bourdin\",\n        \"email\": \"email@email.com\",\n        \"phone\": \"0606060606\",\n        \"bde_id\": 1001,\n        \"avatar_url\": null,\n        \"admission_year\": \"2024\",\n        \"created_at\": \"2026-07-17 16:25:10\",\n        \"updated_at\": \"2026-07-17 16:25:22\",\n        \"email_verified_at\": \"2026-07-17T14:25:10.000000Z\",\n        \"sector\": \"IR\",\n        \"sector_id\": 2,\n        \"birth_date\": \"2000-01-01\"\n    },\n    \"organizations\": []\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"last_name\": \"pr\\u00e9galdini\",\n        \"first_name\": \"Fabien\",\n        \"user_name\": \"fab.preg\",\n        \"description\": \"Je suis fabien et je suis le goat, ceci est ma description, je suis le directeur de TP. Il faut pas lui dire mais j'ai pour objectif de ne pas donner le diplome d'ing\\u00e9nieur \\u00e0 l'\\u00e9l\\u00e8ve Romain Bourdin\",\n        \"email\": \"email@email.com\",\n        \"phone\": \"0606060606\",\n        \"bde_id\": 1001,\n        \"avatar_url\": null,\n        \"admission_year\": \"2024\",\n        \"created_at\": \"2026-07-20 09:57:07\",\n        \"updated_at\": \"2026-07-20 09:57:18\",\n        \"email_verified_at\": \"2026-07-20T07:57:07.000000Z\",\n        \"sector\": \"IR\",\n        \"sector_id\": 2,\n        \"birth_date\": \"2000-01-01\"\n    },\n    \"organizations\": []\n}",
                             "name": ""
                         }
                     ]
@@ -2691,7 +2657,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"last_name\": \"pr\\u00e9galdini\",\n        \"first_name\": \"Fabien\",\n        \"user_name\": \"fab.preg\",\n        \"description\": \"Je suis fabien et je suis le goat, ceci est ma description, je suis le directeur de TP. Il faut pas lui dire mais j'ai pour objectif de ne pas donner le diplome d'ing\\u00e9nieur \\u00e0 l'\\u00e9l\\u00e8ve Romain Bourdin\",\n        \"avatar_url\": null,\n        \"admission_year\": \"2024\",\n        \"created_at\": \"2026-07-17 16:25:10\",\n        \"updated_at\": \"2026-07-17 16:25:10\",\n        \"sector\": \"IR\",\n        \"birth_date\": \"2000-01-01\"\n    },\n    \"organizations\": []\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"last_name\": \"pr\\u00e9galdini\",\n        \"first_name\": \"Fabien\",\n        \"user_name\": \"fab.preg\",\n        \"description\": \"Je suis fabien et je suis le goat, ceci est ma description, je suis le directeur de TP. Il faut pas lui dire mais j'ai pour objectif de ne pas donner le diplome d'ing\\u00e9nieur \\u00e0 l'\\u00e9l\\u00e8ve Romain Bourdin\",\n        \"avatar_url\": null,\n        \"admission_year\": \"2024\",\n        \"created_at\": \"2026-07-20 09:57:07\",\n        \"updated_at\": \"2026-07-20 09:57:07\",\n        \"sector\": \"IR\",\n        \"birth_date\": \"2000-01-01\"\n    },\n    \"organizations\": []\n}",
                             "name": ""
                         }
                     ]
@@ -2718,7 +2684,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_name\":\"x\",\"phone\":\"by\",\"sector\":20,\"admission_year\":2,\"description\":\"Ullam est quia neque.\"}"
+                            "raw": "{\"user_name\":\"pykiqajgxculvi\",\"phone\":\"xmmiumwjw\",\"sector\":9,\"admission_year\":17,\"description\":\"Voluptatem enim quae tempora.\"}"
                         },
                         "description": "Update the user's different fields (except password)"
                     },
@@ -2751,7 +2717,7 @@
                                 }
                             ],
                             "code": 422,
-                            "body": "{\"message\":\"Validation failed\",\"errors\":{\"user_name\":[\"The user name field must be at least 3 characters.\"],\"phone\":[\"The phone field must be at least 3 characters.\"],\"sector\":[\"The selected sector is invalid.\"],\"admission_year\":[\"The admission year field must be at least 2000.\"]}}",
+                            "body": "{\"message\":\"Validation failed\",\"errors\":{\"sector\":[\"The selected sector is invalid.\"],\"admission_year\":[\"The admission year field must be at least 2000.\"]}}",
                             "name": ""
                         }
                     ]
