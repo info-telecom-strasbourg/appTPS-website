@@ -169,6 +169,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::get('{id}', [EventController::class, 'show'])
                 ->name('event.show');
 
+            Route::patch('{id}', [EventController::class, 'update'])
+                ->name('event.update');
+
             Route::delete('{id}', [EventController::class, 'delete'])
                 ->name('event.delete');
         });
