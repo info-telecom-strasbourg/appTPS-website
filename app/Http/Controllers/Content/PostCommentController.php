@@ -134,4 +134,43 @@ class PostCommentController extends Controller
             ]
         ], 200)->setEncodingOptions(JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
+
+    /**
+     * Delete Comment
+     * 
+     * Remove the specified Comment from the database,
+     * 
+     * @urlparam id integer required The ID of the comment.
+     * 
+     * @response status=200 {"message":"Comment deleted successfully"}
+     * @response status=403 {"message":"You are not authorized to delete this comment"}
+     * @response status=404 {"message":"Comment not found"}
+     */
+    public function delete(Request $request, $id)
+    {
+        $comment = PostComment::find($id);
+
+        if (! $comment)
+        {
+            return response()->json([
+                'message' => 'Comment not found'
+            ], 404);
+        }
+
+        $asso = $comment->organization_id ?? null;
+        // si pas auteur et si pas dans l'orga (si il y en a une)
+        if ($comment->user_id != $request->user()->id && (!$asso || !$request->user()->isInOrganization($asso)))
+        {
+            return response()->json([
+                'message' => 'You are not authorized to delete this comment'
+            ], 403);
+        }
+
+        $comment->delete();
+
+        return response()->json([
+            'message' => 'Comment deleted successfully'
+        ], 200);
+    }
+
 }
