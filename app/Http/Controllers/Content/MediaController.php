@@ -65,7 +65,7 @@ class MediaController extends Controller
             return response()->json([
                 'message' => 'Files uploaded successfully',
                 'medias' => $tab_media
-            ], 200);
+            ], 201);
         } else {
             return response()->json([
                 'message' => 'You are not authorized to upload files in this post'

@@ -60,7 +60,7 @@ class UserAvatarController extends Controller
 
         return response()->json([
             'message' => 'Avatar uploaded successfully',
-        ], 200);
+        ], 201);
     }
 
     /**
@@ -109,7 +109,7 @@ class UserAvatarController extends Controller
 
         return response()->json([
             'message' => 'Avatar uploaded successfully',
-        ], 200);
+        ], 201);
     }
 
     /**

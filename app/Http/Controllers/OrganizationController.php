@@ -56,7 +56,7 @@ class OrganizationController extends Controller
         return response()->json(['data' => [
             'associations' => $associations_tab,
             'clubs' => $clubs_tab,
-        ]])->setEncodingOptions(JSON_PRETTY_PRINT);
+        ]],200)->setEncodingOptions(JSON_PRETTY_PRINT);
     }
 
     /**

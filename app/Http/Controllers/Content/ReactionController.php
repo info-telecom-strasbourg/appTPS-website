@@ -102,7 +102,7 @@ class ReactionController extends Controller
                         'reaction' => $post->userReactionsType(),
                         'reaction_count' => $post->reaction->count()
                     ]
-                ], 201);
+                ], 200);
             } else {
                 // Si aucune réaction existante ne correspond à l'ID de l'utilisateur et à l'ID du post, créer une nouvelle réaction
                 if ($comment == null) {

@@ -33,7 +33,7 @@ class AuthUserController extends Controller
                     'message' => 'Your email address is not verified.',
                     'user' => $request->user(),
                     'token' => $token
-                ], 409);
+                ], 200);
             }
 
             return response()->json([

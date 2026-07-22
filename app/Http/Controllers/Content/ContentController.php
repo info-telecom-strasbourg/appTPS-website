@@ -98,7 +98,7 @@ class ContentController extends Controller
                 return response()->json([
                     'message' => 'Validation failed',
                     'error' => [
-                        'body' => 'The body field is not allowed when creating a post'
+                        'body' => 'The body field is required when creating a post'
                     ]
                 ], 422);
             }
