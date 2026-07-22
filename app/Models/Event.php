@@ -118,7 +118,6 @@ class Event extends Model
 
     public function getShowDate($actual_date){
         $start_at = Carbon::parse($this->start_at);
-        $date = Carbon::parse($actual_date);
 
         if (!$start_at->isSameDay($actual_date)) {
             return $start_at->translatedFormat('l d F');

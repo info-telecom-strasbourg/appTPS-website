@@ -67,7 +67,6 @@ class OrganizationController extends Controller
      * @urlParam id integer required The ID of the Organization Example: 2
      */
     public function show($id){
-        $per_page = request()->query('per_page');
 
         $organization = Organization::all()->where('id', '=', $id)->first();
 
