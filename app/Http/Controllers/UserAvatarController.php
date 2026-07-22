@@ -41,7 +41,7 @@ class UserAvatarController extends Controller
 
         $user = $request->user();
 
-        if ($user->avatar != null &&  !str_contains($user->name, 'default')) {
+        if ($user->avatar != null &&  !str_contains($user->avatar->name, 'default')) {
             Storage::delete('public/images/avatars/' . $user->avatar->name);
             $user->avatar->delete();
         }
@@ -93,7 +93,7 @@ class UserAvatarController extends Controller
 
         $user = $request->user();
 
-        if ($user->avatar != null && !str_contains($user->name, 'default')) {
+        if ($user->avatar != null && !str_contains($user->avatar->name, 'default')) {
             Storage::delete('public/images/avatars/' . $user->avatar->name);
             $user->avatar->delete();
         }

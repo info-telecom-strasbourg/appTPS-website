@@ -178,7 +178,6 @@ class UserController extends Controller
             return [
                 'id' => $user->id,
                 'user_name' => $user->user_name,
-                'name' => $user->name,
                 'logo_url' => $user->getAvatarPath()
             ];
         })->values();
