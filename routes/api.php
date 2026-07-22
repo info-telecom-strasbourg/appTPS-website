@@ -20,7 +20,6 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Content\ContentController;
 use App\Http\Controllers\Content\EventController;
 use App\Http\Controllers\Content\PostController;
@@ -53,11 +52,6 @@ Route::post('/login', [AuthUserController::class, 'login'])
     ->middleware(['throttle:6,1'])
     ->name('login');
 
-/** =============== Password verification =============== */
-
-Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
-    ->middleware(['signed'])
-    ->name('verification.verify');
 
 /** =============== Forgot password =============== */
 

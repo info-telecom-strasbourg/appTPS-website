@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Auth\Web\VerifyEmailController;
 use App\Http\Controllers\Auth\Web\RegisterController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -40,3 +41,9 @@ Route::post('/register', [RegisterController::class, 'store'])
 Route::get('/register', [RegisterController::class, 'index'])
     ->name('register.index');
 
+
+    /** =============== Email verification =============== */
+
+Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
+    ->middleware(['signed'])
+    ->name('verification.verify');
