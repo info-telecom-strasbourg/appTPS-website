@@ -170,6 +170,75 @@ class EventController extends Controller
     }
 
     /**
+     * Update Event
+     * 
+     * Update the corresponding entry in the database, if the request is issued 
+     * by either the original author or a member of the event's organization
+     * 
+     * @response status=200 {"message":"Event updated successfully"}
+     * @response status=403 {"message":"You are not authorized to update this event"}
+     * @response status=404 {"message":"Event not found"}
+     * @response status=422 {"message":"Validation failed","errors":{"location":["The location field must be at least 3 characters."]}}
+     */
+    public function update(Request $request, $id)
+    {
+
+        $validation = Validator::make($request->all(), [
+            // Example: my updated Event !
+            'title' => [
+                'string',
+                'max:255',
+                'min:3'
+            ],
+            // Example: 2026-07-08T18:24:53
+            'start_at' => [
+                'date'
+            ],
+            // Example: 2026-07-08T19:24:53
+            'end_at' => [
+                'date'
+            ],
+            // Example: new 7 golden street, Eldorado
+            'location' => [
+                'string',
+                'max:255',
+                'min:3'
+            ],
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validation->errors()
+            ], 422);
+        }
+
+        $user = $request->user();
+
+        $event = Event::find($id);
+
+        if ($event == null) {
+            return response()->json([
+                'message' => 'Event not found'
+            ], 404);
+        }
+
+        $asso = $event->organization->id ?? null;
+
+        if ($user->isInOrganization($asso) == false || $user->id != $event->user_id) {
+            return response()->json([
+                'message' => 'You are not authorized to update this event'
+            ], 403);
+        }
+
+        $event->update($validation->validated());
+
+        return response()->json([
+            'message' => 'Event updated successfully'
+        ], 200);
+    }
+
+    /**
      * Delete Event
      * 
      * Remove the corresponding entry from the database, if the request is issued 

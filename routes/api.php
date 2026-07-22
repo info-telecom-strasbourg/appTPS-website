@@ -169,6 +169,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::get('{id}', [EventController::class, 'show'])
                 ->name('event.show');
 
+            Route::patch('{id}', [EventController::class, 'update'])
+                ->name('event.update');
+
             Route::delete('{id}', [EventController::class, 'delete'])
                 ->name('event.delete');
         });
@@ -219,6 +222,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         });
 
         /** =============== Commentaires =============== */
+
+            Route::patch('comment/{id}', [PostCommentController::class, 'update'])
+                ->name('comment.update');
 
             Route::delete('comment/{id}', [PostCommentController::class, 'delete'])
                 ->name('comment.delete');

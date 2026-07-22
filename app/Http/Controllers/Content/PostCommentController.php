@@ -136,6 +136,59 @@ class PostCommentController extends Controller
     }
 
     /**
+     * Update Comment
+     * 
+     * Update the specified Comment's text
+     * 
+     * @urlparam id integer required The ID of the comment.
+     * 
+     * @response status=200 {"message":"Comment updated successfully","data":{"id":255,"body":"Ceci est un commentaire !","user_id":1,"organization_id":null,"post_id":2,"parent_comment_id":null,"created_at":"2026-07-20T14:37:32.000000Z","updated_at":"2026-07-21T09:09:22.000000Z","deleted_at":null}}
+     * @response status=403 {"message":"You are not authorized to update this comment"}
+     * @response status=404 {"message":"Comment not found"}
+     * @response status=422 {"message":"The given data was invalid.","errors":{"body":["The body field must be at least 3 characters."]}}
+     */
+    public function update(Request $request, $id)
+    {
+
+        $validation = Validator::make($request->all(), [
+            // The content of the comment Example: This is an updated comment
+            'body' => 'required|string|min:3, max:4000000000',
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json([
+                'message' =>  'The given data was invalid.',
+                'errors' => $validation->errors()
+            ], 422);
+        }
+
+        $comment = PostComment::find($id);
+
+        if (! $comment)
+        {
+            return response()->json([
+                'message' => 'Comment not found'
+            ], 404);
+        }
+
+        if ($comment->user_id != $request->user()->id)
+        {
+            return response()->json([
+                'message' => 'You are not authorized to update this comment'
+            ], 403);
+        }
+
+        $comment->update(
+            $validation->validated()
+        );
+
+        return response()->json([
+            'message' => 'Comment updated successfully',
+            'data' => $comment
+        ], 200);
+    }
+
+    /**
      * Delete Comment
      * 
      * Remove the specified Comment from the database,
