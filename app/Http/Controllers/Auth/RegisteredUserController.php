@@ -178,7 +178,7 @@ class RegisteredUserController extends Controller
         if ($query->first()) {
             return response()->json([
                 'message' => 'An other user already exist with this value'
-            ], 409);
+            ], 200);
         } else {
             return response()->json([
                 'message' => 'This value is available'

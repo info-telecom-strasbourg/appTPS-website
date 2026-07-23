@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Web;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -20,7 +20,6 @@ class VerifyEmailController extends Controller
      * 
      * Mark the authenticated user's email address as verified.
      * 
-     * <aside class="warning">This route should not be a part of the API as it returns a non json response.</aside>
      * @unauthenticated
      * @param \Illuminate\Http\Request $request
      */

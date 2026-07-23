@@ -26,6 +26,6 @@ class SectorController extends Controller
                     'short_name' => $sector->short_name,
                 ];
             })
-        ]);
+        ],200);
     }
 }

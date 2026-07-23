@@ -53,7 +53,7 @@ class MediaController extends Controller
                 $type = explode('/', $media->getMimeType())[0];
                 $type_id = MediaType::where('type', $type)->first()->id;
                 $name = uniqid($post->id . '_' . time() . '_') . '.' . $media->getClientOriginalExtension();
-                $stored_path = $media->storeAs('public/medias/'. $type . '/' . $name);
+                $media->storeAs('public/medias/'. $type . '/' . $name);
                 $stored_media = Media::create([
                     'post_id' => $post->id,
                     'media_type_id' => $type_id,
@@ -65,7 +65,7 @@ class MediaController extends Controller
             return response()->json([
                 'message' => 'Files uploaded successfully',
                 'medias' => $tab_media
-            ], 200);
+            ], 201);
         } else {
             return response()->json([
                 'message' => 'You are not authorized to upload files in this post'

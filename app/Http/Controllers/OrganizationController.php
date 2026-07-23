@@ -56,7 +56,7 @@ class OrganizationController extends Controller
         return response()->json(['data' => [
             'associations' => $associations_tab,
             'clubs' => $clubs_tab,
-        ]])->setEncodingOptions(JSON_PRETTY_PRINT);
+        ]],200)->setEncodingOptions(JSON_PRETTY_PRINT);
     }
 
     /**
@@ -67,7 +67,6 @@ class OrganizationController extends Controller
      * @urlParam id integer required The ID of the Organization Example: 2
      */
     public function show($id){
-        $per_page = request()->query('per_page');
 
         $organization = Organization::all()->where('id', '=', $id)->first();
 

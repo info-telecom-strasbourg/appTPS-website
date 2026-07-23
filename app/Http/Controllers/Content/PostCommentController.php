@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
 use App\Models\PostComment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,20 +21,39 @@ class PostCommentController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
+     *
+     * @response status=201 { "comment": { "body": "test comment", "created_at": "2026-07-22T12:26:41.000000Z", "id": 274, "organization_id": null, "parent_comment_id": "271", "post_id": "1", "updated_at": "2026-07-22T12:26:41.000000Z", "user_id": 110 }, "message": "Commentaire créé avec succès ! " }
+     * @response status=404 { "message": "Post not found" }
+     * @response status=422 { "errors": { "parent_comment_id": [ "The selected parent comment id is invalid.", "The selected parent comment does not belong to the specified post." ] }, "message": "The given data was invalid." }
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
 
         $validation = Validator::make($request->all(), [
-            // Example: 1
-            'post_id' => 'required|exists:posts,id',
             // The content of the comment Example: This is a comment 
             'body' => 'required|string|min:3, max:4000000000',
-            // No-example
-            'parent_comment_id' => 'nullable|exists:post_comments,id',
+            // If specified, the new comment will be marked as a reply to this one No-example
+            'parent_comment_id' => [
+                'nullable',
+                'exists:post_comments,id',
+                'int',
+                function ($attribute, $value, $fail) use ($id) {
+                    if ($value && PostComment::where('id', $value)->where('post_id', $id)->doesntExist()) {
+                        $fail('The selected parent comment does not belong to the specified post.');
+                    }
+                },
+            ],
             // No-example
             'organization_id' => 'nullable|exists:bde_bdd.'.env("BDE_DB_DATABASE").'.organizations,id',
         ]);
+
+        $post = Post::find($id);
+
+        if ($post == null) {
+            return response()->json([
+                'message' => 'Post not found'
+            ], 404);
+        }
 
         if ($validation->fails()) {
             return response()->json([
@@ -44,7 +64,7 @@ class PostCommentController extends Controller
 
         // Create a new comment
         $comment = PostComment::create([
-            'post_id' => $request->post_id,
+            'post_id' => $id,
             'user_id' => $request->user()->id,
             'organization_id' => $request->organization_id,
             'parent_comment_id' => $request->parent_comment_id,
@@ -55,7 +75,7 @@ class PostCommentController extends Controller
         return response()->json([
             'message' => 'Commentaire créé avec succès ! ',
             'comment' => $comment,
-        ]);
+        ],201);
     }
 
     /**

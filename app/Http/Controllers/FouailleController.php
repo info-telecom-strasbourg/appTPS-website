@@ -95,6 +95,7 @@ class FouailleController extends Controller
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
                 'user_name' => $user->user_name,
-            ],]);
+            ],
+        ],200);
     }
 }

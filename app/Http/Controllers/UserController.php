@@ -82,8 +82,6 @@ class UserController extends Controller
      */
     public function getMe(Request $request)
     {
-        $per_page = request()->query('per_page');
-
         $user = $request->user();
 
         return response()->json([
@@ -124,8 +122,6 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $per_page = request()->query('per_page');
-
         $user = User::find($id);
 
         if ($user == null) {
@@ -133,8 +129,6 @@ class UserController extends Controller
                 'message' => 'User not found'
             ], 404);
         }
-
-        $posts = $user->posts()->orderByDesc('created_at')->paginate($per_page);
 
         return response()->json([
             'data' => [
@@ -184,7 +178,6 @@ class UserController extends Controller
             return [
                 'id' => $user->id,
                 'user_name' => $user->user_name,
-                'name' => $user->name,
                 'logo_url' => $user->getAvatarPath()
             ];
         })->values();

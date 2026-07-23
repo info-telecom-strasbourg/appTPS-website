@@ -41,7 +41,7 @@ class UserAvatarController extends Controller
 
         $user = $request->user();
 
-        if ($user->avatar != null &&  !str_contains($user->name, 'default')) {
+        if ($user->avatar != null &&  !str_contains($user->avatar->name, 'default')) {
             Storage::delete('public/images/avatars/' . $user->avatar->name);
             $user->avatar->delete();
         }
@@ -50,7 +50,7 @@ class UserAvatarController extends Controller
 
         $name = $user->id . '_' . time() . '_' . $user->last_name . '_' . $user->first_name . '_' . random_int(0, 1000) . '.' . $avatar->getClientOriginalExtension();
 
-        $stored_path = $avatar->storeAs('public/images/avatars', $name);
+        $avatar->storeAs('public/images/avatars', $name);
 
         $user->avatar()->create([
             'name' => $name,
@@ -60,7 +60,7 @@ class UserAvatarController extends Controller
 
         return response()->json([
             'message' => 'Avatar uploaded successfully',
-        ], 200);
+        ], 201);
     }
 
     /**
@@ -93,7 +93,7 @@ class UserAvatarController extends Controller
 
         $user = $request->user();
 
-        if ($user->avatar != null && !str_contains($user->name, 'default')) {
+        if ($user->avatar != null && !str_contains($user->avatar->name, 'default')) {
             Storage::delete('public/images/avatars/' . $user->avatar->name);
             $user->avatar->delete();
         }
@@ -109,7 +109,7 @@ class UserAvatarController extends Controller
 
         return response()->json([
             'message' => 'Avatar uploaded successfully',
-        ], 200);
+        ], 201);
     }
 
     /**
@@ -117,7 +117,7 @@ class UserAvatarController extends Controller
      * 
      * Fetch a hardcoded list of default avatars.
      */
-    public function default(Request $request)
+    public function default()
     {
         $default_tab = [
             ["name" => "default1", "path" => asset('storage/images/avatars/default1.png')],
