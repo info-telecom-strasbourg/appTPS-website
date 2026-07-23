@@ -97,7 +97,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function getAvatarPath(){
-        return $this->avatar ? $this->avatar->path : null;
+        return $this->avatar ? $this->avatar->getUrl() : asset(config('avatar.fallback_image'));
     }
 
     public function getFullName(){
