@@ -67,6 +67,17 @@ Pour générer la clé de chiffrement, il faut ouvrir un terminal et taper la co
 ```bash
 php artisan key:generate
 ```
+
+### Mise en place des liens symbolique pour le stockage
+
+Pour rendre accessible l'espace de stockage public, il faut ouvrir un terminal et taper la commande suivante :
+
+```bash
+php artisan storage:link
+```
+
+Cela génère un lien symbolique entre `public/storage` et `storage/app/public`
+
 ## Utilisation
 
 ### Génération des tables avec les données
