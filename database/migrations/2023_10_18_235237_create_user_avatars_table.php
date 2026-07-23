@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name')->nullable()->default(null);
             $table->string('path')->nullable()->default(null);
             $table->integer('size')->nullable()->default(null);
+            $table->boolean('is_default')->default(true);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

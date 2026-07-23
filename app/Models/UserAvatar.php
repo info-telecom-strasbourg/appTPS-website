@@ -15,7 +15,12 @@ class UserAvatar extends Model
         'name',
         'path',
         'size',
-        'user_id'
+        'user_id',
+        'is_default'
+    ];
+
+    protected $casts = [
+        'is_default'=> 'boolean',
     ];
 
     public function user(){
