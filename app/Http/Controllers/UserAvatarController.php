@@ -113,37 +113,34 @@ class UserAvatarController extends Controller
     }
 
     /**
-     * Default Avatar
+     * Default Avatars
      * 
-     * Fetch a hardcoded list of default avatars.
+     * Fetch a list of default avatars found in 'avatar.defaults_directory'.
      */
     public function default()
     {
-        $default_tab = [
-            ["name" => "default1", "path" => asset('storage/images/avatars/default1.png')],
-            ["name" => "default2", "path" => asset('storage/images/avatars/default2.png')],
-            ["name" => "default3", "path" => asset('storage/images/avatars/default3.png')],
-            ["name" => "default4", "path" => asset('storage/images/avatars/default4.png')],
-            ["name" => "default5", "path" => asset('storage/images/avatars/default5.png')],
-            ["name" => "default6", "path" => asset('storage/images/avatars/default6.png')],
-            ["name" => "default7", "path" => asset('storage/images/avatars/default7.png')],
-            ["name" => "default8", "path" => asset('storage/images/avatars/default8.png')],
-            ["name" => "default9", "path" => asset('storage/images/avatars/default9.png')],
-            ["name" => "default10", "path" => asset('storage/images/avatars/default10.png')],
-            ["name" => "default11", "path" => asset('storage/images/avatars/default11.png')],
-            ["name" => "default12", "path" => asset('storage/images/avatars/default12.png')],
-            ["name" => "default13", "path" => asset('storage/images/avatars/default13.png')],
-            ["name" => "default14", "path" => asset('storage/images/avatars/default14.png')],
-            ["name" => "default15", "path" => asset('storage/images/avatars/default15.png')],
-            ["name" => "default16", "path" => asset('storage/images/avatars/default16.png')],
-            ["name" => "default17", "path" => asset('storage/images/avatars/default17.png')],
-            ["name" => "default18", "path" => asset('storage/images/avatars/default18.png')],
-            ["name" => "default19", "path" => asset('storage/images/avatars/default19.png')],
-            ["name" => "default20", "path" => asset('storage/images/avatars/default20.png')],
+        $disk = config('avatar.disk');
+        $directory = config('avatar.defaults_directory');
+
+        // tous les fichiers dans le dossier default
+        $files = Storage::disk($disk)->files($directory);
+
+        $avatars = array_map(function ($file) use ($disk) {
+            return [
+                'name' => basename($file),
+                'path' => Storage::disk($disk)->url($file),
+            ];
+        }, $files);
+
+        // ajoute fallback_image
+        $fallback = config('avatar.fallback_image');
+        $avatars[] = [
+            'name' => basename($fallback),
+            'path' => asset($fallback), // asset() car est dans public/
         ];
 
         return response()->json([
-            "data" => $default_tab
-        ], 200);
+            "data" => $avatars
+        ], 200)->setEncodingOptions(JSON_UNESCAPED_SLASHES);
     }
 }
