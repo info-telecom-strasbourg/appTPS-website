@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Closure;
 
 /**
@@ -20,6 +21,9 @@ class UserAvatarController extends Controller
      * Change Avatar
      * 
      * Upload an image and replace the current user's avatar with it.
+     * 
+     * @response status=201 {"message":"Avatar uploaded successfully"}
+     * @response status=422 {"message":"Validation failed","errors":{"avatar":["The avatar field must be an image.","The avatar field must be a file of type: jpeg, png, jpg, heic."]}}
      */
     function store(Request $request)
     {
@@ -41,21 +45,31 @@ class UserAvatarController extends Controller
 
 
         $user = $request->user();
+        $disk = config('avatar.disk');
+        $directory = config('avatar.directory');
 
-        if ($user->avatar != null &&  !str_contains($user->avatar->name, 'default')) {
-            Storage::delete('public/images/avatars/' . $user->avatar->name);
+        // s'il y a deja un avatar
+        if ($user->avatar != null)
+        {
+            // si l'avatar n'est pas un avatar par defaut
+            if (!$user->avatar->is_default) {
+                $path = Str::finish($directory, '/') . $user->avatar->name;
+                Storage::disk($disk)->delete($path);
+            }
+
             $user->avatar->delete();
         }
 
         $avatar = $request->file('avatar');
 
-        $name = $user->id . '_' . time() . '_' . $user->last_name . '_' . $user->first_name . '_' . random_int(0, 1000) . '.' . $avatar->getClientOriginalExtension();
+        // creation d'un nom unique pour l'avatar
+        $name = $user->id . '_' . uniqid() . '.' . $avatar->getClientOriginalExtension();
 
-        $avatar->storeAs('public/images/avatars', $name);
+        $avatar->storeAs($directory, $name, $disk); // enregistrement de l'image sur le serveur
 
         $user->avatar()->create([
             'name' => $name,
-            'path' => asset('storage/images/avatars/' . $name),
+            'is_default' => false,
             'size' => $avatar->getSize()
         ]);
 
