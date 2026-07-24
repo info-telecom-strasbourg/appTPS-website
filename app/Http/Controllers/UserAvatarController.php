@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Closure;
 
 /**
  * @group User
@@ -64,23 +65,33 @@ class UserAvatarController extends Controller
     }
 
     /**
-     * Change Avatar (no upload)
+     * Change Avatar (default)
      * 
-     * Take an image URL and replace the current user's avatar with it.
+     * Set a default avatar as the current user's avatar.
      * 
-     * <aside class="warning"> Should only be used with images from <b>Default Avatar</b> !</aside>
+     * <aside class="notice"> Will only work with names from <b>Default Avatars</b>.</aside>
+     * 
+     * @response status=200 {"message":"Avatar set successfully"}
+     * @response status=422 {"message":"Validation failed","errors":{"name":["name must be an existing default avatar's  name."]}}
      */
     public function storedefault(Request $request){
         $validation = Validator::make($request->all(), [
-            'default_link' => [
+            'name' => [
                 'required',
                 'string',
-                'max:255'
-            ],
-            'default_name' => [
-                'required',
-                'string',
-                'max:255'
+                'max:255',
+                // validation rule, qui check si le nom fait partie des choix possibles
+                function (string $attribute, mixed $value, Closure $fail) {
+                    $default_directory = config('avatar.defaults_directory');
+                    $disk = config('avatar.disk');
+
+                    $filename = basename($value);
+                    $filePath = $default_directory . '/' . $filename;
+
+                    if ($filename != $value || ($filename != basename(config('avatar.fallback_image')) && !Storage::disk($disk)->exists($filePath))) {
+                        $fail($attribute . ' must be an existing default avatar\'s  name.');
+                    }
+                },
             ]
         ]);
 
@@ -92,24 +103,35 @@ class UserAvatarController extends Controller
         }
 
         $user = $request->user();
+        $disk = config('avatar.disk');
+        $directory = config('avatar.directory');
 
-        if ($user->avatar != null && !str_contains($user->avatar->name, 'default')) {
-            Storage::delete('public/images/avatars/' . $user->avatar->name);
+        // s'il y a deja un avatar
+        if ($user->avatar != null)
+        {
+            // si l'avatar n'est pas un avatar par defaut
+            if (!$user->avatar->is_default) {
+                $path = Str::finish($directory, '/') . $user->avatar->name;
+                Storage::disk($disk)->delete($path);
+            }
+
             $user->avatar->delete();
         }
 
-        $default_link = $request->default_link;
-        $default_name = $request->default_name;
+        $name = $request->name;
 
-        $user->avatar()->create([
-            'name' => $default_name,
-            'path' => $default_link,
-            'size' => null
-        ]);
+        //si l'image souhaitée n'est pas l'image de fallback
+        if ($name != basename(config('avatar.fallback_image'))) {
+            $user->avatar()->create([
+                'name' => $name,
+                'is_default' => true,
+                'size' => null
+            ]);
+        }
 
         return response()->json([
-            'message' => 'Avatar uploaded successfully',
-        ], 201);
+            'message' => 'Avatar set successfully',
+        ], 200);
     }
 
     /**
