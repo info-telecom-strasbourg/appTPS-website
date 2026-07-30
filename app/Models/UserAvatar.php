@@ -14,7 +14,6 @@ class UserAvatar extends Model
 
     protected $fillable = [
         'name',
-        'path',
         'size',
         'user_id',
         'is_default'
