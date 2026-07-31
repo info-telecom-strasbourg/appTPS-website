@@ -29,13 +29,11 @@ class UserAvatar extends Model
 
     public function getUrl()
     {
-        $disk = config('avatar.disk');
+        $disk = 'avatars';
 
         if ($this->is_default) {
-            $directory = config('avatar.defaults_directory');
-            return Storage::disk($disk)->url($directory . "/" . $this->name);
+            return Storage::disk($disk)->url("defaults/" . $this->name);
         }
-        $directory = config('avatar.directory');
-        return Storage::disk($disk)->url($directory . "/" . $this->name);
+        return Storage::disk($disk)->url($this->name);
     }
 }
