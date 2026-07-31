@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Closure;
 
 /**
  * @group User
@@ -19,6 +21,9 @@ class UserAvatarController extends Controller
      * Change Avatar
      * 
      * Upload an image and replace the current user's avatar with it.
+     * 
+     * @response status=201 {"message":"Avatar uploaded successfully"}
+     * @response status=422 {"message":"Validation failed","errors":{"avatar":["The avatar field must be an image.","The avatar field must be a file of type: jpeg, png, jpg, heic."]}}
      */
     function store(Request $request)
     {
@@ -40,21 +45,29 @@ class UserAvatarController extends Controller
 
 
         $user = $request->user();
+        $disk = 'avatars';
 
-        if ($user->avatar != null &&  !str_contains($user->avatar->name, 'default')) {
-            Storage::delete('public/images/avatars/' . $user->avatar->name);
+        // s'il y a deja un avatar
+        if ($user->avatar != null)
+        {
+            // si l'avatar n'est pas un avatar par defaut
+            if (!$user->avatar->is_default) {
+                Storage::disk($disk)->delete($user->avatar->name);
+            }
+
             $user->avatar->delete();
         }
 
         $avatar = $request->file('avatar');
 
-        $name = $user->id . '_' . time() . '_' . $user->last_name . '_' . $user->first_name . '_' . random_int(0, 1000) . '.' . $avatar->getClientOriginalExtension();
+        // creation d'un nom unique pour l'avatar
+        $name = $user->id . '_' . uniqid() . '.' . $avatar->getClientOriginalExtension();
 
-        $avatar->storeAs('public/images/avatars', $name);
+        $avatar->storeAs('', $name, $disk); // enregistrement de l'image sur le serveur
 
         $user->avatar()->create([
             'name' => $name,
-            'path' => asset('storage/images/avatars/' . $name),
+            'is_default' => false,
             'size' => $avatar->getSize()
         ]);
 
@@ -64,23 +77,30 @@ class UserAvatarController extends Controller
     }
 
     /**
-     * Change Avatar (no upload)
+     * Change Avatar (default)
      * 
-     * Take an image URL and replace the current user's avatar with it.
+     * Set a default avatar as the current user's avatar.
      * 
-     * <aside class="warning"> Should only be used with images from <b>Default Avatar</b> !</aside>
+     * <aside class="notice"> Will only work with names from <b>Default Avatars</b>.</aside>
+     * 
+     * @response status=200 {"message":"Avatar set successfully"}
+     * @response status=422 {"message":"Validation failed","errors":{"name":["name must be an existing default avatar's  name."]}}
      */
     public function storedefault(Request $request){
         $validation = Validator::make($request->all(), [
-            'default_link' => [
+            'name' => [
                 'required',
                 'string',
-                'max:255'
-            ],
-            'default_name' => [
-                'required',
-                'string',
-                'max:255'
+                'max:255',
+                // validation rule, qui check si le nom fait partie des choix possibles
+                function (string $attribute, mixed $value, Closure $fail) {
+                    $filename = basename($value);
+                    $filePath = 'defaults/' . $filename;
+
+                    if ($filename != $value || ($filename != 'fallback-avatar.png' && !Storage::disk('avatars')->exists($filePath))) {
+                        $fail($attribute . ' must be an existing default avatar\'s  name.');
+                    }
+                },
             ]
         ]);
 
@@ -93,57 +113,61 @@ class UserAvatarController extends Controller
 
         $user = $request->user();
 
-        if ($user->avatar != null && !str_contains($user->avatar->name, 'default')) {
-            Storage::delete('public/images/avatars/' . $user->avatar->name);
+        // s'il y a deja un avatar
+        if ($user->avatar != null)
+        {
+            // si l'avatar n'est pas un avatar par defaut
+            if (!$user->avatar->is_default) {
+                Storage::disk('avatars')->delete($user->avatar->name);
+            }
+
             $user->avatar->delete();
         }
 
-        $default_link = $request->default_link;
-        $default_name = $request->default_name;
+        $name = $request->name;
 
-        $user->avatar()->create([
-            'name' => $default_name,
-            'path' => $default_link,
-            'size' => null
-        ]);
+        //si l'image souhaitée n'est pas l'image de fallback
+        if ($name != 'fallback-avatar.png') {
+            $user->avatar()->create([
+                'name' => $name,
+                'is_default' => true,
+                'size' => null
+            ]);
+        }
 
         return response()->json([
-            'message' => 'Avatar uploaded successfully',
-        ], 201);
+            'message' => 'Avatar set successfully',
+        ], 200);
     }
 
     /**
-     * Default Avatar
+     * Default Avatars
      * 
-     * Fetch a hardcoded list of default avatars.
+     * Fetch a list of default avatars found in 'avatar.defaults_directory'.
      */
     public function default()
     {
-        $default_tab = [
-            ["name" => "default1", "path" => asset('storage/images/avatars/default1.png')],
-            ["name" => "default2", "path" => asset('storage/images/avatars/default2.png')],
-            ["name" => "default3", "path" => asset('storage/images/avatars/default3.png')],
-            ["name" => "default4", "path" => asset('storage/images/avatars/default4.png')],
-            ["name" => "default5", "path" => asset('storage/images/avatars/default5.png')],
-            ["name" => "default6", "path" => asset('storage/images/avatars/default6.png')],
-            ["name" => "default7", "path" => asset('storage/images/avatars/default7.png')],
-            ["name" => "default8", "path" => asset('storage/images/avatars/default8.png')],
-            ["name" => "default9", "path" => asset('storage/images/avatars/default9.png')],
-            ["name" => "default10", "path" => asset('storage/images/avatars/default10.png')],
-            ["name" => "default11", "path" => asset('storage/images/avatars/default11.png')],
-            ["name" => "default12", "path" => asset('storage/images/avatars/default12.png')],
-            ["name" => "default13", "path" => asset('storage/images/avatars/default13.png')],
-            ["name" => "default14", "path" => asset('storage/images/avatars/default14.png')],
-            ["name" => "default15", "path" => asset('storage/images/avatars/default15.png')],
-            ["name" => "default16", "path" => asset('storage/images/avatars/default16.png')],
-            ["name" => "default17", "path" => asset('storage/images/avatars/default17.png')],
-            ["name" => "default18", "path" => asset('storage/images/avatars/default18.png')],
-            ["name" => "default19", "path" => asset('storage/images/avatars/default19.png')],
-            ["name" => "default20", "path" => asset('storage/images/avatars/default20.png')],
+        $disk = 'avatars';
+
+        // tous les fichiers dans le dossier default
+        $files = Storage::disk($disk)->files('defaults');
+
+        $avatars = array_map(function ($file) use ($disk) {
+            return [
+                'name' => basename($file),
+                'path' => Storage::disk($disk)->url($file),
+            ];
+        }, $files);
+
+        // ajoute fallback_image
+        $fallback = 'images/fallback-avatar.png';
+        $avatars[] = [
+            'name' => basename($fallback),
+            'path' => asset($fallback), // asset() car est dans public/
         ];
 
         return response()->json([
-            "data" => $default_tab
-        ], 200);
+            "data" => $avatars
+        ], 200)->setEncodingOptions(JSON_UNESCAPED_SLASHES);
     }
 }
